@@ -84,7 +84,8 @@ ZVSE2
     !!if&(used)=0/(score)<(bestScore);
       !!SN:W^clt.world.c.%(i).x^/?(x:y) W^clt.world.c.%(i).y^/?(y:y) W^clt.world.c.%(i).z^/?(z:y) W^clt.world.c.%(i).old^/?(old:y);
       !!OB(x)/(y)/(z):T?(type:y) U?(current:y);
-      !!if&(type)=(OBJ_ARTIFACT)/(current)=(old);
+      !!SN:W^clt.pickup.site.%(x).%(y).%(z)^/?(existing:y);
+      !!if&(type)=(OBJ_ARTIFACT)/(current)=(old)/(existing)=0;
         !!FU(CLT_WorldSpacing):P(x)/(y)/(z)/(spacing)/?(okay:y);
         !!if&(okay)=1;
           !!VR(best):S(i);
@@ -104,17 +105,20 @@ ZVSE2
   ; inside UN:I and cannot index extended IDs. Initialize with the original
   ; native ID, select our DEF template separately, then set the pickup ID.
   !!UN:I(bx)/(by)/(bz)/(OBJ_ARTIFACT)/(previous)/(OBJ_ARTIFACT)/(part)/-1/0;
-  !!OB(bx)/(by)/(bz):U(part) C0;
+  !!OB(bx)/(by)/(bz):U(previous) C0;
   !!OB(bx)/(by)/(bz):T?(actualType:y) U?(actual:y);
-  !!if|(actualType)<>(OBJ_ARTIFACT)/(actual)<>(part);
+  !!if|(actualType)<>(OBJ_ARTIFACT)/(actual)<>(previous);
     !!UN:O(bx)/(by)/(bz)/1/0;
     !!UN:I(bx)/(by)/(bz)/(OBJ_ARTIFACT)/(previous)/(OBJ_ARTIFACT)/(previous)/-1/0;
     !!OB(bx)/(by)/(bz):C0;
     !!SN:W^clt.world.error^/1;
     !!FU:E;
   !!en;
+  !!VR(quest:y):S(part) -450;
+  !!FU(CLT_QuestInfo):P(quest)/?i/?(mapName:z)/?i;
+  !!OB(bx)/(by)/(bz):H(mapName);
   !!VR(placed):+1;
-  !!SN:W^clt.world.c.%(best).used^/1 W^clt.world.placed^/(placed) W^clt.world.p.%(placed).x^/(bx) W^clt.world.p.%(placed).y^/(by) W^clt.world.p.%(placed).z^/(bz) W^clt.world.p.%(placed).art^/(part) W^clt.world.p.%(placed).old^/(previous);
+  !!SN:W^clt.world.c.%(best).used^/1 W^clt.world.placed^/(placed) W^clt.world.p.%(placed).x^/(bx) W^clt.world.p.%(placed).y^/(by) W^clt.world.p.%(placed).z^/(bz) W^clt.world.p.%(placed).art^/(part) W^clt.world.p.%(placed).old^/(previous) W^clt.pickup.site.%(bx).%(by).%(bz)^/(placed);
   !!SN:F^WriteStrToIni^/^item%(placed)^/^%(bx),%(by),%(bz),%(part)^/^world^/^Debug\CloudTitansWorld.ini^;
 !!en;
 
@@ -167,9 +171,11 @@ ZVSE2
 !!if&(network)>0;
   !!re (entry:y)/1/(placed);
     !!SN:W^clt.world.p.%(entry).x^/?(px:y) W^clt.world.p.%(entry).y^/?(py:y) W^clt.world.p.%(entry).z^/?(pz:y) W^clt.world.p.%(entry).art^/?(pa:y) W^clt.world.p.%(entry).old^/?(po:y);
+    !!FU26894:P(entry)/(px)/(py)/(pz)/(po)/(pa);
     !!IP:D-1;
     !!FU26894:D(entry)/(px)/(py)/(pz)/(po)/(pa);
   !!en;
+  !!FU26895:P(placed);
   !!IP:D-1;
   !!FU26895:D(placed);
 !!en;

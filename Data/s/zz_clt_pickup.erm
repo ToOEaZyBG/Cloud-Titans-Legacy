@@ -1,0 +1,60 @@
+ZVSE2
+; Map proxies retain a native artifact ID for third-party visit hooks.
+; Their coordinate ledger, not the native reward, identifies the component.
+
+!?OB5;
+!!VR(bx:y):Sv998;
+!!VR(by:y):Sv999;
+!!VR(bz:y):Sv1000;
+!!SN:W^clt.pickup.site.%(bx).%(by).%(bz)^/?(index:y);
+!!FU&(index)<1:E;
+!!HE-1:N?(hero:y);
+!!FU(CLT_IsHuman):P(hero)/?(human:y);
+!!FU&(human)=0:E;
+; Disable native pickup before doing anything: failed delivery leaves a retryable site.
+!!OB998:S;
+!!HE(hero):O?(owner:y);
+!!FU(CLT_IsLocalOwner):P(owner)/?(local:y);
+!!FU&(local)=0:E;
+!!UN:V?i/?i/?i/?(network:y)/?i;
+!!FU26897:P(hero)/(index)/(bx)/(by)/(bz);
+!!if&(network)>0;
+ !!IP:D-1;
+ !!FU26897:D(hero)/(index)/(bx)/(by)/(bz);
+!!en;
+!!SN:W^clt.world.p.%(index).taken^/?(taken:y);
+!!if&(taken)=0;
+ !!IF:M^The component was not collected. Free a backpack space and try again.^;
+!!el;
+ !!SN:W^clt.world.p.%(index).art^/?(part:y);
+ !!VR(quest:y):S(part) -450;
+ !!FU(CLT_QuestInfo):P(quest)/?i/?(name:z)/?i;
+ !!IF:M^You found %(name).^;
+!!en;
+
+!?FU26897;
+!!FU(CLT_CollectSite):Px1/x2/x3/x4/x5;
+
+!?FU(CLT_CollectSite);
+!#VA(hero:x) (index:x) (bx:x) (by:x) (bz:x);
+!!FU|(hero)<0/(index)<1/(index)>64:E;
+!!UN:X?(size:y)/?(underground:y);
+!!FU|(bx)<0/(by)<0/(bx)>=(size)/(by)>=(size)/(bz)<0/(bz)>(underground):E;
+!!SN:W^clt.world.p.%(index).taken^/?(taken:y);
+!!FU&(taken)>0:E;
+!!SN:W^clt.world.p.%(index).x^/?(px:y) W^clt.world.p.%(index).y^/?(py:y) W^clt.world.p.%(index).z^/?(pz:y) W^clt.world.p.%(index).art^/?(part:y) W^clt.world.p.%(index).old^/?(previous:y);
+!!FU|(px)<>(bx)/(py)<>(by)/(pz)<>(bz)/(part)<450/(part)>457:E;
+!!OB(bx)/(by)/(bz):T?(kind:y) U?(actual:y);
+!!FU&(kind)<>(OBJ_ARTIFACT):E;
+!!FU&(actual)<>(previous)/(actual)<>(part):E;
+!!FU(CLT_IsHuman):P(hero)/?(human:y);
+!!FU&(human)=0:E;
+!!FU(CLT_BackpackCount):P(hero)/?(used:y);
+!!FU&(used)>=64:E;
+!!OB(bx)/(by)/(bz):S;
+!!HE(hero):A2/(part)/?(before:y)/?i;
+!!HE(hero):A4/(part);
+!!HE(hero):A2/(part)/?(after:y)/?i;
+!!FU&(after)<=(before):E;
+!!SN:W^clt.world.p.%(index).taken^/1;
+!!UN:O(bx)/(by)/(bz)/1/1;

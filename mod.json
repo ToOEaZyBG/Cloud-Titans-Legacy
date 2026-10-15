@@ -7,7 +7,7 @@
       "en_US": "Readme.md"
     },
     "short": {
-      "en_US": "Experimental sequential Online Lobby test candidate. Peer transport unverified; see NETWORK_TEST.md."
+      "en_US": "Online Lobby test update: quest progress and pickup fixes pending in-game verification. New random map required."
     }
   },
   "author": "ToOEaZyBG; third-party credits in THIRD_PARTY.txt",
@@ -16,7 +16,7 @@
     "file": "icon.png",
     "index": 0
   },
-  "mod_version": "0.5.0-nettest-alpha",
+  "mod_version": "0.5.1-nettest-alpha",
   "info_version": "1",
   "platform": "era",
   "priority": 0,

@@ -63,6 +63,18 @@ ZVSE2
  !!VR(objective):Z^Defeat 10000 Imps or Familiars.^;
 !!en;
 
+!?FU(CLT_QuestMetric);
+!#VA(quest:x) (metric:x);
+!!VR(metric):Z^progress^;
+!!VR(metric)&(quest)=0:Z^battle wins^;
+!!VR(metric)&(quest)=1:Z^Mages / Arch Mages defeated^;
+!!VR(metric)&(quest)=2:Z^Skeletons / Skeleton Warriors defeated^;
+!!VR(metric)&(quest)=3:Z^enemy creatures defeated^;
+!!VR(metric)&(quest)=4:Z^Vampires / Vampire Lords defeated^;
+!!VR(metric)&(quest)=5:Z^battle wins^;
+!!VR(metric)&(quest)=6:Z^Behemoths defeated (all 3 forms)^;
+!!VR(metric)&(quest)=7:Z^Imps / Familiars defeated^;
+
 !?FU(CLT_QuestProgressKey);
 !#VA(owner:x) (quest:x) (key:x);
 !!VR(key):Z^clt.quest.%(owner).progress.%(quest)^;
@@ -84,12 +96,15 @@ ZVSE2
 
 !?FU(CLT_QuestRequirements);
 !#VA(quest:x) (hero:x) (ready:x) (status:x);
-!!HE(hero):E?i/?(level:y);
+!!VR(level:y):S0;
+!!HE(hero)&(hero)>=0:E?i/?(level);
+!!VR(heroStatus:z):Z^No hero in this Tower. Bring a level 25+ hero to claim.^;
+!!VR(heroStatus)&(hero)>=0:Z^Hero level: %(level)/25^;
 !!CA-1:U?(town:y);
 !!FU(CLT_QuestTownRequirements):P(town)/?(missing:y);
 !!VR(ready):S1;
 !!VR(ready)|(level)<25/(missing)>0:S0;
-!!VR(status):Z^Hero level: %(level)/25
+!!VR(status):Z^%(heroStatus)
 This Tower: all ordinary buildings required (including Mage Guild 5).
 Missing buildings: %(missing). Skyship/Grail is not required.^;
 
@@ -104,12 +119,10 @@ Missing buildings: %(missing). Skyship/Grail is not required.^;
 !!FU(CLT_IsLocalOwner):P(owner)/?(localOwner:y);
 !!FU&(localOwner)=0:E;
 !!CA-1&(hero)<0:H0/?(hero);
-!!if&(hero)<0;
- !!IF:M^Bring a hero to your Tower to claim quest rewards.^;
- !!FU:E;
+!!if&(hero)>=0;
+ !!HE(hero):O?(heroOwner:y);
+ !!VR(hero)&(heroOwner)<>(owner):S-1;
 !!en;
-!!HE(hero):O?(heroOwner:y);
-!!FU&(heroOwner)<>(owner):E;
 !!FU(RadioDlg_Reset):P;
 !!FU(RadioDlg_SetTitle):P^Legacy of the Cloud Titans - Quests^;
 !!re (q:y)/0/7;
@@ -117,10 +130,11 @@ Missing buildings: %(missing). Skyship/Grail is not required.^;
  !!FU(CLT_QuestRequirements):P(q)/(hero)/?(eligible:y)/?(requirements:z);
  !!FU(CLT_QuestProgressKey):P(owner)/(q)/?(progressKey:z);
  !!SN:W^clt.quest.%(owner).claimed.%(q)^/?(claimed:y) W(progressKey)/?(progress:y);
- !!VR(caption:z):S^%(title): %(progress)/%(target)^;
- !!VR(caption)&(claimed)>0:S^{~Lime}%(title): claimed{~}^;
- !!VR(caption)&(claimed)=0/(progress)>=(target)/(eligible)=0:S^%(title): requirements missing^;
- !!VR(caption)&(claimed)=0/(progress)>=(target)/(eligible)=1:S^{~Lime}%(title): READY{~}^;
+ !!FU(CLT_QuestMetric):P(q)/?(metric:z);
+ !!VR(caption:z):S^%(title): %(progress)/%(target) %(metric)^;
+ !!VR(caption)&(claimed)>0:S^{~Lime}%(caption) - claimed{~}^;
+ !!VR(caption)&(claimed)=0/(progress)>=(target)/(eligible)=0:S^%(caption) - requirements missing^;
+ !!VR(caption)&(claimed)=0/(progress)>=(target)/(eligible)=1:S^{~Lime}%(caption) - READY{~}^;
  !!FU(RadioDlg_AddItem):P(caption)/(q);
 !!en;
 !!FU(RadioDlg_AddCancelButton):P;
@@ -150,6 +164,7 @@ Reward: one component, once per player in this game.^;
 !!CA-1:U?(claimTown:y);
 !!UN:V?i/?i/?i/?(network:y)/?i;
 !!if&(network)>0;
+ !!FU26893:P(hero)/(claimTown)/(quest);
  !!IP:D-1;
  !!FU26893:D(hero)/(claimTown)/(quest);
 !!el;
@@ -232,9 +247,16 @@ Reward: one component, once per player in this game.^;
  !!VR(old):+(amount) F0/1000000000;
  !!UN:V?i/?i/?i/?(network:y)/?i;
  !!if&(network)>0;
+  !!FU26892:P(owner)/(q)/(old);
   !!IP:D-1;
   !!FU26892:D(owner)/(q)/(old);
  !!el;
   !!FU(CLT_QuestProgressSet):P(owner)/(q)/(old);
  !!en;
+ !!SN:W(key)/?(applied:y);
+ !!SN&(applied)<(old):W^clt.net.quest.error^/1;
+ !!SN:F^WriteStrToIni^/^player%(owner)_quest%(q)^/^%(applied)^/^progress^/^Debug\CloudTitansQuests.ini^;
 !!en;
+!!SN:F^WriteStrToIni^/^stage^/^battle-committed^/^battle^/^Debug\CloudTitansQuests.ini^;
+!!SN:F^WriteStrToIni^/^owner^/^%(owner)^/^battle^/^Debug\CloudTitansQuests.ini^;
+!!SN:F^SaveIni^/^Debug\CloudTitansQuests.ini^;
