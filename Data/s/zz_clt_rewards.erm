@@ -3,22 +3,26 @@ ZVSE2
 ; Native selection remains the fallback. Do not globally unban custom IDs.
 
 !?FU(CLT_LevelArtifact);
-!#VA(hero:x) (rank:x) (artifact:x);
+!#VA(hero:x) (rank:x) (artifact:x) (step:x);
 !!VR(savedQuickI:y):Si;
 ; CURRENT_HERO is a contextual sentinel, not a real hero ID.
 !!HE(hero)&(hero)=(CURRENT_HERO):N?(hero);
-!!FU(CLT_TryLevelComponent):P(hero)/(rank)/?(artifact);
+; step is the odd picture-array index for this reward, not the final hero level.
+!!VR(rewardLevel:y):Si^wog_101_startLvl^;
+!!VR(offset:y):S(step) :2;
+!!VR(rewardLevel):+(offset);
+!!FU(CLT_TryLevelComponent):P(hero)/(rank)/?(artifact)/(rewardLevel);
 !!UN&(artifact)<0:J6/(rank)/?(artifact);
 !!VRi:S(savedQuickI);
 
 !?FU(CLT_TryLevelComponent);
-!#VA(hero:x) (rank:x) (artifact:x);
+!#VA(hero:x) (rank:x) (artifact:x) (rewardLevel:x);
 !!VR(artifact):S-1;
 !!FU&(rank)<>(ART_LEVEL_RELIC):E;
 !!FU(CLT_IsHuman):P(hero)/?(human:y);
 !!FU&(human)=0:E;
 !!UN:V?i/?i/?i/?(network:y)/?i;
-!!FU&(network)>0:E;
+
 ; One ticket per allowed stock Relic and one per Cloud Titans component.
 ; Human Relic tickets choose actual IDs directly: no exhausted native deck sentinels.
 !!VR(stock:y):S0;
@@ -27,7 +31,12 @@ ZVSE2
   !!VR(stock)&(banned)=0/(candidateRank)=(ART_LEVEL_RELIC):+1;
 !!en;
 !!VR(last:y):S(stock) +7;
-!!VR(ticket:y):R0/0/(last);
+!!if&(network)>0;
+ ; All peers use the same bounded arithmetic, without touching their RNG.
+ !!FU(CLT_LevelTicket):P(hero)/(rewardLevel)/(last)/?(ticket:y);
+!!el;
+ !!VR(ticket):R0/0/(last);
+!!en;
 !!if&(ticket)<(stock);
  !!VR(index:y):S0;
  !!re (normal:y)/7/128;
@@ -49,3 +58,15 @@ ZVSE2
 !!SN:W^clt.reward.level.count^/(count);
 !!SN:F^WriteStrToIni^/^reward%(count)^/^hero=%(hero),artifact=%(artifact)^/^level-up^/^Debug\CloudTitansRewards.ini^;
 !!SN:F^SaveIni^/^Debug\CloudTitansRewards.ini^;
+
+; Stable ticket for a human Relic reward. No transport or artifact grant here:
+; the original WoG level-up code remains the sole grant/dialog owner.
+!?FU(CLT_LevelTicket);
+!#VA(hero:x) (level:x) (last:x) (ticket:x);
+!!VR(ticket):S-1;
+!!FU|(hero)<0/(level)<1/(last)<0:E;
+!!VR(seed:y):S(hero) +1 *25173 %65521;
+!!VR(term:y):S(level) %65521 *7919 %65521;
+!!VR(seed):+(term) %65521;
+!!VR(divisor:y):S(last) +1;
+!!VR(ticket):S(seed) %(divisor);

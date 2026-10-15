@@ -1,3 +1,11 @@
+# 0.5.2-nettest-alpha
+
+- Enable the eight human Relic component rewards for WoG option 126 in network games, from level 18 onward.
+- Use deterministic hero/reward-level selection online, without an extra RNG call, separate grant packet or extra item.
+- Preserve native grants/dialogs and distinct reward-level inputs when several levels are gained together.
+- Keep AI, lower reward classes and gameplay balance unchanged.
+- 34 automated checks pass; ERA and Online Lobby verification remain pending. Both players must close the game and update together. Start a new map for the test.
+
 # 0.5.1-nettest-alpha
 
 Published test candidate; the user will verify changes through Online Lobby. No native/runtime pass is claimed for this update.

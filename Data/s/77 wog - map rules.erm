@@ -578,7 +578,7 @@ WoGify ERM code: 101 (0-5) plus 111-130 (0-1) for individual rules
   !!if|(isAi)/o=(NO_OWNER);
     !!VR(vLvl:y):S(lvl:y) Sd>>1 :6 +1 F1/4;
     !!VR(artLevel:y):S1 Sd<<(vLvl);
-    !!FU(CLT_LevelArtifact):P(hero)/(artLevel)/?(art:y);
+    !!FU(CLT_LevelArtifact):P(hero)/(artLevel)/?(art:y)/0;
     !!HE(hero):A4/(art); [give (equip) artifact]
   !!el;
     !!VRf:S0;
@@ -607,7 +607,7 @@ WoGify ERM code: 101 (0-5) plus 111-130 (0-1) for individual rules
     !!re i/1/(arraySize:y)/2;/1/-1;
       !!VR(vLvl:y):Si Sd>>1 +i^wog_101_startLvl^ :6 +1 F1/4;
       !!VR(artLevel:y):S1 Sd<<(vLvl);
-      !!FU(CLT_LevelArtifact):P(CURRENT_HERO)/(artLevel)/?(art:y);
+      !!FU(CLT_LevelArtifact):P(CURRENT_HERO)/(artLevel)/?(art:y)/i;
       !!HE(CURRENT_HERO):A4/(art); [give (equip) artifact]
       !!SN:M(artList)/i/(art);
     !!en;

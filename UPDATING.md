@@ -10,7 +10,7 @@ When versions differ, the version cell displays the installed version above the 
 
 After extraction, Launcher hides Update without reading the installed version again. Reopening Mod Browser runs the comparison again, so a stale catalog can make Update reappear after a successful installation.
 
-The authoritative installed version is `Mods/Cloud Titans Legacy - Local Test/mod.json`, field `mod_version`. If it is already 0.5.1-nettest-alpha, repeated installation is unnecessary. The server's catalog refresh schedule has not been established; no fixed waiting time is promised.
+The authoritative installed version is `Mods/Cloud Titans Legacy - Local Test/mod.json`, field `mod_version`. If it already matches the current published version, repeated installation is unnecessary. The server's catalog refresh schedule has not been established; no fixed waiting time is promised.
 
 ## Publishing
 
