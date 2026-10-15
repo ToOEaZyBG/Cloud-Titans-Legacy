@@ -1,5 +1,8 @@
 {
   ".gitattributes": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
+  "Data/CloudTitans.pac": "d1fe503aaca94b4f081e57c764fa486da5bcdf8d594b4b6bbc1084e8fd4de6d9",
+  "Data/CloudTitansMap.pac": "8650f6ba768bff03d352a65cc3a1fc4b9bdb132dd586ed293610d962723538dc",
+  "Data/CloudTitansQuests.pac": "f35f11148ba0402b62159e1ecfb235d8471c570e5f9122d87de32810cb68924e",
   "Data/artifacts/450.cfg": "ff12652c06a5de96aa3d8c203c170a0110ee985fca3778483114d2e07a83a91b",
   "Data/artifacts/451.cfg": "874be454cba377a69063539723490c205b98bff1e683cd03af65427d837f0bed",
   "Data/artifacts/452.cfg": "44a867fcadde3cb54494fc693d2ef5fc8d25ad8b9e885ad36a6b21fa2ba4eda1",
@@ -9,9 +12,6 @@
   "Data/artifacts/456.cfg": "247a6ce317c97eb8ee57888d2afd356dacf5e82ee2853d75d4a6fa268f99be06",
   "Data/artifacts/457.cfg": "46719a076d4ed81a5b6003601f69b6efa4926cb1d30cc82b59805a43b6c088ba",
   "Data/artifacts/458.cfg": "8e571e2d4a5bb670959450e2c57d66f4c2db5c6a39728f10db0eb7b06df87847",
-  "Data/CloudTitans.pac": "d1fe503aaca94b4f081e57c764fa486da5bcdf8d594b4b6bbc1084e8fd4de6d9",
-  "Data/CloudTitansMap.pac": "8650f6ba768bff03d352a65cc3a1fc4b9bdb132dd586ed293610d962723538dc",
-  "Data/CloudTitansQuests.pac": "f35f11148ba0402b62159e1ecfb235d8471c570e5f9122d87de32810cb68924e",
   "Data/clt450.def": "9b9062b4b227b5ca8489ec7d0b5a71472c7d61d67fe520268c7b7c7b2e16e179",
   "Data/clt450.msg": "cc1fb40874832f180eb0a9f4bb43cedc69ed627978aa1f6d6e0f61754b2c206f",
   "Data/clt450.msk": "cc1fb40874832f180eb0a9f4bb43cedc69ed627978aa1f6d6e0f61754b2c206f",
@@ -47,14 +47,15 @@
   "Data/s/zz_clt_world.erm": "10a6d454ff4e1a16513d2cfc14418be148648beb7f024c8a3f756ae34458ec1e",
   "Data/zobjcts.txt": "39a3c363021f5475657f25eb53f67d6a0f8d5f86b4ef8a66f535ca23c948941a",
   "EraPlugins/emerald3_3.era": "a6b6ecee48845dc8ec16f9a348a10d9ef1d0fa2865f3522452323fd8a55f65b9",
-  "icon.png": "53d4263108134853584c8fe2cafdf557c9a8c68ada4507f77d7b3152a6fbfe7e",
   "Lang/cloud_titans_wogify_texts.json": "10d699111210942bea534380418c1e87317854589f908ed52f51cef247ea13ad",
-  "mod.json": "eefff12cc5aee4483f5e61664098b9eaa6e45671b5b84c507f7e44077c361040",
   "NETWORK_TEST.md": "0fb5066c6b9c0d3b3675d67785bc75c5f014ca081fb983cd04b9109e3ddb5075",
   "Readme.md": "af8eb3cbd9b2653eea43d39f3941eb580546ae5ad3900cd472939a6e15ab3f1a",
-  "readme.txt": "edf52505a799fcffc4d46819168d00dead2b0a47437b8d533096ae7308c82eff",
   "Screens/quests.png": "482fc4ecf1de8dc7415b0bf4235c9aeb6460052fdc0fb193c89108d33b4250c7",
   "TEST_PROFILE.json": "e3c5f71775f2f410118dfb4b49f0d47b2a77174b77db8d932d54cc1c8fd463af",
   "THIRD_PARTY.txt": "4eb65af6ea5216d6b9126f8d0002c8b0fdd1aad028c30c1d0bfdd1bf35a57ec4",
-  "VALIDATION.md": "f37cfdae2cc9ac262d65d32d25e09b0b932ee2c35d5468aaacd0fbba904ee640"
+  "UPDATING.md": "6f839315eaf12abdc63913377adba38542d87922235afedd5290d109ac7ba2d3",
+  "VALIDATION.md": "f37cfdae2cc9ac262d65d32d25e09b0b932ee2c35d5468aaacd0fbba904ee640",
+  "icon.png": "53d4263108134853584c8fe2cafdf557c9a8c68ada4507f77d7b3152a6fbfe7e",
+  "mod.json": "eefff12cc5aee4483f5e61664098b9eaa6e45671b5b84c507f7e44077c361040",
+  "readme.txt": "edf52505a799fcffc4d46819168d00dead2b0a47437b8d533096ae7308c82eff"
 }
