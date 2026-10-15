@@ -1,3 +1,15 @@
+# 0.5.4-nettest-alpha — combined test update
+
+Includes the 0.5.3 hover and quest display fixes, plus all currently agreed changes for the next test:
+
+- Option 126: 5% component gate from level 18, with at least ten levels between selections per hero. Local saved cooldown; deterministic map-salted schedule online. Multiple-level gains respect the same spacing.
+- Quest ownership labels count components held by all owned heroes, including parts represented by the assembled relic. Owning a part never blocks the separate once-per-player quest reward.
+- Quest list/detail use one numeric state reader; requirement strings use the correct string assignment command.
+- Map sites retain custom graphics and pickup names, with unsafe custom map hints removed.
+- Network status exposes quest write errors separately.
+- 50 offline tests pass. Runtime verification is pending for these changes; start a NEW map and keep both clients on the same version.
+- The reported crash during fullscreen switching remains unresolved; no speculative graphics/native patch is included.
+
 # 0.5.3-nettest-alpha
 
 - Stop assigning trigger-local string references as persistent map-object hints. This targets the generic legacy hover error reported as File: erm, Line: 9614.

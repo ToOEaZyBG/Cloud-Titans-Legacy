@@ -112,7 +112,7 @@ ZVSE2
 !!SN:F^WriteStrToIni^/^hash^/^%(hash)^/^network^/^Debug\CloudTitansNetwork.ini^;
 !!SN:F^WriteStrToIni^/^placed^/^%(count)^/^network^/^Debug\CloudTitansNetwork.ini^;
 !!SN:F^WriteStrToIni^/^world_error^/^%(error)^/^network^/^Debug\CloudTitansNetwork.ini^;
-!!SN:F^WriteStrToIni^/^version^/^0.5.3-nettest-alpha^/^network^/^Debug\CloudTitansNetwork.ini^;
+!!SN:F^WriteStrToIni^/^version^/^0.5.4-nettest-alpha^/^network^/^Debug\CloudTitansNetwork.ini^;
 !!SN:F^SaveIni^/^Debug\CloudTitansNetwork.ini^;
 !!IF&(error)>0:M^Cloud Titans NETWORK TEST: map placement mismatch. Stop this test and keep both saves/debug folders.^;
 
@@ -153,9 +153,10 @@ ZVSE2
 !!FU(RadioDlg_Show):P?(selected:y)/?(action:y)/?(tag:z);
 !!FU&(selected)<0:E;
 !!if&(action)=0;
- !!SN:W^clt.world.placed^/?(placed:y) W^clt.net.world.hash^/?(hash:y) W^clt.net.world.error^/?(error:y);
- !!VR(status:z):S^Build: 0.5.3-nettest-alpha
+ !!SN:W^clt.world.placed^/?(placed:y) W^clt.net.world.hash^/?(hash:y) W^clt.net.world.error^/?(error:y) W^clt.net.quest.error^/?(questError:y);
+ !!VR(status:z):S^Build: 0.5.4-nettest-alpha
 Placed: %(placed). Map hash: %(hash). Errors: %(error).
+Quest write errors: %(questError).
 Confirmed wins per player (compare on both computers):
 ^;
  !!re (player:y)/0/7;

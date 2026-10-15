@@ -1,20 +1,24 @@
-# Cloud Titans 0.5.3-nettest-alpha — Online Lobby Test
+# Cloud Titans 0.5.4-nettest-alpha — Online Lobby Test
 
-Experimental multiplayer test release. **44 automated checks pass; the gameplay changes have not yet been verified in ERA or between two computers.** User-driven 0.5.2 tests with two clients on one computer confirmed battle-counter transfer and persistence after save/load, quest browsing without a hero, and receiving components from option 126. The new 0.5.3 fixes still require in-game verification.
+Experimental multiplayer test release. **50 automated checks pass; the gameplay changes have not yet been verified in ERA or between two computers.** User-driven 0.5.2 tests with two clients on one computer confirmed battle-counter transfer and persistence after save/load, quest browsing without a hero, and receiving components from option 126. The new 0.5.3 fixes still require in-game verification.
 
 ## Installation and setup
 
-1. Both players must close the game before installing or updating **Legacy of the Cloud Titans - TEST** in Heroes Launcher → Mod Browser. The required installed version is **0.5.3-nettest-alpha**. See [UPDATING.md](UPDATING.md) if the catalog shows an older version or repeatedly offers Update. Do not use F12 during multiplayer.
+1. Both players must close the game before installing or updating **Legacy of the Cloud Titans - TEST** in Heroes Launcher → Mod Browser. The required installed version is **0.5.4-nettest-alpha**. See [UPDATING.md](UPDATING.md) if the catalog shows an older version or repeatedly offers Update. Do not use F12 during multiplayer.
 2. Use matching ERA/HD versions, enabled mods and load order on both computers. TEST_PROFILE.json describes the test profile; it is not a replacement for your settings.
 3. Start a **NEW random map through Online Lobby**, with both players choosing Tower. Maps created with 0.5.0–0.5.2 are not migrated. In particular, old custom hint state may remain in saves; use a new map to test the hover fix. Disable simultaneous turns. Enable WoG option **126 (artifacts awarded on level-up)** to test level rewards; human heroes can receive a set component from level 18 onward. See LEVEL_REWARDS.md.
 4. Test with sequential turns. Successful local testing does not establish that online synchronization works.
 
 ## Changes in this release
 
+- Show already-owned components in quest rows/details without blocking the separate once-per-player quest reward.
+- Network status also displays quest write errors.
+
+
 - Remove custom map-object hint assignments that can enter the legacy hover path with an invalid text index. Custom graphics and pickup reward names are retained; the native map hint may show the underlying standard artifact name.
 - Correct two quest requirement string assignments rejected by ERA.
 - Use a shared numeric state reader for quest list/detail views and refresh town ownership/hero context after the modal selection dialog. This targets the reported list/detail progress mismatch.
-- The option 126 component frequency is unchanged in this focused error-fix release. The requested reduction remains pending.
+- Option 126 now uses a 5% component gate and a minimum ten-level gap per hero, from level 18. Network selection recomputes a shared per-map/per-hero schedule; local selection saves its cooldown. See LEVEL_REWARDS.md.
 
 
 - Option 126 now includes human Relic component rewards in network games. Online selection is deterministic per hero and rewarded level, without an extra RNG call or an extra item grant. Multiple levels gained together use distinct level inputs. Actual network behavior still requires testing.
@@ -39,4 +43,4 @@ If a crash, incorrect item or synchronization mismatch occurs, preserve both sav
 
 ## Option 126 test
 
-With option 126 enabled, level a human hero through 17, 18 and several higher levels. Check both single-level and multiple-level gains. Rewards below 18 keep the native class; from 18 onward, each reward can be a standard allowed Relic or one of the eight components. The assembled necklace cannot drop. Check inventory and reward dialogs, then save/load and continue leveling. A component is not guaranteed on any particular level. For two humans, compare the awarded item on both computers after turn transfer.
+With option 126 enabled, level a human hero through 17, 18 and several higher levels. Check both single-level and multiple-level gains. Rewards below 18 keep the native class; from 18 onward, each eligible reward has a 5% component gate, with at least ten levels between component selections; other rewards are standard allowed Relics. The assembled necklace cannot drop. Check inventory and reward dialogs, then save/load and continue leveling. A component is not guaranteed on any particular level. For two humans, compare the awarded item on both computers after turn transfer.

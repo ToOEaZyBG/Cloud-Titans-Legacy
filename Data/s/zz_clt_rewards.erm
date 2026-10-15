@@ -1,13 +1,11 @@
 ZVSE2
-; Integration with the pinned WoG map-rules script, option 126 only.
-; Native selection remains the fallback. Do not globally unban custom IDs.
+; WoG option 126 integration: native code alone grants and displays rewards.
+; Human components: 5% per eligible reward, at least ten levels apart.
 
 !?FU(CLT_LevelArtifact);
 !#VA(hero:x) (rank:x) (artifact:x) (step:x);
 !!VR(savedQuickI:y):Si;
-; CURRENT_HERO is a contextual sentinel, not a real hero ID.
 !!HE(hero)&(hero)=(CURRENT_HERO):N?(hero);
-; step is the odd picture-array index for this reward, not the final hero level.
 !!VR(rewardLevel:y):Si^wog_101_startLvl^;
 !!VR(offset:y):S(step) :2;
 !!VR(rewardLevel):+(offset);
@@ -21,51 +19,87 @@ ZVSE2
 !!FU&(rank)<>(ART_LEVEL_RELIC):E;
 !!FU(CLT_IsHuman):P(hero)/?(human:y);
 !!FU&(human)=0:E;
+!!FU&(rewardLevel)<18:E;
 !!UN:V?i/?i/?i/?(network:y)/?i;
-
-; One ticket per allowed stock Relic and one per Cloud Titans component.
-; Human Relic tickets choose actual IDs directly: no exhausted native deck sentinels.
+!!VR(component:y):S0;
+!!VR(key:y):S(hero);
+!!if&(network)>0;
+ ; Map salt is shared by the existing map plan. No extra RNG or grant RPC.
+ !!SN:W^clt.net.world.hash^/?(salt:y);
+ !!VR(key):+(salt) %65521;
+ !!FU(CLT_NetworkRewardAllowed):P(key)/(rewardLevel)/?(component);
+!!el;
+ !!SN:W^clt.reward.last.%(hero)^/?(lastReward:y);
+ !!VR(nextLevel:y):S(lastReward) +10;
+ !!if|(lastReward)=0/(rewardLevel)>=(nextLevel);
+  !!VR(roll:y):R0/0/99;
+  !!VR(component)&(roll)<5:S1;
+ !!en;
+!!en;
+!!if&(component)>0;
+ !!if&(network)>0;
+  !!FU(CLT_LevelTicket):P(key)/(rewardLevel)/7/?(partTicket:y);
+ !!el;
+  !!VR(partTicket):R0/0/7;
+ !!en;
+ !!VR(artifact):S450 +(partTicket);
+ !!SN:W^clt.reward.last.%(hero)^/(rewardLevel);
+ !!SN:W^clt.reward.level.count^/?(count:y);
+ !!VR(count):+1;
+ !!SN:W^clt.reward.level.count^/(count);
+ !!SN:F^WriteStrToIni^/^reward%(count)^/^hero=%(hero),level=%(rewardLevel),artifact=%(artifact)^/^level-up^/^Debug\CloudTitansRewards.ini^;
+ !!SN:F^SaveIni^/^Debug\CloudTitansRewards.ini^;
+ !!FU:E;
+!!en;
+; Select actual allowed stock Relic IDs directly, avoiding exhausted-deck
+; sentinel rewards on the human Relic path. Other native classes are unchanged.
 !!VR(stock:y):S0;
 !!re (candidate:y)/7/128;
-  !!UN:A(candidate)/?(banned:y) A(candidate)/3/?(candidateRank:y);
-  !!VR(stock)&(banned)=0/(candidateRank)=(ART_LEVEL_RELIC):+1;
+ !!UN:A(candidate)/?(banned:y) A(candidate)/3/?(candidateRank:y);
+ !!VR(stock)&(banned)=0/(candidateRank)=(ART_LEVEL_RELIC):+1;
 !!en;
-!!VR(last:y):S(stock) +7;
+!!FU&(stock)=0:E;
+!!VR(last:y):S(stock) -1;
 !!if&(network)>0;
- ; All peers use the same bounded arithmetic, without touching their RNG.
- !!FU(CLT_LevelTicket):P(hero)/(rewardLevel)/(last)/?(ticket:y);
+ !!FU(CLT_LevelTicket):P(key)/(rewardLevel)/(last)/?(ticket:y);
 !!el;
  !!VR(ticket):R0/0/(last);
 !!en;
-!!if&(ticket)<(stock);
- !!VR(index:y):S0;
- !!re (normal:y)/7/128;
-  !!UN:A(normal)/?(disabled:y) A(normal)/3/?(normalRank:y);
-  !!if&(disabled)=0/(normalRank)=(ART_LEVEL_RELIC);
-   !!if&(index)=(ticket);
-    !!VR(artifact):S(normal);
-    !!br;
-   !!en;
-   !!VR(index):+1;
+!!VR(index:y):S0;
+!!re (normal:y)/7/128;
+ !!UN:A(normal)/?(disabled:y) A(normal)/3/?(normalRank:y);
+ !!if&(disabled)=0/(normalRank)=(ART_LEVEL_RELIC);
+  !!if&(index)=(ticket);
+   !!VR(artifact):S(normal);
+   !!br;
   !!en;
+  !!VR(index):+1;
  !!en;
- !!FU:E;
 !!en;
-!!VR(artifact):S(ticket) -(stock) +450;
-; Diagnostic records actual awarded custom IDs; never grants extra items.
-!!SN:W^clt.reward.level.count^/?(count:y);
-!!VR(count):+1;
-!!SN:W^clt.reward.level.count^/(count);
-!!SN:F^WriteStrToIni^/^reward%(count)^/^hero=%(hero),artifact=%(artifact)^/^level-up^/^Debug\CloudTitansRewards.ini^;
-!!SN:F^SaveIni^/^Debug\CloudTitansRewards.ini^;
 
-; Stable ticket for a human Relic reward. No transport or artifact grant here:
-; the original WoG level-up code remains the sole grant/dialog owner.
+; Recompute the per-map/per-hero schedule, making it independent of RPC
+; arrival order or a peer-local cooldown. The saved last level is diagnostic
+; online and authoritative for local random selection. A candidate succeeds
+; only with a roll below 5 and no scheduled component in the previous 9 levels.
+!?FU(CLT_NetworkRewardAllowed);
+!#VA(key:x) (level:x) (allowed:x);
+!!VR(allowed):S0;
+!!FU|(key)<0/(level)<18/(level)>104:E;
+!!VR(previous:y):S-10;
+!!re (walk:y)/18/(level);
+ !!VR(next:y):S(previous) +10;
+ !!co&(walk)<(next);
+ !!FU(CLT_LevelTicket):P(key)/(walk)/99/?(roll:y);
+ !!VR(previous)&(roll)<5:S(walk);
+!!en;
+!!VR(allowed)&(previous)=(level):S1;
+
+; Small bounded integer hash. The first argument is a salted selection key.
 !?FU(CLT_LevelTicket);
 !#VA(hero:x) (level:x) (last:x) (ticket:x);
 !!VR(ticket):S-1;
 !!FU|(hero)<0/(level)<1/(last)<0:E;
-!!VR(seed:y):S(hero) +1 *25173 %65521;
+!!VR(seed:y):S(hero) +1 %65521 *25173 %65521;
 !!VR(term:y):S(level) %65521 *7919 %65521;
 !!VR(seed):+(term) %65521;
 !!VR(divisor:y):S(last) +1;

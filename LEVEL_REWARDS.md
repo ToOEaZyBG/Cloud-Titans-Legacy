@@ -1,21 +1,21 @@
-# Option 126: artifacts awarded on level-up — 0.5.3-nettest-alpha
+# Option 126 level-up rewards — 0.5.4-nettest-alpha
 
-Enable WoG option 126 before starting the new test game. The eight Cloud Titans components participate in human Relic level rewards in local and network games. The assembled necklace never drops.
+Enable WoG option 126 to test. Standard reward classes remain Treasure at levels 1–5, Minor at 6–11, Major at 12–17 and Relic from level 18 onward. AI retains native rewards. The eight components can be selected for human Relic rewards; the assembled necklace never drops.
 
-## Reward rules
+## Balance
 
-The original WoG reward classes remain: Treasure at levels 1–5, Minor at 6–11, Major at 12–17 and Relic from level 18 onward. Each eligible human Relic reward selects from one ticket per allowed standard SoD Relic (IDs 7–128), plus one ticket for each of the eight components (450–457). The combined component chance in local random selection is `8 / (allowed standard Relics + 8)`.
+Each eligible human Relic level reward has a **5% component gate**. After a component selection, another cannot be selected until **at least ten levels later for that hero**: a selection at level 20 permits the next attempt at level 30. Levels 21–29 give ordinary rewards. This limit applies to option 126 only; map artifacts and quest rewards are separate. A level-up component does not consume the corresponding once-per-player quest reward, so another hero can receive a second copy through that quest.
 
-Local games use the existing random ticket selection. Network games use a deterministic ticket derived from the hero ID and the individual rewarded level, so the custom selector does not advance the RNG. This is a fixed selection sequence, not an independent random roll. All peers need matching mods and artifact availability. Multiple levels gained at once use the original start level and each reward's array index; they do not all use the final hero level.
+For local games, the gate is a 0–99 random roll below 5, and the last selected component level is saved per hero in SN:W. For network games, a deterministic schedule uses the shared map hash, hero ID and each rewarded level. It recomputes prior scheduled successes to enforce the same ten-level gap on all peers without depending on peer-local cooldown or an extra artifact-grant message. This sequence is deterministic rather than independent random rolls; its raw gate covers approximately 5% of hash residues. Cooldown lowers the overall reward frequency below 5% across all levels.
 
-The original WoG script remains responsible for granting exactly one artifact and displaying it. The selector does not grant another item or send a separate grant message. Duplicates remain possible; there is no guaranteed component or full set. AI and lower reward classes retain native selection. Exhausted native reward pools outside the human Relic selector have not been changed by this release.
+When multiple levels are gained together, each reward uses the original start level plus its own reward index. Thus a large experience award cannot bypass the ten-level gap. Network results do not depend on the order in which the schedule is queried. Component type is selected separately from the allowed standard Relic pool, so the number of allowed standard Relics no longer increases the component rate.
 
-## Integration and limits
+The original WoG code alone grants and displays one reward per level. These limits concern component **selections**; a failed native inventory grant is not refunded by this selector. Custom selections are logged in Debug/CloudTitansRewards.ini, including hero, level and artifact ID. Logs are not proof of inventory delivery.
 
-The package overrides two selection calls in the pinned `77 wog - map rules.erm`. Original SHA-256: `94db153050a700920454bc4e3a16eeae4e74d8c7b2aa85299abaa51633256c63`. The human call passes the reward index; the AI call passes zero. Other native grant/dialog logic is unchanged. Recheck this override after updating WoG Scripts or installing another override of that file.
+## Compatibility and verification
 
-User-driven two-client tests received and equipped actual components in 0.5.2. Their frequency was considered too high; the requested 5% / ten-level restriction is pending and is NOT implemented in 0.5.3. No new game process was launched to validate the 0.5.3 fixes. Automated checks inspect integration and execute the arithmetic expressions in a small offline evaluator; they do not execute ERA or prove two-peer synchronization. Earlier local selector tests do not establish that this update works online.
+The package changes only two reward-selection calls in the pinned 77 wog - map rules.erm. The human call passes its individual reward index; the AI call passes zero. Original SHA-256: 94db153050a700920454bc4e3a16eeae4e74d8c7b2aa85299abaa51633256c63. Recheck this override after WoG Scripts updates.
 
-## Test
+Tests execute the actual pure ERM arithmetic and schedule helper instructions in a limited offline evaluator. They check bounds, approximate gate frequency, ten-level spacing and order-independent network decisions. Other tests inspect the native integration and preservation of grants/dialogs. They do not execute ERA, prove inventory delivery or establish peer synchronization. The 0.5.4 balance and UI changes still need runtime testing.
 
-Start a new Online Lobby map with option 126 enabled, simultaneous turns disabled and matching versions on both computers. Test level 18+, gaining several levels at once, a full backpack, save/load, and another level after loading. Verify the actual awarded item and dialog. With two human players, compare the hero's inventory on both machines after turn transfer. Custom selections are logged in `Debug/CloudTitansRewards.ini`; these entries describe selector output, not proof of successful delivery.
+Start a NEW map through Online Lobby with simultaneous turns off. Test level 18+, several levels gained together, a full backpack, save/load and further levels. Compare inventory and counters on both clients after turn transfer. Receiving no component during a short test is expected at this reduced rate.

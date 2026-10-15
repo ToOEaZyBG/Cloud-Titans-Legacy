@@ -1,5 +1,5 @@
 {
-  "mod_version": "0.5.3-nettest-alpha",
+  "mod_version": "0.5.4-nettest-alpha",
   "mode": "experimental sequential Online Lobby trial; no two-peer verification yet",
   "active_mods_low_to_high_priority": [
     "WoG",
@@ -114,5 +114,5 @@
     "era.dll": "660bdaac2bc4c37ae7e3d2123a515a7b5cb5fcac4705d7eef53bafe273066cf3"
   },
   "note": "Reference profile; do not overwrite the other computer mod list blindly. Other mods are not included in this ZIP.",
-  "option_126": "Enable for 0.5.2 level reward tests; network runtime verification pending"
+  "option_126": "Enable for balanced human Relic component rewards: 5% gate, minimum ten-level gap; runtime verification pending"
 }
