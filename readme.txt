@@ -28,7 +28,8 @@ without battlefield/result hooks, replay and quest save/load need testing.
 No initial army or artifact gifts are included. The optional lineage test
 army helper should remain disabled. Network acquisition is still gated off.
 Requires the installed ERA/ACM/JS profile, WoG Scripts, Era Erm Framework
-and Game Enhancement Mod. Not submitted to Mod Browser.
+and Game Enhancement Mod. Available in Mod Browser as
+Legacy of the Cloud Titans - TEST. Not moderator-verified yet.
 
 Runtime checks: town menu/icon, descriptions, actual 132-Skeleton casualty
 count and quest reward delivery. 100 selector calls returned valid IDs and

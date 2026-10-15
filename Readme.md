@@ -4,7 +4,7 @@ Tower artifact set and quests for Heroes III ERA/WoG by ToOEaZyBG.
 
 **This build supports local testing. Network map placement, level component rewards and quests are disabled. Multiplayer support is not ready.**
 
-The repository root is prepared for Heroes Launcher Mod Browser. Catalog submission and moderation are separate steps.
+Available in Heroes Launcher Mod Browser as **Legacy of the Cloud Titans - TEST**, version **0.4.2-alpha**. The catalog entry is not moderator-verified yet.
 
 Third-party credits are retained in THIRD_PARTY.txt and script headers. No ownership of Heroes III or third-party components is claimed, and no blanket license for upstream materials is granted by this repository.
 
@@ -20,7 +20,7 @@ Third-party credits are retained in THIRD_PARTY.txt and script headers. No owner
 4. Изключи други копия на Cloud Titans и помощника Cloud Titans - Lineage Test Army. Не включвай несъвместимите разширения от mod.json, особено тези, които заемат artifact IDs 450–458 или заменят emerald.cfg/artifact.def/ZOBJCTS.
 5. Стартирай **нова локална random карта**, избери Tower. За награди при ниво включи WoG опция 126. От ниво 18 има шанс за част от сета; няма гарантиран предмет от сета на всяко ниво.
 
-ZIP се разархивира, а Mod Manager включва мода. Това не е инсталация от публичния Mod Browser: модът още не е подаден там.
+**Вече може и директно през Heroes Launcher → Mod Browser:** отвори каталога наново и намери **Legacy of the Cloud Titans - TEST**, версия **0.4.2-alpha**. Натисни Install и включи мода в Mod Manager след зависимостите. Записът още няма Verified отметка. Публично хранилище: https://github.com/ToOEaZyBG/Cloud-Titans-Legacy . При този начин не разархивирай допълнително ZIP и не включвай второ копие.
 
 ## Кратка проба
 
