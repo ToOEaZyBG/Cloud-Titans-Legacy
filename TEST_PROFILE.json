@@ -1,0 +1,117 @@
+{
+  "mod_version": "0.4.2-alpha",
+  "mode": "local single-player testing; network acquisition disabled",
+  "active_mods_low_to_high_priority": [
+    "WoG",
+    "Era Erm Framework",
+    "Easy Cheats",
+    "BattleQueue",
+    "Spells Description",
+    "Unleashed Editor",
+    "Game Enhancement Mod",
+    "WoG Scripts",
+    "WoG Fix Lite",
+    "Difficulty Mod",
+    "ERA Scripts",
+    "ShimmY Combo Skills",
+    "TrainerX",
+    "10SSkills",
+    "AMER_HumanAI",
+    "WoG Graphic Fix",
+    "Arena Mod",
+    "Bounty Hunter",
+    "Raid Boss Mod",
+    "NewLevelUpScreen",
+    "Upgradable Silos",
+    "Mixed Neutrals",
+    "Secondary Skills Scrolling",
+    "Disable AI Turn Delay",
+    "Advanced Classes Mod",
+    "Stack Experience Rebalance",
+    "test",
+    "JS - new objects",
+    "JS - main module",
+    "JS - map generation fixes",
+    "Random wallpaper",
+    "JS - commanders module",
+    "JS - new terrains",
+    "Cloud Titans Legacy - Local Test"
+  ],
+  "profile_dependencies": [
+    {
+      "folder": "WoG",
+      "active": true,
+      "metadata_sha256": "f2aa562e9da8f777b676f1fd2cea5ce302fbb9cf561143372ee9b3f66cb5a730",
+      "version": "3.9.20"
+    },
+    {
+      "folder": "Era Erm Framework",
+      "active": true,
+      "metadata_sha256": "f08fceef2450d1c5be14cf3bb2218fb82c159f74616adacd2be3a1507655cffa",
+      "version": "3.9.20"
+    },
+    {
+      "folder": "WoG Scripts",
+      "active": true,
+      "metadata_sha256": "93fa7e89b3277801dbdb4701a75507e99b2447ca7077942f6c621478faf39357",
+      "version": null
+    },
+    {
+      "folder": "Game Enhancement Mod",
+      "active": true,
+      "metadata_sha256": "400e68de2d8e49da72e13180a0dfd3f1fec5fb6bcae590e81997871ad5b86daf",
+      "version": null
+    },
+    {
+      "folder": "WoG Graphic Fix",
+      "active": true,
+      "metadata_sha256": "0b0b6f3c139b36a57306e7b41174bb7cbd86d6a5b17349455a4f49d19abfb4a2",
+      "version": null
+    },
+    {
+      "folder": "Advanced Classes Mod",
+      "active": true,
+      "metadata_sha256": "be44647b470d7686bdf98342369c28242d793b127d8a48989f49c28240edcc8b",
+      "version": null
+    },
+    {
+      "folder": "JS - main module",
+      "active": true,
+      "metadata_sha256": "f4cd44d50631b6c5a9f6e6290246f816dbe2e126d749c931069dfdaec3b4263f",
+      "version": null
+    },
+    {
+      "folder": "JS - commanders module",
+      "active": true,
+      "metadata_sha256": "ff0602649845cc414611f1e848e43e310077b6a4dbea4314701d0fd046549b75",
+      "version": null
+    },
+    {
+      "folder": "JS - new objects",
+      "active": true,
+      "metadata_sha256": "20cf08326b73af14f219914476c87d544924791d790cebae820c6fbf6045a57c",
+      "version": null
+    },
+    {
+      "folder": "JS - map generation fixes",
+      "active": true,
+      "metadata_sha256": "c8042f03bbcbcf1ee2a678bf0ac0a48ff5c44a63e733ee4696267984c86b12a4",
+      "version": null
+    },
+    {
+      "folder": "JS - new terrains",
+      "active": true,
+      "metadata_sha256": "8ca60ab130f10ef57a5767476f76d000d591a93c289e337950d962f47b89bf1a",
+      "version": null
+    }
+  ],
+  "critical_dependency_sha256": {
+    "Mods/WoG Scripts/Data/s/9000 wog - stdlib.erm": "a9ba77ba10e2de419d97aa884f1954e5ed4d8b6d2f4aefad61ce7bca14fd53ad",
+    "Mods/WoG Scripts/Data/s/77 wog - map rules.erm": "94db153050a700920454bc4e3a16eeae4e74d8c7b2aa85299abaa51633256c63",
+    "Mods/Era Erm Framework/Data/s/lib/9999 era - consts.erm": "91986499645329b1a741dc4745ea58bd2d83bd4b0ec020b1467676c5544a3152",
+    "Mods/Game Enhancement Mod/Data/s/gem_spell_research.erm": "42bce4ec1734881354c3fd4da162b745541cb9f643d1154d9e82378b9b07abfd",
+    "Mods/WoG Graphic Fix/Data/WF_OB_txt.pac": "235491b9648a31425ea7962a41ac05fd4bc93afff45b7ddfe8130bcddaa2d3a2",
+    "era.dll": "660bdaac2bc4c37ae7e3d2123a515a7b5cb5fcac4705d7eef53bafe273066cf3"
+  },
+  "note": "Reference profile; do not overwrite the other computer mod list blindly. Other mods are not included in this ZIP."
+}

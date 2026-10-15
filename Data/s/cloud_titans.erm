@@ -1,0 +1,853 @@
+ZVSE2
+; Cloud Titans 0.3.0 experimental acquisition alpha.
+; Named callbacks and shared erm_hooker handlers; other mod files are untouched.
+; Native artifact removal uses the same routines documented by H3API.
+
+
+!?FU(CLT_IsHuman);
+!#VA(hero:x) (human:x);
+!!VR(human):S0;
+!!FU&(hero)<0:E;
+!!HE(hero):O?(owner:y);
+!!FU|(owner)<0/(owner)>7:E;
+!!OW:I(owner)/?(isAi:y);
+!!VR(human)&(isAi)=0:S1;
+
+!?FU(CLT_GetMask);
+!#VA(hero:x) (mask:x);
+!!VR(mask):S0;
+!!VR(bit:y):S1;
+!!re (art:y)/450/458;
+  !!HE(hero):A2/(art)/?(total:y)/?(worn:y);
+  !!VR(mask)&(worn)>0:+(bit);
+  !!VR(bit):*2;
+!!en;
+
+!?FU(CLT_Primary);
+!#VA(mask:x) (attack:x) (defense:x) (power:x) (knowledge:x) (count:x);
+!!VR(attack):S0;
+!!VR(defense):S0;
+!!VR(power):S0;
+!!VR(knowledge):S0;
+!!VR(count):S0;
+!!VR(relic:y):S(mask) &256;
+!!VR(bits:y):S(mask) &255;
+!!VR(bits)&(relic)>0:S255;
+!!VR(check:y):S(bits) &1;
+!!VR(knowledge)&(check)>0:+4;
+!!VR(check):S(bits) &2;
+!!VR(power)&(check)>0:+4;
+!!VR(check):S(bits) &4;
+!!VR(defense)&(check)>0:+4;
+!!VR(check):S(bits) &8;
+!!VR(attack)&(check)>0:+4;
+!!VR(check):S(bits) &64;
+!!VR(power)&(check)>0:+2;
+!!VR(knowledge)&(check)>0:+2;
+!!re (i:y)/0/7;
+  !!VR(check):S(bits) &1;
+  !!VR(count)&(check)>0:+1;
+  !!VR(bits)::2;
+!!en;
+!!VR(power)&(count)>=2:+2;
+!!VR(knowledge)&(count)>=2:+2;
+
+!?FU(CLT_ArtifactPrimary);
+!#VA(art:x) (attack:x) (defense:x) (power:x) (knowledge:x);
+!!VR(attack):S0;
+!!VR(defense):S0;
+!!VR(power):S0;
+!!VR(knowledge):S0;
+!!VR(knowledge)&(art)=450:S4;
+!!VR(power)&(art)=451:S4;
+!!VR(defense)&(art)=452:S4;
+!!VR(attack)&(art)=453:S4;
+!!if&(art)=456;
+  !!VR(power):S2;
+  !!VR(knowledge):S2;
+!!en;
+!!if&(art)=458;
+  !!VR(attack):S4;
+  !!VR(defense):S4;
+  !!VR(power):S8;
+  !!VR(knowledge):S8;
+!!en;
+
+!?FU(CLT_NativeTotal);
+!#VA(hero:x) (attack:x) (defense:x) (power:x) (knowledge:x);
+!!VR(attack):S0;
+!!VR(defense):S0;
+!!VR(power):S0;
+!!VR(knowledge):S0;
+!!re (art:y)/450/458;
+  !!HE(hero):A2/(art)/?(total:y)/?(worn:y);
+  !!FU(CLT_ArtifactPrimary):P(art)/?(a:y)/?(d:y)/?(p:y)/?(k:y);
+  !!VR(a):*(worn);
+  !!VR(d):*(worn);
+  !!VR(p):*(worn);
+  !!VR(k):*(worn);
+  !!VR(attack):+(a);
+  !!VR(defense):+(d);
+  !!VR(power):+(p);
+  !!VR(knowledge):+(k);
+!!en;
+
+!?FU(CLT_ApplyDelta);
+!#VA(hero:x) (old:x) (new:x) (nativeA:x) (nativeD:x) (nativeP:x) (nativeK:x);
+!!FU(CLT_EnsurePrimaryLedger):P(hero);
+!!FU(CLT_IsHuman):P(hero)/?(human:y);
+!!VR(old)&(human)=0:S0;
+!!VR(new)&(human)=0:S0;
+!!FU(CLT_Primary):P(old)/?(oa:y)/?(od:y)/?(op:y)/?(ok:y)/?(oc:y);
+!!FU(CLT_Primary):P(new)/?(na:y)/?(nd:y)/?(np:y)/?(nk:y)/?(nc:y);
+!!VR(na):-(oa) -(nativeA);
+!!VR(nd):-(od) -(nativeD);
+!!VR(np):-(op) -(nativeP);
+!!VR(nk):-(ok) -(nativeK);
+!!HE(hero):Fd(na)/d(nd)/d(np)/d(nk);
+!!SN:W^clt.primary.a.%(hero)^/d(na) W^clt.primary.d.%(hero)^/d(nd) W^clt.primary.p.%(hero)^/d(np) W^clt.primary.k.%(hero)^/d(nk);
+
+!?FU(CLT_EquipEvent);
+!#VA(mode:x);
+!!FU|v998<450/v998>458:E;
+!!HE-1:N?(hero:y);
+!!FU(CLT_EnsurePrimaryLedger):P(hero);
+!!SN:W^clt.transaction.%(hero)^/?(busy:y);
+!!FU&(busy)>0:E;
+!!FU(CLT_GetMask):P(hero)/?(old:y);
+!!VR(new:y):S(old);
+!!VR(bit:y):S1;
+!!VR(index:y):Sv998 -450;
+!!if&(index)>0;
+  !!re (i:y)/1/(index);
+    !!VR(bit):*2;
+  !!en;
+!!en;
+!!HE(hero):A2/v998/?(total:y)/?(worn:y);
+!!if&(mode)=1;
+  !!VR(new):|(bit);
+!!el;
+  !!VR(present:y):S(old) &(bit);
+  !!VR(new)&(worn)<=1/(present)>0:-(bit);
+!!en;
+!!FU(CLT_ArtifactPrimary):Pv998/?(nativeA:y)/?(nativeD:y)/?(nativeP:y)/?(nativeK:y);
+!!if&(mode)=0;
+  !!VR(nativeA):*-1;
+  !!VR(nativeD):*-1;
+  !!VR(nativeP):*-1;
+  !!VR(nativeK):*-1;
+!!en;
+!!FU(CLT_ApplyDelta):P(hero)/(old)/(new)/(nativeA)/(nativeD)/(nativeP)/(nativeK);
+!!SN:W^clt.assembly.offered.%(hero)^/0;
+
+!?AE1;
+!!FU(CLT_EquipEvent):P1;
+
+!?AE0;
+!!FU(CLT_EquipEvent):P0;
+
+!?FU(CLT_RemoveOne);
+!#VA(hero:x) (wanted:x);
+!!HE(hero):Z?(ptr:y);
+; Prefer backpack, preserving an equipped duplicate when possible.
+!!re (slot:y)/19/82;
+  !!FU(GetArtAtSlot):P(hero)/(slot)/?(art:y)/?(mod:y);
+  !!if&(art)=(wanted);
+    !!VR(index:y):S(slot) -19;
+    !!VR(savedV1:y):Sv1;
+    !!SN:E5124032/(CALLCONV_THISCALL)/(ptr)/(index);
+    !!VRv1:S(savedV1);
+    !!FU:E;
+  !!en;
+!!en;
+!!re (slot)/0/18;
+  !!FU(GetArtAtSlot):P(hero)/(slot)/?(art)/?(mod);
+  !!if&(art)=(wanted);
+    !!VR(savedV1):Sv1;
+    !!SN:E5123648/(CALLCONV_THISCALL)/(ptr)/(slot);
+    !!VRv1:S(savedV1);
+    !!FU:E;
+  !!en;
+!!en;
+
+!?FU(CLT_BackpackCount);
+!#VA(hero:x) (count:x);
+!!VR(count):S0;
+!!re (slot:y)/19/82;
+  !!FU(GetArtAtSlot):P(hero)/(slot)/?(art:y)/?(mod:y);
+  !!VR(count)&(art)>=0:+1;
+!!en;
+
+!?FU(CLT_Forge);
+!#VA(hero:x) (town:x);
+!!FU(CLT_IsHuman):P(hero)/?(human:y);
+!!FU&(human)=0:E;
+!!HE(hero):A2/458/?(relicTotal:y)/?(relicWorn:y);
+!!if&(relicWorn)>0/(town)<>-2/(town)<>-3;
+  !!if&(town)<0;
+    !!IF:M^The relic is equipped. Visit your owned Tower to link weekly recruitment. Right-click the relic in the hero window to choose disassembly.^;
+    !!FU:E;
+  !!en;
+  !!FU(CLT_LinkTown):P(hero)/(town);
+  !!FU:E;
+!!en;
+!!if&(relicTotal)>0;
+  !!FU(CLT_BackpackCount):P(hero)/?(used:y);
+  !!VR(needed:y):S7;
+  !!VR(needed)&(town)=-2/(relicWorn)>0:S8;
+  !!VR(limit:y):S64 -(needed);
+  !!if&(used)>(limit);
+    !!IF:M^Disassembly requires %(needed) free backpack spaces.^;
+    !!FU:E;
+  !!en;
+  !!FU(CLT_GetMask):P(hero)/?(old:y);
+  !!FU(CLT_NativeTotal):P(hero)/?(beforeA:y)/?(beforeD:y)/?(beforeP:y)/?(beforeK:y);
+  !!SN:W^clt.transaction.%(hero)^/1;
+  !!if&(town)=-2/(relicWorn)>0;
+    !!FU(CLT_RemoveEquippedRelic):P(hero);
+  !!el;
+    !!FU(CLT_RemoveOne):P(hero)/458;
+  !!en;
+  !!re (art:y)/450/457;
+    !!HE(hero):A(art);
+  !!en;
+  !!SN:W^clt.transaction.%(hero)^/0;
+  !!FU(CLT_GetMask):P(hero)/?(new:y);
+  !!FU(CLT_NativeTotal):P(hero)/?(afterA:y)/?(afterD:y)/?(afterP:y)/?(afterK:y);
+!!VR(afterA):-(beforeA);
+!!VR(afterD):-(beforeD);
+!!VR(afterP):-(beforeP);
+!!VR(afterK):-(beforeK);
+!!FU(CLT_ApplyDelta):P(hero)/(old)/(new)/(afterA)/(afterD)/(afterP)/(afterK);
+  !!SN:W^clt.ui.refresh.%(hero)^/1 W^clt.link.%(hero)^/0 W^clt.assembly.offered.%(hero)^/0;
+  !!IF:M^The relic has been disassembled. The eight parts are in your backpack.^;
+  !!FU:E;
+!!en;
+!!VR(complete:y):S1;
+!!re (art)/450/457;
+  !!HE(hero):A2/(art)/?(total:y)/?(worn:y);
+  !!VR(complete)&(total)<1:S0;
+!!en;
+!!FU&(complete)=0:E;
+!!FU(CLT_GetMask):P(hero)/?(old);
+!!FU(CLT_NativeTotal):P(hero)/?(beforeA)/?(beforeD)/?(beforeP)/?(beforeK);
+!!FU(CLT_BackpackCount):P(hero)/?(used);
+; If the backpack is full and all parts are equipped, there would be no room.
+!!VR(bagParts:y):S0;
+!!re (art)/450/457;
+  !!HE(hero):A2/(art)/?(total)/?(worn);
+  !!VR(bagParts)&(total)>(worn):+1;
+!!en;
+!!if&(used)>=64/(bagParts)=0;
+  !!IF:M^Free one backpack space before assembling the relic.^;
+  !!FU:E;
+!!en;
+!!SN:W^clt.transaction.%(hero)^/1;
+!!re (art)/450/457;
+  !!FU(CLT_RemoveOne):P(hero)/(art);
+!!en;
+!!FU(EquipArtToSlot):P(hero)/458/(NO_ART_MOD)/(NO_ART_SLOT)/?(equipped:y);
+!!HE(hero)&(equipped)=0:A458;
+!!SN:W^clt.transaction.%(hero)^/0;
+!!FU(CLT_GetMask):P(hero)/?(new);
+!!FU(CLT_NativeTotal):P(hero)/?(afterA)/?(afterD)/?(afterP)/?(afterK);
+!!VR(afterA):-(beforeA);
+!!VR(afterD):-(beforeD);
+!!VR(afterP):-(beforeP);
+!!VR(afterK):-(beforeK);
+!!FU(CLT_ApplyDelta):P(hero)/(old)/(new)/(afterA)/(afterD)/(afterP)/(afterK);
+!!SN:W^clt.ui.refresh.%(hero)^/1;
+!!if&(town)>=0/(equipped)>0;
+  !!FU(CLT_LinkTown):P(hero)/(town);
+!!en;
+!!IF&(equipped)>0:M^Legacy of the Cloud Titans assembled and equipped in one necklace slot.^;
+!!IF&(equipped)=0:M^Legacy of the Cloud Titans assembled. Necklace slot occupied: the relic is in your backpack.^;
+
+!?OB98;
+!!HE-1:N?(hero:y) O?(owner:y);
+!!CA998:U?(town:y) T?(kind:y) O?(townOwner:y);
+!!FU|(owner)<0/(townOwner)<>(owner)/(kind)<>(TOWN_TOWER):E;
+!!FU(CLT_Forge):P(hero)/(town);
+
+!?FU(CLT_DayHero);
+!#VA(day:x) (weekDay:x) (activeOwner:x);
+!!VR(hero:y):Sx16;
+!!HE(hero):O?(owner:y);
+!!FU|(owner)<0/(owner)<>(activeOwner):E;
+!!FU(CLT_ReconcilePrimary):P(hero);
+!!FU(CLT_IsHuman):P(hero)/?(human:y);
+!!FU&(human)=0:E;
+!!SN:W^clt.day.%(hero)^/?(previous:y);
+!!FU&(previous)>=(day):E;
+!!SN:W^clt.day.%(hero)^/(day);
+!!FU(CLT_GetMask):P(hero)/?(mask:y);
+!!FU(CLT_Primary):P(mask)/?i/?i/?i/?i/?(count:y);
+!!VR(relic:y):S(mask) &256;
+!!VR(mantle:y):S(mask) &16;
+!!VR(boots:y):S(mask) &32;
+!!VR(mana:y):S0;
+!!VR(mana)|(mantle)>0/(relic)>0:+5;
+!!VR(mana)&(count)>=3:+5;
+!!HE(hero):F?i/?i/?i/?(knowledge:y) I?(current:y);
+!!VR(maxMana:y):S(knowledge) *10;
+!!VR(updated:y):S(current) +(mana);
+!!VR(updated)&(updated)>(maxMana):S(maxMana);
+!!HE(hero)&(current)<(maxMana)/(mana)>0:I(updated);
+; Movement and linked-town growth use native calculation hooks.
+
+!?FU(OnEveryDay);
+!#VA(day:x) (weekDay:x) (once:x) (owner:x) (isAi:x);
+!!FU(GetMaxHeroId):P?(last:y);
+!!DO(CLT_DayHero)/0/(last)/1:P(day)/(weekDay)/(owner);
+
+!?FU(CLT_StackBonus);
+!!VR(stack:y):Sx16;
+; Creature primaries now come from Emerald's native calculation.
+; Only reset the once-per-battle lightning ledger here.
+!!SN:W^clt.hit.%(stack)^/0;
+
+!?FU(CLT_UnitTraits);
+!#VA(hero:x) (type:x) (traits:x);
+!!FU(CLT_IsHuman):P(hero)/?(human:y);
+!!FU&(human)=0:E;
+!!FU|(hero)<0/(traits)=0:E;
+; Emerald invokes OnCreatureProp once per equipped artifact, including
+; duplicate copies. Apply our total only once per complete callback cycle.
+!!VR(callbacks:y):S0;
+!!re (art:y)/450/458;
+  !!HE(hero):A2/(art)/?(total:y)/?(worn:y);
+  !!VR(callbacks):+(worn);
+!!en;
+!!FU&(callbacks)<=0:E;
+!!SN:W^clt.traits.cycle.%(hero).%(traits)^/?(cycle:y);
+!!VR(next:y):S(cycle) +1;
+!!VR(next)&(next)>=(callbacks):S0;
+!!SN:W^clt.traits.cycle.%(hero).%(traits)^/(next);
+!!FU&(cycle)>0:E;
+!!FU(CLT_GetMask):P(hero)/?(mask:y);
+!!FU(CLT_Primary):P(mask)/?i/?i/?i/?i/?(count:y);
+!!VR(relic:y):S(mask) &256;
+!!VR(ring:y):S(mask) &128;
+!!VR(attack:y):S0;
+!!VR(defense:y):S0;
+!!VR(speed:y):S0;
+!!if&(type)>=28/(type)<=41|(type)=(MON_LORD_OF_THUNDER);
+  !!VR(attack)&(count)>=4:+2;
+  !!VR(defense)&(count)>=4:+2;
+  !!VR(speed)&(count)>=5:+1;
+!!en;
+!!if|(type)=(MON_GIANT)/(type)=(MON_TITAN)/(type)=(MON_LORD_OF_THUNDER);
+  !!VR(attack)&(count)>=6:+3;
+  !!VR(defense)&(count)>=6:+3;
+  !!VR(speed)|(ring)>0/(relic)>0:+1;
+!!en;
+; Only the callback's per-hero result structure is changed. No writes to
+; the global creature table or executable instructions.
+; H3CreatureInformation/MONSTER_PROP: Speed +0x50, Attack +0x54, Defense +0x58.
+!!UN:C(traits)/84/4/?(oldAttack:y) C(traits)/88/4/?(oldDefense:y) C(traits)/80/4/?(oldSpeed:y);
+!!VR(oldAttack):+(attack);
+!!VR(oldDefense):+(defense);
+!!VR(oldSpeed):+(speed);
+!!UN:C(traits)/84/4/(oldAttack) C(traits)/88/4/(oldDefense) C(traits)/80/4/(oldSpeed);
+
+!?FU(OnBeforeBattleUniversal);
+!!FU(GetMaxHeroId):P?(last:y);
+!!DO(CLT_ReconcilePrimaryLoop)/0/(last)/1:P;
+!!SN:W^clt.battle.init^/0 W^clt.battle.pending^/0;
+
+!?BF;
+!!SN:W^clt.battle.init^/?(done:y);
+!!FU&(done)>0:E;
+!!BA:A?(theoretical:y);
+!!FU&(theoretical)>0:E;
+!!DO(CLT_StackBonus)/0/41/1:P;
+!!SN:W^clt.battle.init^/1;
+
+!?MF1;
+!!MF:W?(special:y) F?(damage:y) E?(allowed:y) N?(target:y);
+!!FU|(special)<>0/(damage)<=0/(allowed)=0:E;
+!!BG:N?(attacker:y) E?(primaryTarget:y) A?(action:y);
+!!FU|(attacker)<0/(attacker)>41/(target)<>(primaryTarget):E;
+!!FU&(action)<>6/(action)<>7:E;
+!!BM(attacker):T?(type:y) N?(number:y) I?(side:y);
+!!FU&(type)<>(MON_GIANT)/(type)<>(MON_TITAN)/(type)<>(MON_LORD_OF_THUNDER):E;
+!!FU&(number)<=0:E;
+!!SN:W^clt.hit.%(attacker)^/?(spent:y);
+!!FU&(spent)>0:E;
+!!BA:H(side)/?(hero:y);
+!!FU&(hero)<0:E;
+!!FU(CLT_IsHuman):P(hero)/?(human:y);
+!!FU&(human)=0:E;
+!!FU(CLT_GetMask):P(hero)/?(mask:y);
+!!FU(CLT_Primary):P(mask)/?i/?i/?i/?i/?(count:y);
+!!FU&(count)<7:E;
+!!SN:W^clt.hit.%(attacker)^/1 W^clt.battle.pending^/1 W^clt.battle.caster^/(attacker) W^clt.battle.target^/(target) W^clt.battle.power^/(number);
+
+!?BG1;
+!!SN:W^clt.battle.pending^/?(pending:y);
+!!FU&(pending)=0:E;
+!!SN:W^clt.battle.pending^/0 W^clt.battle.caster^/?(caster:y) W^clt.battle.target^/?(target:y) W^clt.battle.power^/?(power:y);
+!!BM(target):N?(living:y) P?(position:y);
+!!BM(caster):N?(casterLiving:y);
+!!FU|(living)<=0/(casterLiving)<=0:E;
+; Native spell path provides immunity/resistance/protection and animation.
+; Temporarily use a zero-base, 10-per-power Lightning Bolt, then restore.
+!!SS(SPELL_LIGHTNING_BOLT):P?(oldPower:y) E0/?(e0:y) E1/?(e1:y) E2/?(e2:y) E3/?(e3:y);
+!!SS(SPELL_LIGHTNING_BOLT):P10 E0/0 E1/0 E2/0 E3/0;
+!!BM(caster):C(SPELL_LIGHTNING_BOLT)/(position)/0/(power)/1;
+!!SS(SPELL_LIGHTNING_BOLT):P(oldPower) E0/(e0) E1/(e1) E2/(e2) E3/(e3);
+
+!?PI;
+!!FU(CLT_UpdateTooltips):P-1;
+
+
+; ACM's overview is a fixed dialog. Show our independent companion page
+; after its right-backpack handler returns, without replacing its assets.
+!?FU(OnHeroScreenMouseClick);
+!!HE-1:N?(tooltipHero:y);
+!!SN:W^clt.ui.hero^/(tooltipHero);
+!!FU(CLT_UpdateTooltips):P(tooltipHero);
+!!CM:F?(clickFlags:y) I?(clickItem:y) S?(clickType:y);
+!!if&(clickType)=(MOUSE_LMB_RELEASED);
+  !!FU(CLT_OfferForge):P(tooltipHero)/?(shown:y);
+  !!CM&(shown)>0:R0;
+  !!FU(CLT_RefreshHeroUI):P(tooltipHero);
+  !!FU&(shown)>0:E;
+!!en;
+!!FU(CLT_ShowSetInfo)&(clickFlags)=512/(clickItem)=8000/(clickType)=14:P;
+!!FU(CLT_RefreshHeroUI):P(tooltipHero);
+
+!?FU(CLT_ShowSetInfo);
+!!IF:M^Legacy of the Cloud Titans - 8 new pieces
+
+Crown, Scepter, Shield, Armor, Mantle, Boots, Pendant, Ring.
+
+Bonuses accumulate for DIFFERENT EQUIPPED parts:
+2: +2 Spell Power and +2 Knowledge.
+3: +5 daily mana.
+4: Tower troops +2 Attack and +2 Defense.
+5: Tower troops +1 Speed.
+6: Giant/Titan/Lord another +3 Attack and +3 Defense.
+7: Each Giant/Titan/Lord stack triggers one lightning per battle.
+8: Equip all parts to assemble a single Misc relic.
+
+Wear the relic and revisit your Tower to link +2 weekly Giant/Titan recruitment. The Giant dwelling is required.
+
+Parts in the backpack do not activate bonuses. Components are found on supported random maps; no starting gift.^;
+!!HE-1:N?(hero:y) O?(owner:y);
+!!OW:C?(activeOwner:y);
+!!FU|(hero)<0/(owner)<>(activeOwner):E;
+!!HE(hero):A2/458/?(relicTotal:y)/?(relicWorn:y);
+!!FU&(relicTotal)>0:E;
+!!SN:W^clt.assembly.offered.%(hero)^/0;
+!!FU(CLT_OfferForge):P(hero);
+
+!?FU(CLT_UpdateTooltips);
+!#VA(hero:x);
+!!VR(count:y):S0;
+!!VR(relicWorn:y):S0;
+!!if&(hero)>=0;
+  !!HE(hero):A2/458/?(relicTotal:y)/?(relicWorn);
+  !!FU(CLT_GetMask):P(hero)/?(mask:y);
+  !!FU(CLT_Primary):P(mask)/?i/?i/?i/?i/?(count);
+!!en;
+!!VR(summary:z):S^{~Gold}Legacy of the Cloud Titans{~}
+^;
+!!VR(summary):S^%(summary)Equipped parts: %(count)/8
+^;
+!!VR(color:z):S^Grey^;
+!!VR(color)&(count)>=2:S^LightGreen^;
+!!VR(summary):S^%(summary){~%(color)}2 pieces: +2 Spell Power and Knowledge{~}
+^;
+!!VR(color):S^Grey^;
+!!VR(color)&(count)>=3:S^LightGreen^;
+!!VR(summary):S^%(summary){~%(color)}3 pieces: +5 daily mana{~}
+^;
+!!VR(color):S^Grey^;
+!!VR(color)&(count)>=4:S^LightGreen^;
+!!VR(summary):S^%(summary){~%(color)}4 pieces: Tower +2 Attack/Defense{~}
+^;
+!!VR(color):S^Grey^;
+!!VR(color)&(count)>=5:S^LightGreen^;
+!!VR(summary):S^%(summary){~%(color)}5 pieces: Tower +1 Speed{~}
+^;
+!!VR(color):S^Grey^;
+!!VR(color)&(count)>=6:S^LightGreen^;
+!!VR(summary):S^%(summary){~%(color)}6 pieces: Giant/Titan/Lord +3 Attack/Defense{~}
+^;
+!!VR(color):S^Grey^;
+!!VR(color)&(count)>=7:S^LightGreen^;
+!!VR(summary):S^%(summary){~%(color)}7 pieces: each Giant/Titan/Lord stack: one lightning per battle{~}
+^;
+!!VR(color):S^Grey^;
+!!VR(color)&(relicWorn)>0:S^LightGreen^;
+!!VR(summary):S^%(summary){~%(color)}Relic: +2 weekly recruits in a linked Tower{~}
+^;
+!!VR(summary):S^%(summary)
+^;
+!!VRs^clt.tooltip.450^:S^Worn on the head, this crown grants +4 Knowledge.
+
+%(summary)^;
+!!SN:H^art^/450/1/s^clt.tooltip.450^;
+!!VRs^clt.tooltip.451^:S^Held in the right hand, this scepter grants +4 Spell Power.
+
+%(summary)^;
+!!SN:H^art^/451/1/s^clt.tooltip.451^;
+!!VRs^clt.tooltip.452^:S^Held in the left hand, this shield grants +4 Defense.
+
+%(summary)^;
+!!SN:H^art^/452/1/s^clt.tooltip.452^;
+!!VRs^clt.tooltip.453^:S^Worn on the body: +4 Attack to the HERO.
+
+%(summary)^;
+!!SN:H^art^/453/1/s^clt.tooltip.453^;
+!!VRs^clt.tooltip.454^:S^Worn on the shoulders, this mantle restores +5 mana each day.
+
+%(summary)^;
+!!SN:H^art^/454/1/s^clt.tooltip.454^;
+!!VRs^clt.tooltip.455^:S^Worn on the feet, these boots grant +300 movement each day.
+
+%(summary)^;
+!!SN:H^art^/455/1/s^clt.tooltip.455^;
+!!VRs^clt.tooltip.456^:S^Worn around the neck, this pendant grants +2 Spell Power and Knowledge.
+
+%(summary)^;
+!!SN:H^art^/456/1/s^clt.tooltip.456^;
+!!VRs^clt.tooltip.457^:S^Worn on a finger, this ring grants Giants, Titans and Lords of Thunder +1 Speed.
+
+%(summary)^;
+!!SN:H^art^/457/1/s^clt.tooltip.457^;
+!!VR(color):S^Grey^;
+!!VR(color)&(relicWorn)>0:S^LightGreen^;
+!!VRs^clt.tooltip.458^:S^Worn around the neck. Human players only.
+
+{~Gold}Legacy of the Cloud Titans{~}
+{~%(color)}Component bonuses:
+Crown: +4 Knowledge
+Scepter: +4 Spell Power
+Shield: +4 Defense
+Armor: +4 Attack
+Mantle: +5 daily mana
+Boots: +300 daily movement
+Pendant: +2 Spell Power and Knowledge
+Ring: Giant/Titan/Lord +1 Speed
+
+Set bonuses retained:
+2 parts: +2 Spell Power and Knowledge
+3 parts: +5 daily mana
+4 parts: Tower troops +2 Attack and Defense
+5 parts: Tower troops +1 Speed
+6 parts: Giant/Titan/Lord another +3 Attack and Defense
+7 parts: one lightning per stack per BATTLE; 10 damage/living unit
+Relic: +2 growth in one linked owned Tower{~}
+
+Equip and visit Tower to link recruits; Giant dwelling required.
+Mana is capped. Extra parts and relics do not stack.
+Right-click this relic to choose disassembly.^;
+!!SN:H^art^/458/1/s^clt.tooltip.458^;
+
+; Offering the forge on a fresh hero-window opening avoids mutating the
+; inventory inside the native equip/unequip operation itself.
+!?FU(CLT_OfferForge);
+!#VA(hero:x) (shown:x);
+!!VR(shown):S0;
+!!FU(CLT_IsHuman):P(hero)/?(human:y);
+!!FU&(human)=0:E;
+!!FU&(hero)<0:E;
+!!HE(hero):O?(owner:y);
+!!OW:C?(activeOwner:y);
+!!FU|(hero)<0/(owner)<>(activeOwner):E;
+!!FU(CLT_GetMask):P(hero)/?(mask:y);
+!!FU(CLT_Primary):P(mask)/?i/?i/?i/?i/?(count:y);
+!!HE(hero):A2/458/?(relicTotal:y)/?(relicWorn:y);
+!!if&(count)<8;
+  !!SN:W^clt.assembly.offered.%(hero)^/0;
+  !!FU:E;
+!!en;
+!!FU&(relicTotal)>0:E;
+!!SN:W^clt.assembly.offered.%(hero)^/?(offered:y);
+!!FU&(offered)>0:E;
+!!SN:W^clt.assembly.offered.%(hero)^/1;
+!!VR(shown):S1;
+!!IF:Q1^All eight Cloud Titans parts are equipped. Assemble them into one necklace relic?^;
+!!FU(CLT_Forge)&1:P(hero)/-1;
+!!FU(CLT_UpdateTooltips):P(hero);
+
+; ExecErmCmd receives one runtime command, without the full ERM compiler's
+; named-function preprocessing. Bind the resolved numeric FU at instruction time.
+!?FU(CLT_InstallTraitsCallback);
+!!SN:L^emerald3_3.era^/?(module:y) A(module)/^ConfigureArt^/?(configure:y);
+!!FU|(module)=0/(configure)=0:E;
+!!VR(function:y):S(CLT_UnitTraits);
+!!VR(config:z):S^OnCreatureProp="!!FU%(function):Pv2/v3/v4;"^;
+!!VR(savedV1:y):Sv1;
+!!re (art:y)/450/458;
+  !!SN:E(configure)/(CALLCONV_CDECL)/(art)/(config);
+!!en;
+!!VRv1:S(savedV1);
+
+!#FU(CLT_InstallTraitsCallback):P;
+
+!?GM1;
+!!FU(CLT_InstallTraitsCallback):P;
+
+!?FU(CLT_DailyManaBonus);
+!#VA(hero:x) (bonus:x);
+!!VR(bonus):S0;
+!!FU(CLT_IsHuman):P(hero)/?(human:y);
+!!FU&(human)=0:E;
+!!FU&(hero)<0:E;
+!!FU(CLT_GetMask):P(hero)/?(mask:y);
+!!FU(CLT_Primary):P(mask)/?i/?i/?i/?i/?(count:y);
+!!VR(mantle:y):S(mask) &16;
+!!VR(relic:y):S(mask) &256;
+!!VR(bonus)|(mantle)>0/(relic)>0:+5;
+!!VR(bonus)&(count)>=3:+5;
+
+; Append to ACM's calculation of the displayed regeneration only.
+; Its preview call is P(hero)/?regen/1/1; actual daily grants remain in CLT_DayHero.
+!?FU(AC_Function_8)&x3=1/x4=1;
+!#VA(hero:x) (regen:x) (mode:x) (preview:x);
+!!FU(CLT_DailyManaBonus):P(hero)/?(extra:y);
+!!VR(regen):+(extra);
+
+
+!?FU(OnOpenHeroScreen);
+!!HE-1:N?(hero:y);
+!!FU(CLT_ReconcilePrimary):P(hero);
+!!SN:W^clt.ui.hero^/(hero);
+!!FU(CLT_OfferForge):P(hero);
+
+!?FU(OnCloseHeroScreen);
+!!SN:W^clt.ui.hero^/?(hero:y);
+!!FU(CLT_OfferForge):P(hero);
+
+; ACM calls this after calculating native movement and its own additions.
+; Extend the same per-hero result, rather than awarding movement every click/day.
+
+!?FU(OnStartOrLoad);
+!!SN:L^erm_hooker.era^/?(hooker:y);
+!!FU&(hooker)=0:E;
+!!SN:A(hooker)/^SetHook^/?(setHook:y);
+!!FU&(setHook)=0:E;
+!!SN:E(setHook)/1/5132288/(CLT_MoveBegin);
+!!SN:E(setHook)/1/5132305/(CLT_MoveEnd);
+
+!?FU(CLT_MoveBegin);
+!#VA(hook:x);
+!!UN:C(hook)/(STRUCT_HOOK_CONTEXT_ECX)/4/?(heroStruct:y) C(hook)/(STRUCT_HOOK_CONTEXT_ESP)/4/?(stack:y);
+!!FU&(heroStruct)=0:E;
+!!UN:C(heroStruct)/26/4/?(hero:y);
+!!VR(savedHero:y):S(hero) +1;
+!!SN:W^clt.mp.frame.%(stack)^/(savedHero);
+
+!?FU(CLT_MoveEnd);
+!#VA(hook:x);
+!!UN:C(hook)/(STRUCT_HOOK_CONTEXT_ESP)/4/?(stack:y);
+!!SN:W^clt.mp.frame.%(stack)^/?(savedHero:y) W^clt.mp.frame.%(stack)^/0;
+!!FU&(savedHero)<=0:E;
+!!VR(hero:y):S(savedHero) -1;
+!!FU(CLT_IsHuman):P(hero)/?(human:y);
+!!FU&(human)=0:E;
+!!FU(CLT_GetMask):P(hero)/?(mask:y);
+!!VR(boots:y):S(mask) &32;
+!!VR(relic:y):S(mask) &256;
+!!FU&(boots)=0/(relic)=0:E;
+!!UN:C(hook)/(STRUCT_HOOK_CONTEXT_EAX)/4/?(movement:y);
+!!SN:W^clt.mp.before.%(hero)^/(movement);
+!!VR(movement):+300;
+!!UN:C(hook)/(STRUCT_HOOK_CONTEXT_EAX)/4/(movement);
+!!SN:W^clt.mp.after.%(hero)^/(movement);
+
+
+!?FU(CLT_RemoveEquippedRelic);
+!#VA(hero:x);
+!!HE(hero):Z?(ptr:y);
+!!re (slot:y)/0/18;
+  !!FU(GetArtAtSlot):P(hero)/(slot)/?(art:y)/?(mod:y);
+  !!if&(art)=458;
+    !!VR(savedV1:y):Sv1;
+    !!SN:E5123648/(CALLCONV_THISCALL)/(ptr)/(slot);
+    !!VRv1:S(savedV1);
+    !!FU:E;
+  !!en;
+!!en;
+
+!?FU(CLT_RefreshHeroUI);
+!#VA(hero:x);
+!!SN:W^clt.ui.refresh.%(hero)^/?(pending:y);
+!!FU&(pending)=0:E;
+!!SN:W^clt.ui.refresh.%(hero)^/0;
+!!FU(CLT_UpdateTooltips):P(hero);
+!!UN:R3/(hero);
+
+; These native RMB paths have already selected the actual artifact, including
+; a scrolled backpack. Ask after the ordinary description popup has returned.
+!?FU(OnStartOrLoad);
+!!SN:L^erm_hooker.era^/?(hooker:y);
+!!FU&(hooker)=0:E;
+!!SN:A(hooker)/^SetHook^/?(setHook:y);
+!!FU&(setHook)=0:E;
+!!SN:E(setHook)/1/5103812/(CLT_RelicRightClickDoll);
+!!SN:E(setHook)/1/5104583/(CLT_RelicRightClickBag);
+
+!?FU(CLT_RelicRightClickDoll);
+!#VA(hook:x);
+!!UN:C(hook)/(STRUCT_HOOK_CONTEXT_EBP)/4/?(ebp:y) C(ebp)/-28/4/?(art:y);
+!!FU&(art)<>458:E;
+!!FU(CLT_AskDisassemble):P-2;
+
+!?FU(CLT_RelicRightClickBag);
+!#VA(hook:x);
+!!UN:C(hook)/(STRUCT_HOOK_CONTEXT_EBP)/4/?(ebp:y) C(ebp)/-20/4/?(art:y);
+!!FU&(art)<>458:E;
+!!FU(CLT_AskDisassemble):P-3;
+
+!?FU(CLT_AskDisassemble);
+!#VA(mode:x);
+!!UN:C6916976/4/?(heroStruct:y);
+!!FU&(heroStruct)=0:E;
+!!UN:C(heroStruct)/26/4/?(hero:y);
+!!HE(hero):O?(owner:y) A2/458/?(total:y)/?(worn:y);
+!!OW:C?(activeOwner:y);
+!!FU|(owner)<>(activeOwner)/(total)=0:E;
+!!SN:W^clt.disassemble.dialog.%(hero)^/?(busy:y);
+!!FU&(busy)>0:E;
+!!SN:W^clt.disassemble.dialog.%(hero)^/1;
+!!IF:Q1^Disassemble Legacy of the Cloud Titans into its eight components?^;
+!!FU(CLT_Forge)&1:P(hero)/(mode);
+!!SN:W^clt.disassemble.dialog.%(hero)^/0;
+!!FU(CLT_RefreshHeroUI):P(hero);
+
+
+; Init from the pre-0.2.13 correction, then reconcile on ownership-sensitive paths.
+!?FU(CLT_EnsurePrimaryLedger);
+!#VA(hero:x);
+!!FU&(hero)<0:E;
+!!SN:W^clt.primary.ready.%(hero)^/?(ready:y);
+!!FU&(ready)>0:E;
+!!FU(CLT_GetMask):P(hero)/?(mask:y);
+!!FU(CLT_Primary):P(mask)/?(a:y)/?(d:y)/?(p:y)/?(k:y)/?i;
+!!FU(CLT_NativeTotal):P(hero)/?(na:y)/?(nd:y)/?(np:y)/?(nk:y);
+!!VR(a):-(na);
+!!VR(d):-(nd);
+!!VR(p):-(np);
+!!VR(k):-(nk);
+!!SN:W^clt.primary.a.%(hero)^/(a) W^clt.primary.d.%(hero)^/(d) W^clt.primary.p.%(hero)^/(p) W^clt.primary.k.%(hero)^/(k) W^clt.primary.ready.%(hero)^/1;
+
+!?FU(CLT_ReconcilePrimary);
+!#VA(hero:x);
+!!HE(hero):O?(owner:y);
+!!FU&(owner)<0:E;
+!!FU(CLT_EnsurePrimaryLedger):P(hero);
+!!FU(CLT_GetMask):P(hero)/?(mask:y);
+!!FU(CLT_IsHuman):P(hero)/?(human:y);
+!!VR(mask)&(human)=0:S0;
+!!FU(CLT_Primary):P(mask)/?(a:y)/?(d:y)/?(p:y)/?(k:y)/?i;
+!!FU(CLT_NativeTotal):P(hero)/?(na:y)/?(nd:y)/?(np:y)/?(nk:y);
+!!VR(a):-(na);
+!!VR(d):-(nd);
+!!VR(p):-(np);
+!!VR(k):-(nk);
+!!SN:W^clt.primary.a.%(hero)^/?(oa:y) W^clt.primary.d.%(hero)^/?(od:y) W^clt.primary.p.%(hero)^/?(op:y) W^clt.primary.k.%(hero)^/?(ok:y);
+!!SN:W^clt.primary.a.%(hero)^/(a) W^clt.primary.d.%(hero)^/(d) W^clt.primary.p.%(hero)^/(p) W^clt.primary.k.%(hero)^/(k);
+!!VR(a):-(oa);
+!!VR(d):-(od);
+!!VR(p):-(op);
+!!VR(k):-(ok);
+!!HE(hero):Fd(a)/d(d)/d(p)/d(k);
+
+!?FU(CLT_LinkTown);
+!#VA(hero:x) (town:x);
+!!VR(link:y):S(town) +1;
+!!SN:W^clt.link.%(hero)^/?(old:y);
+!!FU&(old)=(link):E;
+!!SN:W^clt.link.%(hero)^/(link) W^clt.town.hasLink.%(town)^/1;
+!!IF:M^Cloud Titans: Tower linked. +2 weekly growth while this human-controlled hero lives, wears the relic and owns this town. Repeated visits need no confirmation.^;
+
+!?FU(CLT_TownBonus);
+!#VA(town:x) (bonus:x);
+!!VR(bonus):S0;
+!!FU|(town)<0/(town)>47:E;
+!!SN:W^clt.town.hasLink.%(town)^/?(hasLink:y);
+!!FU&(hasLink)=0:E;
+!!CA0/(town):O?(owner:y) T?(kind:y);
+!!FU|(owner)<0/(kind)<>(TOWN_TOWER):E;
+!!OW:I(owner)/?(isAi:y);
+!!FU&(isAi)>0:E;
+!!CA0/(town):B3/36;
+!!FU&-1:E;
+!!VR(wanted:y):S(town) +1;
+!!FU(GetMaxHeroId):P?(last:y);
+!!re (hero:y)/0/(last);
+  !!SN:W^clt.link.%(hero)^/?(linked:y);
+  !!if&(linked)=(wanted);
+    !!HE(hero):O?(heroOwner:y) A2/458/?(total:y)/?(worn:y);
+    !!if&(heroOwner)=(owner)/(worn)>0;
+      !!VR(bonus):S2;
+      !!FU:E;
+    !!en;
+  !!en;
+!!en;
+
+; Native H3Town::GetDwellingGrowth, shared hook points also used by WoG 45.
+; Capture this before it is restored; add once after all normal growth modifiers.
+!?FU(OnStartOrLoad);
+!!SN:L^erm_hooker.era^/?(hooker:y);
+!!FU&(hooker)=0:E;
+!!SN:A(hooker)/^SetHook^/?(setHook:y);
+!!FU&(setHook)=0:E;
+!!SN:E(setHook)/1/6029174/(CLT_GrowthBegin);
+!!SN:E(setHook)/1/6029756/(CLT_GrowthEnd);
+!!SN:E(setHook)/1/6113249/(CLT_GrowthHint);
+
+!?FU(CLT_GrowthBegin);
+!#VA(hook:x);
+!!UN:C(hook)/(STRUCT_HOOK_CONTEXT_EBP)/4/?(ebp:y) C(hook)/(STRUCT_HOOK_CONTEXT_ESI)/4/?(townPtr:y);
+!!SN:W^clt.growth.frame.%(ebp)^/(townPtr);
+
+!?FU(CLT_GrowthEnd);
+!#VA(hook:x);
+!!UN:C(hook)/(STRUCT_HOOK_CONTEXT_EBP)/4/?(ebp:y) C(ebp)/8/4/?(dwelling:y);
+!!FU&(dwelling)<>6/(dwelling)<>13:E;
+!!SN:W^clt.growth.frame.%(ebp)^/?(townPtr:y);
+!!FU&(townPtr)=0:E;
+!!UN:C(townPtr)/1/?(town:y);
+!!FU(CLT_TownBonus):P(town)/?(bonus:y);
+!!FU&(bonus)=0:E;
+!!UN:C(hook)/(STRUCT_HOOK_CONTEXT_ECX)/4/?(growth:y);
+!!VR(growth):+(bonus);
+!!UN:C(hook)/(STRUCT_HOOK_CONTEXT_ECX)/4/(growth);
+
+!?FU(CLT_IndexLinks);
+!!FU(GetMaxHeroId):P?(last:y);
+!!re (hero:y)/0/(last);
+  !!SN:W^clt.link.%(hero)^/?(link:y);
+  !!if&(link)>0;
+    !!VR(town:y):S(link) -1;
+    !!SN:W^clt.town.hasLink.%(town)^/1;
+  !!en;
+!!en;
+
+!?GM1;
+!!FU(CLT_IndexLinks):P;
+
+!?FU(CLT_ReconcilePrimaryLoop);
+!!FU(CLT_ReconcilePrimary):Px16;
+
+; At the native growth popup ESI is the displayed creature ID, ECX the text.
+; Keep the normal breakdown and append the source of our flat +2.
+!?FU(CLT_GrowthHint);
+!#VA(hook:x);
+!!UN:C(hook)/(STRUCT_HOOK_CONTEXT_ESI)/4/?(type:y);
+!!FU&(type)<>(MON_GIANT)/(type)<>(MON_TITAN)/(type)<>(MON_LORD_OF_THUNDER):E;
+!!CA(CURRENT_TOWN):U?(town:y);
+!!FU(CLT_TownBonus):P(town)/?(bonus:y);
+!!FU&(bonus)=0:E;
+!!UN:C(hook)/(STRUCT_HOOK_CONTEXT_ECX)/4/?(textPtr:y);
+!!SN:B(textPtr)/d/?(text:z);
+!!VR(text):+^
+
+{~Gold}Cloud Titans set: +2 weekly growth (included in total).{~}^;
+!!SN:B(PTR_TEXT_BUFFER)/d/(text);
+!!UN:C(hook)/(STRUCT_HOOK_CONTEXT_ECX)/4/(PTR_TEXT_BUFFER);

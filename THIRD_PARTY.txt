@@ -1,0 +1,26 @@
+Emerald artifact extension — third-party component, unchanged local binary.
+Copied from the user's installed Land Of New Towns/EraPlugins/emerald3_3.era.
+SHA-256: A6B6ECEE48845DC8EC16F9A348A10D9EF1D0FA2865F3522452323FD8A55F65B9
+Upstream implementation: Knightmarevive / _h3era_plugins_ / Emerald3
+https://gitlab.com/Knightmarevive/_h3era_plugins_/-/tree/master/Emerald3/emerald
+TUM author documentation:
+https://heroes3wog.net/download/%5BManual%5D%20Third%20Upgrade%20Mod.pdf
+
+This package is a local experimental test bundle. It has not been submitted
+to Heroes Launcher Mod Browser. Upstream terms and redistribution packaging
+must be checked before a public catalog submission.
+
+The inventory resource preserves the original game/WoG frames and adds
+custom generated artwork. It is intended for the user's existing game.
+The supplied test map is a renamed copy of the installed All for One scenario.
+
+The map object table preserves the 1642 declared entries of the installed
+WoG Graphic Fix Data/WF_OB_txt.pac ZOBJCTS.txt and appends eight custom entries.
+It targets this installed ERA/ACM/JS profile; other object-table mods need
+a merged table. The preserved game/mod table requires the same redistribution
+review as the inventory resources before public distribution.
+
+WoG Scripts: 77 wog - map rules.erm, copied from the installed profile.
+Original credits retained. Only the two option-126 selection calls changed.
+Original SHA256: 94db153050a700920454bc4e3a16eeae4e74d8c7b2aa85299abaa51633256c63.
+Public redistribution permissions for this script must be reviewed before release.

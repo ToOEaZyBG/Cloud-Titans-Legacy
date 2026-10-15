@@ -1,0 +1,51 @@
+ZVSE2
+; Integration with the pinned WoG map-rules script, option 126 only.
+; Native selection remains the fallback. Do not globally unban custom IDs.
+
+!?FU(CLT_LevelArtifact);
+!#VA(hero:x) (rank:x) (artifact:x);
+!!VR(savedQuickI:y):Si;
+; CURRENT_HERO is a contextual sentinel, not a real hero ID.
+!!HE(hero)&(hero)=(CURRENT_HERO):N?(hero);
+!!FU(CLT_TryLevelComponent):P(hero)/(rank)/?(artifact);
+!!UN&(artifact)<0:J6/(rank)/?(artifact);
+!!VRi:S(savedQuickI);
+
+!?FU(CLT_TryLevelComponent);
+!#VA(hero:x) (rank:x) (artifact:x);
+!!VR(artifact):S-1;
+!!FU&(rank)<>(ART_LEVEL_RELIC):E;
+!!FU(CLT_IsHuman):P(hero)/?(human:y);
+!!FU&(human)=0:E;
+!!UN:V?i/?i/?i/?(network:y)/?i;
+!!FU&(network)>0:E;
+; One ticket per allowed stock Relic and one per Cloud Titans component.
+; Human Relic tickets choose actual IDs directly: no exhausted native deck sentinels.
+!!VR(stock:y):S0;
+!!re (candidate:y)/7/128;
+  !!UN:A(candidate)/?(banned:y) A(candidate)/3/?(candidateRank:y);
+  !!VR(stock)&(banned)=0/(candidateRank)=(ART_LEVEL_RELIC):+1;
+!!en;
+!!VR(last:y):S(stock) +7;
+!!VR(ticket:y):R0/0/(last);
+!!if&(ticket)<(stock);
+ !!VR(index:y):S0;
+ !!re (normal:y)/7/128;
+  !!UN:A(normal)/?(disabled:y) A(normal)/3/?(normalRank:y);
+  !!if&(disabled)=0/(normalRank)=(ART_LEVEL_RELIC);
+   !!if&(index)=(ticket);
+    !!VR(artifact):S(normal);
+    !!br;
+   !!en;
+   !!VR(index):+1;
+  !!en;
+ !!en;
+ !!FU:E;
+!!en;
+!!VR(artifact):S(ticket) -(stock) +450;
+; Diagnostic records actual awarded custom IDs; never grants extra items.
+!!SN:W^clt.reward.level.count^/?(count:y);
+!!VR(count):+1;
+!!SN:W^clt.reward.level.count^/(count);
+!!SN:F^WriteStrToIni^/^reward%(count)^/^hero=%(hero),artifact=%(artifact)^/^level-up^/^Debug\CloudTitansRewards.ini^;
+!!SN:F^SaveIni^/^Debug\CloudTitansRewards.ini^;

@@ -1,0 +1,181 @@
+ZVSE2
+; Cloud Titans exploration alpha: only new LOCAL random maps.
+; No explicit ERM RNG calls; native creation still runs installed RMG hooks.
+; Replace only eligible zero-setup loose artifacts with
+; registered one-tile Cloud Titans objects. Never place the complete relic.
+!#DC(CLT_WORLD_ENABLED) = 1;
+!#SN:F^WriteStrToIni^/^stage^/^script-loaded^/^world^/^Debug\CloudTitansWorld.ini^;
+!#SN:F^SaveIni^/^Debug\CloudTitansWorld.ini^;
+
+!?FU(CLT_WorldGuarded);
+!#VA(x:x) (y:x) (z:x) (size:x) (guarded:x);
+!!VR(guarded):S0;
+!!VR(last:y):S(size) -1;
+!!re (dx:y)/-1/1;
+  !!re (dy:y)/-1/1;
+    !!VR(nx:y):S(x) +(dx);
+    !!VR(ny:y):S(y) +(dy);
+    !!if&(nx)>=0/(ny)>=0/(nx)<=(last)/(ny)<=(last);
+      !!OB(nx)/(ny)/(z):T?(type:y);
+      !!if&(type)=(OBJ_MONSTER);
+        !!VR(guarded):S1;
+        !!FU:E;
+      !!en;
+    !!en;
+  !!en;
+!!en;
+
+!?FU(CLT_WorldCandidate);
+!#VA(x:x) (y:x) (z:x) (size:x);
+!!OB(x)/(y)/(z):U?(art:y) H?(hint:y) C?(control:y);
+!!FU|(art)<7/(art)>128/(hint)<>0/(control)<>0:E;
+!!UN:A(art)/?(banned:y) A(art)/3/?(rank:y);
+!!FU&(banned)<>0:E;
+!!FU&(rank)<>(ART_LEVEL_MAJOR)/(rank)<>(ART_LEVEL_RELIC):E;
+; Only a zero control word is eligible: no custom setup, pickup condition,
+; embedded guards or per-object state (H3MapitemArtifact, hasSetup bit 31).
+!!FU(CLT_WorldGuarded):P(x)/(y)/(z)/(size)/?(guarded:y);
+!!FU&(guarded)=0:E;
+!!SN:W^clt.world.pool^/?(index:y);
+!!VR(index):+1;
+!!FU&(index)>2048:E;
+; Bounded integer hashing: every multiplication fits signed 32-bit ERM ints.
+!!VR(score:y):S(x) +1 *109;
+!!VR(term:y):S(y) +1 *277;
+!!VR(score):+(term);
+!!VR(term):S(z) +1 *1879;
+!!VR(score):+(term);
+!!VR(term):S(art) +1 *811;
+!!VR(score):+(term);
+!!VR(term):S(size) *31;
+!!VR(score):+(term) %65521 *25173 +13849 %65521;
+!!SN:W^clt.world.pool^/(index) W^clt.world.c.%(index).x^/(x) W^clt.world.c.%(index).y^/(y) W^clt.world.c.%(index).z^/(z) W^clt.world.c.%(index).old^/(art) W^clt.world.c.%(index).score^/(score) W^clt.world.c.%(index).used^/0;
+
+!?FU(CLT_WorldSpacing);
+!#VA(x:x) (y:x) (z:x) (spacing:x) (okay:x);
+!!VR(okay):S1;
+!!SN:W^clt.world.placed^/?(placed:y);
+!!FU&(placed)=0:E;
+!!re (i:y)/1/(placed);
+  !!SN:W^clt.world.p.%(i).x^/?(px:y) W^clt.world.p.%(i).y^/?(py:y) W^clt.world.p.%(i).z^/?(pz:y);
+  !!if&(pz)=(z);
+    !!VR(dx:y):S(px) -(x);
+    !!VR(dy:y):S(py) -(y);
+    !!VR(dx)&(dx)<0:*-1;
+    !!VR(dy)&(dy)<0:*-1;
+    !!if&(dx)<(spacing)/(dy)<(spacing);
+      !!VR(okay):S0;
+      !!FU:E;
+    !!en;
+  !!en;
+!!en;
+
+!?FU(CLT_WorldPlace);
+!#VA(size:x) (limit:x);
+!!SN:W^clt.world.pool^/?(pool:y);
+!!VR(spacing:y):S(size) :12;
+!!VR(spacing)&(spacing)<4:S4;
+!!VR(offset:y):S(size) :36 %8;
+!!re (step:y)/1/(limit);
+  !!VR(best:y):S0;
+  !!VR(bestScore:y):S65522;
+  !!re (i:y)/1/(pool);
+    !!SN:W^clt.world.c.%(i).used^/?(used:y) W^clt.world.c.%(i).score^/?(score:y);
+    !!if&(used)=0/(score)<(bestScore);
+      !!SN:W^clt.world.c.%(i).x^/?(x:y) W^clt.world.c.%(i).y^/?(y:y) W^clt.world.c.%(i).z^/?(z:y) W^clt.world.c.%(i).old^/?(old:y);
+      !!OB(x)/(y)/(z):T?(type:y) U?(current:y);
+      !!if&(type)=(OBJ_ARTIFACT)/(current)=(old);
+        !!FU(CLT_WorldSpacing):P(x)/(y)/(z)/(spacing)/?(okay:y);
+        !!if&(okay)=1;
+          !!VR(best):S(i);
+          !!VR(bestScore):S(score);
+        !!en;
+      !!en;
+    !!en;
+  !!en;
+  !!FU&(best)=0:E;
+  !!SN:W^clt.world.c.%(best).x^/?(bx:y) W^clt.world.c.%(best).y^/?(by:y) W^clt.world.c.%(best).z^/?(bz:y) W^clt.world.c.%(best).old^/?(previous:y) W^clt.world.placed^/?(placed:y);
+  ; Multiplication by five permutes all eight parts before any repeat.
+  !!VR(part:y):S(placed) *5 +(offset) %8 +450;
+  ; OB:U alone changes the pickup but retains the old object's drawing.
+  ; Recreate at the same entrance using the registered 5/450..457 templates.
+  !!UN:O(bx)/(by)/(bz)/1/0;
+  ; The installed object-properties plugin initializes native artifact data
+  ; inside UN:I and cannot index extended IDs. Initialize with the original
+  ; native ID, select our DEF template separately, then set the pickup ID.
+  !!UN:I(bx)/(by)/(bz)/(OBJ_ARTIFACT)/(previous)/(OBJ_ARTIFACT)/(part)/-1/0;
+  !!OB(bx)/(by)/(bz):U(part) C0;
+  !!OB(bx)/(by)/(bz):T?(actualType:y) U?(actual:y);
+  !!if|(actualType)<>(OBJ_ARTIFACT)/(actual)<>(part);
+    !!UN:O(bx)/(by)/(bz)/1/0;
+    !!UN:I(bx)/(by)/(bz)/(OBJ_ARTIFACT)/(previous)/(OBJ_ARTIFACT)/(previous)/-1/0;
+    !!OB(bx)/(by)/(bz):C0;
+    !!SN:W^clt.world.error^/1;
+    !!FU:E;
+  !!en;
+  !!VR(placed):+1;
+  !!SN:W^clt.world.c.%(best).used^/1 W^clt.world.placed^/(placed) W^clt.world.p.%(placed).x^/(bx) W^clt.world.p.%(placed).y^/(by) W^clt.world.p.%(placed).z^/(bz) W^clt.world.p.%(placed).art^/(part) W^clt.world.p.%(placed).old^/(previous);
+  !!SN:F^WriteStrToIni^/^item%(placed)^/^%(bx),%(by),%(bz),%(part)^/^world^/^Debug\CloudTitansWorld.ini^;
+!!en;
+
+!?FU(CLT_WorldInit);
+!!SN:F^WriteStrToIni^/^stage^/^init-entered^/^world^/^Debug\CloudTitansWorld.ini^;
+!!SN:F^SaveIni^/^Debug\CloudTitansWorld.ini^;
+!!FU&(CLT_WORLD_ENABLED)=0:E;
+!!SN:W^clt.world.done^/?(done:y);
+!!FU&(done)>0:E;
+!!SN:W^clt.world.done^/1 W^clt.world.pool^/0 W^clt.world.placed^/0 W^clt.world.error^/0;
+!!UN:V?i/?i/?i/?(network:y)/?i;
+!!if&(network)>0;
+  !!SN:W^clt.world.skipped^/2;
+  !!FU:E;
+!!en;
+!!FU(WOG_CheckRandomMap):P?(random:y);
+!!if&(random)=0;
+  !!SN:W^clt.world.skipped^/1;
+  !!FU:E;
+!!en;
+!!UN:X?(size:y)/?(underground:y) U(OBJ_ARTIFACT)/(ANY_OBJ)/?(artifacts:y);
+!!VR(savedV2:y):Sv2;
+!!VR(savedV3:y):Sv3;
+!!VR(savedV4:y):Sv4;
+!!VRv2:S-1;
+!!SN:F^WriteStrToIni^/^stage^/^scanning-artifacts^/^world^/^Debug\CloudTitansWorld.ini^;
+!!SN:F^SaveIni^/^Debug\CloudTitansWorld.ini^;
+!!re (i:y)/1/(artifacts);
+  !!UN:U(OBJ_ARTIFACT)/(ANY_OBJ)/-1/2;
+  !!FU(CLT_WorldCandidate):Pv2/v3/v4/(size);
+!!en;
+!!VRv2:S(savedV2);
+!!VRv3:S(savedV3);
+!!VRv4:S(savedV4);
+!!SN:F^WriteStrToIni^/^stage^/^scan-complete^/^world^/^Debug\CloudTitansWorld.ini^;
+!!SN:F^SaveIni^/^Debug\CloudTitansWorld.ini^;
+; At most one quarter of loose artifacts; 8 per 36 tiles of map width, capped at 64.
+!!VR(limit:y):S(size) :36 *8;
+!!VR(limit)&(limit)>64:S64;
+!!VR(density:y):S(artifacts) :4;
+!!VR(limit)&(limit)>(density):S(density);
+!!SN:W^clt.world.pool^/?(pool:y);
+!!VR(limit)&(limit)>(pool):S(pool);
+!!FU(CLT_WorldPlace)&(limit)>0:P(size)/(limit);
+!!SN:F^WriteStrToIni^/^stage^/^placement-complete^/^world^/^Debug\CloudTitansWorld.ini^;
+!!SN:F^SaveIni^/^Debug\CloudTitansWorld.ini^;
+!!SN:W^clt.world.placed^/?(placed:y) W^clt.world.error^/?(error:y);
+!!IF:M^{~Gold}Cloud Titans - exploration alpha{~}
+
+%(placed) set components were placed on this new random map.
+This mod gives no extra artifacts or troops to your starting hero.
+Find the parts at guarded artifact sites; the complete necklace is assembled.
+
+Look for the blue-and-gold Cloud Titans artifacts on the adventure map.
+Collect eight different components to assemble the necklace.^;
+!!IF&(error)>0:M^Cloud Titans: a map subtype change failed. Placement stopped; the last site was restored.^;
+
+; TM1 is the standard post-load day event. This script sorts after the WoG
+; converter's TM1 handler. UN:O requires the initialized adventure manager;
+; calling it from PI accesses an uninitialized drawing vector and crashes.
+!?TM1;
+!!SN:W^clt.world.done^/?(worldDone:y);
+!!FU&(worldDone)>0:E;
+!!FU(CLT_WorldInit):P;

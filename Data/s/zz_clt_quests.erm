@@ -1,0 +1,227 @@
+ZVSE2
+; Local exploration prototype. Shared GEM town menu and result hook.
+; Persistent counters belong to the player, rewards once per player/part.
+
+!?FU(CLT_QuestLocal);
+!#VA(ok:x);
+!!UN:V?i/?i/?i/?(network:y)/?i;
+!!VR(ok):S1;
+!!VR(ok)&(network)>0:S0;
+
+!?FU(gem_OnOpenButtonDlg);
+!!FU(CLT_QuestLocal):P?(okay:y);
+!!FU&(okay)=0:E;
+!!CA-1:T?(townType:y) O?(owner:y);
+!!OW:C?(active:y);
+!!FU|(townType)<>(TOWN_TOWER)/(owner)<>(active):E;
+!!OW:I(owner)/?(ai:y);
+!!FU&(ai)>0:E;
+!!FU(gem_AddTownButton):P^cltquest.def^/64/32/^Cloud Titans quests^/^Eight quests - eight set components^/^Complete a quest and claim its component once per player.^/(CLT_QuestMenu)/0/0/0;
+
+!?FU(CLT_QuestInfo);
+!#VA(quest:x) (target:x) (title:x) (objective:x);
+!!if&(quest)=0;
+ !!VR(target):S500;
+ !!VR(title):Z^Crown of the Cloud Sovereign^;
+ !!VR(objective):Z^Win 500 battles.^;
+!!en;
+!!if&(quest)=1;
+ !!VR(target):S4000;
+ !!VR(title):Z^Thunder Scepter^;
+ !!VR(objective):Z^Defeat 4000 Mages or Arch Mages.^;
+!!en;
+!!if&(quest)=2;
+ !!VR(target):S10000;
+ !!VR(title):Z^Aegis of the Sky^;
+ !!VR(objective):Z^Defeat 10000 Skeletons or Skeleton Warriors.^;
+!!en;
+!!if&(quest)=3;
+ !!VR(target):S100000;
+ !!VR(title):Z^Armor of the Ancient Titan^;
+ !!VR(objective):Z^Defeat 100000 enemy creatures of any kind.^;
+!!en;
+!!if&(quest)=4;
+ !!VR(target):S2000;
+ !!VR(title):Z^Mantle of the Aurora^;
+ !!VR(objective):Z^Defeat 2000 Vampires or Vampire Lords.^;
+!!en;
+!!if&(quest)=5;
+ !!VR(target):S1000;
+ !!VR(title):Z^Boots of the Snow Wanderer^;
+ !!VR(objective):Z^Win 1000 battles.^;
+!!en;
+!!if&(quest)=6;
+ !!VR(target):S150;
+ !!VR(title):Z^Pendant of the Celestial Forge^;
+ !!VR(objective):Z^Defeat 150 Behemoths, Ancient Behemoths or Ghost Behemoths.^;
+!!en;
+!!if&(quest)=7;
+ !!VR(target):S10000;
+ !!VR(title):Z^Ring of the Storm^;
+ !!VR(objective):Z^Defeat 10000 Imps or Familiars.^;
+!!en;
+
+!?FU(CLT_QuestProgressKey);
+!#VA(owner:x) (quest:x) (key:x);
+!!VR(key):Z^clt.quest.%(owner).progress.%(quest)^;
+; The old genie ledger must never count as Behemoth kills.
+!!VR(key)&(quest)=6:Z^clt.quest.%(owner).progress.behemoths^;
+
+!?FU(CLT_QuestTownRequirements);
+!#VA(missing:x);
+!!VR(missing):S0;
+; Tower's 36 ordinary building IDs. Excludes shipyard (not a Tower building),
+; void/cosmetic slots, non-Tower horde slots and Grail/Skyship (26).
+; Native WOG helper handles upgraded versions of multilevel buildings.
+!!CA-1:U?(town:y);
+!!re (building:y)/0/43;
+ !!co|(building)=6/(building)=20;
+ !!co&(building)>=24/(building)<=29;
+ !!FU(WOG_Town_IsBuildingBuilt):P(town)/(building)/?(built:y);
+ !!VR(missing)&(built)=0:+1;
+!!en;
+
+!?FU(CLT_QuestRequirements);
+!#VA(quest:x) (hero:x) (ready:x) (status:x);
+!!HE(hero):E?i/?(level:y);
+!!FU(CLT_QuestTownRequirements):P?(missing:y);
+!!VR(ready):S1;
+!!VR(ready)|(level)<25/(missing)>0:S0;
+!!VR(status):Z^Hero level: %(level)/25
+This Tower: all ordinary buildings required (including Mage Guild 5).
+Missing buildings: %(missing). Skyship/Grail is not required.^;
+
+!?FU(CLT_QuestMenu);
+!!FU(CLT_QuestLocal):P?(okay:y);
+!!FU&(okay)=0:E;
+!!CA-1:T?(kind:y) O?(owner:y) H1/?(hero:y);
+!!OW:C?(active:y);
+!!FU|(kind)<>(TOWN_TOWER)/(owner)<>(active):E;
+!!OW:I(owner)/?(ai:y);
+!!FU&(ai)>0:E;
+!!CA-1&(hero)<0:H0/?(hero);
+!!if&(hero)<0;
+ !!IF:M^Bring a hero to your Tower to claim quest rewards.^;
+ !!FU:E;
+!!en;
+!!HE(hero):O?(heroOwner:y);
+!!FU&(heroOwner)<>(owner):E;
+!!FU(RadioDlg_Reset):P;
+!!FU(RadioDlg_SetTitle):P^Legacy of the Cloud Titans - Quests^;
+!!re (q:y)/0/7;
+ !!FU(CLT_QuestInfo):P(q)/?(target:y)/?(title:z)/?(objective:z);
+ !!FU(CLT_QuestRequirements):P(q)/(hero)/?(eligible:y)/?(requirements:z);
+ !!FU(CLT_QuestProgressKey):P(owner)/(q)/?(progressKey:z);
+ !!SN:W^clt.quest.%(owner).claimed.%(q)^/?(claimed:y) W(progressKey)/?(progress:y);
+ !!VR(caption:z):S^%(title): %(progress)/%(target)^;
+ !!VR(caption)&(claimed)>0:S^{~Lime}%(title): claimed{~}^;
+ !!VR(caption)&(claimed)=0/(progress)>=(target)/(eligible)=0:S^%(title): requirements missing^;
+ !!VR(caption)&(claimed)=0/(progress)>=(target)/(eligible)=1:S^{~Lime}%(title): READY{~}^;
+ !!FU(RadioDlg_AddItem):P(caption)/(q);
+!!en;
+!!FU(RadioDlg_AddCancelButton):P;
+!!FU(RadioDlg_Show):P?(selected:y)/?(quest:y)/?(tag:z);
+!!FU&(selected)<0:E;
+!!FU|(quest)<0/(quest)>7:E;
+!!FU(CLT_QuestInfo):P(quest)/?(goal:y)/?(name:z)/?(description:z);
+!!FU(CLT_QuestRequirements):P(quest)/(hero)/?(canClaim:y)/?(claimRequirements:z);
+!!FU(CLT_QuestProgressKey):P(owner)/(quest)/?(currentKey:z);
+!!SN:W^clt.quest.%(owner).claimed.%(quest)^/?(taken:y) W(currentKey)/?(current:y);
+!!IF:M^{~Gold}%(name){~}
+
+%(description)
+Progress: %(current)/%(goal)
+%(claimRequirements)
+
+All your heroes share progress. Only confirmed battles count.
+Reward: one component, once per player in this game.^;
+!!if&(taken)>0;
+ !!IF:M^This quest reward has already been claimed.^;
+ !!FU:E;
+!!en;
+!!FU&(current)<(goal):E;
+!!FU&(canClaim)=0:E;
+!!IF:Q1^Claim %(name) for this hero?^;
+!!FU&-1:E;
+!!VR(artifact:y):S450 +(quest);
+!!HE(hero):A2/(artifact)/?(before:y)/?i;
+!!HE(hero):A4/(artifact);
+!!HE(hero):A2/(artifact)/?(after:y)/?i;
+!!if&(after)>(before);
+ !!SN:W^clt.quest.%(owner).claimed.%(quest)^/1;
+ !!IF:M^Quest complete. %(name) was delivered to your hero.^;
+!!el;
+ !!IF:M^The artifact could not be delivered. Make room and try again.^;
+!!en;
+
+!?FU(OnStartOrLoad);
+!!SN:L^erm_hooker.era^/?(library:y);
+!!FU&(library)=0:E;
+!!SN:A(library)/^SetHook^/?(setHook:y);
+!!FU&(setHook)=0:E;
+; Same shared result-entry hook as ACM_OnBeforeBattleResult.
+!!SN:E(setHook)/1/4681149/(CLT_QuestBattleResult);
+
+!?FU(OnBeforeBattleUniversal);
+!!SN:W^clt.quest.snapshot^/0 W^clt.quest.pending^/0;
+
+!?FU(OnBattleReplay);
+!!SN:W^clt.quest.snapshot^/0 W^clt.quest.pending^/0;
+
+!?BF;
+!!FU(CLT_QuestLocal):P?(okay:y);
+!!FU&(okay)=0:E;
+!!BA:A?(simulation:y);
+!!FU&(simulation)>0:E;
+!!SN:W^clt.quest.snapshot^/?(ready:y);
+!!FU&(ready)>0:E;
+!!re (slot:y)/0/41;
+ !!BM(slot):T?(type:y) N?(number:y) F?(flags:y);
+ !!VR(summoned:y):S(flags) &4194304;
+ !!VR(number)|(summoned)>0/(type)<0:S0;
+ !!SN:W^clt.quest.start.%(slot).type^/(type) W^clt.quest.start.%(slot).number^/(number);
+!!en;
+!!SN:W^clt.quest.snapshot^/1;
+
+!?FU(CLT_QuestBattleResult);
+!#VA(hook:x);
+!!SN:W^clt.quest.pending^/0 W^clt.quest.snapshot^/?(ready:y);
+!!FU&(ready)=0:E;
+!!UN:C(hook)/(STRUCT_HOOK_CONTEXT_EBP)/4/?(ebp:y) C(ebp)/8/4/?(winner:y);
+!!FU|(winner)<0/(winner)>1:E;
+!!BA:H(winner)/?(hero:y);
+!!FU(CLT_IsHuman):P(hero)/?(human:y);
+!!FU&(human)=0:E;
+!!HE(hero):O?(owner:y);
+!!VR(loser:y):S1 -(winner);
+!!re (q:y)/0/7;
+ !!SN:W^clt.quest.delta.%(q)^/0;
+!!en;
+!!SN:W^clt.quest.delta.0^/1 W^clt.quest.delta.5^/1;
+!!VR(first:y):S(loser) *21;
+!!VR(last:y):S(first) +20;
+!!re (slot:y)/(first)/(last);
+ !!SN:W^clt.quest.start.%(slot).type^/?(originalType:y) W^clt.quest.start.%(slot).number^/?(original:y);
+ !!BM(slot):T?(type:y) N?(living:y);
+ !!if&(original)>0/(type)=(originalType);
+  !!VR(killed:y):S(original) -(living) F0/(original);
+  !!SN:W^clt.quest.delta.3^/d(killed);
+  !!SN|(type)=34/(type)=35:W^clt.quest.delta.1^/d(killed);
+  !!SN|(type)=56/(type)=57:W^clt.quest.delta.2^/d(killed);
+  !!SN|(type)=62/(type)=63:W^clt.quest.delta.4^/d(killed);
+  !!SN|(type)=(MON_BEHEMOTH)/(type)=(MON_ANCIENT_BEHEMOTH)/(type)=(MON_GHOST_BEHEMOTH):W^clt.quest.delta.6^/d(killed);
+  !!SN|(type)=42/(type)=43:W^clt.quest.delta.7^/d(killed);
+ !!en;
+!!en;
+!!SN:W^clt.quest.pending.owner^/(owner) W^clt.quest.pending^/1;
+
+!?FU(OnAfterBattleUniversal);
+!!SN:W^clt.quest.pending^/?(pending:y);
+!!FU&(pending)=0:E;
+!!SN:W^clt.quest.pending^/0 W^clt.quest.snapshot^/0 W^clt.quest.pending.owner^/?(owner:y);
+!!re (q:y)/0/7;
+ !!FU(CLT_QuestProgressKey):P(owner)/(q)/?(key:z);
+ !!SN:W^clt.quest.delta.%(q)^/?(amount:y) W(key)/?(old:y);
+ !!VR(old):+(amount) F0/1000000000;
+ !!SN:W(key)/(old);
+!!en;

@@ -1,0 +1,54 @@
+{
+  "caption": {
+    "en_US": "Legacy of the Cloud Titans - TEST"
+  },
+  "description": {
+    "full": {
+      "en_US": "Readme.md"
+    },
+    "short": {
+      "en_US": "Tower artifact set, exploration and quests. Local test 0.4.2; network acquisition disabled."
+    }
+  },
+  "author": "ToOEaZyBG; third-party credits in THIRD_PARTY.txt",
+  "homepage": "https://github.com/ToOEaZyBG/Cloud-Titans-Legacy",
+  "icon": {
+    "file": "icon.png",
+    "index": 0
+  },
+  "mod_version": "0.4.2-alpha",
+  "info_version": "1",
+  "platform": "era",
+  "priority": 0,
+  "category": "gameplay",
+  "plugins": {},
+  "compatibility": {
+    "class": "all",
+    "entries": {},
+    "requires": [
+      "WoG",
+      "Era Erm Framework",
+      "WoG Scripts",
+      "Game Enhancement Mod"
+    ],
+    "load_after": [
+      "WoG",
+      "Era Erm Framework",
+      "ERA Scripts",
+      "Advanced Classes Mod",
+      "JS - main module",
+      "JS - commanders module",
+      "WoG Graphic Fix",
+      "Game Enhancement Mod"
+    ],
+    "incompatible": [
+      "Cloud Titans Prototype",
+      "Cloud Titans Test Engine",
+      "ERA+",
+      "Knightmare Kingdoms",
+      "Land Of New Towns",
+      "ResOunD",
+      "TUM Enchanted"
+    ]
+  }
+}

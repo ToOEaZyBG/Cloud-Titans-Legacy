@@ -1,0 +1,12 @@
+#	WoGification text compatibility for the six legacy string IDs.
+100000	WoGification is about to begin!
+
+After this message, there will be a delay while the map is converted to include WoG features (and then another message when it's done).
+
+Hint: You can view current WoGify options during the game by choosing 'Save Game' and then clicking on the WoG Options button.
+Option changes CANNOT be made during a game from this screen.	<!!S>	14.10.2026
+100001	Large maps may take a few minutes on slow systems. Please be patient.	<!!S>	14.10.2026
+100002	The WoG Options button is located on the Scenario Selection screen.	<!!S>	14.10.2026
+100003	WoGification complete!	<!!S>	14.10.2026
+100004	Enjoy yourself...or ELSE!	<!!S>	14.10.2026
+100005	To battle, Hero!	<!!S>	14.10.2026
