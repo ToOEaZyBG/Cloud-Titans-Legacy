@@ -1,6 +1,6 @@
 {
-  "mod_version": "0.4.2-alpha",
-  "mode": "local single-player testing; network acquisition disabled",
+  "mod_version": "0.5.0-nettest-alpha",
+  "mode": "experimental sequential Online Lobby trial; no two-peer verification yet",
   "active_mods_low_to_high_priority": [
     "WoG",
     "Era Erm Framework",

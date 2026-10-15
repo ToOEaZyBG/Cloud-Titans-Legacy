@@ -6,7 +6,7 @@ ZVSE2
 !#VA(ok:x);
 !!UN:V?i/?i/?i/?(network:y)/?i;
 !!VR(ok):S1;
-!!VR(ok)&(network)>0:S0;
+; Network mutations are handled by the shared RPC layer.
 
 !?FU(gem_OnOpenButtonDlg);
 !!FU(CLT_QuestLocal):P?(okay:y);
@@ -16,6 +16,8 @@ ZVSE2
 !!FU|(townType)<>(TOWN_TOWER)/(owner)<>(active):E;
 !!OW:I(owner)/?(ai:y);
 !!FU&(ai)>0:E;
+!!FU(CLT_IsLocalOwner):P(owner)/?(localOwner:y);
+!!FU&(localOwner)=0:E;
 !!FU(gem_AddTownButton):P^cltquest.def^/64/32/^Cloud Titans quests^/^Eight quests - eight set components^/^Complete a quest and claim its component once per player.^/(CLT_QuestMenu)/0/0/0;
 
 !?FU(CLT_QuestInfo);
@@ -68,12 +70,11 @@ ZVSE2
 !!VR(key)&(quest)=6:Z^clt.quest.%(owner).progress.behemoths^;
 
 !?FU(CLT_QuestTownRequirements);
-!#VA(missing:x);
+!#VA(town:x) (missing:x);
 !!VR(missing):S0;
 ; Tower's 36 ordinary building IDs. Excludes shipyard (not a Tower building),
 ; void/cosmetic slots, non-Tower horde slots and Grail/Skyship (26).
 ; Native WOG helper handles upgraded versions of multilevel buildings.
-!!CA-1:U?(town:y);
 !!re (building:y)/0/43;
  !!co|(building)=6/(building)=20;
  !!co&(building)>=24/(building)<=29;
@@ -84,7 +85,8 @@ ZVSE2
 !?FU(CLT_QuestRequirements);
 !#VA(quest:x) (hero:x) (ready:x) (status:x);
 !!HE(hero):E?i/?(level:y);
-!!FU(CLT_QuestTownRequirements):P?(missing:y);
+!!CA-1:U?(town:y);
+!!FU(CLT_QuestTownRequirements):P(town)/?(missing:y);
 !!VR(ready):S1;
 !!VR(ready)|(level)<25/(missing)>0:S0;
 !!VR(status):Z^Hero level: %(level)/25
@@ -99,6 +101,8 @@ Missing buildings: %(missing). Skyship/Grail is not required.^;
 !!FU|(kind)<>(TOWN_TOWER)/(owner)<>(active):E;
 !!OW:I(owner)/?(ai:y);
 !!FU&(ai)>0:E;
+!!FU(CLT_IsLocalOwner):P(owner)/?(localOwner:y);
+!!FU&(localOwner)=0:E;
 !!CA-1&(hero)<0:H0/?(hero);
 !!if&(hero)<0;
  !!IF:M^Bring a hero to your Tower to claim quest rewards.^;
@@ -143,16 +147,17 @@ Reward: one component, once per player in this game.^;
 !!FU&(canClaim)=0:E;
 !!IF:Q1^Claim %(name) for this hero?^;
 !!FU&-1:E;
-!!VR(artifact:y):S450 +(quest);
-!!HE(hero):A2/(artifact)/?(before:y)/?i;
-!!HE(hero):A4/(artifact);
-!!HE(hero):A2/(artifact)/?(after:y)/?i;
-!!if&(after)>(before);
- !!SN:W^clt.quest.%(owner).claimed.%(quest)^/1;
- !!IF:M^Quest complete. %(name) was delivered to your hero.^;
+!!CA-1:U?(claimTown:y);
+!!UN:V?i/?i/?i/?(network:y)/?i;
+!!if&(network)>0;
+ !!IP:D-1;
+ !!FU26893:D(hero)/(claimTown)/(quest);
 !!el;
- !!IF:M^The artifact could not be delivered. Make room and try again.^;
+ !!FU(CLT_ClaimQuest):P(hero)/(claimTown)/(quest);
 !!en;
+!!SN:W^clt.quest.%(owner).claimed.%(quest)^/?(delivered:y);
+!!IF&(delivered)>0:M^Quest complete. %(name) was delivered to your hero.^;
+!!IF&(delivered)=0:M^The artifact could not be delivered. Make room and verify the requirements, then try again.^;
 
 !?FU(OnStartOrLoad);
 !!SN:L^erm_hooker.era^/?(library:y);
@@ -193,6 +198,8 @@ Reward: one component, once per player in this game.^;
 !!FU(CLT_IsHuman):P(hero)/?(human:y);
 !!FU&(human)=0:E;
 !!HE(hero):O?(owner:y);
+!!FU(CLT_IsLocalOwner):P(owner)/?(localOwner:y);
+!!FU&(localOwner)=0:E;
 !!VR(loser:y):S1 -(winner);
 !!re (q:y)/0/7;
  !!SN:W^clt.quest.delta.%(q)^/0;
@@ -223,5 +230,11 @@ Reward: one component, once per player in this game.^;
  !!FU(CLT_QuestProgressKey):P(owner)/(q)/?(key:z);
  !!SN:W^clt.quest.delta.%(q)^/?(amount:y) W(key)/?(old:y);
  !!VR(old):+(amount) F0/1000000000;
- !!SN:W(key)/(old);
+ !!UN:V?i/?i/?i/?(network:y)/?i;
+ !!if&(network)>0;
+  !!IP:D-1;
+  !!FU26892:D(owner)/(q)/(old);
+ !!el;
+  !!FU(CLT_QuestProgressSet):P(owner)/(q)/(old);
+ !!en;
 !!en;

@@ -7,7 +7,7 @@
       "en_US": "Readme.md"
     },
     "short": {
-      "en_US": "Tower artifact set, exploration and quests. Local test 0.4.2; network acquisition disabled."
+      "en_US": "Experimental sequential Online Lobby test candidate. Peer transport unverified; see NETWORK_TEST.md."
     }
   },
   "author": "ToOEaZyBG; third-party credits in THIRD_PARTY.txt",
@@ -16,8 +16,8 @@
     "file": "icon.png",
     "index": 0
   },
-  "mod_version": "0.4.2-alpha",
-  "info_version": "2",
+  "mod_version": "0.5.0-nettest-alpha",
+  "info_version": "1",
   "platform": "era",
   "priority": 0,
   "category": "gameplay",

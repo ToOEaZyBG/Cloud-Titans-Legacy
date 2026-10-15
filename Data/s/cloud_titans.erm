@@ -182,10 +182,12 @@ ZVSE2
 !#VA(hero:x) (town:x);
 !!FU(CLT_IsHuman):P(hero)/?(human:y);
 !!FU&(human)=0:E;
+!!HE(hero):O?(notifyOwner:y);
+!!FU(CLT_IsLocalOwner):P(notifyOwner)/?(notify:y);
 !!HE(hero):A2/458/?(relicTotal:y)/?(relicWorn:y);
 !!if&(relicWorn)>0/(town)<>-2/(town)<>-3;
   !!if&(town)<0;
-    !!IF:M^The relic is equipped. Visit your owned Tower to link weekly recruitment. Right-click the relic in the hero window to choose disassembly.^;
+    !!IF&(notify)=1:M^The relic is equipped. Visit your owned Tower to link weekly recruitment. Right-click the relic in the hero window to choose disassembly.^;
     !!FU:E;
   !!en;
   !!FU(CLT_LinkTown):P(hero)/(town);
@@ -197,7 +199,7 @@ ZVSE2
   !!VR(needed)&(town)=-2/(relicWorn)>0:S8;
   !!VR(limit:y):S64 -(needed);
   !!if&(used)>(limit);
-    !!IF:M^Disassembly requires %(needed) free backpack spaces.^;
+    !!IF&(notify)=1:M^Disassembly requires %(needed) free backpack spaces.^;
     !!FU:E;
   !!en;
   !!FU(CLT_GetMask):P(hero)/?(old:y);
@@ -220,7 +222,7 @@ ZVSE2
 !!VR(afterK):-(beforeK);
 !!FU(CLT_ApplyDelta):P(hero)/(old)/(new)/(afterA)/(afterD)/(afterP)/(afterK);
   !!SN:W^clt.ui.refresh.%(hero)^/1 W^clt.link.%(hero)^/0 W^clt.assembly.offered.%(hero)^/0;
-  !!IF:M^The relic has been disassembled. The eight parts are in your backpack.^;
+  !!IF&(notify)=1:M^The relic has been disassembled. The eight parts are in your backpack.^;
   !!FU:E;
 !!en;
 !!VR(complete:y):S1;
@@ -239,7 +241,7 @@ ZVSE2
   !!VR(bagParts)&(total)>(worn):+1;
 !!en;
 !!if&(used)>=64/(bagParts)=0;
-  !!IF:M^Free one backpack space before assembling the relic.^;
+  !!IF&(notify)=1:M^Free one backpack space before assembling the relic.^;
   !!FU:E;
 !!en;
 !!SN:W^clt.transaction.%(hero)^/1;
@@ -260,14 +262,14 @@ ZVSE2
 !!if&(town)>=0/(equipped)>0;
   !!FU(CLT_LinkTown):P(hero)/(town);
 !!en;
-!!IF&(equipped)>0:M^Legacy of the Cloud Titans assembled and equipped in one necklace slot.^;
-!!IF&(equipped)=0:M^Legacy of the Cloud Titans assembled. Necklace slot occupied: the relic is in your backpack.^;
+!!IF&(equipped)>0/(notify)=1:M^Legacy of the Cloud Titans assembled and equipped in one necklace slot.^;
+!!IF&(equipped)=0/(notify)=1:M^Legacy of the Cloud Titans assembled. Necklace slot occupied: the relic is in your backpack.^;
 
 !?OB98;
 !!HE-1:N?(hero:y) O?(owner:y);
 !!CA998:U?(town:y) T?(kind:y) O?(townOwner:y);
 !!FU|(owner)<0/(townOwner)<>(owner)/(kind)<>(TOWN_TOWER):E;
-!!FU(CLT_Forge):P(hero)/(town);
+!!FU(CLT_RequestForge):P(hero)/(town);
 
 !?FU(CLT_DayHero);
 !#VA(day:x) (weekDay:x) (activeOwner:x);
@@ -556,6 +558,8 @@ Right-click this relic to choose disassembly.^;
 !!FU&(hero)<0:E;
 !!HE(hero):O?(owner:y);
 !!OW:C?(activeOwner:y);
+!!FU(CLT_IsLocalOwner):P(owner)/?(localOwner:y);
+!!FU&(localOwner)=0:E;
 !!FU|(hero)<0/(owner)<>(activeOwner):E;
 !!FU(CLT_GetMask):P(hero)/?(mask:y);
 !!FU(CLT_Primary):P(mask)/?i/?i/?i/?i/?(count:y);
@@ -570,7 +574,7 @@ Right-click this relic to choose disassembly.^;
 !!SN:W^clt.assembly.offered.%(hero)^/1;
 !!VR(shown):S1;
 !!IF:Q1^All eight Cloud Titans parts are equipped. Assemble them into one necklace relic?^;
-!!FU(CLT_Forge)&1:P(hero)/-1;
+!!FU(CLT_RequestForge)&1:P(hero)/-1;
 !!FU(CLT_UpdateTooltips):P(hero);
 
 ; ExecErmCmd receives one runtime command, without the full ERM compiler's
@@ -710,12 +714,14 @@ Right-click this relic to choose disassembly.^;
 !!UN:C(heroStruct)/26/4/?(hero:y);
 !!HE(hero):O?(owner:y) A2/458/?(total:y)/?(worn:y);
 !!OW:C?(activeOwner:y);
+!!FU(CLT_IsLocalOwner):P(owner)/?(localOwner:y);
+!!FU&(localOwner)=0:E;
 !!FU|(owner)<>(activeOwner)/(total)=0:E;
 !!SN:W^clt.disassemble.dialog.%(hero)^/?(busy:y);
 !!FU&(busy)>0:E;
 !!SN:W^clt.disassemble.dialog.%(hero)^/1;
 !!IF:Q1^Disassemble Legacy of the Cloud Titans into its eight components?^;
-!!FU(CLT_Forge)&1:P(hero)/(mode);
+!!FU(CLT_RequestForge)&1:P(hero)/(mode);
 !!SN:W^clt.disassemble.dialog.%(hero)^/0;
 !!FU(CLT_RefreshHeroUI):P(hero);
 
@@ -763,7 +769,9 @@ Right-click this relic to choose disassembly.^;
 !!SN:W^clt.link.%(hero)^/?(old:y);
 !!FU&(old)=(link):E;
 !!SN:W^clt.link.%(hero)^/(link) W^clt.town.hasLink.%(town)^/1;
-!!IF:M^Cloud Titans: Tower linked. +2 weekly growth while this human-controlled hero lives, wears the relic and owns this town. Repeated visits need no confirmation.^;
+!!HE(hero):O?(notifyOwner:y);
+!!FU(CLT_IsLocalOwner):P(notifyOwner)/?(notify:y);
+!!IF&(notify)=1:M^Cloud Titans: Tower linked. +2 weekly growth while this human-controlled hero lives, wears the relic and owns this town. Repeated visits need no confirmation.^;
 
 !?FU(CLT_TownBonus);
 !#VA(town:x) (bonus:x);

@@ -124,12 +124,14 @@ ZVSE2
 !!FU&(CLT_WORLD_ENABLED)=0:E;
 !!SN:W^clt.world.done^/?(done:y);
 !!FU&(done)>0:E;
-!!SN:W^clt.world.done^/1 W^clt.world.pool^/0 W^clt.world.placed^/0 W^clt.world.error^/0;
 !!UN:V?i/?i/?i/?(network:y)/?i;
 !!if&(network)>0;
-  !!SN:W^clt.world.skipped^/2;
-  !!FU:E;
+  !!FU&-999:E;
+  !!OW:C?(owner:y);
+  !!FU(CLT_IsLocalOwner):P(owner)/?(localOwner:y);
+  !!FU&(localOwner)=0:E;
 !!en;
+!!SN:W^clt.world.done^/1 W^clt.world.pool^/0 W^clt.world.placed^/0 W^clt.world.error^/0;
 !!FU(WOG_CheckRandomMap):P?(random:y);
 !!if&(random)=0;
   !!SN:W^clt.world.skipped^/1;
@@ -162,6 +164,15 @@ ZVSE2
 !!SN:F^WriteStrToIni^/^stage^/^placement-complete^/^world^/^Debug\CloudTitansWorld.ini^;
 !!SN:F^SaveIni^/^Debug\CloudTitansWorld.ini^;
 !!SN:W^clt.world.placed^/?(placed:y) W^clt.world.error^/?(error:y);
+!!if&(network)>0;
+  !!re (entry:y)/1/(placed);
+    !!SN:W^clt.world.p.%(entry).x^/?(px:y) W^clt.world.p.%(entry).y^/?(py:y) W^clt.world.p.%(entry).z^/?(pz:y) W^clt.world.p.%(entry).art^/?(pa:y) W^clt.world.p.%(entry).old^/?(po:y);
+    !!IP:D-1;
+    !!FU26894:D(entry)/(px)/(py)/(pz)/(po)/(pa);
+  !!en;
+  !!IP:D-1;
+  !!FU26895:D(placed);
+!!en;
 !!IF:M^{~Gold}Cloud Titans - exploration alpha{~}
 
 %(placed) set components were placed on this new random map.
