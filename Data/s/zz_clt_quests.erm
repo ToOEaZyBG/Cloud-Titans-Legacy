@@ -81,6 +81,17 @@ ZVSE2
 ; The old genie ledger must never count as Behemoth kills.
 !!VR(key)&(quest)=6:Z^clt.quest.%(owner).progress.behemoths^;
 
+; Read numeric quest state in one place. Do not carry string-key outputs
+; across nested/modal UI calls, which may replace temporary strings.
+!?FU(CLT_QuestState);
+!#VA(owner:x) (quest:x) (progress:x) (claimed:x);
+!!VR(progress):S0;
+!!VR(claimed):S0;
+!!FU|(owner)<0/(owner)>7/(quest)<0/(quest)>7:E;
+!!SN:W^clt.quest.%(owner).progress.%(quest)^/?(progress);
+!!SN&(quest)=6:W^clt.quest.%(owner).progress.behemoths^/?(progress);
+!!SN:W^clt.quest.%(owner).claimed.%(quest)^/?(claimed);
+
 !?FU(CLT_QuestTownRequirements);
 !#VA(town:x) (missing:x);
 !!VR(missing):S0;
@@ -98,8 +109,8 @@ ZVSE2
 !#VA(quest:x) (hero:x) (ready:x) (status:x);
 !!VR(level:y):S0;
 !!HE(hero)&(hero)>=0:E?i/?(level);
-!!VR(heroStatus:z):Z^No hero in this Tower. Bring a level 25+ hero to claim.^;
-!!VR(heroStatus)&(hero)>=0:Z^Hero level: %(level)/25^;
+!!VR(heroStatus:z):S^No hero in this Tower. Bring a level 25+ hero to claim.^;
+!!VR(heroStatus)&(hero)>=0:S^Hero level: %(level)/25^;
 !!CA-1:U?(town:y);
 !!FU(CLT_QuestTownRequirements):P(town)/?(missing:y);
 !!VR(ready):S1;
@@ -128,8 +139,7 @@ Missing buildings: %(missing). Skyship/Grail is not required.^;
 !!re (q:y)/0/7;
  !!FU(CLT_QuestInfo):P(q)/?(target:y)/?(title:z)/?(objective:z);
  !!FU(CLT_QuestRequirements):P(q)/(hero)/?(eligible:y)/?(requirements:z);
- !!FU(CLT_QuestProgressKey):P(owner)/(q)/?(progressKey:z);
- !!SN:W^clt.quest.%(owner).claimed.%(q)^/?(claimed:y) W(progressKey)/?(progress:y);
+ !!FU(CLT_QuestState):P(owner)/(q)/?(progress:y)/?(claimed:y);
  !!FU(CLT_QuestMetric):P(q)/?(metric:z);
  !!VR(caption:z):S^%(title): %(progress)/%(target) %(metric)^;
  !!VR(caption)&(claimed)>0:S^{~Lime}%(caption) - claimed{~}^;
@@ -141,10 +151,19 @@ Missing buildings: %(missing). Skyship/Grail is not required.^;
 !!FU(RadioDlg_Show):P?(selected:y)/?(quest:y)/?(tag:z);
 !!FU&(selected)<0:E;
 !!FU|(quest)<0/(quest)>7:E;
+; Re-read the town context after the modal dialog instead of retaining its
+; owner/hero locals across callbacks from other mods.
+!!CA-1:T?(kind) O?(owner) H1/?(hero);
+!!OW:C?(active);
+!!FU|(kind)<>(TOWN_TOWER)/(owner)<>(active):E;
+!!CA-1&(hero)<0:H0/?(hero);
+!!if&(hero)>=0;
+ !!HE(hero):O?(heroOwner);
+ !!VR(hero)&(heroOwner)<>(owner):S-1;
+!!en;
 !!FU(CLT_QuestInfo):P(quest)/?(goal:y)/?(name:z)/?(description:z);
 !!FU(CLT_QuestRequirements):P(quest)/(hero)/?(canClaim:y)/?(claimRequirements:z);
-!!FU(CLT_QuestProgressKey):P(owner)/(quest)/?(currentKey:z);
-!!SN:W^clt.quest.%(owner).claimed.%(quest)^/?(taken:y) W(currentKey)/?(current:y);
+!!FU(CLT_QuestState):P(owner)/(quest)/?(current:y)/?(taken:y);
 !!IF:M^{~Gold}%(name){~}
 
 %(description)

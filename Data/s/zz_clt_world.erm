@@ -114,9 +114,7 @@ ZVSE2
     !!SN:W^clt.world.error^/1;
     !!FU:E;
   !!en;
-  !!VR(quest:y):S(part) -450;
-  !!FU(CLT_QuestInfo):P(quest)/?i/?(mapName:z)/?i;
-  !!OB(bx)/(by)/(bz):H(mapName);
+  ; Keep native hints: local string indices are unsafe in the legacy hover path.
   !!VR(placed):+1;
   !!SN:W^clt.world.c.%(best).used^/1 W^clt.world.placed^/(placed) W^clt.world.p.%(placed).x^/(bx) W^clt.world.p.%(placed).y^/(by) W^clt.world.p.%(placed).z^/(bz) W^clt.world.p.%(placed).art^/(part) W^clt.world.p.%(placed).old^/(previous) W^clt.pickup.site.%(bx).%(by).%(bz)^/(placed);
   !!SN:F^WriteStrToIni^/^item%(placed)^/^%(bx),%(by),%(bz),%(part)^/^world^/^Debug\CloudTitansWorld.ini^;

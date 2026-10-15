@@ -1,15 +1,21 @@
-# Cloud Titans 0.5.2-nettest-alpha — Online Lobby Test
+# Cloud Titans 0.5.3-nettest-alpha — Online Lobby Test
 
-Experimental multiplayer test release. **34 automated checks pass; the gameplay changes have not yet been verified in ERA or between two computers.** Previous in-game results apply to version 0.5.0.
+Experimental multiplayer test release. **44 automated checks pass; the gameplay changes have not yet been verified in ERA or between two computers.** User-driven 0.5.2 tests with two clients on one computer confirmed battle-counter transfer and persistence after save/load, quest browsing without a hero, and receiving components from option 126. The new 0.5.3 fixes still require in-game verification.
 
 ## Installation and setup
 
-1. Both players must close the game before installing or updating **Legacy of the Cloud Titans - TEST** in Heroes Launcher → Mod Browser. The required installed version is **0.5.2-nettest-alpha**. See [UPDATING.md](UPDATING.md) if the catalog shows an older version or repeatedly offers Update. Do not use F12 during multiplayer.
+1. Both players must close the game before installing or updating **Legacy of the Cloud Titans - TEST** in Heroes Launcher → Mod Browser. The required installed version is **0.5.3-nettest-alpha**. See [UPDATING.md](UPDATING.md) if the catalog shows an older version or repeatedly offers Update. Do not use F12 during multiplayer.
 2. Use matching ERA/HD versions, enabled mods and load order on both computers. TEST_PROFILE.json describes the test profile; it is not a replacement for your settings.
-3. Start a **NEW random map through Online Lobby**, with both players choosing Tower. Maps created with 0.5.0 are not migrated and may still contain faulty artifact objects. Disable simultaneous turns. Enable WoG option **126 (artifacts awarded on level-up)** to test level rewards; human heroes can receive a set component from level 18 onward. See LEVEL_REWARDS.md.
+3. Start a **NEW random map through Online Lobby**, with both players choosing Tower. Maps created with 0.5.0–0.5.2 are not migrated. In particular, old custom hint state may remain in saves; use a new map to test the hover fix. Disable simultaneous turns. Enable WoG option **126 (artifacts awarded on level-up)** to test level rewards; human heroes can receive a set component from level 18 onward. See LEVEL_REWARDS.md.
 4. Test with sequential turns. Successful local testing does not establish that online synchronization works.
 
 ## Changes in this release
+
+- Remove custom map-object hint assignments that can enter the legacy hover path with an invalid text index. Custom graphics and pickup reward names are retained; the native map hint may show the underlying standard artifact name.
+- Correct two quest requirement string assignments rejected by ERA.
+- Use a shared numeric state reader for quest list/detail views and refresh town ownership/hero context after the modal selection dialog. This targets the reported list/detail progress mismatch.
+- The option 126 component frequency is unchanged in this focused error-fix release. The requested reduction remains pending.
+
 
 - Option 126 now includes human Relic component rewards in network games. Online selection is deterministic per hero and rewarded level, without an extra RNG call or an extra item grant. Multiple levels gained together use distinct level inputs. Actual network behavior still requires testing.
 

@@ -7,7 +7,7 @@
       "en_US": "Readme.md"
     },
     "short": {
-      "en_US": "Online Lobby test: option 126 human Relic component rewards enabled from level 18. Runtime verification pending."
+      "en_US": "Test fixes for map hover errors and quest list/detail progress. New map required; native verification pending."
     }
   },
   "author": "ToOEaZyBG; third-party credits in THIRD_PARTY.txt",
@@ -16,7 +16,7 @@
     "file": "icon.png",
     "index": 0
   },
-  "mod_version": "0.5.2-nettest-alpha",
+  "mod_version": "0.5.3-nettest-alpha",
   "info_version": "1",
   "platform": "era",
   "priority": 0,

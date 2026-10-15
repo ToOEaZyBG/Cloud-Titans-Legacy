@@ -1,5 +1,5 @@
 {
-  "mod_version": "0.5.2-nettest-alpha",
+  "mod_version": "0.5.3-nettest-alpha",
   "mode": "experimental sequential Online Lobby trial; no two-peer verification yet",
   "active_mods_low_to_high_priority": [
     "WoG",

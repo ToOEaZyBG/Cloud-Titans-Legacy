@@ -82,9 +82,7 @@ ZVSE2
 !!UN:O(bx)/(by)/(bz)/1/0;
 !!UN:I(bx)/(by)/(bz)/(OBJ_ARTIFACT)/(previous)/(OBJ_ARTIFACT)/(part)/-1/0;
 !!OB(bx)/(by)/(bz):U(previous) C0;
-!!VR(quest:y):S(part) -450;
-!!FU(CLT_QuestInfo):P(quest)/?i/?(mapName:z)/?i;
-!!OB(bx)/(by)/(bz):H(mapName);
+; Keep native hints: local string indices are unsafe in the legacy hover path.
 !!OB(bx)/(by)/(bz):T?(actualType:y) U?(actual);
 !!if|(actualType)<>(OBJ_ARTIFACT)/(actual)<>(previous);
  !!UN:O(bx)/(by)/(bz)/1/0;
@@ -114,7 +112,7 @@ ZVSE2
 !!SN:F^WriteStrToIni^/^hash^/^%(hash)^/^network^/^Debug\CloudTitansNetwork.ini^;
 !!SN:F^WriteStrToIni^/^placed^/^%(count)^/^network^/^Debug\CloudTitansNetwork.ini^;
 !!SN:F^WriteStrToIni^/^world_error^/^%(error)^/^network^/^Debug\CloudTitansNetwork.ini^;
-!!SN:F^WriteStrToIni^/^version^/^0.5.2-nettest-alpha^/^network^/^Debug\CloudTitansNetwork.ini^;
+!!SN:F^WriteStrToIni^/^version^/^0.5.3-nettest-alpha^/^network^/^Debug\CloudTitansNetwork.ini^;
 !!SN:F^SaveIni^/^Debug\CloudTitansNetwork.ini^;
 !!IF&(error)>0:M^Cloud Titans NETWORK TEST: map placement mismatch. Stop this test and keep both saves/debug folders.^;
 
@@ -156,7 +154,7 @@ ZVSE2
 !!FU&(selected)<0:E;
 !!if&(action)=0;
  !!SN:W^clt.world.placed^/?(placed:y) W^clt.net.world.hash^/?(hash:y) W^clt.net.world.error^/?(error:y);
- !!VR(status:z):S^Build: 0.5.2-nettest-alpha
+ !!VR(status:z):S^Build: 0.5.3-nettest-alpha
 Placed: %(placed). Map hash: %(hash). Errors: %(error).
 Confirmed wins per player (compare on both computers):
 ^;

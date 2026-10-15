@@ -1,3 +1,12 @@
+# 0.5.3-nettest-alpha
+
+- Stop assigning trigger-local string references as persistent map-object hints. This targets the generic legacy hover error reported as File: erm, Line: 9614.
+- Correct two VR:Z assignments on a local string in quest requirements (use VR:S).
+- Read quest list/detail progress through one numeric helper; refresh town owner and hero after the selection dialog. Targets the reported Aegis 1275/10000 versus 0/10000 mismatch.
+- Start a NEW map: existing native hint state in saves is not migrated.
+- 44 offline checks pass; these fixes still need user-driven runtime verification. Two clients on one computer are not a substitute for a two-computer test.
+- Option 126 balance is unchanged; the requested lower rate and ten-level limit remain pending.
+
 # 0.5.2-nettest-alpha
 
 - Enable the eight human Relic component rewards for WoG option 126 in network games, from level 18 onward.
