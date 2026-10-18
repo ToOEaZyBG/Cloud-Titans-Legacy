@@ -1,6 +1,6 @@
-# Option 126 level-up rewards — 0.5.4-nettest-alpha
+# Option 126 level-up rewards — 0.6.0-batch-dev12
 
-Enable WoG option 126 to test. Standard reward classes remain Treasure at levels 1–5, Minor at 6–11, Major at 12–17 and Relic from level 18 onward. AI retains native rewards. The eight components can be selected for human Relic rewards; the assembled necklace never drops.
+Enable WoG option 126 to test. Standard reward classes remain Treasure at levels 1–5, Minor at 6–11, Major at 12–17 and Relic from level 18 onward. AI retains native rewards. Human Relic rewards can select components of the hero faction. Complete custom relics never drop.
 
 ## Balance
 
@@ -19,3 +19,4 @@ The package changes only two reward-selection calls in the pinned 77 wog - map r
 Tests execute the actual pure ERM arithmetic and schedule helper instructions in a limited offline evaluator. They check bounds, approximate gate frequency, ten-level spacing and order-independent network decisions. Other tests inspect the native integration and preservation of grants/dialogs. They do not execute ERA, prove inventory delivery or establish peer synchronization. The 0.5.4 balance and UI changes still need runtime testing.
 
 Start a NEW map through Online Lobby with simultaneous turns off. Test level 18+, several levels gained together, a full backpack, save/load and further levels. Compare inventory and counters on both clients after turn transfer. Receiving no component during a short test is expected at this reduced rate.
+

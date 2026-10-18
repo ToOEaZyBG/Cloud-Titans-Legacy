@@ -1,0 +1,31 @@
+{
+  "version": "0.6.0-batch-dev12",
+  "distribution": "EXPERIMENTAL ONLINE LOBBY TEST",
+  "new_map_required": true,
+  "sequential_turns_only": true,
+  "offline_tests_passed": 213,
+  "native_runtime_accepted": false,
+  "two_computer_accepted": false,
+  "production_ready": false,
+  "candidate_validation": {
+    "status": "OFFLINE CHECKS PASSED",
+    "functions": 120,
+    "new_sets": 8,
+    "artifact_configs": 81,
+    "max_config_parser_write_bytes": 461,
+    "component_resources": 64,
+    "old_inventory_frames_preserved": 459,
+    "acceptance": "Native runtime, same-PC Lobby and two-computer tests remain pending."
+  },
+  "known_unresolved": [
+    "AI-turn crash",
+    "fullscreen crash"
+  ],
+  "reviewed_candidate_zip_sha256": "778fa4eb93a194e3e63ed7d5f62f61d6b10a97dd118439af5dd37477b1b0b3f2",
+  "export_overrides": [
+    "mod.json catalog caption/description",
+    "Readme.md",
+    "NETWORK_TEST.md",
+    "readme.txt"
+  ]
+}

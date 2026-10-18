@@ -1,5 +1,5 @@
 ZVSE2
-; WoG option 126 integration: native code alone grants and displays rewards.
+; DEVELOPMENT repair: validate every selection; fail closed before grants/dialogs.
 ; Human components: 5% per eligible reward, at least ten levels apart.
 
 !?FU(CLT_LevelArtifact);
@@ -10,7 +10,18 @@ ZVSE2
 !!VR(offset:y):S(step) :2;
 !!VR(rewardLevel):+(offset);
 !!FU(CLT_TryLevelComponent):P(hero)/(rank)/?(artifact)/(rewardLevel);
-!!UN&(artifact)<0:J6/(rank)/?(artifact);
+!!if&(artifact)<0;
+ !!FU(CLT_IsHuman):P(hero)/?(human:y);
+ ; Human Relics were already selected with the 5% component gate. An empty
+ ; ordinary pool must not get a second native draw into custom components.
+ !!if|(human)=0/(rank)<>(ART_LEVEL_RELIC);
+  !!UN:J6/(rank)/?(artifact);
+ !!en;
+!!en;
+!!FU(CLT_ValidLevelArtifact):P(hero)/(rank)/(artifact)/?(valid:y);
+!!if&(valid)=0;
+ !!FU(CLT_StockLevelArtifact):P(hero)/(rank)/(rewardLevel)/?(artifact);
+!!en;
 !!VRi:S(savedQuickI);
 
 !?FU(CLT_TryLevelComponent);
@@ -42,7 +53,7 @@ ZVSE2
  !!el;
   !!VR(partTicket):R0/0/7;
  !!en;
- !!VR(artifact):S450 +(partTicket);
+ !!FU(CFS_LevelPart):P(hero)/(partTicket)/?(artifact);
  !!SN:W^clt.reward.last.%(hero)^/(rewardLevel);
  !!SN:W^clt.reward.level.count^/?(count:y);
  !!VR(count):+1;
@@ -51,12 +62,22 @@ ZVSE2
  !!SN:F^SaveIni^/^Debug\CloudTitansRewards.ini^;
  !!FU:E;
 !!en;
-; Select actual allowed stock Relic IDs directly, avoiding exhausted-deck
-; sentinel rewards on the human Relic path. Other native classes are unchanged.
+!!FU(CLT_StockLevelArtifact):P(hero)/(rank)/(rewardLevel)/?(artifact);
+
+; Native random decks may return a sentinel. Select from live allowed stock
+; definitions when a direct selection is required; an empty pool stays -1.
+!?FU(CLT_StockLevelArtifact);
+!#VA(hero:x) (rank:x) (rewardLevel:x) (artifact:x);
+!!VR(artifact):S-1;
+!!FU|(rank)<2/(rank)>16:E;
+!!UN:V?i/?i/?i/?(network:y)/?i;
+!!VR(key:y):S(hero);
+!!SN:W^clt.net.world.hash^/?(salt:y);
+!!VR(key)&(network)>0:+(salt) %65521;
 !!VR(stock:y):S0;
 !!re (candidate:y)/7/128;
  !!UN:A(candidate)/?(banned:y) A(candidate)/3/?(candidateRank:y);
- !!VR(stock)&(banned)=0/(candidateRank)=(ART_LEVEL_RELIC):+1;
+ !!VR(stock)&(banned)=0/(candidateRank)=(rank):+1;
 !!en;
 !!FU&(stock)=0:E;
 !!VR(last:y):S(stock) -1;
@@ -68,7 +89,7 @@ ZVSE2
 !!VR(index:y):S0;
 !!re (normal:y)/7/128;
  !!UN:A(normal)/?(disabled:y) A(normal)/3/?(normalRank:y);
- !!if&(disabled)=0/(normalRank)=(ART_LEVEL_RELIC);
+ !!if&(disabled)=0/(normalRank)=(rank);
   !!if&(index)=(ticket);
    !!VR(artifact):S(normal);
    !!br;
@@ -76,6 +97,20 @@ ZVSE2
   !!VR(index):+1;
  !!en;
 !!en;
+
+; Never query native UN:A with a custom/out-of-range ID. Custom components
+; use this package's declared range; they require a human Relic reward.
+!?FU(CLT_ValidLevelArtifact);
+!#VA(hero:x) (rank:x) (artifact:x) (valid:x);
+!!VR(valid):S0;
+!!FU(CFS_IsComponent):P(artifact)/?(component:y);
+!!if&(component)>0/(rank)=(ART_LEVEL_RELIC);
+ !!FU(CLT_IsHuman):P(hero)/?(valid);
+ !!FU:E;
+!!en;
+!!FU|(artifact)<7/(artifact)>128:E;
+!!UN:A(artifact)/?(banned:y) A(artifact)/3/?(actualRank:y);
+!!VR(valid)&(banned)=0/(actualRank)=(rank):S1;
 
 ; Recompute the per-map/per-hero schedule, making it independent of RPC
 ; arrival order or a peer-local cooldown. The saved last level is diagnostic

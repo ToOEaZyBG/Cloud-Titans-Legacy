@@ -7,7 +7,7 @@ ZVSE2
 !?FU(CLT_IsHuman);
 !#VA(hero:x) (human:x);
 !!VR(human):S0;
-!!FU&(hero)<0:E;
+!!FU|(hero)<0/(hero)>155:E;
 !!HE(hero):O?(owner:y);
 !!FU|(owner)<0/(owner)>7:E;
 !!OW:I(owner)/?(isAi:y);
@@ -290,8 +290,8 @@ ZVSE2
 !!VR(mana:y):S0;
 !!VR(mana)|(mantle)>0/(relic)>0:+5;
 !!VR(mana)&(count)>=3:+5;
-!!HE(hero):F?i/?i/?i/?(knowledge:y) I?(current:y);
-!!VR(maxMana:y):S(knowledge) *10;
+!!HE(hero):I?(current:y);
+!!FU(CFS_MaxMana):P(hero)/?(maxMana:y);
 !!VR(updated:y):S(current) +(mana);
 !!VR(updated)&(updated)>(maxMana):S(maxMana);
 !!HE(hero)&(current)<(maxMana)/(mana)>0:I(updated);
@@ -333,7 +333,8 @@ ZVSE2
 !!VR(attack:y):S0;
 !!VR(defense:y):S0;
 !!VR(speed:y):S0;
-!!if&(type)>=28/(type)<=41|(type)=(MON_LORD_OF_THUNDER);
+!!FU(CFS_TowerMember):P(type)/?(towerMember:y);
+!!if&(towerMember)>0;
   !!VR(attack)&(count)>=4:+2;
   !!VR(defense)&(count)>=4:+2;
   !!VR(speed)&(count)>=5:+1;
@@ -366,6 +367,8 @@ ZVSE2
 !!SN:W^clt.battle.init^/1;
 
 !?MF1;
+!!SN:W^cfs.power.v1.executing^/?(powerExecuting:y);
+!!FU&(powerExecuting)>0:E;
 !!MF:W?(special:y) F?(damage:y) E?(allowed:y) N?(target:y);
 !!FU|(special)<>0/(damage)<=0/(allowed)=0:E;
 !!BG:N?(attacker:y) E?(primaryTarget:y) A?(action:y);
@@ -413,6 +416,8 @@ ZVSE2
 !!if&(clickType)=(MOUSE_LMB_RELEASED);
   !!FU(CLT_OfferForge):P(tooltipHero)/?(shown:y);
   !!CM&(shown)>0:R0;
+  !!FU(CFS_OfferForge):P(tooltipHero)/?(factionShown:y);
+  !!CM&(factionShown)>0:R0;
   !!FU(CLT_RefreshHeroUI):P(tooltipHero);
   !!FU&(shown)>0:E;
 !!en;
@@ -420,22 +425,18 @@ ZVSE2
 !!FU(CLT_RefreshHeroUI):P(tooltipHero);
 
 !?FU(CLT_ShowSetInfo);
-!!IF:M^Legacy of the Cloud Titans - 8 new pieces
+!!IF:M^Wear eight different artifacts to assemble Legacy of the Cloud Titans.
 
-Crown, Scepter, Shield, Armor, Mantle, Boots, Pendant, Ring.
+2 pieces: +2 Spell Power and Knowledge.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Tower troops gain +2 Attack and Defense.
+5 pieces: Tower troops gain +1 Speed.
+6 pieces: Giants and Titans gain +3 extra Attack and Defense.
+7 pieces: Giants, Titans and Lords of Thunder gain Lightning Bolt.
 
-Bonuses accumulate for DIFFERENT EQUIPPED parts:
-2: +2 Spell Power and +2 Knowledge.
-3: +5 daily mana.
-4: Tower troops +2 Attack and +2 Defense.
-5: Tower troops +1 Speed.
-6: Giant/Titan/Lord another +3 Attack and +3 Defense.
-7: Each Giant/Titan/Lord stack triggers one lightning per battle.
-8: Equip all parts to assemble a single Misc relic.
+The complete relic is worn around the neck and retains every bonus. Visit your own Tower while wearing it to add two weekly recruits to the Giant dwelling.
 
-Wear the relic and revisit your Tower to link +2 weekly Giant/Titan recruitment. The Giant dwelling is required.
-
-Parts in the backpack do not activate bonuses. Components are found on supported random maps; no starting gift.^;
+Lightning strikes automatically; no Alt-click is needed. Extra copies give no further bonus.^;
 !!HE-1:N?(hero:y) O?(owner:y);
 !!OW:C?(activeOwner:y);
 !!FU|(hero)<0/(owner)<>(activeOwner):E;
@@ -447,106 +448,1238 @@ Parts in the backpack do not activate bonuses. Components are found on supported
 !?FU(CLT_UpdateTooltips);
 !#VA(hero:x);
 !!VR(count:y):S0;
-!!VR(relicWorn:y):S0;
+!!VR(mask:y):S0;
+!!VR(count):S0;
 !!if&(hero)>=0;
-  !!HE(hero):A2/458/?(relicTotal:y)/?(relicWorn);
-  !!FU(CLT_GetMask):P(hero)/?(mask:y);
-  !!FU(CLT_Primary):P(mask)/?i/?i/?i/?i/?(count);
+ !!FU(CLT_GetMask):P(hero)/?(mask);
+ !!FU(CLT_Primary):P(mask)/?i/?i/?i/?i/?(count);
 !!en;
-!!VR(summary:z):S^{~Gold}Legacy of the Cloud Titans{~}
-^;
-!!VR(summary):S^%(summary)Equipped parts: %(count)/8
-^;
-!!VR(color:z):S^Grey^;
-!!VR(color)&(count)>=2:S^LightGreen^;
-!!VR(summary):S^%(summary){~%(color)}2 pieces: +2 Spell Power and Knowledge{~}
-^;
-!!VR(color):S^Grey^;
-!!VR(color)&(count)>=3:S^LightGreen^;
-!!VR(summary):S^%(summary){~%(color)}3 pieces: +5 daily mana{~}
-^;
-!!VR(color):S^Grey^;
-!!VR(color)&(count)>=4:S^LightGreen^;
-!!VR(summary):S^%(summary){~%(color)}4 pieces: Tower +2 Attack/Defense{~}
-^;
-!!VR(color):S^Grey^;
-!!VR(color)&(count)>=5:S^LightGreen^;
-!!VR(summary):S^%(summary){~%(color)}5 pieces: Tower +1 Speed{~}
-^;
-!!VR(color):S^Grey^;
-!!VR(color)&(count)>=6:S^LightGreen^;
-!!VR(summary):S^%(summary){~%(color)}6 pieces: Giant/Titan/Lord +3 Attack/Defense{~}
-^;
-!!VR(color):S^Grey^;
-!!VR(color)&(count)>=7:S^LightGreen^;
-!!VR(summary):S^%(summary){~%(color)}7 pieces: each Giant/Titan/Lord stack: one lightning per battle{~}
-^;
-!!VR(color):S^Grey^;
-!!VR(color)&(relicWorn)>0:S^LightGreen^;
-!!VR(summary):S^%(summary){~%(color)}Relic: +2 weekly recruits in a linked Tower{~}
-^;
-!!VR(summary):S^%(summary)
-^;
-!!VRs^clt.tooltip.450^:S^Worn on the head, this crown grants +4 Knowledge.
-
-%(summary)^;
-!!SN:H^art^/450/1/s^clt.tooltip.450^;
-!!VRs^clt.tooltip.451^:S^Held in the right hand, this scepter grants +4 Spell Power.
-
-%(summary)^;
-!!SN:H^art^/451/1/s^clt.tooltip.451^;
-!!VRs^clt.tooltip.452^:S^Held in the left hand, this shield grants +4 Defense.
-
-%(summary)^;
-!!SN:H^art^/452/1/s^clt.tooltip.452^;
-!!VRs^clt.tooltip.453^:S^Worn on the body: +4 Attack to the HERO.
-
-%(summary)^;
-!!SN:H^art^/453/1/s^clt.tooltip.453^;
-!!VRs^clt.tooltip.454^:S^Worn on the shoulders, this mantle restores +5 mana each day.
-
-%(summary)^;
-!!SN:H^art^/454/1/s^clt.tooltip.454^;
-!!VRs^clt.tooltip.455^:S^Worn on the feet, these boots grant +300 movement each day.
-
-%(summary)^;
-!!SN:H^art^/455/1/s^clt.tooltip.455^;
-!!VRs^clt.tooltip.456^:S^Worn around the neck, this pendant grants +2 Spell Power and Knowledge.
-
-%(summary)^;
-!!SN:H^art^/456/1/s^clt.tooltip.456^;
-!!VRs^clt.tooltip.457^:S^Worn on a finger, this ring grants Giants, Titans and Lords of Thunder +1 Speed.
-
-%(summary)^;
-!!SN:H^art^/457/1/s^clt.tooltip.457^;
-!!VR(color):S^Grey^;
-!!VR(color)&(relicWorn)>0:S^LightGreen^;
-!!VRs^clt.tooltip.458^:S^Worn around the neck. Human players only.
+!!VRs^clt.tooltip.450^:S^Worn on the head, this artifact increases your Knowledge by 4.
 
 {~Gold}Legacy of the Cloud Titans{~}
-{~%(color)}Component bonuses:
-Crown: +4 Knowledge
-Scepter: +4 Spell Power
-Shield: +4 Defense
-Armor: +4 Attack
-Mantle: +5 daily mana
-Boots: +300 daily movement
-Pendant: +2 Spell Power and Knowledge
-Ring: Giant/Titan/Lord +1 Speed
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Spell Power and Knowledge.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Tower troops gain +2 Attack and Defense.
+5 pieces: Tower troops gain +1 Speed.
+6 pieces: Giants and Titans gain +3 extra Attack and Defense.
+7 pieces: Giants, Titans and Lords of Thunder gain Lightning Bolt.
 
-Set bonuses retained:
-2 parts: +2 Spell Power and Knowledge
-3 parts: +5 daily mana
-4 parts: Tower troops +2 Attack and Defense
-5 parts: Tower troops +1 Speed
-6 parts: Giant/Titan/Lord another +3 Attack and Defense
-7 parts: one lightning per stack per BATTLE; 10 damage/living unit
-Relic: +2 growth in one linked owned Tower{~}
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/450/1/s^clt.tooltip.450^;
+!!VRs^clt.tooltip.451^:S^Held in the right hand, this artifact increases your Spell Power by
+4.
 
-Equip and visit Tower to link recruits; Giant dwelling required.
-Mana is capped. Extra parts and relics do not stack.
-Right-click this relic to choose disassembly.^;
+{~Gold}Legacy of the Cloud Titans{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Spell Power and Knowledge.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Tower troops gain +2 Attack and Defense.
+5 pieces: Tower troops gain +1 Speed.
+6 pieces: Giants and Titans gain +3 extra Attack and Defense.
+7 pieces: Giants, Titans and Lords of Thunder gain Lightning Bolt.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/451/1/s^clt.tooltip.451^;
+!!VRs^clt.tooltip.452^:S^Held in the left hand, this artifact increases your Defense by 4.
+
+{~Gold}Legacy of the Cloud Titans{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Spell Power and Knowledge.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Tower troops gain +2 Attack and Defense.
+5 pieces: Tower troops gain +1 Speed.
+6 pieces: Giants and Titans gain +3 extra Attack and Defense.
+7 pieces: Giants, Titans and Lords of Thunder gain Lightning Bolt.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/452/1/s^clt.tooltip.452^;
+!!VRs^clt.tooltip.453^:S^Worn on the body, this artifact increases your Attack by 4.
+
+{~Gold}Legacy of the Cloud Titans{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Spell Power and Knowledge.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Tower troops gain +2 Attack and Defense.
+5 pieces: Tower troops gain +1 Speed.
+6 pieces: Giants and Titans gain +3 extra Attack and Defense.
+7 pieces: Giants, Titans and Lords of Thunder gain Lightning Bolt.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/453/1/s^clt.tooltip.453^;
+!!VRs^clt.tooltip.454^:S^Worn about the shoulders, this artifact restores 5 spell points each
+day.
+
+{~Gold}Legacy of the Cloud Titans{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Spell Power and Knowledge.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Tower troops gain +2 Attack and Defense.
+5 pieces: Tower troops gain +1 Speed.
+6 pieces: Giants and Titans gain +3 extra Attack and Defense.
+7 pieces: Giants, Titans and Lords of Thunder gain Lightning Bolt.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/454/1/s^clt.tooltip.454^;
+!!VRs^clt.tooltip.455^:S^Worn on the feet, this artifact increases your daily movement by
+300.
+
+{~Gold}Legacy of the Cloud Titans{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Spell Power and Knowledge.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Tower troops gain +2 Attack and Defense.
+5 pieces: Tower troops gain +1 Speed.
+6 pieces: Giants and Titans gain +3 extra Attack and Defense.
+7 pieces: Giants, Titans and Lords of Thunder gain Lightning Bolt.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/455/1/s^clt.tooltip.455^;
+!!VRs^clt.tooltip.456^:S^Worn around the neck, this artifact increases your Spell Power by 2
+and Knowledge by 2.
+
+{~Gold}Legacy of the Cloud Titans{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Spell Power and Knowledge.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Tower troops gain +2 Attack and Defense.
+5 pieces: Tower troops gain +1 Speed.
+6 pieces: Giants and Titans gain +3 extra Attack and Defense.
+7 pieces: Giants, Titans and Lords of Thunder gain Lightning Bolt.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/456/1/s^clt.tooltip.456^;
+!!VRs^clt.tooltip.457^:S^Worn on a finger, this artifact increases the Speed of your Giants
+and Titans and their upgrades by 1.
+
+{~Gold}Legacy of the Cloud Titans{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Spell Power and Knowledge.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Tower troops gain +2 Attack and Defense.
+5 pieces: Tower troops gain +1 Speed.
+6 pieces: Giants and Titans gain +3 extra Attack and Defense.
+7 pieces: Giants, Titans and Lords of Thunder gain Lightning Bolt.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/457/1/s^clt.tooltip.457^;
+!!VRs^clt.tooltip.458^:S^Worn around the neck, this relic increases your Attack by 4, Defense
+by 4, Spell Power by 8 and Knowledge by 8. Restores 10 spell points
+daily and grants +300 daily movement.
+
+All your Tower troops gain +2 Attack and Defense, +1 Speed.
+Giants and Titans gain +5 Attack and Defense and +2 Speed in total.
+All upgrades are included.
+
+Each Giant, Titan or Lord of Thunder stack calls down Lightning Bolt
+after its first successful attack. Once per stack per battle; 10
+damage per creature. No mana or manual activation is required.
+
+Visit your own Tower town while wearing the relic to add 2 weekly
+recruits to its Giants and Titans dwelling. That dwelling must be
+built; lower-tier growth is unchanged.
+Includes all eight artifacts. Extra copies give no further bonus.^;
 !!SN:H^art^/458/1/s^clt.tooltip.458^;
+!!FU(CFS_State):P(hero)/0/?(mask)/?(count);
+!!VRs^clt.tooltip.459^:S^Worn on the head, this artifact increases your Knowledge by 4.
+
+{~Gold}Legacy of the Dawn Seraphs{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Attack and Defense.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Castle troops gain +2 Attack and Defense.
+5 pieces: Castle troops gain +1 Speed.
+6 pieces: Angels gain +3 extra Attack and Defense.
+7 pieces: Castle troops gain +10% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/459/1/s^clt.tooltip.459^;
+!!VRs^clt.tooltip.460^:S^Held in the right hand, this artifact increases your Attack by 4.
+
+{~Gold}Legacy of the Dawn Seraphs{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Attack and Defense.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Castle troops gain +2 Attack and Defense.
+5 pieces: Castle troops gain +1 Speed.
+6 pieces: Angels gain +3 extra Attack and Defense.
+7 pieces: Castle troops gain +10% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/460/1/s^clt.tooltip.460^;
+!!VRs^clt.tooltip.461^:S^Held in the left hand, this artifact increases your Defense by 4.
+
+{~Gold}Legacy of the Dawn Seraphs{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Attack and Defense.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Castle troops gain +2 Attack and Defense.
+5 pieces: Castle troops gain +1 Speed.
+6 pieces: Angels gain +3 extra Attack and Defense.
+7 pieces: Castle troops gain +10% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/461/1/s^clt.tooltip.461^;
+!!VRs^clt.tooltip.462^:S^Worn on the body, this artifact increases your Attack by 4.
+
+{~Gold}Legacy of the Dawn Seraphs{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Attack and Defense.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Castle troops gain +2 Attack and Defense.
+5 pieces: Castle troops gain +1 Speed.
+6 pieces: Angels gain +3 extra Attack and Defense.
+7 pieces: Castle troops gain +10% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/462/1/s^clt.tooltip.462^;
+!!VRs^clt.tooltip.463^:S^Worn about the shoulders, this artifact restores 5 spell points each
+day.
+
+{~Gold}Legacy of the Dawn Seraphs{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Attack and Defense.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Castle troops gain +2 Attack and Defense.
+5 pieces: Castle troops gain +1 Speed.
+6 pieces: Angels gain +3 extra Attack and Defense.
+7 pieces: Castle troops gain +10% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/463/1/s^clt.tooltip.463^;
+!!VRs^clt.tooltip.464^:S^Worn on the feet, this artifact increases your daily movement by
+300.
+
+{~Gold}Legacy of the Dawn Seraphs{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Attack and Defense.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Castle troops gain +2 Attack and Defense.
+5 pieces: Castle troops gain +1 Speed.
+6 pieces: Angels gain +3 extra Attack and Defense.
+7 pieces: Castle troops gain +10% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/464/1/s^clt.tooltip.464^;
+!!VRs^clt.tooltip.465^:S^Worn around the neck, this artifact increases your Attack by 2 and
+Defense by 2.
+
+{~Gold}Legacy of the Dawn Seraphs{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Attack and Defense.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Castle troops gain +2 Attack and Defense.
+5 pieces: Castle troops gain +1 Speed.
+6 pieces: Angels gain +3 extra Attack and Defense.
+7 pieces: Castle troops gain +10% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/465/1/s^clt.tooltip.465^;
+!!VRs^clt.tooltip.466^:S^Worn on a finger, this artifact increases the Speed of your Angels
+and their upgrades by 1.
+
+{~Gold}Legacy of the Dawn Seraphs{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Attack and Defense.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Castle troops gain +2 Attack and Defense.
+5 pieces: Castle troops gain +1 Speed.
+6 pieces: Angels gain +3 extra Attack and Defense.
+7 pieces: Castle troops gain +10% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/466/1/s^clt.tooltip.466^;
+!!VRs^clt.tooltip.467^:S^Worn on the head, this relic increases your Attack by 12, Defense by
+8 and Knowledge by 4. Restores 10 spell points daily and grants +300
+daily movement.
+
+All your Castle troops gain +2 Attack and Defense, +1 Speed and +10%
+Health.
+Angels gain +5 Attack and Defense and +2 Speed in total. All
+upgrades are included.
+
+Resurrects fallen Castle troops with one shared Health allowance,
+based on Spell Power and Earth Magic. Costs 40 spell points, once
+per battle.
+Open your battle spellbook and choose the relic power on your turn.
+
+Visit your own Castle town while wearing the relic to add 2 weekly
+recruits to its Angels dwelling. That dwelling must be built; lower-
+tier growth is unchanged.
+Includes all eight artifacts. Extra copies give no further bonus.^;
+!!SN:H^art^/467/1/s^clt.tooltip.467^;
+!!FU(CFS_State):P(hero)/1/?(mask)/?(count);
+!!VRs^clt.tooltip.468^:S^Worn on the head, this artifact increases your Knowledge by 4.
+
+{~Gold}Legacy of the Emerald Covenant{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Attack and Defense.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Rampart troops gain +2 Attack and Defense.
+5 pieces: Rampart troops gain +1 Speed.
+6 pieces: Dragons gain +3 extra Attack and Defense.
+7 pieces: Rampart troops gain +10% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/468/1/s^clt.tooltip.468^;
+!!VRs^clt.tooltip.469^:S^Held in the right hand, this artifact increases your Attack by 4.
+
+{~Gold}Legacy of the Emerald Covenant{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Attack and Defense.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Rampart troops gain +2 Attack and Defense.
+5 pieces: Rampart troops gain +1 Speed.
+6 pieces: Dragons gain +3 extra Attack and Defense.
+7 pieces: Rampart troops gain +10% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/469/1/s^clt.tooltip.469^;
+!!VRs^clt.tooltip.470^:S^Held in the left hand, this artifact increases your Defense by 4.
+
+{~Gold}Legacy of the Emerald Covenant{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Attack and Defense.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Rampart troops gain +2 Attack and Defense.
+5 pieces: Rampart troops gain +1 Speed.
+6 pieces: Dragons gain +3 extra Attack and Defense.
+7 pieces: Rampart troops gain +10% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/470/1/s^clt.tooltip.470^;
+!!VRs^clt.tooltip.471^:S^Worn on the body, this artifact increases your Attack by 4.
+
+{~Gold}Legacy of the Emerald Covenant{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Attack and Defense.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Rampart troops gain +2 Attack and Defense.
+5 pieces: Rampart troops gain +1 Speed.
+6 pieces: Dragons gain +3 extra Attack and Defense.
+7 pieces: Rampart troops gain +10% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/471/1/s^clt.tooltip.471^;
+!!VRs^clt.tooltip.472^:S^Worn about the shoulders, this artifact restores 5 spell points each
+day.
+
+{~Gold}Legacy of the Emerald Covenant{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Attack and Defense.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Rampart troops gain +2 Attack and Defense.
+5 pieces: Rampart troops gain +1 Speed.
+6 pieces: Dragons gain +3 extra Attack and Defense.
+7 pieces: Rampart troops gain +10% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/472/1/s^clt.tooltip.472^;
+!!VRs^clt.tooltip.473^:S^Worn on the feet, this artifact increases your daily movement by
+300.
+
+{~Gold}Legacy of the Emerald Covenant{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Attack and Defense.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Rampart troops gain +2 Attack and Defense.
+5 pieces: Rampart troops gain +1 Speed.
+6 pieces: Dragons gain +3 extra Attack and Defense.
+7 pieces: Rampart troops gain +10% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/473/1/s^clt.tooltip.473^;
+!!VRs^clt.tooltip.474^:S^Worn around the neck, this artifact increases your Attack by 2 and
+Defense by 2.
+
+{~Gold}Legacy of the Emerald Covenant{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Attack and Defense.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Rampart troops gain +2 Attack and Defense.
+5 pieces: Rampart troops gain +1 Speed.
+6 pieces: Dragons gain +3 extra Attack and Defense.
+7 pieces: Rampart troops gain +10% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/474/1/s^clt.tooltip.474^;
+!!VRs^clt.tooltip.475^:S^Worn on a finger, this artifact increases the Speed of your Dragons
+and their upgrades by 1.
+
+{~Gold}Legacy of the Emerald Covenant{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Attack and Defense.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Rampart troops gain +2 Attack and Defense.
+5 pieces: Rampart troops gain +1 Speed.
+6 pieces: Dragons gain +3 extra Attack and Defense.
+7 pieces: Rampart troops gain +10% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/475/1/s^clt.tooltip.475^;
+!!VRs^clt.tooltip.476^:S^Worn about the shoulders, this relic increases your Attack by 12,
+Defense by 8 and Knowledge by 4. Restores 10 spell points daily and
+grants +300 daily movement.
+
+All your Rampart troops gain +2 Attack and Defense, +1 Speed and
++10% Health.
+Dragons gain +5 Attack and Defense and +2 Speed in total. All
+upgrades are included.
+
+Protects Rampart troops with Air Shield for two rounds and heals
+wounded creatures without resurrection. Costs 30 spell points, once
+per battle.
+Open your battle spellbook and choose the relic power on your turn.
+
+Visit your own Rampart town while wearing the relic to add 2 weekly
+recruits to its Dragons dwelling. That dwelling must be built;
+lower-tier growth is unchanged.
+Includes all eight artifacts. Extra copies give no further bonus.^;
+!!SN:H^art^/476/1/s^clt.tooltip.476^;
+!!FU(CFS_State):P(hero)/2/?(mask)/?(count);
+!!VRs^clt.tooltip.477^:S^Worn on the head, this artifact increases your Knowledge by 4.
+
+{~Gold}Legacy of the Infernal Pact{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Attack and Spell Power.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Inferno troops gain +2 Attack and Defense.
+5 pieces: Inferno troops gain +1 Speed.
+6 pieces: Devils gain +3 extra Attack and Defense.
+7 pieces: Inferno troops gain +10% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/477/1/s^clt.tooltip.477^;
+!!VRs^clt.tooltip.478^:S^Held in the right hand, this artifact increases your Spell Power by
+4.
+
+{~Gold}Legacy of the Infernal Pact{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Attack and Spell Power.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Inferno troops gain +2 Attack and Defense.
+5 pieces: Inferno troops gain +1 Speed.
+6 pieces: Devils gain +3 extra Attack and Defense.
+7 pieces: Inferno troops gain +10% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/478/1/s^clt.tooltip.478^;
+!!VRs^clt.tooltip.479^:S^Held in the left hand, this artifact increases your Defense by 4.
+
+{~Gold}Legacy of the Infernal Pact{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Attack and Spell Power.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Inferno troops gain +2 Attack and Defense.
+5 pieces: Inferno troops gain +1 Speed.
+6 pieces: Devils gain +3 extra Attack and Defense.
+7 pieces: Inferno troops gain +10% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/479/1/s^clt.tooltip.479^;
+!!VRs^clt.tooltip.480^:S^Worn on the body, this artifact increases your Attack by 4.
+
+{~Gold}Legacy of the Infernal Pact{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Attack and Spell Power.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Inferno troops gain +2 Attack and Defense.
+5 pieces: Inferno troops gain +1 Speed.
+6 pieces: Devils gain +3 extra Attack and Defense.
+7 pieces: Inferno troops gain +10% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/480/1/s^clt.tooltip.480^;
+!!VRs^clt.tooltip.481^:S^Worn about the shoulders, this artifact restores 5 spell points each
+day.
+
+{~Gold}Legacy of the Infernal Pact{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Attack and Spell Power.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Inferno troops gain +2 Attack and Defense.
+5 pieces: Inferno troops gain +1 Speed.
+6 pieces: Devils gain +3 extra Attack and Defense.
+7 pieces: Inferno troops gain +10% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/481/1/s^clt.tooltip.481^;
+!!VRs^clt.tooltip.482^:S^Worn on the feet, this artifact increases your daily movement by
+300.
+
+{~Gold}Legacy of the Infernal Pact{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Attack and Spell Power.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Inferno troops gain +2 Attack and Defense.
+5 pieces: Inferno troops gain +1 Speed.
+6 pieces: Devils gain +3 extra Attack and Defense.
+7 pieces: Inferno troops gain +10% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/482/1/s^clt.tooltip.482^;
+!!VRs^clt.tooltip.483^:S^Worn around the neck, this artifact increases your Attack by 2 and
+Spell Power by 2.
+
+{~Gold}Legacy of the Infernal Pact{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Attack and Spell Power.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Inferno troops gain +2 Attack and Defense.
+5 pieces: Inferno troops gain +1 Speed.
+6 pieces: Devils gain +3 extra Attack and Defense.
+7 pieces: Inferno troops gain +10% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/483/1/s^clt.tooltip.483^;
+!!VRs^clt.tooltip.484^:S^Worn on a finger, this artifact increases the Speed of your Devils
+and their upgrades by 1.
+
+{~Gold}Legacy of the Infernal Pact{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Attack and Spell Power.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Inferno troops gain +2 Attack and Defense.
+5 pieces: Inferno troops gain +1 Speed.
+6 pieces: Devils gain +3 extra Attack and Defense.
+7 pieces: Inferno troops gain +10% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/484/1/s^clt.tooltip.484^;
+!!VRs^clt.tooltip.485^:S^Held in the right hand, this relic increases your Attack by 8,
+Defense by 4, Spell Power by 8 and Knowledge by 4. Restores 10 spell
+points daily and grants +300 daily movement.
+
+All your Inferno troops gain +2 Attack and Defense, +1 Speed and
++10% Health.
+Devils gain +5 Attack and Defense and +2 Speed in total. All
+upgrades are included.
+
+Summons Horned Demons for this battle. Their number depends on Spell
+Power. Costs 40 spell points, once per battle.
+Open your battle spellbook and choose the relic power on your turn.
+
+Visit your own Inferno town while wearing the relic to add 2 weekly
+recruits to its Devils dwelling. That dwelling must be built; lower-
+tier growth is unchanged.
+Includes all eight artifacts. Extra copies give no further bonus.^;
+!!SN:H^art^/485/1/s^clt.tooltip.485^;
+!!FU(CFS_State):P(hero)/3/?(mask)/?(count);
+!!VRs^clt.tooltip.486^:S^Worn on the head, this artifact increases your Knowledge by 4.
+
+{~Gold}Legacy of Andonov{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Spell Power and Knowledge.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Necropolis troops gain +2 Attack and Defense.
+5 pieces: Necropolis troops gain +1 Speed.
+6 pieces: Dragons gain +3 extra Attack and Defense.
+7 pieces: Necropolis troops gain +15% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/486/1/s^clt.tooltip.486^;
+!!VRs^clt.tooltip.487^:S^Held in the right hand, this artifact increases your Spell Power by
+4.
+
+{~Gold}Legacy of Andonov{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Spell Power and Knowledge.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Necropolis troops gain +2 Attack and Defense.
+5 pieces: Necropolis troops gain +1 Speed.
+6 pieces: Dragons gain +3 extra Attack and Defense.
+7 pieces: Necropolis troops gain +15% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/487/1/s^clt.tooltip.487^;
+!!VRs^clt.tooltip.488^:S^Held in the left hand, this artifact increases your Defense by 4.
+
+{~Gold}Legacy of Andonov{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Spell Power and Knowledge.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Necropolis troops gain +2 Attack and Defense.
+5 pieces: Necropolis troops gain +1 Speed.
+6 pieces: Dragons gain +3 extra Attack and Defense.
+7 pieces: Necropolis troops gain +15% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/488/1/s^clt.tooltip.488^;
+!!VRs^clt.tooltip.489^:S^Worn on the body, this artifact increases your Attack by 4.
+
+{~Gold}Legacy of Andonov{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Spell Power and Knowledge.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Necropolis troops gain +2 Attack and Defense.
+5 pieces: Necropolis troops gain +1 Speed.
+6 pieces: Dragons gain +3 extra Attack and Defense.
+7 pieces: Necropolis troops gain +15% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/489/1/s^clt.tooltip.489^;
+!!VRs^clt.tooltip.490^:S^Worn about the shoulders, this artifact restores 5 spell points each
+day.
+
+{~Gold}Legacy of Andonov{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Spell Power and Knowledge.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Necropolis troops gain +2 Attack and Defense.
+5 pieces: Necropolis troops gain +1 Speed.
+6 pieces: Dragons gain +3 extra Attack and Defense.
+7 pieces: Necropolis troops gain +15% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/490/1/s^clt.tooltip.490^;
+!!VRs^clt.tooltip.491^:S^Worn on the feet, this artifact increases your daily movement by
+300.
+
+{~Gold}Legacy of Andonov{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Spell Power and Knowledge.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Necropolis troops gain +2 Attack and Defense.
+5 pieces: Necropolis troops gain +1 Speed.
+6 pieces: Dragons gain +3 extra Attack and Defense.
+7 pieces: Necropolis troops gain +15% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/491/1/s^clt.tooltip.491^;
+!!VRs^clt.tooltip.492^:S^Worn around the neck, this artifact increases your Spell Power by 2
+and Knowledge by 2.
+
+{~Gold}Legacy of Andonov{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Spell Power and Knowledge.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Necropolis troops gain +2 Attack and Defense.
+5 pieces: Necropolis troops gain +1 Speed.
+6 pieces: Dragons gain +3 extra Attack and Defense.
+7 pieces: Necropolis troops gain +15% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/492/1/s^clt.tooltip.492^;
+!!VRs^clt.tooltip.493^:S^Worn on a finger, this artifact increases the Speed of your Dragons
+and their upgrades by 1.
+
+{~Gold}Legacy of Andonov{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Spell Power and Knowledge.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Necropolis troops gain +2 Attack and Defense.
+5 pieces: Necropolis troops gain +1 Speed.
+6 pieces: Dragons gain +3 extra Attack and Defense.
+7 pieces: Necropolis troops gain +15% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/493/1/s^clt.tooltip.493^;
+!!VRs^clt.tooltip.494^:S^Worn on the body, this relic increases your Attack by 4, Defense by
+4, Spell Power by 8 and Knowledge by 8. Restores 10 spell points
+daily and grants +300 daily movement.
+
+All your Necropolis troops gain +2 Attack and Defense, +1 Speed and
++15% Health.
+Dragons gain +5 Attack and Defense and +2 Speed in total. All
+upgrades are included.
+
+Against living enemies, all controlled units gain an extra 30% Life
+Leech from their attacks, shots and retaliation. It heals and
+resurrects the attacking stack, up to its starting size.
+
+Drains living enemies and uses 75% of the damage dealt to restore
+your undead troops. Costs 30 spell points, once per battle.
+Open your battle spellbook and choose the relic power on your turn.
+
+Visit your own Necropolis town while wearing the relic to add 3
+weekly recruits to its Dragons dwelling. That dwelling must be
+built; lower-tier growth is unchanged.
+Includes all eight artifacts. Extra copies give no further bonus.^;
+!!SN:H^art^/494/1/s^clt.tooltip.494^;
+!!FU(CFS_State):P(hero)/4/?(mask)/?(count);
+!!VRs^clt.tooltip.495^:S^Worn on the head, this artifact increases your Knowledge by 4.
+
+{~Gold}Legacy of the Obsidian Dominion{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Spell Power and Knowledge.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Dungeon troops gain +2 Attack and Defense.
+5 pieces: Dungeon troops gain +1 Speed.
+6 pieces: Dragons gain +3 extra Attack and Defense.
+7 pieces: Dungeon troops gain +10% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/495/1/s^clt.tooltip.495^;
+!!VRs^clt.tooltip.496^:S^Held in the right hand, this artifact increases your Spell Power by
+4.
+
+{~Gold}Legacy of the Obsidian Dominion{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Spell Power and Knowledge.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Dungeon troops gain +2 Attack and Defense.
+5 pieces: Dungeon troops gain +1 Speed.
+6 pieces: Dragons gain +3 extra Attack and Defense.
+7 pieces: Dungeon troops gain +10% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/496/1/s^clt.tooltip.496^;
+!!VRs^clt.tooltip.497^:S^Held in the left hand, this artifact increases your Defense by 4.
+
+{~Gold}Legacy of the Obsidian Dominion{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Spell Power and Knowledge.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Dungeon troops gain +2 Attack and Defense.
+5 pieces: Dungeon troops gain +1 Speed.
+6 pieces: Dragons gain +3 extra Attack and Defense.
+7 pieces: Dungeon troops gain +10% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/497/1/s^clt.tooltip.497^;
+!!VRs^clt.tooltip.498^:S^Worn on the body, this artifact increases your Attack by 4.
+
+{~Gold}Legacy of the Obsidian Dominion{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Spell Power and Knowledge.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Dungeon troops gain +2 Attack and Defense.
+5 pieces: Dungeon troops gain +1 Speed.
+6 pieces: Dragons gain +3 extra Attack and Defense.
+7 pieces: Dungeon troops gain +10% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/498/1/s^clt.tooltip.498^;
+!!VRs^clt.tooltip.499^:S^Worn about the shoulders, this artifact restores 5 spell points each
+day.
+
+{~Gold}Legacy of the Obsidian Dominion{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Spell Power and Knowledge.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Dungeon troops gain +2 Attack and Defense.
+5 pieces: Dungeon troops gain +1 Speed.
+6 pieces: Dragons gain +3 extra Attack and Defense.
+7 pieces: Dungeon troops gain +10% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/499/1/s^clt.tooltip.499^;
+!!VRs^clt.tooltip.500^:S^Worn on the feet, this artifact increases your daily movement by
+300.
+
+{~Gold}Legacy of the Obsidian Dominion{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Spell Power and Knowledge.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Dungeon troops gain +2 Attack and Defense.
+5 pieces: Dungeon troops gain +1 Speed.
+6 pieces: Dragons gain +3 extra Attack and Defense.
+7 pieces: Dungeon troops gain +10% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/500/1/s^clt.tooltip.500^;
+!!VRs^clt.tooltip.501^:S^Worn around the neck, this artifact increases your Spell Power by 2
+and Knowledge by 2.
+
+{~Gold}Legacy of the Obsidian Dominion{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Spell Power and Knowledge.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Dungeon troops gain +2 Attack and Defense.
+5 pieces: Dungeon troops gain +1 Speed.
+6 pieces: Dragons gain +3 extra Attack and Defense.
+7 pieces: Dungeon troops gain +10% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/501/1/s^clt.tooltip.501^;
+!!VRs^clt.tooltip.502^:S^Worn on a finger, this artifact increases the Speed of your Dragons
+and their upgrades by 1.
+
+{~Gold}Legacy of the Obsidian Dominion{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Spell Power and Knowledge.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Dungeon troops gain +2 Attack and Defense.
+5 pieces: Dungeon troops gain +1 Speed.
+6 pieces: Dragons gain +3 extra Attack and Defense.
+7 pieces: Dungeon troops gain +10% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/502/1/s^clt.tooltip.502^;
+!!VRs^clt.tooltip.503^:S^Held in the left hand, this relic increases your Attack by 4,
+Defense by 4, Spell Power by 8 and Knowledge by 8. Restores 10 spell
+points daily and grants +300 daily movement.
+
+All your Dungeon troops gain +2 Attack and Defense, +1 Speed and
++10% Health.
+Dragons gain +5 Attack and Defense and +2 Speed in total. All
+upgrades are included.
+
+Casts Implosion on a chosen enemy stack, using your Spell Power.
+Costs 25 spell points, once per battle.
+Open your battle spellbook and choose the relic power on your turn.
+
+Visit your own Dungeon town while wearing the relic to add 2 weekly
+recruits to its Dragons dwelling. That dwelling must be built;
+lower-tier growth is unchanged.
+Includes all eight artifacts. Extra copies give no further bonus.^;
+!!SN:H^art^/503/1/s^clt.tooltip.503^;
+!!FU(CFS_State):P(hero)/5/?(mask)/?(count);
+!!VRs^clt.tooltip.504^:S^Worn on the head, this artifact increases your Knowledge by 4.
+
+{~Gold}Legacy of the Earthshaker Horde{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Attack and Defense.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Stronghold troops gain +2 Attack and Defense.
+5 pieces: Stronghold troops gain +1 Speed.
+6 pieces: Behemoths gain +3 extra Attack and Defense.
+7 pieces: Stronghold troops gain +10% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/504/1/s^clt.tooltip.504^;
+!!VRs^clt.tooltip.505^:S^Held in the right hand, this artifact increases your Attack by 4.
+
+{~Gold}Legacy of the Earthshaker Horde{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Attack and Defense.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Stronghold troops gain +2 Attack and Defense.
+5 pieces: Stronghold troops gain +1 Speed.
+6 pieces: Behemoths gain +3 extra Attack and Defense.
+7 pieces: Stronghold troops gain +10% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/505/1/s^clt.tooltip.505^;
+!!VRs^clt.tooltip.506^:S^Held in the left hand, this artifact increases your Defense by 4.
+
+{~Gold}Legacy of the Earthshaker Horde{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Attack and Defense.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Stronghold troops gain +2 Attack and Defense.
+5 pieces: Stronghold troops gain +1 Speed.
+6 pieces: Behemoths gain +3 extra Attack and Defense.
+7 pieces: Stronghold troops gain +10% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/506/1/s^clt.tooltip.506^;
+!!VRs^clt.tooltip.507^:S^Worn on the body, this artifact increases your Attack by 4.
+
+{~Gold}Legacy of the Earthshaker Horde{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Attack and Defense.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Stronghold troops gain +2 Attack and Defense.
+5 pieces: Stronghold troops gain +1 Speed.
+6 pieces: Behemoths gain +3 extra Attack and Defense.
+7 pieces: Stronghold troops gain +10% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/507/1/s^clt.tooltip.507^;
+!!VRs^clt.tooltip.508^:S^Worn about the shoulders, this artifact restores 5 spell points each
+day.
+
+{~Gold}Legacy of the Earthshaker Horde{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Attack and Defense.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Stronghold troops gain +2 Attack and Defense.
+5 pieces: Stronghold troops gain +1 Speed.
+6 pieces: Behemoths gain +3 extra Attack and Defense.
+7 pieces: Stronghold troops gain +10% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/508/1/s^clt.tooltip.508^;
+!!VRs^clt.tooltip.509^:S^Worn on the feet, this artifact increases your daily movement by
+300.
+
+{~Gold}Legacy of the Earthshaker Horde{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Attack and Defense.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Stronghold troops gain +2 Attack and Defense.
+5 pieces: Stronghold troops gain +1 Speed.
+6 pieces: Behemoths gain +3 extra Attack and Defense.
+7 pieces: Stronghold troops gain +10% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/509/1/s^clt.tooltip.509^;
+!!VRs^clt.tooltip.510^:S^Worn around the neck, this artifact increases your Attack by 2 and
+Defense by 2.
+
+{~Gold}Legacy of the Earthshaker Horde{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Attack and Defense.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Stronghold troops gain +2 Attack and Defense.
+5 pieces: Stronghold troops gain +1 Speed.
+6 pieces: Behemoths gain +3 extra Attack and Defense.
+7 pieces: Stronghold troops gain +10% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/510/1/s^clt.tooltip.510^;
+!!VRs^clt.tooltip.511^:S^Worn on a finger, this artifact increases the Speed of your
+Behemoths and their upgrades by 1.
+
+{~Gold}Legacy of the Earthshaker Horde{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Attack and Defense.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Stronghold troops gain +2 Attack and Defense.
+5 pieces: Stronghold troops gain +1 Speed.
+6 pieces: Behemoths gain +3 extra Attack and Defense.
+7 pieces: Stronghold troops gain +10% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/511/1/s^clt.tooltip.511^;
+!!VRs^clt.tooltip.512^:S^Worn on the feet, this relic increases your Attack by 12, Defense by
+8 and Knowledge by 4. Restores 10 spell points daily and grants +300
+daily movement.
+
+All your Stronghold troops gain +2 Attack and Defense, +1 Speed and
++10% Health.
+Behemoths gain +5 Attack and Defense and +2 Speed in total. All
+upgrades are included.
+
+Grants Stronghold troops Haste for two rounds. Normal attack damage
+rises by 10%, plus 1% per 2 Attack, up to 50%. Costs 20 spell
+points, once per battle.
+Open your battle spellbook and choose the relic power on your turn.
+
+Visit your own Stronghold town while wearing the relic to add 2
+weekly recruits to its Behemoths dwelling. That dwelling must be
+built; lower-tier growth is unchanged.
+Includes all eight artifacts. Extra copies give no further bonus.^;
+!!SN:H^art^/512/1/s^clt.tooltip.512^;
+!!FU(CFS_State):P(hero)/6/?(mask)/?(count);
+!!VRs^clt.tooltip.513^:S^Worn on the head, this artifact increases your Knowledge by 4.
+
+{~Gold}Legacy of the Primordial Marsh{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Defense and Knowledge.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Fortress troops gain +2 Attack and Defense.
+5 pieces: Fortress troops gain +1 Speed.
+6 pieces: Hydras gain +3 extra Attack and Defense.
+7 pieces: Fortress troops gain +10% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/513/1/s^clt.tooltip.513^;
+!!VRs^clt.tooltip.514^:S^Held in the right hand, this artifact increases your Attack by 4.
+
+{~Gold}Legacy of the Primordial Marsh{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Defense and Knowledge.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Fortress troops gain +2 Attack and Defense.
+5 pieces: Fortress troops gain +1 Speed.
+6 pieces: Hydras gain +3 extra Attack and Defense.
+7 pieces: Fortress troops gain +10% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/514/1/s^clt.tooltip.514^;
+!!VRs^clt.tooltip.515^:S^Held in the left hand, this artifact increases your Defense by 4.
+
+{~Gold}Legacy of the Primordial Marsh{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Defense and Knowledge.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Fortress troops gain +2 Attack and Defense.
+5 pieces: Fortress troops gain +1 Speed.
+6 pieces: Hydras gain +3 extra Attack and Defense.
+7 pieces: Fortress troops gain +10% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/515/1/s^clt.tooltip.515^;
+!!VRs^clt.tooltip.516^:S^Worn on the body, this artifact increases your Attack by 4.
+
+{~Gold}Legacy of the Primordial Marsh{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Defense and Knowledge.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Fortress troops gain +2 Attack and Defense.
+5 pieces: Fortress troops gain +1 Speed.
+6 pieces: Hydras gain +3 extra Attack and Defense.
+7 pieces: Fortress troops gain +10% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/516/1/s^clt.tooltip.516^;
+!!VRs^clt.tooltip.517^:S^Worn about the shoulders, this artifact restores 5 spell points each
+day.
+
+{~Gold}Legacy of the Primordial Marsh{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Defense and Knowledge.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Fortress troops gain +2 Attack and Defense.
+5 pieces: Fortress troops gain +1 Speed.
+6 pieces: Hydras gain +3 extra Attack and Defense.
+7 pieces: Fortress troops gain +10% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/517/1/s^clt.tooltip.517^;
+!!VRs^clt.tooltip.518^:S^Worn on the feet, this artifact increases your daily movement by
+300.
+
+{~Gold}Legacy of the Primordial Marsh{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Defense and Knowledge.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Fortress troops gain +2 Attack and Defense.
+5 pieces: Fortress troops gain +1 Speed.
+6 pieces: Hydras gain +3 extra Attack and Defense.
+7 pieces: Fortress troops gain +10% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/518/1/s^clt.tooltip.518^;
+!!VRs^clt.tooltip.519^:S^Worn around the neck, this artifact increases your Defense by 2 and
+Knowledge by 2.
+
+{~Gold}Legacy of the Primordial Marsh{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Defense and Knowledge.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Fortress troops gain +2 Attack and Defense.
+5 pieces: Fortress troops gain +1 Speed.
+6 pieces: Hydras gain +3 extra Attack and Defense.
+7 pieces: Fortress troops gain +10% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/519/1/s^clt.tooltip.519^;
+!!VRs^clt.tooltip.520^:S^Worn on a finger, this artifact increases the Speed of your Hydras
+and their upgrades by 1.
+
+{~Gold}Legacy of the Primordial Marsh{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Defense and Knowledge.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Fortress troops gain +2 Attack and Defense.
+5 pieces: Fortress troops gain +1 Speed.
+6 pieces: Hydras gain +3 extra Attack and Defense.
+7 pieces: Fortress troops gain +10% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/520/1/s^clt.tooltip.520^;
+!!VRs^clt.tooltip.521^:S^Worn on a finger, this relic increases your Attack by 8, Defense by
+8 and Knowledge by 8. Restores 10 spell points daily and grants +300
+daily movement.
+
+All your Fortress troops gain +2 Attack and Defense, +1 Speed and
++10% Health.
+Hydras gain +5 Attack and Defense and +2 Speed in total. All
+upgrades are included.
+
+Allows Fortress troops to poison living enemies with their attacks
+for two rounds. Costs 25 spell points, once per battle.
+Open your battle spellbook and choose the relic power on your turn.
+
+Visit your own Fortress town while wearing the relic to add 2 weekly
+recruits to its Hydras dwelling. That dwelling must be built; lower-
+tier growth is unchanged.
+Includes all eight artifacts. Extra copies give no further bonus.^;
+!!SN:H^art^/521/1/s^clt.tooltip.521^;
+!!FU(CFS_State):P(hero)/7/?(mask)/?(count);
+!!VRs^clt.tooltip.522^:S^Worn on the head, this artifact increases your Knowledge by 4.
+
+{~Gold}Legacy of the Elemental Nexus{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Spell Power and Knowledge.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Conflux troops gain +2 Attack and Defense.
+5 pieces: Conflux troops gain +1 Speed.
+6 pieces: Firebirds and Phoenixes gain +3 extra Attack and Defense.
+7 pieces: Conflux troops gain +10% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/522/1/s^clt.tooltip.522^;
+!!VRs^clt.tooltip.523^:S^Held in the right hand, this artifact increases your Spell Power by
+4.
+
+{~Gold}Legacy of the Elemental Nexus{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Spell Power and Knowledge.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Conflux troops gain +2 Attack and Defense.
+5 pieces: Conflux troops gain +1 Speed.
+6 pieces: Firebirds and Phoenixes gain +3 extra Attack and Defense.
+7 pieces: Conflux troops gain +10% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/523/1/s^clt.tooltip.523^;
+!!VRs^clt.tooltip.524^:S^Held in the left hand, this artifact increases your Defense by 4.
+
+{~Gold}Legacy of the Elemental Nexus{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Spell Power and Knowledge.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Conflux troops gain +2 Attack and Defense.
+5 pieces: Conflux troops gain +1 Speed.
+6 pieces: Firebirds and Phoenixes gain +3 extra Attack and Defense.
+7 pieces: Conflux troops gain +10% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/524/1/s^clt.tooltip.524^;
+!!VRs^clt.tooltip.525^:S^Worn on the body, this artifact increases your Attack by 4.
+
+{~Gold}Legacy of the Elemental Nexus{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Spell Power and Knowledge.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Conflux troops gain +2 Attack and Defense.
+5 pieces: Conflux troops gain +1 Speed.
+6 pieces: Firebirds and Phoenixes gain +3 extra Attack and Defense.
+7 pieces: Conflux troops gain +10% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/525/1/s^clt.tooltip.525^;
+!!VRs^clt.tooltip.526^:S^Worn about the shoulders, this artifact restores 5 spell points each
+day.
+
+{~Gold}Legacy of the Elemental Nexus{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Spell Power and Knowledge.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Conflux troops gain +2 Attack and Defense.
+5 pieces: Conflux troops gain +1 Speed.
+6 pieces: Firebirds and Phoenixes gain +3 extra Attack and Defense.
+7 pieces: Conflux troops gain +10% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/526/1/s^clt.tooltip.526^;
+!!VRs^clt.tooltip.527^:S^Worn on the feet, this artifact increases your daily movement by
+300.
+
+{~Gold}Legacy of the Elemental Nexus{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Spell Power and Knowledge.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Conflux troops gain +2 Attack and Defense.
+5 pieces: Conflux troops gain +1 Speed.
+6 pieces: Firebirds and Phoenixes gain +3 extra Attack and Defense.
+7 pieces: Conflux troops gain +10% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/527/1/s^clt.tooltip.527^;
+!!VRs^clt.tooltip.528^:S^Worn around the neck, this artifact increases your Spell Power by 2
+and Knowledge by 2.
+
+{~Gold}Legacy of the Elemental Nexus{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Spell Power and Knowledge.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Conflux troops gain +2 Attack and Defense.
+5 pieces: Conflux troops gain +1 Speed.
+6 pieces: Firebirds and Phoenixes gain +3 extra Attack and Defense.
+7 pieces: Conflux troops gain +10% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/528/1/s^clt.tooltip.528^;
+!!VRs^clt.tooltip.529^:S^Worn on a finger, this artifact increases the Speed of your
+Firebirds and Phoenixes and their upgrades by 1.
+
+{~Gold}Legacy of the Elemental Nexus{~}
+Wearing %(count) of 8 pieces.
+2 pieces: +2 Spell Power and Knowledge.
+3 pieces: restores 5 extra spell points daily.
+4 pieces: Conflux troops gain +2 Attack and Defense.
+5 pieces: Conflux troops gain +1 Speed.
+6 pieces: Firebirds and Phoenixes gain +3 extra Attack and Defense.
+7 pieces: Conflux troops gain +10% Health.
+
+Only worn pieces count. All troop upgrades are included. Extra
+copies give no further bonus.^;
+!!SN:H^art^/529/1/s^clt.tooltip.529^;
+!!VRs^clt.tooltip.530^:S^Carried by the hero, this relic increases your Attack by 4, Defense
+by 4, Spell Power by 8 and Knowledge by 8. Restores 10 spell points
+daily and grants +300 daily movement.
+
+All your Conflux troops gain +2 Attack and Defense, +1 Speed and
++10% Health.
+Firebirds and Phoenixes gain +5 Attack and Defense and +2 Speed in
+total. All upgrades are included.
+
+Choose Fireball against an enemy, or Cure, Haste or Stone Skin for
+your Conflux troops. Haste and Stone Skin last two rounds. Costs 30
+spell points, once per battle.
+Open your battle spellbook and choose the relic power on your turn.
+
+Visit your own Conflux town while wearing the relic to add 2 weekly
+recruits to its Firebirds and Phoenixes dwelling. That dwelling must
+be built; lower-tier growth is unchanged.
+Includes all eight artifacts. Extra copies give no further bonus.^;
+!!SN:H^art^/530/1/s^clt.tooltip.530^;
 
 ; Offering the forge on a fresh hero-window opening avoids mutating the
 ; inventory inside the native equip/unequip operation itself.
@@ -651,6 +1784,7 @@ Right-click this relic to choose disassembly.^;
 !!SN:W^clt.mp.frame.%(stack)^/?(savedHero:y) W^clt.mp.frame.%(stack)^/0;
 !!FU&(savedHero)<=0:E;
 !!VR(hero:y):S(savedHero) -1;
+!!FU(CFS_MoveEnd):P(hook)/(hero);
 !!FU(CLT_IsHuman):P(hero)/?(human:y);
 !!FU&(human)=0:E;
 !!FU(CLT_GetMask):P(hero)/?(mask:y);
@@ -698,12 +1832,14 @@ Right-click this relic to choose disassembly.^;
 !?FU(CLT_RelicRightClickDoll);
 !#VA(hook:x);
 !!UN:C(hook)/(STRUCT_HOOK_CONTEXT_EBP)/4/?(ebp:y) C(ebp)/-28/4/?(art:y);
+!!FU(CFS_RightClick):P(art);
 !!FU&(art)<>458:E;
 !!FU(CLT_AskDisassemble):P-2;
 
 !?FU(CLT_RelicRightClickBag);
 !#VA(hook:x);
 !!UN:C(hook)/(STRUCT_HOOK_CONTEXT_EBP)/4/?(ebp:y) C(ebp)/-20/4/?(art:y);
+!!FU(CFS_RightClick):P(art);
 !!FU&(art)<>458:E;
 !!FU(CLT_AskDisassemble):P-3;
 
@@ -816,6 +1952,7 @@ Right-click this relic to choose disassembly.^;
 
 !?FU(CLT_GrowthEnd);
 !#VA(hook:x);
+!!FU(CFS_GrowthEnd):P(hook);
 !!UN:C(hook)/(STRUCT_HOOK_CONTEXT_EBP)/4/?(ebp:y) C(ebp)/8/4/?(dwelling:y);
 !!FU&(dwelling)<>6/(dwelling)<>13:E;
 !!SN:W^clt.growth.frame.%(ebp)^/?(townPtr:y);
@@ -842,11 +1979,13 @@ Right-click this relic to choose disassembly.^;
 
 !?FU(CLT_ReconcilePrimaryLoop);
 !!FU(CLT_ReconcilePrimary):Px16;
+!!FU(CFS_Reconcile):Px16;
 
 ; At the native growth popup ESI is the displayed creature ID, ECX the text.
 ; Keep the normal breakdown and append the source of our flat +2.
 !?FU(CLT_GrowthHint);
 !#VA(hook:x);
+!!FU(CFS_GrowthHint):P(hook);
 !!UN:C(hook)/(STRUCT_HOOK_CONTEXT_ESI)/4/?(type:y);
 !!FU&(type)<>(MON_GIANT)/(type)<>(MON_TITAN)/(type)<>(MON_LORD_OF_THUNDER):E;
 !!CA(CURRENT_TOWN):U?(town:y);

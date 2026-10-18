@@ -1,3 +1,13 @@
+# 0.6.0-batch-dev12 — experimental all-faction Online Lobby test
+
+- Nine faction sets, champion quests/portraits/specialties and matching commanders.
+- Correct map hints/pictures/shield silhouette; own-faction controlled rewards and no complete relics in native loot.
+- Equal surface/underground component counts, bounded candidate space reserved for both levels and 15% lower set objectives.
+- Painted in-book relic page, eight manual powers and additional Necropolis physical Life Leech.
+- Verified champion delivery retry phases; real ACM mana capacity; backpack-preserving forge rollback.
+- Immutable map packet identity and complete-plan validation; expanded persistence/replication fixtures.
+- 213 offline tests pass. Native gameplay and two-computer Lobby acceptance remain pending; old AI-turn/fullscreen incidents have no established fix.
+
 # 0.5.4-nettest-alpha — combined test update
 
 Includes the 0.5.3 hover and quest display fixes, plus all currently agreed changes for the next test:

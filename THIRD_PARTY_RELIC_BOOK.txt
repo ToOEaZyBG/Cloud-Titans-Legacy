@@ -1,0 +1,5 @@
+Relic book bridge: H3API by RoseKavalier; patcher_x86 by baratorch.
+H3API source: https://github.com/RoseKavalier/H3API
+Pinned revision: 92255ab18da784a5842ecc2b8bc0ce00e19a0c56
+
+////////////////////////////////////////////////////////////////////

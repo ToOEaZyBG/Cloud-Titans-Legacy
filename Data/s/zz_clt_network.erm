@@ -44,10 +44,12 @@ ZVSE2
 
 !?FU(CLT_ClaimQuest);
 !#VA(hero:x) (town:x) (quest:x);
-!!FU|(hero)<0/(town)<0/(town)>47/(quest)<0/(quest)>7:E;
+!!FU|(hero)<0/(hero)>155/(town)<0/(town)>47/(quest)<0/(quest)>7:E;
 !!HE(hero):O?(owner:y) E?i/?(level:y);
 !!FU(CLT_IsHuman):P(hero)/?(human:y);
-!!FU|(human)=0/(level)<25:E;
+!!HE(hero):B2/?(heroClass:y);
+!!VR(heroTown:y):S(heroClass) :2;
+!!FU|(human)=0/(level)<25/(heroTown)<>(TOWN_TOWER):E;
 !!CA0/(town):O?(townOwner:y) T?(kind:y) H1/?(visitor:y) H0/?(garrison:y);
 !!FU|(owner)<>(townOwner)/(kind)<>(TOWN_TOWER):E;
 !!FU&(hero)<>(visitor)/(hero)<>(garrison):E;
@@ -66,13 +68,20 @@ ZVSE2
 !?FU(CLT_NetWorldSite);
 !#VA(index:x) (bx:x) (by:x) (bz:x) (previous:x) (part:x);
 !!UN:X?(size:y)/?(underground:y);
-!!FU|(index)<1/(index)>64/(bx)<0/(by)<0/(bx)>=(size)/(by)>=(size)/(bz)<0/(bz)>(underground)/(previous)<7/(previous)>128/(part)<450/(part)>457:E;
+!!FU|(index)<1/(index)>126/(bx)<0/(by)<0/(bx)>=(size)/(by)>=(size)/(bz)<0/(bz)>(underground)/(previous)<7/(previous)>128:E;
+!!FU(CFS_IsComponent):P(part)/?(valid:y);
+!!FU&(valid)=0:E;
+!!FU(CFS_WorldPacketReady):P(index)/(bx)/(by)/(bz)/(previous)/(part)/?(packetReady:y);
+!!FU&(packetReady)=0:E;
+!!SN:W^clt.world.p.%(index).taken^/?(taken:y);
+!!FU&(taken)>0:E;
 !!OB(bx)/(by)/(bz):T?(kind:y) U?(actual:y);
 ; Sender has already placed this site. Repeated messages are harmless.
 !!SN:W^clt.pickup.site.%(bx).%(by).%(bz)^/?(known:y);
 !!if&(kind)=(OBJ_ARTIFACT)/(actual)=(previous)/(known)=(index);
  ; Record the same plan even if native synchronization already placed it.
- !!SN:W^clt.world.p.%(index).x^/(bx) W^clt.world.p.%(index).y^/(by) W^clt.world.p.%(index).z^/(bz) W^clt.world.p.%(index).art^/(part) W^clt.world.p.%(index).old^/(previous) W^clt.pickup.site.%(bx).%(by).%(bz)^/(index);
+ !!FU(CFS_MapHint):P(bx)/(by)/(bz)/(part);
+!!SN:W^clt.world.p.%(index).x^/(bx) W^clt.world.p.%(index).y^/(by) W^clt.world.p.%(index).z^/(bz) W^clt.world.p.%(index).art^/(part) W^clt.world.p.%(index).old^/(previous) W^clt.pickup.site.%(bx).%(by).%(bz)^/(index);
  !!FU:E;
 !!en;
 !!if|(kind)<>(OBJ_ARTIFACT)/(actual)<>(previous);
@@ -82,7 +91,6 @@ ZVSE2
 !!UN:O(bx)/(by)/(bz)/1/0;
 !!UN:I(bx)/(by)/(bz)/(OBJ_ARTIFACT)/(previous)/(OBJ_ARTIFACT)/(part)/-1/0;
 !!OB(bx)/(by)/(bz):U(previous) C0;
-; Keep native hints: local string indices are unsafe in the legacy hover path.
 !!OB(bx)/(by)/(bz):T?(actualType:y) U?(actual);
 !!if|(actualType)<>(OBJ_ARTIFACT)/(actual)<>(previous);
  !!UN:O(bx)/(by)/(bz)/1/0;
@@ -91,11 +99,18 @@ ZVSE2
  !!SN:W^clt.net.world.error^/1;
  !!FU:E;
 !!en;
+!!FU(CFS_MapHint):P(bx)/(by)/(bz)/(part);
 !!SN:W^clt.world.p.%(index).x^/(bx) W^clt.world.p.%(index).y^/(by) W^clt.world.p.%(index).z^/(bz) W^clt.world.p.%(index).art^/(part) W^clt.world.p.%(index).old^/(previous) W^clt.pickup.site.%(bx).%(by).%(bz)^/(index);
 
 !?FU(CLT_NetWorldDone);
 !#VA(count:x);
-!!FU|(count)<0/(count)>64:E;
+!!FU|(count)<0/(count)>126:E;
+!!FU(CFS_WorldPlanReady):P(count)/?(planReady:y);
+!!if&(planReady)=0;
+ !!SN:W^clt.net.world.error^/1;
+ !!IF:M^Faction component plan is incomplete or inconsistent. Stop this test and keep both saves/debug folders.^;
+ !!FU:E;
+!!en;
 !!SN:W^clt.world.done^/1 W^clt.world.placed^/(count);
 !!VR(hash:y):S0;
 !!re (index:y)/1/(count);
@@ -111,8 +126,11 @@ ZVSE2
 !!SN:W^clt.net.world.error^/?(error:y);
 !!SN:F^WriteStrToIni^/^hash^/^%(hash)^/^network^/^Debug\CloudTitansNetwork.ini^;
 !!SN:F^WriteStrToIni^/^placed^/^%(count)^/^network^/^Debug\CloudTitansNetwork.ini^;
+!!SN:W^clt.net.world.layer.0^/?(surface:y) W^clt.net.world.layer.1^/?(lower:y);
+!!SN:F^WriteStrToIni^/^surface^/^%(surface)^/^network^/^Debug\CloudTitansNetwork.ini^;
+!!SN:F^WriteStrToIni^/^underground^/^%(lower)^/^network^/^Debug\CloudTitansNetwork.ini^;
 !!SN:F^WriteStrToIni^/^world_error^/^%(error)^/^network^/^Debug\CloudTitansNetwork.ini^;
-!!SN:F^WriteStrToIni^/^version^/^0.5.4-nettest-alpha^/^network^/^Debug\CloudTitansNetwork.ini^;
+!!SN:F^WriteStrToIni^/^version^/^0.6.0-batch-dev12^/^network^/^Debug\CloudTitansNetwork.ini^;
 !!SN:F^SaveIni^/^Debug\CloudTitansNetwork.ini^;
 !!IF&(error)>0:M^Cloud Titans NETWORK TEST: map placement mismatch. Stop this test and keep both saves/debug folders.^;
 
@@ -154,7 +172,7 @@ ZVSE2
 !!FU&(selected)<0:E;
 !!if&(action)=0;
  !!SN:W^clt.world.placed^/?(placed:y) W^clt.net.world.hash^/?(hash:y) W^clt.net.world.error^/?(error:y) W^clt.net.quest.error^/?(questError:y);
- !!VR(status:z):S^Build: 0.5.4-nettest-alpha
+ !!VR(status:z):S^Build: 0.6.0-batch-dev12
 Placed: %(placed). Map hash: %(hash). Errors: %(error).
 Quest write errors: %(questError).
 Confirmed wins per player (compare on both computers):

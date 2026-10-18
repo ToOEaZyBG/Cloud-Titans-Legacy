@@ -36,6 +36,9 @@ ZVSE2
 ; embedded guards or per-object state (H3MapitemArtifact, hasSetup bit 31).
 !!FU(CLT_WorldGuarded):P(x)/(y)/(z)/(size)/?(guarded:y);
 !!FU&(guarded)=0:E;
+!!UN:X?i/?(hasUnderground:y);
+!!SN:W^cfs.world.pool.layer.%(z)^/?(layerCount:y);
+!!FU&(hasUnderground)>0/(layerCount)>=1024:E;
 !!SN:W^clt.world.pool^/?(index:y);
 !!VR(index):+1;
 !!FU&(index)>2048:E;
@@ -50,6 +53,7 @@ ZVSE2
 !!VR(term):S(size) *31;
 !!VR(score):+(term) %65521 *25173 +13849 %65521;
 !!SN:W^clt.world.pool^/(index) W^clt.world.c.%(index).x^/(x) W^clt.world.c.%(index).y^/(y) W^clt.world.c.%(index).z^/(z) W^clt.world.c.%(index).old^/(art) W^clt.world.c.%(index).score^/(score) W^clt.world.c.%(index).used^/0;
+!!SN:W^cfs.world.pool.layer.%(z)^/d1;
 
 !?FU(CLT_WorldSpacing);
 !#VA(x:x) (y:x) (z:x) (spacing:x) (okay:x);
@@ -72,6 +76,10 @@ ZVSE2
 
 !?FU(CLT_WorldPlace);
 !#VA(size:x) (limit:x);
+!!UN:X?i/?(hasUnderground:y);
+!!if&(hasUnderground)>0;
+ !!VR(limit)::2 *2;
+!!en;
 !!SN:W^clt.world.pool^/?(pool:y);
 !!VR(spacing:y):S(size) :12;
 !!VR(spacing)&(spacing)<4:S4;
@@ -79,9 +87,16 @@ ZVSE2
 !!re (step:y)/1/(limit);
   !!VR(best:y):S0;
   !!VR(bestScore:y):S65522;
+  !!VR(preferred:y):S(step) %2;
+  !!VR(preferred)&(hasUnderground)=0:S0;
+  !!if&(hasUnderground)>0/(preferred)=1;
+   !!FU(CFS_WorldLayerReady):P(spacing)/0/?(pairedReady:y);
+   !!FU&(pairedReady)=0:E;
+  !!en;
   !!re (i:y)/1/(pool);
     !!SN:W^clt.world.c.%(i).used^/?(used:y) W^clt.world.c.%(i).score^/?(score:y);
-    !!if&(used)=0/(score)<(bestScore);
+    !!SN:W^clt.world.c.%(i).z^/?(layer:y);
+    !!if&(used)=0/(score)<(bestScore)/(layer)=(preferred);
       !!SN:W^clt.world.c.%(i).x^/?(x:y) W^clt.world.c.%(i).y^/?(y:y) W^clt.world.c.%(i).z^/?(z:y) W^clt.world.c.%(i).old^/?(old:y);
       !!OB(x)/(y)/(z):T?(type:y) U?(current:y);
       !!SN:W^clt.pickup.site.%(x).%(y).%(z)^/?(existing:y);
@@ -94,10 +109,18 @@ ZVSE2
       !!en;
     !!en;
   !!en;
-  !!FU&(best)=0:E;
+  !!if&(best)=0;
+   !!FU(CFS_UndoWorldPair)&(hasUnderground)>0/(preferred)=0:P;
+   !!FU:E;
+  !!en;
   !!SN:W^clt.world.c.%(best).x^/?(bx:y) W^clt.world.c.%(best).y^/?(by:y) W^clt.world.c.%(best).z^/?(bz:y) W^clt.world.c.%(best).old^/?(previous:y) W^clt.world.placed^/?(placed:y);
   ; Multiplication by five permutes all eight parts before any repeat.
-  !!VR(part:y):S(placed) *5 +(offset) %8 +450;
+  !!SN:W^cfs.world.layer.%(bz)^/?(layerIndex:y);
+  !!if&(hasUnderground)=0;
+   !!FU(CFS_MapPart):P(layerIndex)/(size)/?(part:y);
+  !!el;
+   !!FU(CFS_LayerPart):P(layerIndex)/(bz)/(size)/?(part);
+  !!en;
   ; OB:U alone changes the pickup but retains the old object's drawing.
   ; Recreate at the same entrance using the registered 5/450..457 templates.
   !!UN:O(bx)/(by)/(bz)/1/0;
@@ -111,12 +134,16 @@ ZVSE2
     !!UN:O(bx)/(by)/(bz)/1/0;
     !!UN:I(bx)/(by)/(bz)/(OBJ_ARTIFACT)/(previous)/(OBJ_ARTIFACT)/(previous)/-1/0;
     !!OB(bx)/(by)/(bz):C0;
+    !!FU(CFS_UndoWorldPair)&(hasUnderground)>0/(preferred)=0:P;
     !!SN:W^clt.world.error^/1;
     !!FU:E;
   !!en;
-  ; Keep native hints: local string indices are unsafe in the legacy hover path.
+  ; ERA owns a copied coordinate hint, independent of temporary z indices.
+  !!FU(CFS_MapHint):P(bx)/(by)/(bz)/(part);
+  !!VR(layerIndex):+1;
+  !!SN:W^cfs.world.layer.%(bz)^/(layerIndex);
   !!VR(placed):+1;
-  !!SN:W^clt.world.c.%(best).used^/1 W^clt.world.placed^/(placed) W^clt.world.p.%(placed).x^/(bx) W^clt.world.p.%(placed).y^/(by) W^clt.world.p.%(placed).z^/(bz) W^clt.world.p.%(placed).art^/(part) W^clt.world.p.%(placed).old^/(previous) W^clt.pickup.site.%(bx).%(by).%(bz)^/(placed);
+  !!SN:W^clt.world.p.%(placed).candidate^/(best) W^clt.world.c.%(best).used^/1 W^clt.world.placed^/(placed) W^clt.world.p.%(placed).x^/(bx) W^clt.world.p.%(placed).y^/(by) W^clt.world.p.%(placed).z^/(bz) W^clt.world.p.%(placed).art^/(part) W^clt.world.p.%(placed).old^/(previous) W^clt.pickup.site.%(bx).%(by).%(bz)^/(placed);
   !!SN:F^WriteStrToIni^/^item%(placed)^/^%(bx),%(by),%(bz),%(part)^/^world^/^Debug\CloudTitansWorld.ini^;
 !!en;
 
@@ -133,7 +160,7 @@ ZVSE2
   !!FU(CLT_IsLocalOwner):P(owner)/?(localOwner:y);
   !!FU&(localOwner)=0:E;
 !!en;
-!!SN:W^clt.world.done^/1 W^clt.world.pool^/0 W^clt.world.placed^/0 W^clt.world.error^/0;
+!!SN:W^clt.world.done^/1 W^clt.world.pool^/0 W^cfs.world.pool.layer.0^/0 W^cfs.world.pool.layer.1^/0 W^clt.world.placed^/0 W^clt.world.error^/0;
 !!FU(WOG_CheckRandomMap):P?(random:y);
 !!if&(random)=0;
   !!SN:W^clt.world.skipped^/1;
@@ -155,10 +182,10 @@ ZVSE2
 !!VRv4:S(savedV4);
 !!SN:F^WriteStrToIni^/^stage^/^scan-complete^/^world^/^Debug\CloudTitansWorld.ini^;
 !!SN:F^SaveIni^/^Debug\CloudTitansWorld.ini^;
-; At most one quarter of loose artifacts; 8 per 36 tiles of map width, capped at 64.
-!!VR(limit:y):S(size) :36 *8;
-!!VR(limit)&(limit)>64:S64;
-!!VR(density:y):S(artifacts) :4;
+; At most half of loose artifacts; 18 per 36 tiles, cap126. Underground maps use equal pairs.
+!!VR(limit:y):S(size) :36 *18;
+!!VR(limit)&(limit)>126:S126;
+!!VR(density:y):S(artifacts) :2;
 !!VR(limit)&(limit)>(density):S(density);
 !!SN:W^clt.world.pool^/?(pool:y);
 !!VR(limit)&(limit)>(pool):S(pool);
@@ -177,14 +204,14 @@ ZVSE2
   !!IP:D-1;
   !!FU26895:D(placed);
 !!en;
-!!IF:M^{~Gold}Cloud Titans - exploration alpha{~}
+!!IF:M^{~Gold}Faction sets - DEVELOPMENT candidate{~}
 
 %(placed) set components were placed on this new random map.
 This mod gives no extra artifacts or troops to your starting hero.
 Find the parts at guarded artifact sites; the complete necklace is assembled.
 
-Look for the blue-and-gold Cloud Titans artifacts on the adventure map.
-Collect eight different components to assemble the necklace.^;
+Look for faction-colored components on the adventure map.
+Each faction has eight different parts and a distinct combined relic.^;
 !!IF&(error)>0:M^Cloud Titans: a map subtype change failed. Placement stopped; the last site was restored.^;
 
 ; TM1 is the standard post-load day event. This script sorts after the WoG

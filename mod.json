@@ -7,7 +7,7 @@
       "en_US": "Readme.md"
     },
     "short": {
-      "en_US": "Combined test update: hover/quest fixes, ownership labels, option 126 balance (5% and ten-level gap), diagnostics. New map required."
+      "en_US": "All nine faction sets and champions; painted relic powers, corrected pickups, equal map layers and guarded replication. Experimental Online Lobby test; NEW map required."
     }
   },
   "author": "ToOEaZyBG; third-party credits in THIRD_PARTY.txt",
@@ -16,7 +16,7 @@
     "file": "icon.png",
     "index": 0
   },
-  "mod_version": "0.5.4-nettest-alpha",
+  "mod_version": "0.6.0-batch-dev12",
   "info_version": "1",
   "platform": "era",
   "priority": 0,
@@ -29,7 +29,8 @@
       "WoG",
       "Era Erm Framework",
       "WoG Scripts",
-      "Game Enhancement Mod"
+      "Game Enhancement Mod",
+      "Advanced Classes Mod"
     ],
     "load_after": [
       "WoG",

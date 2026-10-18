@@ -579,7 +579,7 @@ WoGify ERM code: 101 (0-5) plus 111-130 (0-1) for individual rules
     !!VR(vLvl:y):S(lvl:y) Sd>>1 :6 +1 F1/4;
     !!VR(artLevel:y):S1 Sd<<(vLvl);
     !!FU(CLT_LevelArtifact):P(hero)/(artLevel)/?(art:y)/0;
-    !!HE(hero):A4/(art); [give (equip) artifact]
+    !!HE(hero)&(art)>=0:A4/(art); [validated selection only]
   !!el;
     !!VRf:S0;
     !!re i/(lvl:y)/104;
@@ -604,14 +604,21 @@ WoGify ERM code: 101 (0-5) plus 111-130 (0-1) for individual rules
     !!VR(arraySize:y):Si^wog_101_numberOfArts^ Sd<<1;
     !!FU(NewIntArray):P(arraySize:y)/(PIC_TYPE_ART)/?(artList:y);
 
+    !!VR(writeIndex:y):S0;
     !!re i/1/(arraySize:y)/2;/1/-1;
       !!VR(vLvl:y):Si Sd>>1 +i^wog_101_startLvl^ :6 +1 F1/4;
       !!VR(artLevel:y):S1 Sd<<(vLvl);
       !!FU(CLT_LevelArtifact):P(CURRENT_HERO)/(artLevel)/?(art:y)/i;
-      !!HE(CURRENT_HERO):A4/(art); [give (equip) artifact]
-      !!SN:M(artList)/i/(art);
+      !!if&(art)>=0;
+        !!HE(CURRENT_HERO):A4/(art); [validated selection only]
+        !!VR(picIndex:y):S(writeIndex) +1;
+        !!SN:M(artList)/(picIndex)/(art);
+        !!VR(writeIndex):+2;
+      !!en;
     !!en;
 
+    !!VR(arraySize):S(writeIndex);
+    !!if&(arraySize)>0;
     !!VR(dlgNums:y):S(arraySize) :16;
     !!VR(remainder:y):S(arraySize) %16 F0/1;
     !!VR(dlgNums):+(remainder);
@@ -630,6 +637,8 @@ WoGify ERM code: 101 (0-5) plus 111-130 (0-1) for individual rules
       !!SN:T^wog.126.title^/?(msg:z)/^hero^/z2/^artifact^/(artString);
       !!IF:N(MSG_TYPE_MES)/(msg);
     !!en;
+
+    !!en; [no dialog when no permitted reward exists]
 
     !!VRi^wog_101_numberOfArts^:S0;
     !!VRi^wog_101_startLvl^:S0;

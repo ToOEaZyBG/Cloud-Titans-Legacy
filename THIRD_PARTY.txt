@@ -1,3 +1,5 @@
+Current distribution: experimental Mod Browser test 0.6.0-batch-dev12. Original credits and historical bundle provenance follow; older local-only status text is historical. H3API/patcher notices are also in THIRD_PARTY_RELIC_BOOK.txt.
+
 Emerald artifact extension — third-party component, unchanged local binary.
 Copied from the user's installed Land Of New Towns/EraPlugins/emerald3_3.era.
 SHA-256: A6B6ECEE48845DC8EC16F9A348A10D9EF1D0FA2865F3522452323FD8A55F65B9
@@ -24,3 +26,5 @@ WoG Scripts: 77 wog - map rules.erm, copied from the installed profile.
 Original credits retained. Only the two option-126 selection calls changed.
 Original SHA256: 94db153050a700920454bc4e3a16eeae4e74d8c7b2aa85299abaa51633256c63.
 Public redistribution permissions for this script must be reviewed before release.
+
+Development overlay (0.6.0-batch-dev12): the pinned option-126 script has guarded native grants and compacted valid reward dialogs. The candidate adds 72 painted inventory frames and 64 faction component map sprites. CFG strings are bounded for the inspected Emerald parser. Original credits remain above. Native acceptance is pending.

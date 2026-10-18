@@ -1,6 +1,5 @@
 {
-  "mod_version": "0.5.4-nettest-alpha",
-  "mode": "experimental sequential Online Lobby trial; no two-peer verification yet",
+  "status": "Observed reference; all-faction payload absent during snapshot; native/Lobby acceptance pending",
   "active_mods_low_to_high_priority": [
     "WoG",
     "Era Erm Framework",
@@ -13,6 +12,7 @@
     "WoG Fix Lite",
     "Difficulty Mod",
     "ERA Scripts",
+    "Enhanced Henchmen",
     "ShimmY Combo Skills",
     "TrainerX",
     "10SSkills",
@@ -34,85 +34,89 @@
     "JS - map generation fixes",
     "Random wallpaper",
     "JS - commanders module",
-    "JS - new terrains",
-    "Cloud Titans Legacy - Local Test"
+    "Cloud Titans Legacy - Local Test",
+    "JS - new terrains"
   ],
-  "profile_dependencies": [
-    {
-      "folder": "WoG",
-      "active": true,
-      "metadata_sha256": "f2aa562e9da8f777b676f1fd2cea5ce302fbb9cf561143372ee9b3f66cb5a730",
-      "version": "3.9.20"
-    },
-    {
-      "folder": "Era Erm Framework",
-      "active": true,
-      "metadata_sha256": "f08fceef2450d1c5be14cf3bb2218fb82c159f74616adacd2be3a1507655cffa",
-      "version": "3.9.20"
-    },
-    {
-      "folder": "WoG Scripts",
-      "active": true,
-      "metadata_sha256": "93fa7e89b3277801dbdb4701a75507e99b2447ca7077942f6c621478faf39357",
-      "version": null
-    },
-    {
-      "folder": "Game Enhancement Mod",
-      "active": true,
-      "metadata_sha256": "400e68de2d8e49da72e13180a0dfd3f1fec5fb6bcae590e81997871ad5b86daf",
-      "version": null
-    },
-    {
-      "folder": "WoG Graphic Fix",
-      "active": true,
-      "metadata_sha256": "0b0b6f3c139b36a57306e7b41174bb7cbd86d6a5b17349455a4f49d19abfb4a2",
-      "version": null
-    },
-    {
-      "folder": "Advanced Classes Mod",
-      "active": true,
-      "metadata_sha256": "be44647b470d7686bdf98342369c28242d793b127d8a48989f49c28240edcc8b",
-      "version": null
-    },
-    {
-      "folder": "JS - main module",
-      "active": true,
-      "metadata_sha256": "f4cd44d50631b6c5a9f6e6290246f816dbe2e126d749c931069dfdaec3b4263f",
-      "version": null
-    },
-    {
-      "folder": "JS - commanders module",
-      "active": true,
-      "metadata_sha256": "ff0602649845cc414611f1e848e43e310077b6a4dbea4314701d0fd046549b75",
-      "version": null
-    },
-    {
-      "folder": "JS - new objects",
-      "active": true,
-      "metadata_sha256": "20cf08326b73af14f219914476c87d544924791d790cebae820c6fbf6045a57c",
-      "version": null
-    },
-    {
-      "folder": "JS - map generation fixes",
-      "active": true,
-      "metadata_sha256": "c8042f03bbcbcf1ee2a678bf0ac0a48ff5c44a63e733ee4696267984c86b12a4",
-      "version": null
-    },
-    {
-      "folder": "JS - new terrains",
-      "active": true,
-      "metadata_sha256": "8ca60ab130f10ef57a5767476f76d000d591a93c289e337950d962f47b89bf1a",
-      "version": null
-    }
-  ],
-  "critical_dependency_sha256": {
-    "Mods/WoG Scripts/Data/s/9000 wog - stdlib.erm": "a9ba77ba10e2de419d97aa884f1954e5ed4d8b6d2f4aefad61ce7bca14fd53ad",
-    "Mods/WoG Scripts/Data/s/77 wog - map rules.erm": "94db153050a700920454bc4e3a16eeae4e74d8c7b2aa85299abaa51633256c63",
-    "Mods/Era Erm Framework/Data/s/lib/9999 era - consts.erm": "91986499645329b1a741dc4745ea58bd2d83bd4b0ec020b1467676c5544a3152",
-    "Mods/Game Enhancement Mod/Data/s/gem_spell_research.erm": "42bce4ec1734881354c3fd4da162b745541cb9f643d1154d9e82378b9b07abfd",
-    "Mods/WoG Graphic Fix/Data/WF_OB_txt.pac": "235491b9648a31425ea7962a41ac05fd4bc93afff45b7ddfe8130bcddaa2d3a2",
-    "era.dll": "660bdaac2bc4c37ae7e3d2123a515a7b5cb5fcac4705d7eef53bafe273066cf3"
+  "observed_mod_versions": {
+    "WoG": "3.9.20",
+    "Era Erm Framework": "3.9.20",
+    "Easy Cheats": "1.1.3",
+    "BattleQueue": "1.03",
+    "Spells Description": "1.0",
+    "Unleashed Editor": "1.24",
+    "Game Enhancement Mod": "2.255",
+    "WoG Scripts": "3.9",
+    "WoG Fix Lite": "2.26.0",
+    "Difficulty Mod": "1.043",
+    "ERA Scripts": "3",
+    "Enhanced Henchmen": "1.2",
+    "ShimmY Combo Skills": "1.0.4",
+    "TrainerX": "1.0",
+    "10SSkills": "1.0",
+    "AMER_HumanAI": "1.17",
+    "WoG Graphic Fix": "2.29.0",
+    "Arena Mod": "1.1",
+    "Bounty Hunter": "1.2",
+    "Raid Boss Mod": "1.4",
+    "NewLevelUpScreen": "3.1",
+    "Upgradable Silos": "2.2",
+    "Mixed Neutrals": "2.3.4",
+    "Secondary Skills Scrolling": "2.5",
+    "Disable AI Turn Delay": "1.0",
+    "Advanced Classes Mod": "1.11",
+    "Stack Experience Rebalance": "0.9",
+    "test": "1.0",
+    "JS - new objects": "1.40",
+    "JS - main module": "1.21",
+    "JS - map generation fixes": "1.11",
+    "Random wallpaper": "1.2",
+    "JS - commanders module": "1.02",
+    "JS - new terrains": "1.4"
   },
-  "note": "Reference profile; do not overwrite the other computer mod list blindly. Other mods are not included in this ZIP.",
-  "option_126": "Enable for balanced human Relic component rewards: 5% gate, minimum ten-level gap; runtime verification pending"
+  "core_sha256": {
+    "era.dll": "660bdaac2bc4c37ae7e3d2123a515a7b5cb5fcac4705d7eef53bafe273066cf3",
+    "h3era.exe": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
+    "h3era HD.exe": "ca47b6406fb064aecacfd4620c3a0de190a4a37d97a313d66e1f9aaf95a9d594",
+    "vfs.dll": "c54a548ceec45623d593af5bc905a6e9cf737bbbe811fb404bd88cb40ab50a25",
+    "patcher_x86.dll": "6134c353e5ac2a056e52bf548cdea853c4424fa5f955df1f5a1f073d784bab40",
+    "_HD3_.dll": "3ed1852e08bae7be2461b31bd922531ccb0c46d01e5b0ecf46d0e7d0dbeeab49",
+    "_HD3_Data/HD3_Update.exe": "873abc7bc0dbb5d2311e45cc879644e238812d36210f209ad3d144b847291207",
+    "HD_ES.dll": "0be5ecf63d0d23e516a7fe3bdf05b84b9168e3aef42089e45997a9da4ed1a468",
+    "HD_HOTA.dll": "0a2c193d0c510d77080b669a710694ef282761b0ec6f6ac5b86f3166b8038550",
+    "HD_LauncherNative.dll": "a07329023565c87c9271b4e36fb130a5b42c2c27e2bee4176f7bdf138b7897d0",
+    "HD_MCR.dll": "9ee98ac5a2e9b62bbe6b3cddab03636c3486d6a432786b01d4253550a9d64690",
+    "HD_SCX2.dll": "cc8eed6b447706d35d0574797bb7678c543caf51fdde957a238cef579ec15d82",
+    "HD_SOD.dll": "bcb1a23f429d8f6853f2b1d9360ed613bc49c85e37cebb86c51ff22da32036cd",
+    "HD_TC2.dll": "150dbac9a27df6b3e1a9f5ce1f28fcea4864bca205128cd3af1668c23ff558f3",
+    "HD_UPD.dll": "1ec9c1945bfbeaafcb3a5984a44c9a6bdcb6f1ca43939b0d0e07895e02e6923a",
+    "HD_VGL2.dll": "17b0b3c4d01eca4505efd92eb7f95b1824b46a34bfecfb2ecebd2f62007ff104",
+    "HD_WOG.dll": "ab601899f1862c7283c57a28101428fdf3040fe69b628c3620d418aa8fda84a1",
+    "HW_HOTA.dll": "927a087c6d05d40c83de270516f48fdbd1360614259d30689179c1f7300f08db",
+    "HW_SOD.dll": "6c9d318283686fcc7d4fe037560d2adda7ba03769370c97cddbcb1928b2635c1"
+  },
+  "required_mods": [
+    "WoG",
+    "Era Erm Framework",
+    "WoG Scripts",
+    "Game Enhancement Mod",
+    "Advanced Classes Mod"
+  ],
+  "must_disable_for_this_trial": [
+    "ERAHDHeroes_3_Reborn",
+    "HD Editionfixai (ENG-RU)",
+    "Knightmare Kingdoms"
+  ],
+  "same_on_both_peers": [
+    "ERA and HD builds",
+    "mod versions and activation",
+    "load order",
+    "WoG options",
+    "our installed mod_version and SHA256SUMS.json"
+  ],
+  "limitations": [
+    "No native game or real network ran",
+    "No remote computer profile inspected",
+    "Packed scripts and actual hook order not universally verified"
+  ],
+  "mod_version": "0.6.0-batch-dev12"
 }
