@@ -549,7 +549,12 @@ ZVSE2
  !!HE(hero):R3/1/(allowedMask) P(tx)/(ty)/(tz)/0 O(owner);
 !!el;
  !!FU&(currentOwner)<>(owner):E;
+ ; Retry a refused initial position write before initialization. A prepared
+ ; champion that subsequently moved must return to this town for delivery.
+ !!HE(hero)&(initialized)=0:P(tx)/(ty)/(tz)/0;
 !!en;
+!!HE(hero):O?(positionOwner:y) P?(px:y)/?(py:y)/?(pz:y);
+!!FU|(positionOwner)<>(owner)/(px)<>(tx)/(py)<>(ty)/(pz)<>(tz):E;
 !!if&(initialized)=0;
  !!FU(CFH_InitializeNew):P(hero)/(kind)/?(initializedOkay:y);
  !!FU&(initializedOkay)=0:E;

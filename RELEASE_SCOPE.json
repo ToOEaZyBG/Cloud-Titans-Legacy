@@ -1,15 +1,15 @@
 {
-  "version": "0.6.0-batch-dev12",
+  "version": "0.6.0-batch-dev13",
   "distribution": "EXPERIMENTAL ONLINE LOBBY TEST",
   "new_map_required": true,
   "sequential_turns_only": true,
-  "offline_tests_passed": 213,
+  "offline_tests_passed": 233,
   "native_runtime_accepted": false,
   "two_computer_accepted": false,
   "production_ready": false,
   "candidate_validation": {
     "status": "OFFLINE CHECKS PASSED",
-    "functions": 120,
+    "functions": 123,
     "new_sets": 8,
     "artifact_configs": 81,
     "max_config_parser_write_bytes": 461,
@@ -21,7 +21,7 @@
     "AI-turn crash",
     "fullscreen crash"
   ],
-  "reviewed_candidate_zip_sha256": "778fa4eb93a194e3e63ed7d5f62f61d6b10a97dd118439af5dd37477b1b0b3f2",
+  "reviewed_candidate_zip_sha256": "74f17b8d8287f1d5583c161cdc655f252cea415ea16376e5b123557f78e4633e",
   "export_overrides": [
     "mod.json catalog caption/description",
     "Readme.md",

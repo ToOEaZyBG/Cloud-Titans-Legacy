@@ -894,16 +894,23 @@ ZVSE2
 
 ; A repeated world packet may confirm an identity, never rewrite an index or
 ; coordinate already assigned to a different component. No new wire/schema.
+!?FU(CFS_WorldError);
+!!SN:W^clt.net.world.error^/1;
+!!SN:F^WriteStrToIni^/^world_error^/^1^/^network^/^Debug\CloudTitansNetwork.ini^;
+!!SN:F^SaveIni^/^Debug\CloudTitansNetwork.ini^;
+
 !?FU(CFS_WorldPacketReady);
 !#VA(index:x) (bx:x) (by:x) (bz:x) (previous:x) (part:x) (ready:x);
 !!VR(ready):S1;
+!!SN:W^clt.net.world.complete^/?(complete:y) W^clt.world.placed^/?(count:y);
+!!VR(ready)&(complete)>0/(index)>(count):S0;
 !!SN:W^clt.world.p.%(index).art^/?(recorded:y) W^clt.pickup.site.%(bx).%(by).%(bz)^/?(known:y);
 !!VR(ready)&(known)>0/(known)<>(index):S0;
 !!if&(recorded)>0;
  !!SN:W^clt.world.p.%(index).x^/?(px:y) W^clt.world.p.%(index).y^/?(py:y) W^clt.world.p.%(index).z^/?(pz:y) W^clt.world.p.%(index).old^/?(old:y);
  !!VR(ready)|(recorded)<>(part)/(px)<>(bx)/(py)<>(by)/(pz)<>(bz)/(old)<>(previous):S0;
 !!en;
-!!SN&(ready)=0:W^clt.net.world.error^/1;
+!!FU(CFS_WorldError)&(ready)=0:P;
 
 ; Completion certifies a complete coordinate/component ledger, not merely the
 ; sender's declared count. Incomplete streams stop the test, never auto-repair.
@@ -911,6 +918,8 @@ ZVSE2
 !#VA(count:x) (ready:x);
 !!VR(ready):S0;
 !!FU|(count)<0/(count)>126:E;
+!!SN:W^clt.net.world.complete^/?(complete:y) W^clt.world.placed^/?(savedCount:y);
+!!FU&(complete)>0/(count)<>(savedCount):E;
 !!UN:X?(size:y)/?(underground:y);
 !!VR(above:y):S0;
 !!VR(below:y):S0;
@@ -922,6 +931,14 @@ ZVSE2
  !!FU&(known)<>(index):E;
  !!VR(above)&(pz)=0:+1;
  !!VR(below)&(pz)=1:+1;
+!!en;
+; A lower completion count must not hide already received trailing sites.
+!!VR(firstExtra:y):S(count) +1;
+!!if&(firstExtra)<=126;
+ !!re (extra:y)/(firstExtra)/126;
+  !!SN:W^clt.world.p.%(extra).art^/?(extraPart:y);
+  !!FU&(extraPart)>0:E;
+ !!en;
 !!en;
 !!FU&(underground)>0/(above)<>(below):E;
 !!SN:W^clt.net.world.layer.0^/(above) W^clt.net.world.layer.1^/(below);
@@ -1596,15 +1613,37 @@ ZVSE2
   !!SN:W^cfs.v1.delta.%(set).%(q)^/0;
  !!en;
 !!en;
+; Quest counters saturate at one billion. Bound each addition before doing it,
+; since a later VR:F clamp cannot repair signed overflow in a native SN delta.
+!?FU(CFS_CappedAdd);
+!#VA(old:x) (amount:x) (total:x);
+!!VR(old):F0/1000000000;
+!!VR(amount):F0/1000000000;
+!!VR(room:y):S1000000000 -(old);
+!!VR(amount)&(amount)>(room):S(room);
+!!VR(total):S(old) +(amount);
+
+!?FU(CFS_StageTowerKill);
+!#VA(quest:x) (killed:x);
+!!FU|(quest)<0/(quest)>7/(killed)<=0:E;
+!!SN:W^clt.quest.delta.%(quest)^/?(old:y);
+!!FU(CFS_CappedAdd):P(old)/(killed)/?(total:y);
+!!SN:W^clt.quest.delta.%(quest)^/(total);
+
 !?FU(CFS_StageKill);
 !#VA(type:x) (killed:x);
 !!FU&(killed)<=0:E;
 !!re (set:y)/0/7;
- !!SN:W^cfs.v1.delta.%(set).3^/d(killed);
+ !!SN:W^cfs.v1.delta.%(set).3^/?(old:y);
+ !!FU(CFS_CappedAdd):P(old)/(killed)/?(total:y);
+ !!SN:W^cfs.v1.delta.%(set).3^/(total);
  !!re (q:y)/1/7;
   !!co|(q)=3/(q)=5;
   !!FU(CFS_QuestMatch):P(set)/(q)/(type)/?(match:y);
-  !!SN&(match)>0:W^cfs.v1.delta.%(set).%(q)^/d(killed);
+  !!co&(match)=0;
+  !!SN:W^cfs.v1.delta.%(set).%(q)^/?(old);
+  !!FU(CFS_CappedAdd):P(old)/(killed)/?(total);
+  !!SN:W^cfs.v1.delta.%(set).%(q)^/(total);
  !!en;
 !!en;
 !?FU(CFS_Commit);
@@ -1841,7 +1880,7 @@ Progress is shared by your heroes. One quest copy per player; found parts do not
 !?FU(CFS_Status);
 !#VA(owner:x) (set:x);
 !!SN:W^clt.world.placed^/?(placed:y) W^clt.net.world.hash^/?(hash:y) W^clt.net.world.error^/?(worldError:y) W^clt.net.quest.error^/?(questError:y);
-!!VR(status:z):S^Build: 0.6.0-batch-dev12
+!!VR(status:z):S^Build: 0.6.0-batch-dev13
 Placed: %(placed). Map hash: %(hash).
 World errors: %(worldError). Quest errors: %(questError).
 Current player's faction quest counters:

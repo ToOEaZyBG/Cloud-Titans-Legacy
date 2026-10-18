@@ -1,3 +1,11 @@
+# 0.6.0-batch-dev13 — experimental Online Lobby test
+
+- Champion delivery now verifies the hero's actual town coordinates. A refused initial move remains retryable; an already prepared champion keeps later progress and must return to the delivery town.
+- A completed map plan cannot shrink or gain new sites from late packets. Inconsistent completion counts are rejected, and map errors are written to the network diagnostic file immediately. Equal surface/underground counts remain 1:1.
+- Very large battle kill totals saturate quest counters before integer overflow. Quest targets and rewards are unchanged.
+- 233 offline tests pass, including the combined battle-result/quest path, replay cancellation, independent receivers, initial placement and inspected ACM attack dispatch. Native gameplay, actual save/load and two-computer Lobby acceptance remain pending. Earlier AI-turn/fullscreen incidents have no established fix.
+
+
 # 0.6.0-batch-dev12 — experimental all-faction Online Lobby test
 
 - Nine faction sets, champion quests/portraits/specialties and matching commanders.

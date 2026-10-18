@@ -85,7 +85,7 @@ ZVSE2
  !!FU:E;
 !!en;
 !!if|(kind)<>(OBJ_ARTIFACT)/(actual)<>(previous);
- !!SN:W^clt.net.world.error^/1;
+ !!FU(CFS_WorldError):P;
  !!FU:E;
 !!en;
 !!UN:O(bx)/(by)/(bz)/1/0;
@@ -96,7 +96,7 @@ ZVSE2
  !!UN:O(bx)/(by)/(bz)/1/0;
  !!UN:I(bx)/(by)/(bz)/(OBJ_ARTIFACT)/(previous)/(OBJ_ARTIFACT)/(previous)/-1/0;
  !!OB(bx)/(by)/(bz):C0;
- !!SN:W^clt.net.world.error^/1;
+ !!FU(CFS_WorldError):P;
  !!FU:E;
 !!en;
 !!FU(CFS_MapHint):P(bx)/(by)/(bz)/(part);
@@ -107,11 +107,11 @@ ZVSE2
 !!FU|(count)<0/(count)>126:E;
 !!FU(CFS_WorldPlanReady):P(count)/?(planReady:y);
 !!if&(planReady)=0;
- !!SN:W^clt.net.world.error^/1;
+ !!FU(CFS_WorldError):P;
  !!IF:M^Faction component plan is incomplete or inconsistent. Stop this test and keep both saves/debug folders.^;
  !!FU:E;
 !!en;
-!!SN:W^clt.world.done^/1 W^clt.world.placed^/(count);
+!!SN:W^clt.net.world.complete^/1 W^clt.world.done^/1 W^clt.world.placed^/(count);
 !!VR(hash:y):S0;
 !!re (index:y)/1/(count);
  !!SN:W^clt.world.p.%(index).x^/?(bx:y) W^clt.world.p.%(index).y^/?(by:y) W^clt.world.p.%(index).z^/?(bz:y) W^clt.world.p.%(index).art^/?(part:y);
@@ -130,7 +130,7 @@ ZVSE2
 !!SN:F^WriteStrToIni^/^surface^/^%(surface)^/^network^/^Debug\CloudTitansNetwork.ini^;
 !!SN:F^WriteStrToIni^/^underground^/^%(lower)^/^network^/^Debug\CloudTitansNetwork.ini^;
 !!SN:F^WriteStrToIni^/^world_error^/^%(error)^/^network^/^Debug\CloudTitansNetwork.ini^;
-!!SN:F^WriteStrToIni^/^version^/^0.6.0-batch-dev12^/^network^/^Debug\CloudTitansNetwork.ini^;
+!!SN:F^WriteStrToIni^/^version^/^0.6.0-batch-dev13^/^network^/^Debug\CloudTitansNetwork.ini^;
 !!SN:F^SaveIni^/^Debug\CloudTitansNetwork.ini^;
 !!IF&(error)>0:M^Cloud Titans NETWORK TEST: map placement mismatch. Stop this test and keep both saves/debug folders.^;
 
@@ -172,7 +172,7 @@ ZVSE2
 !!FU&(selected)<0:E;
 !!if&(action)=0;
  !!SN:W^clt.world.placed^/?(placed:y) W^clt.net.world.hash^/?(hash:y) W^clt.net.world.error^/?(error:y) W^clt.net.quest.error^/?(questError:y);
- !!VR(status:z):S^Build: 0.6.0-batch-dev12
+ !!VR(status:z):S^Build: 0.6.0-batch-dev13
 Placed: %(placed). Map hash: %(hash). Errors: %(error).
 Quest write errors: %(questError).
 Confirmed wins per player (compare on both computers):
