@@ -1,7 +1,5 @@
 LEGACY OF THE CLOUD TITANS - TEST
 
-CURRENT PUBLIC BUILD: dev14 has a reported startup error. The corrected dev15 is undergoing local retesting. Please wait for the corrected Mod Browser build before starting a new game.
-
 Collect your town's artifacts, assemble its legendary relic and earn a unique faction champion.
 
 Legacy of the Cloud Titans adds an artifact-collection and hero-progression system to all nine standard towns in Heroes III ERA: Castle, Rampart, Tower, Inferno, Necropolis, Dungeon, Stronghold, Fortress and Conflux. Explore the map for components, complete faction objectives and build a matching collection that strengthens your hero and army.

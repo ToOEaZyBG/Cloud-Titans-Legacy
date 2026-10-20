@@ -1,3 +1,9 @@
+# 0.6.0-batch-dev15 - startup call hotfix
+
+- Fix the AI artifact-guard readiness call: an explicit STDCALL convention is required even for a function with no arguments.
+- The access fixture now rejects the original malformed call and uses the real framework convention constants.
+- All dev14 balance and AI-policy changes remain included. 245 offline tests pass; native startup, AI behavior, save/load and Lobby acceptance still require player verification.
+
 # 0.6.0-batch-dev14 — experimental local / Online Lobby test
 
 - Map component budgets increase by 10% on all map sizes, rounded up per layer; underground maps retain equal complete pairs. G supports up to 70/70 sites when eligible locations suffice. A bounded spacing top-up helps plans that previously stopped below the nominal cap.

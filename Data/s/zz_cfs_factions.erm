@@ -917,7 +917,7 @@ ZVSE2
  !!SN:A(library)/^CFSArtifactGuardReady^/?(query:y);
  !!if&(query)>0;
   !!VR(savedV1:y):Sv1;
-  !!SN:E(query);
+  !!SN:E(query)/(CALLCONV_STDCALL);
   !!VR(status):Sv1;
   !!VRv1:S(savedV1);
  !!en;
@@ -1965,7 +1965,7 @@ Progress is shared by your heroes. One quest copy per player; found parts do not
 !?FU(CFS_Status);
 !#VA(owner:x) (set:x);
 !!SN:W^clt.world.placed^/?(placed:y) W^clt.net.world.hash^/?(hash:y) W^clt.net.world.error^/?(worldError:y) W^clt.net.quest.error^/?(questError:y);
-!!VR(status:z):S^Build: 0.6.0-batch-dev14
+!!VR(status:z):S^Build: 0.6.0-batch-dev15
 Placed: %(placed). Map hash: %(hash).
 World errors: %(worldError). Quest errors: %(questError).
 Current player's faction quest counters:
