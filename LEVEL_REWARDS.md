@@ -1,4 +1,4 @@
-# Option 126 level-up rewards — 0.6.0-batch-dev16
+# Option 126 level-up rewards — 0.6.0-batch-dev17
 
 Enable WoG option 126 to test. Standard reward classes remain Treasure at levels 1–5, Minor at 6–11, Major at 12–17 and Relic from level 18 onward. AI retains native rewards. Human Relic rewards can select components of the hero faction. Complete custom relics never drop.
 

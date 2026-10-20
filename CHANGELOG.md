@@ -1,3 +1,10 @@
+# 20/10/2026 dev16 > dev17 — 0.6.0-batch-dev17
+
+- Compile all72 map components into a32x32 sprite with matching one-cell MSK/MSG bounds, eliminating the unused blank left tile. The artwork fits within a one-pixel gutter and retains its independent palette.
+- Applies to every town and component. Inventory artwork, identities, slots, map budgets,1:1 layers and quests are unchanged.
+- Show the current public build and six dated changelog entries before the mod description; preserve the complete additive GitHub history.
+- 253 offline tests pass. This is a candidate correction for reported half-visible map artifacts; actual terrain rendering still requires player acceptance. No native gameplay or Lobby pass is claimed.
+
 # 0.6.0-batch-dev16 - clearer adventure-map components
 
 - Increase component map artwork to a maximum30 pixels with a clear tile gutter.
@@ -78,3 +85,92 @@ Published test candidate; the user will verify changes through Online Lobby. No 
 - Hard quest targets, level 25/full ordinary Tower claim requirements and balance unchanged.
 
 See NETWORK_TEST.md. VALIDATION.md describes earlier 0.5.0 local checks, not this update.
+
+
+## Preserved project beginnings and local development milestones
+
+This appendix fills gaps in the original public changelog without deleting its
+existing release entries. Dates below are recorded milestone dates in
+Europe/Berlin. Local/private milestones are explicitly distinguished from
+public releases. The earliest preserved source baseline is0.2.13 on15/10/2026;
+work before that baseline is not completely documented, so no missing dates,
+versions or successful tests are invented here.
+
+### 15/10/2026 — earliest preserved Tower baseline0.2.13
+
+- One Tower faction collection, equipment/set effects and local test roadmap.
+- Guarded random-map acquisition without starting gifts; startup checkpoints
+  and original Tower map drawings followed on the same date.
+- Local human component rewards were classified as Relic from level18.
+- Tower component quests, hero/town development requirements and assembly.
+
+### 15/10/2026 — first public distribution0.4.2
+
+- Published the original Tower local test through the existing Mod Browser
+  repository. Installation checks remained distinct from multiplayer acceptance.
+
+### 15/10/2026 — public network test0.5.0
+
+- Added explicit network receiver transactions and a controlled Lobby guide.
+- Later0.5.1–0.5.4 changes retain their original detailed entries above.
+
+### 16/10/2026 — all-faction development begins
+
+- Eight additional standard-town sets and painted artifact masters were
+  prepared and reviewed. Existing Tower content remained the reference.
+- Signature abilities and nine champions were designed. A reported network
+  AI-evaluation crash was recorded; no universal fix was established.
+
+### 17/10/2026 — local combined prototype and dev2–dev5
+
+- Integrated nine faction champions, native portraits and commanders.
+- Initial combined startup failed and the prior local version was restored.
+- Subsequent local repairs addressed artifact configuration bounds, ERA input,
+  artifact prose/tooltips and quest display. Dev5 was installed for local tests.
+- These local candidates were not separate public Mod Browser releases.
+
+### 17/10/2026 dev5 > dev6 — local candidate
+
+- Added the relic battle-book entry and additional Necropolis life drain.
+
+### 17/10/2026 dev6 > dev7 — local candidate
+
+- Corrected native ERA command framing and expanded book/champion checks.
+
+### 18/10/2026 dev7 > dev8 — local candidate
+
+- Added an isolated relic icon page and readable low-mana entries.
+
+### 18/10/2026 dev8 > dev9 — local candidate
+
+- Revised faction loot exclusions, champion quest flow, relic page and
+  component acquisition balance following player screenshots.
+
+### 18/10/2026 dev9 > dev10 — local candidate
+
+- Repaired component map identity, Inferno shield silhouette, pickup pictures
+  and collection capacity.
+
+### 18/10/2026 dev10 > dev11 — private audit candidate
+
+- Audited equipment transactions and book lifecycle; equalized map layers1:1.
+- Used actual maximum mana and preserved backpack inventory on rollback.
+
+### 18/10/2026 dev11 > dev12 — public test resumes
+
+- Added verified delivery recovery and reviewed release gates. Detailed public
+  dev12 and later changes remain in the main changelog above.
+
+All dates and local/public labels derive from preserved Git milestones and
+release records. They are not additional gameplay or multiplayer acceptance.
+
+### Publication date index for subsequent public dev builds
+
+- 18/10/2026 dev11 > dev12
+- 19/10/2026 dev12 > dev13
+- 20/10/2026 dev13 > dev14
+- 20/10/2026 dev14 > dev15
+- 20/10/2026 dev15 > dev16
+
+Dates are preserved release commit timestamps in Europe/Berlin. Later releases
+add their dated transition at the top without deleting this history.
