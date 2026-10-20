@@ -1,3 +1,10 @@
+# 0.6.0-batch-dev16 - clearer adventure-map components
+
+- Increase component map artwork to a maximum30 pixels with a clear tile gutter.
+- Compile every component with its own map palette, preserving faction colors independently from the inventory palette. Tower and the eight additional towns use the same map compiler.
+- Inventory icons, artifact identities/slots, object masks, placement budgets, equal layers and gameplay rules are unchanged.
+- 249 offline tests pass, including decoded native sprite geometry, color fidelity and Tower archive/mask preservation. Native map appearance still needs player acceptance.
+
 # 0.6.0-batch-dev15 - startup call hotfix
 
 - Fix the AI artifact-guard readiness call: an explicit STDCALL convention is required even for a function with no arguments.
