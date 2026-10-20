@@ -119,6 +119,6 @@
     "No remote computer profile inspected",
     "Packed scripts and actual hook order not universally verified"
   ],
-  "mod_version": "0.6.0-batch-dev17",
+  "mod_version": "0.6.0-batch-dev18",
   "observed_utc": "2026-10-20T00:42:40.063340+00:00"
 }

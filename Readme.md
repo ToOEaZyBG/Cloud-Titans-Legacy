@@ -1,7 +1,11 @@
-LATEST PUBLIC BUILD: 0.6.0-batch-dev17
+LATEST PUBLIC BUILD: 0.6.0-batch-dev18
 
 --------------------------------------------------------------
 ## CHANGELOG
+
+20/10/2026 dev17 > dev18
+- Separate adventure-map frame names from inventory names for all64 added faction components, correcting the resource-cache conflict behind clipped map icons. Tower names and all item artwork are unchanged.
+- Add a release check against conflicting frame names across all bundled DEF resources.
 
 20/10/2026 dev16 > dev17
 - Rebuild all72 map component sprites and their visibility masks as single-cell resources. Targets the reported half-visible artifacts; terrain acceptance is pending.
@@ -21,9 +25,6 @@ LATEST PUBLIC BUILD: 0.6.0-batch-dev17
 
 19/10/2026 dev12 > dev13
 - Harden champion delivery retries, completed map-plan validation and quest counter overflow handling.
-
-18/10/2026 dev11 > dev12
-- Repair champion delivery verification and conflicting map packet identities; expand persistence and replication checks.
 
 --------------------------------------------------------------
 

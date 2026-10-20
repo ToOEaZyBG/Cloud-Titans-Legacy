@@ -1,3 +1,11 @@
+# 20/10/2026 dev17 > dev18 - 0.6.0-batch-dev18
+
+- Separate the internal map-frame names from inventory frames for all64 added faction components. Read-only inspection of the failed dev17 game found46 map templates using the exact44x44 inventory payload instead of their32x32 adventure frame. All5 observed Tower templates used their correct map frame and already had distinct names.
+- Change only those internal frame names in map resources; retain artwork, palettes, geometry, masks, Tower resources, inventory, native plugin, slots, budgets, equal surface/underground counts and quests.
+- Reject case-insensitive global DEF frame-name conflicts across every bundled archive and loose resource before release. Identical packed/loose copies remain permitted.
+- 257 offline tests pass. Native spot checks on a new G map covered16 identified map items across all nine sets and all eight Inferno component types. All48 different loaded custom map frames matched their correct32x32 map payloads, before and after one actual save/reload. The map had62 sites,31 per layer.
+- Close the game fully before updating, then use a NEW map. Individual pickup/equipment checks for all72 parts, full quest/power lifecycles and two-computer Lobby acceptance remain pending.
+
 # 20/10/2026 dev16 > dev17 — 0.6.0-batch-dev17
 
 - Compile all72 map components into a32x32 sprite with matching one-cell MSK/MSG bounds, eliminating the unused blank left tile. The artwork fits within a one-pixel gutter and retains its independent palette.
