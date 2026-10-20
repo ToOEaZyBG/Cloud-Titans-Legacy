@@ -68,7 +68,7 @@ ZVSE2
 !?FU(CLT_NetWorldSite);
 !#VA(index:x) (bx:x) (by:x) (bz:x) (previous:x) (part:x);
 !!UN:X?(size:y)/?(underground:y);
-!!FU|(index)<1/(index)>126/(bx)<0/(by)<0/(bx)>=(size)/(by)>=(size)/(bz)<0/(bz)>(underground)/(previous)<7/(previous)>128:E;
+!!FU|(index)<1/(index)>140/(bx)<0/(by)<0/(bx)>=(size)/(by)>=(size)/(bz)<0/(bz)>(underground)/(previous)<7/(previous)>128:E;
 !!FU(CFS_IsComponent):P(part)/?(valid:y);
 !!FU&(valid)=0:E;
 !!FU(CFS_WorldPacketReady):P(index)/(bx)/(by)/(bz)/(previous)/(part)/?(packetReady:y);
@@ -104,7 +104,7 @@ ZVSE2
 
 !?FU(CLT_NetWorldDone);
 !#VA(count:x);
-!!FU|(count)<0/(count)>126:E;
+!!FU|(count)<0/(count)>140:E;
 !!FU(CFS_WorldPlanReady):P(count)/?(planReady:y);
 !!if&(planReady)=0;
  !!FU(CFS_WorldError):P;
@@ -130,7 +130,7 @@ ZVSE2
 !!SN:F^WriteStrToIni^/^surface^/^%(surface)^/^network^/^Debug\CloudTitansNetwork.ini^;
 !!SN:F^WriteStrToIni^/^underground^/^%(lower)^/^network^/^Debug\CloudTitansNetwork.ini^;
 !!SN:F^WriteStrToIni^/^world_error^/^%(error)^/^network^/^Debug\CloudTitansNetwork.ini^;
-!!SN:F^WriteStrToIni^/^version^/^0.6.0-batch-dev13^/^network^/^Debug\CloudTitansNetwork.ini^;
+!!SN:F^WriteStrToIni^/^version^/^0.6.0-batch-dev14^/^network^/^Debug\CloudTitansNetwork.ini^;
 !!SN:F^SaveIni^/^Debug\CloudTitansNetwork.ini^;
 !!IF&(error)>0:M^Cloud Titans NETWORK TEST: map placement mismatch. Stop this test and keep both saves/debug folders.^;
 
@@ -172,7 +172,7 @@ ZVSE2
 !!FU&(selected)<0:E;
 !!if&(action)=0;
  !!SN:W^clt.world.placed^/?(placed:y) W^clt.net.world.hash^/?(hash:y) W^clt.net.world.error^/?(error:y) W^clt.net.quest.error^/?(questError:y);
- !!VR(status:z):S^Build: 0.6.0-batch-dev13
+ !!VR(status:z):S^Build: 0.6.0-batch-dev14
 Placed: %(placed). Map hash: %(hash). Errors: %(error).
 Quest write errors: %(questError).
 Confirmed wins per player (compare on both computers):

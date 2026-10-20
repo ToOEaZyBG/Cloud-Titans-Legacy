@@ -1,5 +1,5 @@
 {
-  "status": "Observed reference; all-faction payload absent during snapshot; native/Lobby acceptance pending",
+  "status": "Read-only observed reference on October20; dev13 installed during dev14 offline audit; native/Lobby acceptance pending",
   "active_mods_low_to_high_priority": [
     "WoG",
     "Era Erm Framework",
@@ -47,7 +47,7 @@
     "Game Enhancement Mod": "2.255",
     "WoG Scripts": "3.9",
     "WoG Fix Lite": "2.26.0",
-    "Difficulty Mod": "1.043",
+    "Difficulty Mod": "1.1",
     "ERA Scripts": "3",
     "Enhanced Henchmen": "1.2",
     "ShimmY Combo Skills": "1.0.4",
@@ -68,9 +68,10 @@
     "test": "1.0",
     "JS - new objects": "1.40",
     "JS - main module": "1.21",
-    "JS - map generation fixes": "1.11",
+    "JS - map generation fixes": "1.12",
     "Random wallpaper": "1.2",
     "JS - commanders module": "1.02",
+    "Cloud Titans Legacy - Local Test": "0.6.0-batch-dev13",
     "JS - new terrains": "1.4"
   },
   "core_sha256": {
@@ -118,5 +119,6 @@
     "No remote computer profile inspected",
     "Packed scripts and actual hook order not universally verified"
   ],
-  "mod_version": "0.6.0-batch-dev13"
+  "mod_version": "0.6.0-batch-dev14",
+  "observed_utc": "2026-10-20T00:42:40.063340+00:00"
 }

@@ -1,3 +1,11 @@
+# 0.6.0-batch-dev14 — experimental local / Online Lobby test
+
+- Map component budgets increase by 10% on all map sizes, rounded up per layer; underground maps retain equal complete pairs. G supports up to 70/70 sites when eligible locations suffice. A bounded spacing top-up helps plans that previously stopped below the nominal cap.
+- All nine component quest targets receive a further 5% reduction from dev13, rounded up. Champion requirements and option 126 chance/spacing are unchanged.
+- Native equipped, backpack and automatic grant paths reject custom artifacts for AI. Safe load/day/prebattle cleanup removes existing AI custom inventory. Human and ordinary artifact grants are preserved. Actual native enforcement needs local acceptance.
+- Explicit local world counts and an artifact-guard readiness diagnostic support the first new-map test.
+- 244 offline tests pass. No actual game, native save/load or two-computer Lobby test ran. Earlier AI-turn/fullscreen incidents remain unresolved; this is an experimental build requiring a NEW map.
+
 # 0.6.0-batch-dev13 — experimental Online Lobby test
 
 - Champion delivery now verifies the hero's actual town coordinates. A refused initial move remains retryable; an already prepared champion keeps later progress and must return to the delivery town.

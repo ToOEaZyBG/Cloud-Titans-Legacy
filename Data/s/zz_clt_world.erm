@@ -75,13 +75,14 @@ ZVSE2
 !!en;
 
 !?FU(CLT_WorldPlace);
-!#VA(size:x) (limit:x);
+!#VA(size:x) (limit:x) (minimumSpacing:x);
 !!UN:X?i/?(hasUnderground:y);
 !!if&(hasUnderground)>0;
  !!VR(limit)::2 *2;
 !!en;
 !!SN:W^clt.world.pool^/?(pool:y);
 !!VR(spacing:y):S(size) :12;
+!!VR(spacing)&(minimumSpacing)>0/(minimumSpacing)<(spacing):S(minimumSpacing);
 !!VR(spacing)&(spacing)<4:S4;
 !!VR(offset:y):S(size) :36 %8;
 !!re (step:y)/1/(limit);
@@ -182,17 +183,28 @@ ZVSE2
 !!VRv4:S(savedV4);
 !!SN:F^WriteStrToIni^/^stage^/^scan-complete^/^world^/^Debug\CloudTitansWorld.ini^;
 !!SN:F^SaveIni^/^Debug\CloudTitansWorld.ini^;
-; At most half of loose artifacts; 18 per 36 tiles, cap126. Underground maps use equal pairs.
+; At most 55 percent of loose artifacts; former map budgets +10 percent, rounded up per layer. Cap140.
 !!VR(limit:y):S(size) :36 *18;
-!!VR(limit)&(limit)>126:S126;
+!!FU(CFS_WorldBudget):P(limit)/(underground)/?(limit);
+!!VR(limit)&(limit)>140:S140;
 !!VR(density:y):S(artifacts) :2;
+!!FU(CFS_WorldBudget):P(density)/(underground)/?(density);
 !!VR(limit)&(limit)>(density):S(density);
 !!SN:W^clt.world.pool^/?(pool:y);
 !!VR(limit)&(limit)>(pool):S(pool);
-!!FU(CLT_WorldPlace)&(limit)>0:P(size)/(limit);
+!!SN:W^cfs.world.limit^/(limit);
+!!FU(CLT_WorldPlace)&(limit)>0:P(size)/(limit)/0;
+!!FU(CFS_WorldTopUp)&(limit)>0:P(size)/(limit)/(underground);
 !!SN:F^WriteStrToIni^/^stage^/^placement-complete^/^world^/^Debug\CloudTitansWorld.ini^;
 !!SN:F^SaveIni^/^Debug\CloudTitansWorld.ini^;
 !!SN:W^clt.world.placed^/?(placed:y) W^clt.world.error^/?(error:y);
+!!SN:W^cfs.world.layer.0^/?(surface:y) W^cfs.world.layer.1^/?(lower:y);
+!!SN:F^WriteStrToIni^/^placed^/^%(placed)^/^world^/^Debug\CloudTitansWorld.ini^;
+!!SN:F^WriteStrToIni^/^surface^/^%(surface)^/^world^/^Debug\CloudTitansWorld.ini^;
+!!SN:F^WriteStrToIni^/^underground^/^%(lower)^/^world^/^Debug\CloudTitansWorld.ini^;
+!!SN:F^WriteStrToIni^/^error^/^%(error)^/^world^/^Debug\CloudTitansWorld.ini^;
+!!SN:F^WriteStrToIni^/^version^/^0.6.0-batch-dev14^/^world^/^Debug\CloudTitansWorld.ini^;
+!!SN:F^SaveIni^/^Debug\CloudTitansWorld.ini^;
 !!if&(network)>0;
   !!re (entry:y)/1/(placed);
     !!SN:W^clt.world.p.%(entry).x^/?(px:y) W^clt.world.p.%(entry).y^/?(py:y) W^clt.world.p.%(entry).z^/?(pz:y) W^clt.world.p.%(entry).art^/?(pa:y) W^clt.world.p.%(entry).old^/?(po:y);
