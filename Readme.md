@@ -71,8 +71,8 @@ For an online test, both players need the same build, dependencies, mod order an
 
 Keep the save and Debug folder locally. Record the installed version, faction, exact action and a screenshot of the first error. Include whether it happened locally or through Online Lobby. Detailed test instructions are in NETWORK_TEST.md.
 
-## Champion artwork preview
+## Artwork gallery
 
-![Nine faction champions](Screens/quests.png)
+![Andonov — Necropolis champion](Screens/quests.png)
 
-Artwork preview; not a gameplay screenshot. From left: Aldric, Sylvara, Vaelion, Zareth, Andonov, Nyssara, Kargan, Ssareth and Aurelis.
+[View all nine champion portraits, faction sets and relic close-ups](GALLERY.md). Artwork previews; not gameplay screenshots.
