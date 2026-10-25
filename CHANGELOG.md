@@ -1,3 +1,12 @@
+# 25/10/2026 dev20 > dev21 - 0.6.0-batch-dev21
+
+- Increase positive primary and equipment/set stat bonuses by 50%, rounding up each individual bonus, across all 72 components and nine assembled relics. A +4 primary becomes +6, +2 becomes +3, +1 Speed becomes +2, and 300 daily movement becomes 450.
+- Faction troop bonuses become +3 Attack/Defense, +2 Speed and +15% Health; Necropolis Health becomes +23%. Apex troops receive another +5 Attack/Defense and +2 Speed from the ring. Full daily set regeneration is 16 spell points, capped by the existing mana rules.
+- Present equipped component names in green and other components in gray. Show the equipped count in the set heading as (N/8), with the assembled relic representing all eight parts. Include the individual artifact name and refresh descriptions for the inspected hero.
+- Keep spell costs, special battle powers, weekly recruitment, 30% Life Leech, champion specialties and acquisition requirements unchanged. Tower retains its automatic lightning mechanics.
+- 597 offline tests pass. These include all equipment masks, native configuration fields and per-hero tooltip state fixtures; actual native rendering, callback order, save/load and two-computer acceptance remain pending.
+- Fully close the game before updating through the existing Mod Browser entry. Start a NEW map with matching versions on both computers.
+
 # 25/10/2026 dev18 > dev20 - 0.6.0-batch-dev20
 
 - Explicit hero enrollment for both component and champion quests; only the bound hero earns progress. First acceptance permanently locks one faction per player. Hero loss resets unfinished progress and permits a same-faction replacement; previously claimed components and delivered champions remain once-only.

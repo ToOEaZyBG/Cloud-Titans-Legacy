@@ -1,10 +1,10 @@
 # Legacy of the Cloud Titans â€” Online Lobby test
 
-Version **0.6.0-batch-dev20**. This is an experimental all-faction release for a new two-player test. Automated checks pass; native gameplay, save/load and two-computer synchronization still need player verification.
+Version **0.6.0-batch-dev21**. This is an experimental all-faction release for a new two-player test. Automated checks pass; native gameplay, save/load and two-computer synchronization still need player verification.
 
 ## Install the same build
 
-Both players close the game, then use the existing **Legacy of the Cloud Titans - TEST** entry in Heroes Launcher â†’ Mod Browser. Keep the folder **Cloud Titans Legacy - Local Test**; enable only one copy of this mod. The installed `mod.json` must say **0.6.0-batch-dev20** on both computers. Catalog metadata can lag behind downloaded files; an older version displayed in the browser does not establish which build was installed. Check the installed version before starting.
+Both players close the game, then use the existing **Legacy of the Cloud Titans - TEST** entry in Heroes Launcher â†’ Mod Browser. Keep the folder **Cloud Titans Legacy - Local Test**; enable only one copy of this mod. The installed `mod.json` must say **0.6.0-batch-dev21** on both computers. Catalog metadata can lag behind downloaded files; an older version displayed in the browser does not establish which build was installed. Check the installed version before starting.
 
 Use identical ERA/HD versions, enabled mods, load order and WoG options. The inspected base profile used ERA platform 2.299, HD 5.8 R22, Advanced Classes Mod 1.11, JS new objects 1.40, JS main module 1.21.2, JS commanders 1.02, JS map fixes 1.12 and JS terrains 1.4.1. Match the exact versions available to both players; TEST_PROFILE.json is an observed reference, not certification of every combination. Keep Knightmare Kingdoms and other metadata-listed incompatible packages disabled. Keep both ERAHDHeroes_3_Reborn (Full) and HD Editionfixai (Lite) disabled for this trial, following the selected remaster-free profile. Use their original Mod Browser files; this release does not patch them.
 
@@ -18,11 +18,11 @@ Map budgets increase by 10%, rounded up per layer, for all factions and sizes. C
 
 Observe AI encounters and captured loot: no custom part or relic should remain with an AI. Human inventories, including other human players, must remain intact. Report the first violation with the matching save. The automated fixtures do not establish actual native interception or loot behavior.
 
-## Dev20 local checks
+## Dev20 / Dev21 local checks
 
 Accept each quest family with a known hero. Switch town heroes and leave town: status must retain the recorded hero; fulfilled component objectives remain green. A substitute cannot claim or add victories. Lose the bound hero, then accept with a replacement: unfinished counters reset, the original faction remains locked, and claimed rewards stay claimed. Save/reload at each phase.
 
-Use Ctrl+N in the hero screen, then Sort backpack by name. The town Inventory tools entry is removed; the separate HD Backpack-window button is not implemented yet. Check duplicates, distinct scroll spells, equipment and counts before/after, repeated sort and actual save/reload. Review all eight colored component names in an artifact tooltip; gold=worn, green=carried, gray=missing.
+Use Ctrl+N in the hero screen, then Sort backpack by name. The town Inventory tools entry is removed; the separate HD Backpack-window button is not implemented yet. Check duplicates, distinct scroll spells, equipment and counts before/after, repeated sort and actual save/reload. Review all eight colored component names in an artifact tooltip; green=equipped, gray=not equipped. The set heading shows the current equipped count (N/8); an assembled relic counts as all eight. Backpack items do not count.
 
 If the stack-experience rank table is blank, inspect the Stack Experience Rebalance configuration. Its saved Runtime INI overrides its shipped JSON defaults. Disabled packages do not supply their bonuses. Restore the chosen provider options through its own configuration; Cloud Titans does not overwrite its payload or force everyone’s preferences.
 
@@ -41,6 +41,12 @@ All nine towns have eight components and an assembled relic. Worn distinct parts
 Level-up and faction quest components follow the hero's faction. Custom artifacts are excluded from native random loot, so Dragon Utopia cannot award a complete custom relic. Human map finds can belong to another faction. AI heroes are excluded from our artifacts: native equipped/backpack/automatic grant paths are guarded, and load/day/prebattle cleanup removes existing custom AI inventory. This new native policy still requires player-run acceptance; it is not an established fix for earlier AI-turn crashes. Set quest targets receive another10% reduction from dev18, rounded up: **364 / 2907 / 7268 / 72675 / 1454 / 728 / 110 / 7268**, with objective names and progress in the quest menus. Option 126 uses a 5% eligible component gate from level 18 and at least ten levels between component selections; a short game need not produce one.
 
 Link an equipped relic to a matching owned developed town to test its weekly apex recruitment bonus. Compare hero and creature values before/after equipping/removing pieces, daily mana (including Intelligence capacity), duplicate items, full backpacks and town ownership changes. Linked growth, movement and native callbacks require in-game acceptance.
+
+## Dev21 stat balance
+
+All positive artifact primary and equipment/set stat bonuses increase by 50%, rounded up per individual bonus. Examples: +4 becomes +6, +2 becomes +3, +1 Speed becomes +2, and 300 movement becomes 450. All faction troops gain +3 Attack/Defense and +2 Speed at the corresponding thresholds. Apex troops gain another +5 Attack/Defense and +2 Speed from the ring. Health is +15%, or +23% for Necropolis; Tower retains its lightning threshold instead. Full daily regeneration is 16 spell points within the existing mana cap. Spell costs, battle power mechanics, weekly recruits, 30% Life Leech and champion specialties are unchanged.
+
+Compare unequipped, partial-set and assembled values on the same hero and troops. Check the green names and (N/8) counter after moving components, changing heroes and saving/reloading.
 
 ## Relic powers
 

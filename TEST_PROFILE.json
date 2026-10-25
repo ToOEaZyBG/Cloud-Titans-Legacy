@@ -1,5 +1,5 @@
 {
-  "status": "Observed installed profile on25/10/2026 after dependency updates; not runtime or two-computer validated",
+  "status": "Dependency reference observed on25/10/2026; own mod updated to dev21; native and two-computer acceptance pending",
   "active_mods_low_to_high_priority": [
     "WoG",
     "Era Erm Framework",
@@ -72,7 +72,7 @@
     "JS - map generation fixes": "1.12",
     "Random wallpaper": "1.2",
     "JS - commanders module": "1.02",
-    "Cloud Titans Legacy - Local Test": "0.6.0-batch-dev19",
+    "Cloud Titans Legacy - Local Test": "0.6.0-batch-dev21",
     "Statistics Mod": "0.3",
     "JS - new terrains": "1.4.1"
   },
@@ -119,7 +119,7 @@
   "limitations": [
     "Observed installed files; no complete native lifecycle or two-computer validation"
   ],
-  "mod_version": "0.6.0-batch-dev20",
+  "mod_version": "0.6.0-batch-dev21",
   "observed_utc": "2026-10-25",
   "era_platform_version": "2.299",
   "disabled_candidates": [

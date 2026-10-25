@@ -1,7 +1,12 @@
-LATEST PUBLIC BUILD: 0.6.0-batch-dev20
+LATEST PUBLIC BUILD: 0.6.0-batch-dev21
 
 --------------------------------------------------------------
 CHANGELOG
+
+25/10/2026 dev20 > dev21
+- Increase every custom artifact primary and equipment/set stat bonus by50%, rounded up per positive bonus.
+- Show equipped parts in green, other parts in gray and the current equipped count as (N/8), following the native artifact presentation.
+- Keep spell costs, quest targets, growth, special battle powers and30% Life Leech unchanged. New map required; native and two-computer acceptance pending.
 
 25/10/2026 dev19 > dev20
 - Includes the previously private dev19 quest/inventory work; the previous public build was dev18.
@@ -25,11 +30,6 @@ CHANGELOG
 
 20/10/2026 dev14 > dev15
 - Fix an invalid native startup call that caused an ERM error while loading a new map.
-
-20/10/2026 dev13 > dev14
-- Increase map component budgets by10% on every map size; keep equal surface/underground counts.
-- Reduce component quest targets by a further5%.
-- Add native AI artifact grant guards and safe-event cleanup; native enforcement acceptance is pending.
 
 --------------------------------------------------------------
 
