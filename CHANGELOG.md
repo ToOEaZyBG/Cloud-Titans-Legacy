@@ -1,3 +1,12 @@
+# 25/10/2026 dev22 > dev23 - 0.6.0-batch-dev23
+
+- All nine newly delivered champions start at level1, zero XP and base25/25/25/25. The existing one-time initialization and retry/readback guards preserve later hero progression and matching commander state; existing delivered heroes are not reset. Champion quest conditions and faction specialties are unchanged.
+- Add a read-only stack-experience diagnostic after provider game entry. Debug/CloudTitansStackExperience.ini records provider/options plus actual enabled Vampire Lord stat and ability rows, allowing disabled settings to be distinguished from absent live data. No rank tables or other mod settings are changed by this diagnostic.
+- Document the provider-owned WoG configuration and recommended Medium preset. The author's local saved options had Rebalance and all WoG packages disabled; those four switches were restored locally, retaining selectors and inactive TUM options. This local configuration change is separate from the public package and must be matched by peers through their own provider settings.
+- Include the Sort button inside the supported HD5.8R22 WoG Backpack from dev22. Put down held artifacts before sorting; full artifact records are preserved and the popup rebuilds after sorting.
+- 627 offline tests pass. Native rank-table/button rendering, combat callbacks, actual save/load and two-computer acceptance remain pending.
+- Close the game before updating through the existing Mod Browser entry; check installed version0.6.0-batch-dev23. Start a NEW map for the combined test.
+
 # 25/10/2026 dev21 > dev22 - 0.6.0-batch-dev22
 
 - Add a Sort button directly to the top-right of the HD Backpack popup. Click it to sort carried artifacts by name; the popup closes and reopens with refreshed cells.

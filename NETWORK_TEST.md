@@ -1,10 +1,10 @@
 # Legacy of the Cloud Titans â€” Online Lobby test
 
-Version **0.6.0-batch-dev22**. This is an experimental all-faction release for a new two-player test. Automated checks pass; native gameplay, save/load and two-computer synchronization still need player verification.
+Version **0.6.0-batch-dev23**. This is an experimental all-faction release for a new two-player test. Automated checks pass; native gameplay, save/load and two-computer synchronization still need player verification.
 
 ## Install the same build
 
-Both players close the game, then use the existing **Legacy of the Cloud Titans - TEST** entry in Heroes Launcher â†’ Mod Browser. Keep the folder **Cloud Titans Legacy - Local Test**; enable only one copy of this mod. The installed `mod.json` must say **0.6.0-batch-dev22** on both computers. Catalog metadata can lag behind downloaded files; an older version displayed in the browser does not establish which build was installed. Check the installed version before starting.
+Both players close the game, then use the existing **Legacy of the Cloud Titans - TEST** entry in Heroes Launcher â†’ Mod Browser. Keep the folder **Cloud Titans Legacy - Local Test**; enable only one copy of this mod. The installed `mod.json` must say **0.6.0-batch-dev23** on both computers. Catalog metadata can lag behind downloaded files; an older version displayed in the browser does not establish which build was installed. Check the installed version before starting.
 
 Use identical ERA/HD versions, enabled mods, load order and WoG options. The inspected base profile used ERA platform 2.299, HD 5.8 R22, Advanced Classes Mod 1.11, JS new objects 1.40, JS main module 1.21.2, JS commanders 1.02, JS map fixes 1.12 and JS terrains 1.4.1. Match the exact versions available to both players; TEST_PROFILE.json is an observed reference, not certification of every combination. Keep Knightmare Kingdoms and other metadata-listed incompatible packages disabled. Keep both ERAHDHeroes_3_Reborn (Full) and HD Editionfixai (Lite) disabled for this trial, following the selected remaster-free profile. Use their original Mod Browser files; this release does not patch them.
 
@@ -24,7 +24,9 @@ Accept each quest family with a known hero. Switch town heroes and leave town: s
 
 Open HD Backpack and click Sort at its top-right. Put down any artifact held on the cursor first. The popup closes and reopens after sorting so its cells reflect the current order. The inspected HD5.8R22 WoG provider is supported; Ctrl+N in the hero screen, then Sort backpack by name, remains the fallback if the button is unavailable. The town Inventory tools entry is removed. Check duplicates, distinct scroll spells, equipment and counts before/after, repeated sort and actual save/reload. Review all eight colored component names in an artifact tooltip; green=equipped, gray=not equipped. The set heading shows the current equipped count (N/8); an assembled relic counts as all eight. Backpack items do not count.
 
-If the stack-experience rank table is blank, inspect the Stack Experience Rebalance configuration. Its saved Runtime INI overrides its shipped JSON defaults. Disabled packages do not supply their bonuses. Restore the chosen provider options through its own configuration; Cloud Titans does not overwrite its payload or force everyone’s preferences.
+If the stack-experience rank table is blank, inspect the Stack Experience Rebalance configuration. Its own Runtime INI overrides its shipped JSON defaults. Enable Rebalance, WoG Stats, WoG Abilities and WoG Neutrals through that provider's configuration. The recommended Medium preset is +100% Health and Damage, +10 Attack/Defense and +10% Speed at rank10. TUM options require that provider and are separate. Restart/load after confirming. Each peer configures this separately; a Cloud Titans update does not overwrite another mod's options.
+
+Dev23 writes a read-only check after game entry to Debug/CloudTitansStackExperience.ini. With the selected provider/settings active, the Vampire Lord sample should have six enabled stat rows and one ability row (seven total). Disabled settings and empty live rows are reported separately. This does not itself prove native table rendering or real combat application.
 
 ## First shared test
 
@@ -83,7 +85,7 @@ Leave town and Alt-left-click the bound hero for the final trial, or press Ctrl+
 | Fortress | Ssareth |
 | Conflux | Aurelis |
 
-The champion starts at level 1, zero XP and base **10/10/10/10**, with a fresh matching commander. Specialization works without the set; Andonov has stronger faction bonuses. Repeated delivery and loading must preserve later progression and commander state. Check real heroes, portraits, armies and commanders on both clients, not only counters.
+The champion starts at level 1, zero XP and base **25/25/25/25**, with a fresh matching commander. Specialization works without the set; Andonov has stronger faction bonuses. Repeated delivery and loading must preserve later progression and commander state. Check real heroes, portraits, armies and commanders on both clients, not only counters.
 
 ## Known limits
 

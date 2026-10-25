@@ -1,0 +1,35 @@
+ZVSE2
+; Read-only provider diagnostics; never changes rank tables or user settings.
+!?FU(OnGameEnter_Quit);
+!!FU(CLT_StackExperienceStatus):P;
+
+!?FU(CLT_StackExperienceStatus);
+!!SN:W^Stack_Exp_Rebalance_Mod_Active^/?(provider:y);
+!!SN:W^Stack_Exp_Rebalance_On^/?(rebalance:y);
+!!SN:W^Exp_WoG_Stats^/?(stats:y);
+!!SN:W^Exp_WoG_Abilities^/?(abilities:y);
+!!SN:W^Exp_WoG_Neutrals^/?(neutrals:y);
+!!VR(rows:y):S0;
+!!VR(statRows:y):S0;
+!!VR(abilityRows:y):S0;
+!!re (slot:y)/0/19;
+ !!EA(MON_VAMPIRE_LORD):B(slot)/?(enabled:y)/?(effect:y)/?(modifier:y)/d/d/d/d/d/d/d/d/d/d/d;
+ !!co&(enabled)=0;
+ !!VR(rows):+1;
+ !!if|(effect)=65/(effect)=68/(effect)=72/(effect)=77/(effect)=83/(effect)=109;
+  !!VR(statRows):+1;
+ !!el;
+  !!VR(abilityRows):+1;
+ !!en;
+!!en;
+!!SN:W^clt.stackexp.rows^/(rows) W^clt.stackexp.statrows^/(statRows) W^clt.stackexp.abilityrows^/(abilityRows);
+!!SN:F^WriteStrToIni^/^provider_active^/^%(provider)^/^stack_experience^/^Debug\CloudTitansStackExperience.ini^;
+!!SN:F^WriteStrToIni^/^rebalance_enabled^/^%(rebalance)^/^stack_experience^/^Debug\CloudTitansStackExperience.ini^;
+!!SN:F^WriteStrToIni^/^wog_stats_enabled^/^%(stats)^/^stack_experience^/^Debug\CloudTitansStackExperience.ini^;
+!!SN:F^WriteStrToIni^/^wog_abilities_enabled^/^%(abilities)^/^stack_experience^/^Debug\CloudTitansStackExperience.ini^;
+!!SN:F^WriteStrToIni^/^wog_neutrals_enabled^/^%(neutrals)^/^stack_experience^/^Debug\CloudTitansStackExperience.ini^;
+!!SN:F^WriteStrToIni^/^sample_creature^/^63^/^stack_experience^/^Debug\CloudTitansStackExperience.ini^;
+!!SN:F^WriteStrToIni^/^sample_enabled_rows^/^%(rows)^/^stack_experience^/^Debug\CloudTitansStackExperience.ini^;
+!!SN:F^WriteStrToIni^/^sample_stat_rows^/^%(statRows)^/^stack_experience^/^Debug\CloudTitansStackExperience.ini^;
+!!SN:F^WriteStrToIni^/^sample_ability_rows^/^%(abilityRows)^/^stack_experience^/^Debug\CloudTitansStackExperience.ini^;
+!!SN:F^SaveIni^/^Debug\CloudTitansStackExperience.ini^;

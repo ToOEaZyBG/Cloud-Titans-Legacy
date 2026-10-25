@@ -1,7 +1,12 @@
-LATEST PUBLIC BUILD: 0.6.0-batch-dev22
+LATEST PUBLIC BUILD: 0.6.0-batch-dev23
 
 --------------------------------------------------------------
 ## CHANGELOG
+
+25/10/2026 dev22 > dev23
+- All nine newly awarded champions start at level1 with 25 Attack, Defense, Spell Power and Knowledge; later progression is preserved.
+- Add read-only live stack-experience row diagnostics and clarify the provider-owned switches needed for rank bonuses. Restore the selected WoG profile locally without changing third-party payloads.
+- Include the HD Backpack Sort button from dev22. Native table/button rendering and two-computer acceptance remain pending.
 
 25/10/2026 dev21 > dev22
 - Add Sort directly to the HD Backpack window; sorting closes and rebuilds the popup to refresh every cell.
@@ -28,10 +33,6 @@ LATEST PUBLIC BUILD: 0.6.0-batch-dev22
 20/10/2026 dev16 > dev17
 - Rebuild all72 map component sprites and their visibility masks as single-cell resources. Targets the reported half-visible artifacts; terrain acceptance is pending.
 - Show the current build and this changelog before the mod description.
-
-20/10/2026 dev15 > dev16
-- Enlarge all72 component map drawings and retain more faction colors with separate map palettes.
-- Add27 large gallery images: individual champions, complete faction sets and assembled relic close-ups.
 
 --------------------------------------------------------------
 
@@ -100,7 +101,7 @@ After the victories, leave town and Alt-left-click the bound quest hero to begin
 
 Castle: Aldric. Rampart: Sylvara. Tower: Vaelion. Inferno: Zareth. Necropolis: Andonov. Dungeon: Nyssara. Stronghold: Kargan. Fortress: Ssareth. Conflux: Aurelis.
 
-Champions start at level 1 with 10 Attack, 10 Defense, 10 Spell Power, 10 Knowledge and a matching commander. Their faction specialization works without wearing the set. Andonov has stronger faction bonuses.
+Champions start at level 1 with 25 Attack, 25 Defense, 25 Spell Power, 25 Knowledge and a matching commander. Their faction specialization works without wearing the set. Andonov has stronger faction bonuses.
 
 ## STARTING A GAME
 

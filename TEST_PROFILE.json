@@ -1,5 +1,5 @@
 {
-  "status": "Dependency reference observed25/10/2026; installed own mod21; release candidate22 not natively accepted",
+  "status": "Observed dependency reference25/10/2026; own mod23 installation recorded separately; local Stack Experience WoG settings restored; native/two-computer acceptance pending",
   "active_mods_low_to_high_priority": [
     "WoG",
     "Era Erm Framework",
@@ -72,7 +72,7 @@
     "JS - map generation fixes": "1.12",
     "Random wallpaper": "1.2",
     "JS - commanders module": "1.02",
-    "Cloud Titans Legacy - Local Test": "0.6.0-batch-dev21",
+    "Cloud Titans Legacy - Local Test": "0.6.0-batch-dev23",
     "Statistics Mod": "0.3",
     "JS - new terrains": "1.4.1"
   },
@@ -119,10 +119,28 @@
   "limitations": [
     "Observed installed files; no complete native lifecycle or two-computer validation"
   ],
-  "mod_version": "0.6.0-batch-dev22",
+  "mod_version": "0.6.0-batch-dev23",
   "observed_utc": "2026-10-25",
   "era_platform_version": "2.299",
   "disabled_candidates": [
     "H3 Dynamic Balancer0.1.2; author ACM/Difficulty combination unvalidated"
-  ]
+  ],
+  "stack_experience_local_settings": {
+    "provider": "Stack Experience Rebalance0.9",
+    "enabled": [
+      "Rebalance",
+      "WoG Stats",
+      "WoG Abilities",
+      "WoG Neutrals"
+    ],
+    "rank10_medium": {
+      "health_percent": 100,
+      "attack": 10,
+      "defense": 10,
+      "damage_percent": 100,
+      "speed_percent": 10
+    },
+    "tum_packages": false,
+    "native_table_accepted": false
+  }
 }

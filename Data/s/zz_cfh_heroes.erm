@@ -192,11 +192,11 @@ ZVSE2
 !!FU|(commanderExperience)<>0/(commanderLevel)<>0:E;
 !!FU(CFH_Profile):P(town)/?i/?(commander:y);
 ; Caller guarantees a fresh naked quest reward. Never a general hero reset.
-!!HE(hero):E0/1 F10/10/10/10 X7/0/0/0/0/0/0;
+!!HE(hero):E0/1 F25/25/25/25 X7/0/0/0/0/0/0;
 !!CO(hero):E0 T(commander) H(class) P0 X0/0 X1/0 X2/0 D0 E1;
 !!HE(hero):E?(readExperience:y)/?(readLevel:y) F?(a:y)/?(d:y)/?(p:y)/?(k:y)/1;
 !!CO(hero):T?(readType:y) H?(readClass:y) E?(enabled:y) D?(dead:y);
-!!FU|(readExperience)<>0/(readLevel)<>1/(a)<>10/(d)<>10/(p)<>10/(k)<>10:E;
+!!FU|(readExperience)<>0/(readLevel)<>1/(a)<>25/(d)<>25/(p)<>25/(k)<>25:E;
 !!FU|(readType)<>(commander)/(readClass)<>(class)/(enabled)<>1/(dead)<>0:E;
 !!SN:W^cfh.v1.initialized.%(hero)^/(expected) W^cfh.v1.town.%(hero)^/(expected) W^cfh.v1.pending.%(hero)^/0;
 !!VR(okay):S1;
@@ -612,7 +612,7 @@ ZVSE2
 !!OW:C?(active:y);
 !!FU(CLT_IsLocalOwner):P(owner)/?(local:y);
 !!FU|(owner)<0/(owner)>7/(owner)<>(active)/(local)=0:E;
-!!FU(gem_AddTownButton):P^cltquest.def^/64/32/^Champion quest^/^Unlock your faction champion^/^A level-one champion with 10/10/10/10, a faction specialty and the matching commander.^/(CFH_TownMenu)/0/0/0;
+!!FU(gem_AddTownButton):P^cltquest.def^/64/32/^Champion quest^/^Unlock your faction champion^/^A level-one champion with 25/25/25/25, a faction specialty and the matching commander.^/(CFH_TownMenu)/0/0/0;
 
 !?FU(CFH_Checklist);
 !#VA(hero:x) (city:x) (kind:x) (owner:x);
@@ -670,7 +670,7 @@ Quest hero: %(note)^;
 !!VR(note)&(claimed)>0:S^Champion received.^;
 !!IF:M^{~Gold}%(name){~}
 
-Reward: level 1, Attack 10, Defense 10, Power 10, Knowledge 10 and a matching commander.
+Reward: level 1, Attack 25, Defense 25, Power 25, Knowledge 25 and a matching commander.
 %(specialty)
 
 %(levelMark) Hero level: %(level)/25
