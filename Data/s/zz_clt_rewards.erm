@@ -1,6 +1,6 @@
 ZVSE2
 ; DEVELOPMENT repair: validate every selection; fail closed before grants/dialogs.
-; Human components: 5% per eligible reward, at least ten levels apart.
+; Human components:5% gate, pity on tenth eligible attempt, ten-level cooldown.
 
 !?FU(CLT_LevelArtifact);
 !#VA(hero:x) (rank:x) (artifact:x) (step:x);
@@ -43,10 +43,23 @@ ZVSE2
  !!SN:W^clt.reward.last.%(hero)^/?(lastReward:y);
  !!VR(nextLevel:y):S(lastReward) +10;
  !!if|(lastReward)=0/(rewardLevel)>=(nextLevel);
-  !!VR(roll:y):R0/0/99;
-  !!VR(component)&(roll)<5:S1;
+  !!SN:W^clt.reward.attempt.%(hero)^/?(lastAttempt:y) W^clt.reward.misses.%(hero)^/?(misses:y);
+  !!if&(rewardLevel)>(lastAttempt);
+   !!VR(misses):+1;
+   !!VR(roll:y):S99;
+   !!if&(misses)<10;
+    !!VR(roll):R0/0/99;
+   !!en;
+   !!VR(component)|(roll)<5/(misses)>=10:S1;
+   !!VR(misses)&(component)>0:S0;
+   !!SN:W^clt.reward.attempt.%(hero)^/(rewardLevel) W^clt.reward.misses.%(hero)^/(misses);
+  !!en;
  !!en;
 !!en;
+!!SN:F^WriteStrToIni^/^last_hero^/^%(hero)^/^attempt^/^Debug\CloudTitansRewards.ini^;
+!!SN:F^WriteStrToIni^/^last_level^/^%(rewardLevel)^/^attempt^/^Debug\CloudTitansRewards.ini^;
+!!SN:F^WriteStrToIni^/^last_component_selected^/^%(component)^/^attempt^/^Debug\CloudTitansRewards.ini^;
+!!SN:F^SaveIni^/^Debug\CloudTitansRewards.ini^;
 !!if&(component)>0;
  !!if&(network)>0;
   !!FU(CLT_LevelTicket):P(key)/(rewardLevel)/7/?(partTicket:y);
@@ -121,11 +134,16 @@ ZVSE2
 !!VR(allowed):S0;
 !!FU|(key)<0/(level)<18/(level)>104:E;
 !!VR(previous:y):S-10;
+!!VR(misses:y):S0;
 !!re (walk:y)/18/(level);
  !!VR(next:y):S(previous) +10;
  !!co&(walk)<(next);
  !!FU(CLT_LevelTicket):P(key)/(walk)/99/?(roll:y);
- !!VR(previous)&(roll)<5:S(walk);
+ !!VR(misses):+1;
+ !!if|(roll)<5/(misses)>=10;
+  !!VR(previous):S(walk);
+  !!VR(misses):S0;
+ !!en;
 !!en;
 !!VR(allowed)&(previous)=(level):S1;
 

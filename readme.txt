@@ -1,7 +1,12 @@
-LATEST PUBLIC BUILD: 0.6.0-batch-dev23
+LATEST PUBLIC BUILD: 0.6.0-batch-dev24
 
 --------------------------------------------------------------
 CHANGELOG
+
+26/10/2026 dev23 > dev24
+- Fix Sort and the Relics page button to handle the native completed-click event rather than mouse-down.
+- Correct opposite-layer artifact selection: all nine towns can have parts on both layers; new map required.
+- Keep the5% level gate and ten-level cooldown; guarantee a component on the tenth eligible attempt. Log failed attempts as well as successes.
 
 25/10/2026 dev22 > dev23
 - All nine newly awarded champions start at level1 with 25 Attack, Defense, Spell Power and Knowledge; later progression is preserved.
@@ -30,10 +35,6 @@ CHANGELOG
 - Separate adventure-map frame names from inventory names for all64 added faction components, correcting the resource-cache conflict behind clipped map icons. Tower names and all item artwork are unchanged.
 - Add a release check against conflicting frame names across all bundled DEF resources.
 
-20/10/2026 dev16 > dev17
-- Rebuild all72 map component sprites and their visibility masks as single-cell resources. Targets the reported half-visible artifacts; terrain acceptance is pending.
-- Show the current build and this changelog before the mod description.
-
 --------------------------------------------------------------
 
 LEGACY OF THE CLOUD TITANS - TEST
@@ -58,7 +59,7 @@ Map exploration: some eligible loose artifact sites become faction components wh
 
 Faction quests: open Faction set quests in your town menu. Each component has an objective and a progress counter. Defeat the listed enemies or complete the required battles, then return with the recorded qualified hero to claim it. Completed objectives stay green while that hero is away. Read the selected objective for its level and town requirements. Choose Accept with the hero in town. Only that recorded hero earns progress. Your first component or champion quest permanently locks one faction for this game. Death or dismissal resets unfinished progress; a replacement may accept for the same faction. Previously claimed component rewards remain claimed, once per player. Finding a piece elsewhere does not consume that quest reward.
 
-Level-up rewards: with WoG option 126 enabled, eligible human Relic-category level-up rewards can offer a matching-faction component. The component gate is 5% from level 18, with at least ten levels between component selections. This is a rare extra route, not a guaranteed reward every ten levels.
+Level-up rewards: with WoG option 126 enabled, eligible human Relic-category level-up rewards can offer a matching-faction component. The component gate is 5% from level 18, with at least ten levels between component selections. After nine missed eligible attempts, the tenth guarantees one component. Cooldown levels do not count.
 
 Custom relics are assembled from components; Dragon Utopia does not award a complete custom set. Level-up and faction-quest component rewards follow the hero's faction. A foreign-faction component found on the map is allowed.
 

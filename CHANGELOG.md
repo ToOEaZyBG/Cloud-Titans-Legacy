@@ -1,3 +1,13 @@
+# 26/10/2026 dev23 > dev24 - 0.6.0-batch-dev24
+
+- Fix the HD Backpack Sort caption button: native LBUTTON_CLICK is13, whereas12 is LBUTTON_DOWN. Preserve normal clicks, held-item rejection and deferred sorting after popup destruction. Apply the same completed-click handling to the Relics page caption button; relic icon selection retains its native icon event.
+- Correct the opposite-layer component rotation. A chained self-referential assignment overwrote its own input, excluding Inferno, Necropolis and Dungeon components from the surface. The repaired rotation retains the existing75/25 faction preference and equal total layer counts, while allowing all nine factions on both layers. Existing maps are not rearranged; start a NEW map.
+- Keep the5% component gate from level18 and at least ten levels between component selections. Guarantee a component on the tenth eligible attempt after nine failed gates. Cooldown levels do not advance the counter. Local counters persist per hero; duplicate-level calls cannot charge twice. Network mode deterministically reconstructs the same bounded schedule without extra RNG or grant packets.
+- Extend the reward diagnostic to record failed eligible checks as well as selected components. Guarantee concerns component selections; inventory delivery and option126 remain separate requirements. Prior save history is not reconstructed or retroactively rewarded.
+- Retain dev23 level-one champions with25/25/25/25, the observed provider configuration and all prior set changes.
+- 639 offline tests pass, including a completed-click regression that failed against dev23, per-subcommand arithmetic semantics, all-faction layer coverage and local/network guarantee fixtures. Native UI/gameplay/save/Lobby acceptance remains pending.
+- Close the game before updating through the existing Mod Browser entry. Both peers must match the complete build and start a NEW sequential-turn map.
+
 # 25/10/2026 dev22 > dev23 - 0.6.0-batch-dev23
 
 - All nine newly delivered champions start at level1, zero XP and base25/25/25/25. The existing one-time initialization and retry/readback guards preserve later hero progression and matching commander state; existing delivered heroes are not reset. Champion quest conditions and faction specialties are unchanged.

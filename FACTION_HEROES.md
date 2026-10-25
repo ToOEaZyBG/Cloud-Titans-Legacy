@@ -1,14 +1,20 @@
 # Legacy of the Cloud Titans â€” Online Lobby test
 
-Version **0.6.0-batch-dev23**. This is an experimental all-faction release for a new two-player test. Automated checks pass; native gameplay, save/load and two-computer synchronization still need player verification.
+Version **0.6.0-batch-dev24**. This is an experimental all-faction release for a new two-player test. Automated checks pass; native gameplay, save/load and two-computer synchronization still need player verification.
 
 ## Install the same build
 
-Both players close the game, then use the existing **Legacy of the Cloud Titans - TEST** entry in Heroes Launcher â†’ Mod Browser. Keep the folder **Cloud Titans Legacy - Local Test**; enable only one copy of this mod. The installed `mod.json` must say **0.6.0-batch-dev23** on both computers. Catalog metadata can lag behind downloaded files; an older version displayed in the browser does not establish which build was installed. Check the installed version before starting.
+Both players close the game, then use the existing **Legacy of the Cloud Titans - TEST** entry in Heroes Launcher â†’ Mod Browser. Keep the folder **Cloud Titans Legacy - Local Test**; enable only one copy of this mod. The installed `mod.json` must say **0.6.0-batch-dev24** on both computers. Catalog metadata can lag behind downloaded files; an older version displayed in the browser does not establish which build was installed. Check the installed version before starting.
 
 Use identical ERA/HD versions, enabled mods, load order and WoG options. The inspected base profile used ERA platform 2.299, HD 5.8 R22, Advanced Classes Mod 1.11, JS new objects 1.40, JS main module 1.21.2, JS commanders 1.02, JS map fixes 1.12 and JS terrains 1.4.1. Match the exact versions available to both players; TEST_PROFILE.json is an observed reference, not certification of every combination. Keep Knightmare Kingdoms and other metadata-listed incompatible packages disabled. Keep both ERAHDHeroes_3_Reborn (Full) and HD Editionfixai (Lite) disabled for this trial, following the selected remaster-free profile. Use their original Mod Browser files; this release does not patch them.
 
 Start a **NEW G random map with underground through Heroes Launcher Online Lobby**, using sequential turns with simultaneous turns disabled. Do not resume an older-version map and do not use F12. For the first comparison, both players can choose Necropolis. WoG option 126 is optional; enable it on both clients if testing level-up rewards. Commanders must be enabled for champion quests. No extra starting army or automatic test gift is granted.
+
+## Dev24 first checks
+
+Click Sort in HD Backpack; it should close and rebuild with name-sorted items. The click fix is covered offline but awaits actual native acceptance. On a NEW G map with underground, component plans retain equal layer totals and include some opposite-layer faction parts. Necropolis/Inferno/Dungeon must no longer be entirely absent from the surface. Old maps are not changed.
+
+Enable option126 and record each eligible level from18. The first component is selected by27 when every eligible level is processed. Check batch levels, cooldown, another hero and actual save/reload. Debug/CloudTitansRewards.ini now updates the latest failed eligible attempt too.
 
 ## Local acceptance first
 
@@ -40,7 +46,7 @@ Stop on the first wrong item, script error, mismatch or crash. Preserve both sav
 
 All nine towns have eight components and an assembled relic. Worn distinct parts unlock cumulative bonuses; backpack items and duplicate copies do not multiply them. The relic represents all eight components. Its equipment slot is stated in its description. Assemble/disassemble through the mod's existing hero/town actions; disassembled parts go to the backpack. Keep space for the resulting items. Failed grants preserve the reward for retry.
 
-Level-up and faction quest components follow the hero's faction. Custom artifacts are excluded from native random loot, so Dragon Utopia cannot award a complete custom relic. Human map finds can belong to another faction. AI heroes are excluded from our artifacts: native equipped/backpack/automatic grant paths are guarded, and load/day/prebattle cleanup removes existing custom AI inventory. This new native policy still requires player-run acceptance; it is not an established fix for earlier AI-turn crashes. Set quest targets receive another10% reduction from dev18, rounded up: **364 / 2907 / 7268 / 72675 / 1454 / 728 / 110 / 7268**, with objective names and progress in the quest menus. Option 126 uses a 5% eligible component gate from level 18 and at least ten levels between component selections; a short game need not produce one.
+Level-up and faction quest components follow the hero's faction. Custom artifacts are excluded from native random loot, so Dragon Utopia cannot award a complete custom relic. Human map finds can belong to another faction. AI heroes are excluded from our artifacts: native equipped/backpack/automatic grant paths are guarded, and load/day/prebattle cleanup removes existing custom AI inventory. This new native policy still requires player-run acceptance; it is not an established fix for earlier AI-turn crashes. Set quest targets receive another10% reduction from dev18, rounded up: **364 / 2907 / 7268 / 72675 / 1454 / 728 / 110 / 7268**, with objective names and progress in the quest menus. Option126 uses a5% eligible component gate from level18, at least ten levels between selections, and a guaranteed component on the tenth eligible attempt after nine misses. Cooldown levels do not charge pity. With uninterrupted eligible rewards from level18, the first selection occurs by level27.
 
 Link an equipped relic to a matching owned developed town to test its weekly apex recruitment bonus. Compare hero and creature values before/after equipping/removing pieces, daily mana (including Intelligence capacity), duplicate items, full backpacks and town ownership changes. Linked growth, movement and native callbacks require in-game acceptance.
 
