@@ -2986,6 +2986,10 @@ Includes all eight artifacts. Extra copies give no further bonus.
 !!FU&(library)=0:E;
 !!SN:A(library)/^CFSSortPrepare^/?(prepare:y) A(library)/^CFSSortApply^/?(apply:y);
 !!SN:W^cqt.sort.prepare^/(prepare) W^cqt.sort.apply^/(apply);
+!!SN:W^cqt.sort.request^/(CQT_RequestSort);
+!!SN:A(library)/^CFSBackpackReady^/?(popup:y);
+!!SN:E(popup)/(CALLCONV_STDCALL);
+!!SN:W^cqt.sort.popup.ready^/v1;
 
 !?FU(OnKeyPressed_HeroScreen);
 !#VA(key:x) (prevent:x);

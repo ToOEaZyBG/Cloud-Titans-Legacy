@@ -1,3 +1,12 @@
+# 25/10/2026 dev21 > dev22 - 0.6.0-batch-dev22
+
+- Add a Sort button directly to the top-right of the HD Backpack popup. Click it to sort carried artifacts by name; the popup closes and reopens with refreshed cells.
+- Dispatch only after the provider destroys the old popup. Preserve every complete artifact record, including scroll spell identities; equipment and artifact counts remain unchanged. Continue using the existing verified permutation transaction for online play.
+- Do not sort while an artifact is held on the cursor. Preserve ordinary backpack clicks and cancellation. Control allocation failure, an ID collision or an unavailable integration leaves the provider behavior intact.
+- Pin this integration to the inspected HD5.8R22 WoG provider; other providers retain the Ctrl+N hero-screen fallback. No third-party file is modified. All dev21 stat and tooltip changes remain included.
+- 606 offline tests pass, including executed x86 button/modal fixtures and read-only provider contract checks. Actual HD rendering, hook dispatch and two-computer acceptance remain pending.
+- Close the game before updating through the existing Mod Browser entry. The installed mod.json must show0.6.0-batch-dev22.
+
 # 25/10/2026 dev20 > dev21 - 0.6.0-batch-dev21
 
 - Increase positive primary and equipment/set stat bonuses by 50%, rounding up each individual bonus, across all 72 components and nine assembled relics. A +4 primary becomes +6, +2 becomes +3, +1 Speed becomes +2, and 300 daily movement becomes 450.

@@ -1,7 +1,12 @@
-LATEST PUBLIC BUILD: 0.6.0-batch-dev21
+LATEST PUBLIC BUILD: 0.6.0-batch-dev22
 
 --------------------------------------------------------------
 CHANGELOG
+
+25/10/2026 dev21 > dev22
+- Add Sort directly to the HD Backpack window; sorting closes and rebuilds the popup to refresh every cell.
+- Reuse the existing full-record name sort and online transaction, preserving scroll spells and equipment.
+- Guard the integration for the inspected HD5.8R22 WoG provider; retain Ctrl+N as a fallback. Native UI and two-computer acceptance remain pending.
 
 25/10/2026 dev20 > dev21
 - Increase every custom artifact primary and equipment/set stat bonus by50%, rounded up per positive bonus.
@@ -27,9 +32,6 @@ CHANGELOG
 20/10/2026 dev15 > dev16
 - Enlarge all72 component map drawings and retain more faction colors with separate map palettes.
 - Add27 large gallery images: individual champions, complete faction sets and assembled relic close-ups.
-
-20/10/2026 dev14 > dev15
-- Fix an invalid native startup call that caused an ERM error while loading a new map.
 
 --------------------------------------------------------------
 

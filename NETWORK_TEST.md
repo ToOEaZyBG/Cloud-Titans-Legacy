@@ -1,10 +1,10 @@
 # Legacy of the Cloud Titans â€” Online Lobby test
 
-Version **0.6.0-batch-dev21**. This is an experimental all-faction release for a new two-player test. Automated checks pass; native gameplay, save/load and two-computer synchronization still need player verification.
+Version **0.6.0-batch-dev22**. This is an experimental all-faction release for a new two-player test. Automated checks pass; native gameplay, save/load and two-computer synchronization still need player verification.
 
 ## Install the same build
 
-Both players close the game, then use the existing **Legacy of the Cloud Titans - TEST** entry in Heroes Launcher â†’ Mod Browser. Keep the folder **Cloud Titans Legacy - Local Test**; enable only one copy of this mod. The installed `mod.json` must say **0.6.0-batch-dev21** on both computers. Catalog metadata can lag behind downloaded files; an older version displayed in the browser does not establish which build was installed. Check the installed version before starting.
+Both players close the game, then use the existing **Legacy of the Cloud Titans - TEST** entry in Heroes Launcher â†’ Mod Browser. Keep the folder **Cloud Titans Legacy - Local Test**; enable only one copy of this mod. The installed `mod.json` must say **0.6.0-batch-dev22** on both computers. Catalog metadata can lag behind downloaded files; an older version displayed in the browser does not establish which build was installed. Check the installed version before starting.
 
 Use identical ERA/HD versions, enabled mods, load order and WoG options. The inspected base profile used ERA platform 2.299, HD 5.8 R22, Advanced Classes Mod 1.11, JS new objects 1.40, JS main module 1.21.2, JS commanders 1.02, JS map fixes 1.12 and JS terrains 1.4.1. Match the exact versions available to both players; TEST_PROFILE.json is an observed reference, not certification of every combination. Keep Knightmare Kingdoms and other metadata-listed incompatible packages disabled. Keep both ERAHDHeroes_3_Reborn (Full) and HD Editionfixai (Lite) disabled for this trial, following the selected remaster-free profile. Use their original Mod Browser files; this release does not patch them.
 
@@ -18,11 +18,11 @@ Map budgets increase by 10%, rounded up per layer, for all factions and sizes. C
 
 Observe AI encounters and captured loot: no custom part or relic should remain with an AI. Human inventories, including other human players, must remain intact. Report the first violation with the matching save. The automated fixtures do not establish actual native interception or loot behavior.
 
-## Dev20 / Dev21 local checks
+## Dev20 / Dev21 / Dev22 local checks
 
 Accept each quest family with a known hero. Switch town heroes and leave town: status must retain the recorded hero; fulfilled component objectives remain green. A substitute cannot claim or add victories. Lose the bound hero, then accept with a replacement: unfinished counters reset, the original faction remains locked, and claimed rewards stay claimed. Save/reload at each phase.
 
-Use Ctrl+N in the hero screen, then Sort backpack by name. The town Inventory tools entry is removed; the separate HD Backpack-window button is not implemented yet. Check duplicates, distinct scroll spells, equipment and counts before/after, repeated sort and actual save/reload. Review all eight colored component names in an artifact tooltip; green=equipped, gray=not equipped. The set heading shows the current equipped count (N/8); an assembled relic counts as all eight. Backpack items do not count.
+Open HD Backpack and click Sort at its top-right. Put down any artifact held on the cursor first. The popup closes and reopens after sorting so its cells reflect the current order. The inspected HD5.8R22 WoG provider is supported; Ctrl+N in the hero screen, then Sort backpack by name, remains the fallback if the button is unavailable. The town Inventory tools entry is removed. Check duplicates, distinct scroll spells, equipment and counts before/after, repeated sort and actual save/reload. Review all eight colored component names in an artifact tooltip; green=equipped, gray=not equipped. The set heading shows the current equipped count (N/8); an assembled relic counts as all eight. Backpack items do not count.
 
 If the stack-experience rank table is blank, inspect the Stack Experience Rebalance configuration. Its saved Runtime INI overrides its shipped JSON defaults. Disabled packages do not supply their bonuses. Restore the chosen provider options through its own configuration; Cloud Titans does not overwrite its payload or force everyone’s preferences.
 

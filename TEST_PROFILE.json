@@ -1,5 +1,5 @@
 {
-  "status": "Dependency reference observed on25/10/2026; own mod updated to dev21; native and two-computer acceptance pending",
+  "status": "Dependency reference observed25/10/2026; installed own mod21; release candidate22 not natively accepted",
   "active_mods_low_to_high_priority": [
     "WoG",
     "Era Erm Framework",
@@ -119,7 +119,7 @@
   "limitations": [
     "Observed installed files; no complete native lifecycle or two-computer validation"
   ],
-  "mod_version": "0.6.0-batch-dev21",
+  "mod_version": "0.6.0-batch-dev22",
   "observed_utc": "2026-10-25",
   "era_platform_version": "2.299",
   "disabled_candidates": [
