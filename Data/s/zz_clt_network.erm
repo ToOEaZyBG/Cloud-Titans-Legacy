@@ -36,6 +36,8 @@ ZVSE2
 
 !?FU(CLT_QuestProgressSet);
 !#VA(owner:x) (quest:x) (value:x);
+!!FU:E; ; Dev19 uses guarded shared quest packets.
+
 !!FU|(owner)<0/(owner)>7/(quest)<0/(quest)>7/(value)<0:E;
 !!FU(CLT_QuestProgressKey):P(owner)/(quest)/?(key:z);
 !!SN:W(key)/?(old:y);
@@ -44,6 +46,8 @@ ZVSE2
 
 !?FU(CLT_ClaimQuest);
 !#VA(hero:x) (town:x) (quest:x);
+!!FU:E; ; Dev19 uses guarded shared quest packets.
+
 !!FU|(hero)<0/(hero)>155/(town)<0/(town)>47/(quest)<0/(quest)>7:E;
 !!HE(hero):O?(owner:y) E?i/?(level:y);
 !!FU(CLT_IsHuman):P(hero)/?(human:y);
@@ -130,7 +134,7 @@ ZVSE2
 !!SN:F^WriteStrToIni^/^surface^/^%(surface)^/^network^/^Debug\CloudTitansNetwork.ini^;
 !!SN:F^WriteStrToIni^/^underground^/^%(lower)^/^network^/^Debug\CloudTitansNetwork.ini^;
 !!SN:F^WriteStrToIni^/^world_error^/^%(error)^/^network^/^Debug\CloudTitansNetwork.ini^;
-!!SN:F^WriteStrToIni^/^version^/^0.6.0-batch-dev18^/^network^/^Debug\CloudTitansNetwork.ini^;
+!!SN:F^WriteStrToIni^/^version^/^0.6.0-batch-dev20^/^network^/^Debug\CloudTitansNetwork.ini^;
 !!SN:F^SaveIni^/^Debug\CloudTitansNetwork.ini^;
 !!IF&(error)>0:M^Cloud Titans NETWORK TEST: map placement mismatch. Stop this test and keep both saves/debug folders.^;
 
@@ -172,7 +176,7 @@ ZVSE2
 !!FU&(selected)<0:E;
 !!if&(action)=0;
  !!SN:W^clt.world.placed^/?(placed:y) W^clt.net.world.hash^/?(hash:y) W^clt.net.world.error^/?(error:y) W^clt.net.quest.error^/?(questError:y);
- !!VR(status:z):S^Build: 0.6.0-batch-dev18
+ !!VR(status:z):S^Build: 0.6.0-batch-dev20
 Placed: %(placed). Map hash: %(hash). Errors: %(error).
 Quest write errors: %(questError).
 Confirmed wins per player (compare on both computers):

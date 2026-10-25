@@ -1,3 +1,14 @@
+# 25/10/2026 dev18 > dev20 - 0.6.0-batch-dev20
+
+- Explicit hero enrollment for both component and champion quests; only the bound hero earns progress. First acceptance permanently locks one faction per player. Hero loss resets unfinished progress and permits a same-faction replacement; previously claimed components and delivered champions remain once-only.
+- Include hero/generation identity in progress/trial packets and exact identity in reset packets, rejecting late old-hero traffic. Keep completion green outside town; require the recorded hero present for claims and champion delivery.
+- Reduce every component target by another10%, rounded up:364/2907/7268/72675/1454/728/110/7268. Compact objective rows while retaining all upgrade eligibility in full details.
+- Add colored lists of all eight set parts to artifact descriptions. Provide Sort backpack by name through Ctrl+N in the hero screen; omit the extra town Inventory tools entry, preserving complete artifact records and sending the chosen permutation online.
+- Use the official adventure mouse event/modifier data for Alt-click trials; add Ctrl+J for the recorded quest hero.
+- The installed private QA helper is removed during the closed-game update; no QA helper is shipped. A sort button inside HD Backpack is still pending and is not claimed in this release.
+- 539 offline tests pass. Native acceptance is pending while this candidate is reviewed; no actual save/load or two-computer pass is claimed here.
+- Fully close the game before updating. Start a NEW map and match the complete build/profile with the other player.
+
 # 20/10/2026 dev17 > dev18 - 0.6.0-batch-dev18
 
 - Separate the internal map-frame names from inventory frames for all64 added faction components. Read-only inspection of the failed dev17 game found46 map templates using the exact44x44 inventory payload instead of their32x32 adventure frame. All5 observed Tower templates used their correct map frame and already had distinct names.

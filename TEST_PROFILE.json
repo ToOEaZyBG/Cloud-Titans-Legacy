@@ -1,5 +1,5 @@
 {
-  "status": "Read-only observed reference on October20; dev13 installed during dev14 offline audit; native/Lobby acceptance pending",
+  "status": "Observed installed profile on25/10/2026 after dependency updates; not runtime or two-computer validated",
   "active_mods_low_to_high_priority": [
     "WoG",
     "Era Erm Framework",
@@ -35,6 +35,7 @@
     "Random wallpaper",
     "JS - commanders module",
     "Cloud Titans Legacy - Local Test",
+    "Statistics Mod",
     "JS - new terrains"
   ],
   "observed_mod_versions": {
@@ -54,7 +55,7 @@
     "TrainerX": "1.0",
     "10SSkills": "1.0",
     "AMER_HumanAI": "1.17",
-    "WoG Graphic Fix": "2.29.0",
+    "WoG Graphic Fix": "2.30.0",
     "Arena Mod": "1.1",
     "Bounty Hunter": "1.2",
     "Raid Boss Mod": "1.4",
@@ -67,12 +68,13 @@
     "Stack Experience Rebalance": "0.9",
     "test": "1.0",
     "JS - new objects": "1.40",
-    "JS - main module": "1.21",
+    "JS - main module": "1.21.2",
     "JS - map generation fixes": "1.12",
     "Random wallpaper": "1.2",
     "JS - commanders module": "1.02",
-    "Cloud Titans Legacy - Local Test": "0.6.0-batch-dev13",
-    "JS - new terrains": "1.4"
+    "Cloud Titans Legacy - Local Test": "0.6.0-batch-dev19",
+    "Statistics Mod": "0.3",
+    "JS - new terrains": "1.4.1"
   },
   "core_sha256": {
     "era.dll": "660bdaac2bc4c37ae7e3d2123a515a7b5cb5fcac4705d7eef53bafe273066cf3",
@@ -115,10 +117,12 @@
     "our installed mod_version and SHA256SUMS.json"
   ],
   "limitations": [
-    "No native game or real network ran",
-    "No remote computer profile inspected",
-    "Packed scripts and actual hook order not universally verified"
+    "Observed installed files; no complete native lifecycle or two-computer validation"
   ],
-  "mod_version": "0.6.0-batch-dev18",
-  "observed_utc": "2026-10-20T00:42:40.063340+00:00"
+  "mod_version": "0.6.0-batch-dev20",
+  "observed_utc": "2026-10-25",
+  "era_platform_version": "2.299",
+  "disabled_candidates": [
+    "H3 Dynamic Balancer0.1.2; author ACM/Difficulty combination unvalidated"
+  ]
 }

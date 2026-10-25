@@ -409,7 +409,7 @@ ZVSE2
 ; ACM's overview is a fixed dialog. Show our independent companion page
 ; after its right-backpack handler returns, without replacing its assets.
 !?FU(OnHeroScreenMouseClick);
-!!HE-1:N?(tooltipHero:y);
+!!CM:H?(tooltipHero:y)/?i;
 !!SN:W^clt.ui.hero^/(tooltipHero);
 !!FU(CLT_UpdateTooltips):P(tooltipHero);
 !!CM:F?(clickFlags:y) I?(clickItem:y) S?(clickType:y);
@@ -425,28 +425,10 @@ ZVSE2
 !!FU(CLT_RefreshHeroUI):P(tooltipHero);
 
 !?FU(CLT_ShowSetInfo);
-!!IF:M^Wear eight different artifacts to assemble Legacy of the Cloud Titans.
-
-2 pieces: +2 Spell Power and Knowledge.
-3 pieces: restores 5 extra spell points daily.
-4 pieces: Tower troops gain +2 Attack and Defense.
-5 pieces: Tower troops gain +1 Speed.
-6 pieces: Giants and Titans gain +3 extra Attack and Defense.
-7 pieces: Giants, Titans and Lords of Thunder gain Lightning Bolt.
-
-The complete relic is worn around the neck and retains every bonus. Visit your own Tower while wearing it to add two weekly recruits to the Giant dwelling.
-
-Lightning strikes automatically; no Alt-click is needed. Extra copies give no further bonus.^;
-!!HE-1:N?(hero:y) O?(owner:y);
-!!OW:C?(activeOwner:y);
-!!FU|(hero)<0/(owner)<>(activeOwner):E;
-!!HE(hero):A2/458/?(relicTotal:y)/?(relicWorn:y);
-!!FU&(relicTotal)>0:E;
-!!SN:W^clt.assembly.offered.%(hero)^/0;
-!!FU(CLT_OfferForge):P(hero);
+!!FU(CQT_InventoryMenu):P;
 
 !?FU(CLT_UpdateTooltips);
-!#VA(hero:x);
+!#VA(hero:x) (assembled:y) (carried:y) (worn:y) (checklist:z) (partName:z) (line:z);
 !!VR(count:y):S0;
 !!VR(mask:y):S0;
 !!VR(count):S0;
@@ -454,6 +436,90 @@ Lightning strikes automatically; no Alt-click is needed. Extra copies give no fu
  !!FU(CLT_GetMask):P(hero)/?(mask);
  !!FU(CLT_Primary):P(mask)/?i/?i/?i/?i/?(count);
 !!en;
+!!HE(hero)&(hero)>=0:A2/458/?(assembled)/?i;
+!!VR(assembled)&(hero)<0:S0;
+!!VR(checklist):S^Gold: worn; green: carried; gray: missing.
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/450/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>0 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/450/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/451/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>1 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/451/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/452/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>2 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/452/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/453/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>3 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/453/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/454/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>4 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/454/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/455/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>5 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/455/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/456/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>6 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/456/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/457/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>7 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/457/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
 !!VRs^clt.tooltip.450^:S^Worn on the head, this artifact increases your Knowledge by 4.
 
 {~Gold}Legacy of the Cloud Titans{~}
@@ -466,7 +532,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Giants, Titans and Lords of Thunder gain Lightning Bolt.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/450/1/s^clt.tooltip.450^;
 !!VRs^clt.tooltip.451^:S^Held in the right hand, this artifact increases your Spell Power by
 4.
@@ -481,7 +549,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Giants, Titans and Lords of Thunder gain Lightning Bolt.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/451/1/s^clt.tooltip.451^;
 !!VRs^clt.tooltip.452^:S^Held in the left hand, this artifact increases your Defense by 4.
 
@@ -495,7 +565,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Giants, Titans and Lords of Thunder gain Lightning Bolt.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/452/1/s^clt.tooltip.452^;
 !!VRs^clt.tooltip.453^:S^Worn on the body, this artifact increases your Attack by 4.
 
@@ -509,7 +581,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Giants, Titans and Lords of Thunder gain Lightning Bolt.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/453/1/s^clt.tooltip.453^;
 !!VRs^clt.tooltip.454^:S^Worn about the shoulders, this artifact restores 5 spell points each
 day.
@@ -524,7 +598,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Giants, Titans and Lords of Thunder gain Lightning Bolt.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/454/1/s^clt.tooltip.454^;
 !!VRs^clt.tooltip.455^:S^Worn on the feet, this artifact increases your daily movement by
 300.
@@ -539,7 +615,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Giants, Titans and Lords of Thunder gain Lightning Bolt.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/455/1/s^clt.tooltip.455^;
 !!VRs^clt.tooltip.456^:S^Worn around the neck, this artifact increases your Spell Power by 2
 and Knowledge by 2.
@@ -554,7 +632,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Giants, Titans and Lords of Thunder gain Lightning Bolt.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/456/1/s^clt.tooltip.456^;
 !!VRs^clt.tooltip.457^:S^Worn on a finger, this artifact increases the Speed of your Giants
 and Titans and their upgrades by 1.
@@ -569,7 +649,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Giants, Titans and Lords of Thunder gain Lightning Bolt.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/457/1/s^clt.tooltip.457^;
 !!VRs^clt.tooltip.458^:S^Worn around the neck, this relic increases your Attack by 4, Defense
 by 4, Spell Power by 8 and Knowledge by 8. Restores 10 spell points
@@ -586,9 +668,95 @@ damage per creature. No mana or manual activation is required.
 Visit your own Tower town while wearing the relic to add 2 weekly
 recruits to its Giants and Titans dwelling. That dwelling must be
 built; lower-tier growth is unchanged.
-Includes all eight artifacts. Extra copies give no further bonus.^;
+Includes all eight artifacts. Extra copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/458/1/s^clt.tooltip.458^;
 !!FU(CFS_State):P(hero)/0/?(mask)/?(count);
+!!HE(hero)&(hero)>=0:A2/467/?(assembled)/?i;
+!!VR(assembled)&(hero)<0:S0;
+!!VR(checklist):S^Gold: worn; green: carried; gray: missing.
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/459/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>0 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/459/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/460/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>1 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/460/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/461/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>2 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/461/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/462/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>3 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/462/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/463/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>4 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/463/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/464/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>5 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/464/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/465/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>6 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/465/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/466/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>7 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/466/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
 !!VRs^clt.tooltip.459^:S^Worn on the head, this artifact increases your Knowledge by 4.
 
 {~Gold}Legacy of the Dawn Seraphs{~}
@@ -601,7 +769,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Castle troops gain +10% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/459/1/s^clt.tooltip.459^;
 !!VRs^clt.tooltip.460^:S^Held in the right hand, this artifact increases your Attack by 4.
 
@@ -615,7 +785,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Castle troops gain +10% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/460/1/s^clt.tooltip.460^;
 !!VRs^clt.tooltip.461^:S^Held in the left hand, this artifact increases your Defense by 4.
 
@@ -629,7 +801,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Castle troops gain +10% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/461/1/s^clt.tooltip.461^;
 !!VRs^clt.tooltip.462^:S^Worn on the body, this artifact increases your Attack by 4.
 
@@ -643,7 +817,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Castle troops gain +10% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/462/1/s^clt.tooltip.462^;
 !!VRs^clt.tooltip.463^:S^Worn about the shoulders, this artifact restores 5 spell points each
 day.
@@ -658,7 +834,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Castle troops gain +10% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/463/1/s^clt.tooltip.463^;
 !!VRs^clt.tooltip.464^:S^Worn on the feet, this artifact increases your daily movement by
 300.
@@ -673,7 +851,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Castle troops gain +10% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/464/1/s^clt.tooltip.464^;
 !!VRs^clt.tooltip.465^:S^Worn around the neck, this artifact increases your Attack by 2 and
 Defense by 2.
@@ -688,7 +868,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Castle troops gain +10% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/465/1/s^clt.tooltip.465^;
 !!VRs^clt.tooltip.466^:S^Worn on a finger, this artifact increases the Speed of your Angels
 and their upgrades by 1.
@@ -703,7 +885,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Castle troops gain +10% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/466/1/s^clt.tooltip.466^;
 !!VRs^clt.tooltip.467^:S^Worn on the head, this relic increases your Attack by 12, Defense by
 8 and Knowledge by 4. Restores 10 spell points daily and grants +300
@@ -722,9 +906,95 @@ Open your battle spellbook and choose the relic power on your turn.
 Visit your own Castle town while wearing the relic to add 2 weekly
 recruits to its Angels dwelling. That dwelling must be built; lower-
 tier growth is unchanged.
-Includes all eight artifacts. Extra copies give no further bonus.^;
+Includes all eight artifacts. Extra copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/467/1/s^clt.tooltip.467^;
 !!FU(CFS_State):P(hero)/1/?(mask)/?(count);
+!!HE(hero)&(hero)>=0:A2/476/?(assembled)/?i;
+!!VR(assembled)&(hero)<0:S0;
+!!VR(checklist):S^Gold: worn; green: carried; gray: missing.
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/468/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>0 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/468/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/469/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>1 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/469/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/470/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>2 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/470/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/471/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>3 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/471/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/472/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>4 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/472/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/473/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>5 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/473/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/474/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>6 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/474/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/475/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>7 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/475/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
 !!VRs^clt.tooltip.468^:S^Worn on the head, this artifact increases your Knowledge by 4.
 
 {~Gold}Legacy of the Emerald Covenant{~}
@@ -737,7 +1007,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Rampart troops gain +10% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/468/1/s^clt.tooltip.468^;
 !!VRs^clt.tooltip.469^:S^Held in the right hand, this artifact increases your Attack by 4.
 
@@ -751,7 +1023,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Rampart troops gain +10% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/469/1/s^clt.tooltip.469^;
 !!VRs^clt.tooltip.470^:S^Held in the left hand, this artifact increases your Defense by 4.
 
@@ -765,7 +1039,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Rampart troops gain +10% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/470/1/s^clt.tooltip.470^;
 !!VRs^clt.tooltip.471^:S^Worn on the body, this artifact increases your Attack by 4.
 
@@ -779,7 +1055,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Rampart troops gain +10% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/471/1/s^clt.tooltip.471^;
 !!VRs^clt.tooltip.472^:S^Worn about the shoulders, this artifact restores 5 spell points each
 day.
@@ -794,7 +1072,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Rampart troops gain +10% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/472/1/s^clt.tooltip.472^;
 !!VRs^clt.tooltip.473^:S^Worn on the feet, this artifact increases your daily movement by
 300.
@@ -809,7 +1089,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Rampart troops gain +10% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/473/1/s^clt.tooltip.473^;
 !!VRs^clt.tooltip.474^:S^Worn around the neck, this artifact increases your Attack by 2 and
 Defense by 2.
@@ -824,7 +1106,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Rampart troops gain +10% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/474/1/s^clt.tooltip.474^;
 !!VRs^clt.tooltip.475^:S^Worn on a finger, this artifact increases the Speed of your Dragons
 and their upgrades by 1.
@@ -839,7 +1123,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Rampart troops gain +10% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/475/1/s^clt.tooltip.475^;
 !!VRs^clt.tooltip.476^:S^Worn about the shoulders, this relic increases your Attack by 12,
 Defense by 8 and Knowledge by 4. Restores 10 spell points daily and
@@ -858,9 +1144,95 @@ Open your battle spellbook and choose the relic power on your turn.
 Visit your own Rampart town while wearing the relic to add 2 weekly
 recruits to its Dragons dwelling. That dwelling must be built;
 lower-tier growth is unchanged.
-Includes all eight artifacts. Extra copies give no further bonus.^;
+Includes all eight artifacts. Extra copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/476/1/s^clt.tooltip.476^;
 !!FU(CFS_State):P(hero)/2/?(mask)/?(count);
+!!HE(hero)&(hero)>=0:A2/485/?(assembled)/?i;
+!!VR(assembled)&(hero)<0:S0;
+!!VR(checklist):S^Gold: worn; green: carried; gray: missing.
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/477/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>0 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/477/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/478/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>1 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/478/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/479/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>2 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/479/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/480/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>3 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/480/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/481/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>4 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/481/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/482/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>5 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/482/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/483/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>6 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/483/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/484/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>7 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/484/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
 !!VRs^clt.tooltip.477^:S^Worn on the head, this artifact increases your Knowledge by 4.
 
 {~Gold}Legacy of the Infernal Pact{~}
@@ -873,7 +1245,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Inferno troops gain +10% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/477/1/s^clt.tooltip.477^;
 !!VRs^clt.tooltip.478^:S^Held in the right hand, this artifact increases your Spell Power by
 4.
@@ -888,7 +1262,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Inferno troops gain +10% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/478/1/s^clt.tooltip.478^;
 !!VRs^clt.tooltip.479^:S^Held in the left hand, this artifact increases your Defense by 4.
 
@@ -902,7 +1278,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Inferno troops gain +10% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/479/1/s^clt.tooltip.479^;
 !!VRs^clt.tooltip.480^:S^Worn on the body, this artifact increases your Attack by 4.
 
@@ -916,7 +1294,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Inferno troops gain +10% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/480/1/s^clt.tooltip.480^;
 !!VRs^clt.tooltip.481^:S^Worn about the shoulders, this artifact restores 5 spell points each
 day.
@@ -931,7 +1311,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Inferno troops gain +10% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/481/1/s^clt.tooltip.481^;
 !!VRs^clt.tooltip.482^:S^Worn on the feet, this artifact increases your daily movement by
 300.
@@ -946,7 +1328,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Inferno troops gain +10% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/482/1/s^clt.tooltip.482^;
 !!VRs^clt.tooltip.483^:S^Worn around the neck, this artifact increases your Attack by 2 and
 Spell Power by 2.
@@ -961,7 +1345,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Inferno troops gain +10% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/483/1/s^clt.tooltip.483^;
 !!VRs^clt.tooltip.484^:S^Worn on a finger, this artifact increases the Speed of your Devils
 and their upgrades by 1.
@@ -976,7 +1362,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Inferno troops gain +10% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/484/1/s^clt.tooltip.484^;
 !!VRs^clt.tooltip.485^:S^Held in the right hand, this relic increases your Attack by 8,
 Defense by 4, Spell Power by 8 and Knowledge by 4. Restores 10 spell
@@ -994,9 +1382,95 @@ Open your battle spellbook and choose the relic power on your turn.
 Visit your own Inferno town while wearing the relic to add 2 weekly
 recruits to its Devils dwelling. That dwelling must be built; lower-
 tier growth is unchanged.
-Includes all eight artifacts. Extra copies give no further bonus.^;
+Includes all eight artifacts. Extra copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/485/1/s^clt.tooltip.485^;
 !!FU(CFS_State):P(hero)/3/?(mask)/?(count);
+!!HE(hero)&(hero)>=0:A2/494/?(assembled)/?i;
+!!VR(assembled)&(hero)<0:S0;
+!!VR(checklist):S^Gold: worn; green: carried; gray: missing.
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/486/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>0 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/486/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/487/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>1 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/487/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/488/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>2 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/488/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/489/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>3 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/489/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/490/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>4 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/490/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/491/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>5 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/491/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/492/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>6 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/492/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/493/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>7 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/493/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
 !!VRs^clt.tooltip.486^:S^Worn on the head, this artifact increases your Knowledge by 4.
 
 {~Gold}Legacy of Andonov{~}
@@ -1009,7 +1483,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Necropolis troops gain +15% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/486/1/s^clt.tooltip.486^;
 !!VRs^clt.tooltip.487^:S^Held in the right hand, this artifact increases your Spell Power by
 4.
@@ -1024,7 +1500,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Necropolis troops gain +15% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/487/1/s^clt.tooltip.487^;
 !!VRs^clt.tooltip.488^:S^Held in the left hand, this artifact increases your Defense by 4.
 
@@ -1038,7 +1516,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Necropolis troops gain +15% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/488/1/s^clt.tooltip.488^;
 !!VRs^clt.tooltip.489^:S^Worn on the body, this artifact increases your Attack by 4.
 
@@ -1052,7 +1532,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Necropolis troops gain +15% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/489/1/s^clt.tooltip.489^;
 !!VRs^clt.tooltip.490^:S^Worn about the shoulders, this artifact restores 5 spell points each
 day.
@@ -1067,7 +1549,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Necropolis troops gain +15% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/490/1/s^clt.tooltip.490^;
 !!VRs^clt.tooltip.491^:S^Worn on the feet, this artifact increases your daily movement by
 300.
@@ -1082,7 +1566,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Necropolis troops gain +15% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/491/1/s^clt.tooltip.491^;
 !!VRs^clt.tooltip.492^:S^Worn around the neck, this artifact increases your Spell Power by 2
 and Knowledge by 2.
@@ -1097,7 +1583,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Necropolis troops gain +15% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/492/1/s^clt.tooltip.492^;
 !!VRs^clt.tooltip.493^:S^Worn on a finger, this artifact increases the Speed of your Dragons
 and their upgrades by 1.
@@ -1112,7 +1600,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Necropolis troops gain +15% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/493/1/s^clt.tooltip.493^;
 !!VRs^clt.tooltip.494^:S^Worn on the body, this relic increases your Attack by 4, Defense by
 4, Spell Power by 8 and Knowledge by 8. Restores 10 spell points
@@ -1134,9 +1624,95 @@ Open your battle spellbook and choose the relic power on your turn.
 Visit your own Necropolis town while wearing the relic to add 3
 weekly recruits to its Dragons dwelling. That dwelling must be
 built; lower-tier growth is unchanged.
-Includes all eight artifacts. Extra copies give no further bonus.^;
+Includes all eight artifacts. Extra copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/494/1/s^clt.tooltip.494^;
 !!FU(CFS_State):P(hero)/4/?(mask)/?(count);
+!!HE(hero)&(hero)>=0:A2/503/?(assembled)/?i;
+!!VR(assembled)&(hero)<0:S0;
+!!VR(checklist):S^Gold: worn; green: carried; gray: missing.
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/495/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>0 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/495/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/496/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>1 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/496/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/497/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>2 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/497/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/498/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>3 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/498/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/499/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>4 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/499/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/500/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>5 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/500/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/501/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>6 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/501/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/502/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>7 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/502/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
 !!VRs^clt.tooltip.495^:S^Worn on the head, this artifact increases your Knowledge by 4.
 
 {~Gold}Legacy of the Obsidian Dominion{~}
@@ -1149,7 +1725,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Dungeon troops gain +10% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/495/1/s^clt.tooltip.495^;
 !!VRs^clt.tooltip.496^:S^Held in the right hand, this artifact increases your Spell Power by
 4.
@@ -1164,7 +1742,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Dungeon troops gain +10% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/496/1/s^clt.tooltip.496^;
 !!VRs^clt.tooltip.497^:S^Held in the left hand, this artifact increases your Defense by 4.
 
@@ -1178,7 +1758,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Dungeon troops gain +10% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/497/1/s^clt.tooltip.497^;
 !!VRs^clt.tooltip.498^:S^Worn on the body, this artifact increases your Attack by 4.
 
@@ -1192,7 +1774,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Dungeon troops gain +10% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/498/1/s^clt.tooltip.498^;
 !!VRs^clt.tooltip.499^:S^Worn about the shoulders, this artifact restores 5 spell points each
 day.
@@ -1207,7 +1791,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Dungeon troops gain +10% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/499/1/s^clt.tooltip.499^;
 !!VRs^clt.tooltip.500^:S^Worn on the feet, this artifact increases your daily movement by
 300.
@@ -1222,7 +1808,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Dungeon troops gain +10% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/500/1/s^clt.tooltip.500^;
 !!VRs^clt.tooltip.501^:S^Worn around the neck, this artifact increases your Spell Power by 2
 and Knowledge by 2.
@@ -1237,7 +1825,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Dungeon troops gain +10% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/501/1/s^clt.tooltip.501^;
 !!VRs^clt.tooltip.502^:S^Worn on a finger, this artifact increases the Speed of your Dragons
 and their upgrades by 1.
@@ -1252,7 +1842,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Dungeon troops gain +10% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/502/1/s^clt.tooltip.502^;
 !!VRs^clt.tooltip.503^:S^Held in the left hand, this relic increases your Attack by 4,
 Defense by 4, Spell Power by 8 and Knowledge by 8. Restores 10 spell
@@ -1270,9 +1862,95 @@ Open your battle spellbook and choose the relic power on your turn.
 Visit your own Dungeon town while wearing the relic to add 2 weekly
 recruits to its Dragons dwelling. That dwelling must be built;
 lower-tier growth is unchanged.
-Includes all eight artifacts. Extra copies give no further bonus.^;
+Includes all eight artifacts. Extra copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/503/1/s^clt.tooltip.503^;
 !!FU(CFS_State):P(hero)/5/?(mask)/?(count);
+!!HE(hero)&(hero)>=0:A2/512/?(assembled)/?i;
+!!VR(assembled)&(hero)<0:S0;
+!!VR(checklist):S^Gold: worn; green: carried; gray: missing.
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/504/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>0 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/504/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/505/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>1 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/505/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/506/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>2 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/506/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/507/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>3 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/507/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/508/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>4 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/508/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/509/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>5 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/509/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/510/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>6 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/510/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/511/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>7 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/511/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
 !!VRs^clt.tooltip.504^:S^Worn on the head, this artifact increases your Knowledge by 4.
 
 {~Gold}Legacy of the Earthshaker Horde{~}
@@ -1285,7 +1963,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Stronghold troops gain +10% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/504/1/s^clt.tooltip.504^;
 !!VRs^clt.tooltip.505^:S^Held in the right hand, this artifact increases your Attack by 4.
 
@@ -1299,7 +1979,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Stronghold troops gain +10% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/505/1/s^clt.tooltip.505^;
 !!VRs^clt.tooltip.506^:S^Held in the left hand, this artifact increases your Defense by 4.
 
@@ -1313,7 +1995,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Stronghold troops gain +10% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/506/1/s^clt.tooltip.506^;
 !!VRs^clt.tooltip.507^:S^Worn on the body, this artifact increases your Attack by 4.
 
@@ -1327,7 +2011,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Stronghold troops gain +10% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/507/1/s^clt.tooltip.507^;
 !!VRs^clt.tooltip.508^:S^Worn about the shoulders, this artifact restores 5 spell points each
 day.
@@ -1342,7 +2028,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Stronghold troops gain +10% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/508/1/s^clt.tooltip.508^;
 !!VRs^clt.tooltip.509^:S^Worn on the feet, this artifact increases your daily movement by
 300.
@@ -1357,7 +2045,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Stronghold troops gain +10% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/509/1/s^clt.tooltip.509^;
 !!VRs^clt.tooltip.510^:S^Worn around the neck, this artifact increases your Attack by 2 and
 Defense by 2.
@@ -1372,7 +2062,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Stronghold troops gain +10% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/510/1/s^clt.tooltip.510^;
 !!VRs^clt.tooltip.511^:S^Worn on a finger, this artifact increases the Speed of your
 Behemoths and their upgrades by 1.
@@ -1387,7 +2079,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Stronghold troops gain +10% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/511/1/s^clt.tooltip.511^;
 !!VRs^clt.tooltip.512^:S^Worn on the feet, this relic increases your Attack by 12, Defense by
 8 and Knowledge by 4. Restores 10 spell points daily and grants +300
@@ -1406,9 +2100,95 @@ Open your battle spellbook and choose the relic power on your turn.
 Visit your own Stronghold town while wearing the relic to add 2
 weekly recruits to its Behemoths dwelling. That dwelling must be
 built; lower-tier growth is unchanged.
-Includes all eight artifacts. Extra copies give no further bonus.^;
+Includes all eight artifacts. Extra copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/512/1/s^clt.tooltip.512^;
 !!FU(CFS_State):P(hero)/6/?(mask)/?(count);
+!!HE(hero)&(hero)>=0:A2/521/?(assembled)/?i;
+!!VR(assembled)&(hero)<0:S0;
+!!VR(checklist):S^Gold: worn; green: carried; gray: missing.
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/513/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>0 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/513/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/514/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>1 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/514/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/515/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>2 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/515/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/516/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>3 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/516/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/517/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>4 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/517/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/518/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>5 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/518/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/519/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>6 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/519/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/520/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>7 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/520/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
 !!VRs^clt.tooltip.513^:S^Worn on the head, this artifact increases your Knowledge by 4.
 
 {~Gold}Legacy of the Primordial Marsh{~}
@@ -1421,7 +2201,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Fortress troops gain +10% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/513/1/s^clt.tooltip.513^;
 !!VRs^clt.tooltip.514^:S^Held in the right hand, this artifact increases your Attack by 4.
 
@@ -1435,7 +2217,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Fortress troops gain +10% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/514/1/s^clt.tooltip.514^;
 !!VRs^clt.tooltip.515^:S^Held in the left hand, this artifact increases your Defense by 4.
 
@@ -1449,7 +2233,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Fortress troops gain +10% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/515/1/s^clt.tooltip.515^;
 !!VRs^clt.tooltip.516^:S^Worn on the body, this artifact increases your Attack by 4.
 
@@ -1463,7 +2249,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Fortress troops gain +10% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/516/1/s^clt.tooltip.516^;
 !!VRs^clt.tooltip.517^:S^Worn about the shoulders, this artifact restores 5 spell points each
 day.
@@ -1478,7 +2266,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Fortress troops gain +10% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/517/1/s^clt.tooltip.517^;
 !!VRs^clt.tooltip.518^:S^Worn on the feet, this artifact increases your daily movement by
 300.
@@ -1493,7 +2283,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Fortress troops gain +10% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/518/1/s^clt.tooltip.518^;
 !!VRs^clt.tooltip.519^:S^Worn around the neck, this artifact increases your Defense by 2 and
 Knowledge by 2.
@@ -1508,7 +2300,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Fortress troops gain +10% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/519/1/s^clt.tooltip.519^;
 !!VRs^clt.tooltip.520^:S^Worn on a finger, this artifact increases the Speed of your Hydras
 and their upgrades by 1.
@@ -1523,7 +2317,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Fortress troops gain +10% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/520/1/s^clt.tooltip.520^;
 !!VRs^clt.tooltip.521^:S^Worn on a finger, this relic increases your Attack by 8, Defense by
 8 and Knowledge by 8. Restores 10 spell points daily and grants +300
@@ -1541,9 +2337,95 @@ Open your battle spellbook and choose the relic power on your turn.
 Visit your own Fortress town while wearing the relic to add 2 weekly
 recruits to its Hydras dwelling. That dwelling must be built; lower-
 tier growth is unchanged.
-Includes all eight artifacts. Extra copies give no further bonus.^;
+Includes all eight artifacts. Extra copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/521/1/s^clt.tooltip.521^;
 !!FU(CFS_State):P(hero)/7/?(mask)/?(count);
+!!HE(hero)&(hero)>=0:A2/530/?(assembled)/?i;
+!!VR(assembled)&(hero)<0:S0;
+!!VR(checklist):S^Gold: worn; green: carried; gray: missing.
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/522/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>0 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/522/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/523/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>1 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/523/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/524/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>2 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/524/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/525/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>3 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/525/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/526/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>4 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/526/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/527/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>5 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/527/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/528/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>6 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/528/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(carried):S0;
+!!HE(hero)&(hero)>=0:A2/529/?(carried)/?i;
+!!VR(worn):S(mask) Sd>>7 &1;
+!!VR(worn)&(mask)>=256:S1;
+!!SN:H^art^/529/0/?(partName);
+!!VR(line):S^{~Gray}%(partName){~}^;
+!!VR(line)&(carried)>0/(assembled)>0:S^{~Lime}%(partName){~}^;
+!!VR(line)&(worn)>0:S^{~Gold}%(partName){~}^;
+!!VR(checklist):+^%(line)
+^;
 !!VRs^clt.tooltip.522^:S^Worn on the head, this artifact increases your Knowledge by 4.
 
 {~Gold}Legacy of the Elemental Nexus{~}
@@ -1556,7 +2438,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Conflux troops gain +10% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/522/1/s^clt.tooltip.522^;
 !!VRs^clt.tooltip.523^:S^Held in the right hand, this artifact increases your Spell Power by
 4.
@@ -1571,7 +2455,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Conflux troops gain +10% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/523/1/s^clt.tooltip.523^;
 !!VRs^clt.tooltip.524^:S^Held in the left hand, this artifact increases your Defense by 4.
 
@@ -1585,7 +2471,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Conflux troops gain +10% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/524/1/s^clt.tooltip.524^;
 !!VRs^clt.tooltip.525^:S^Worn on the body, this artifact increases your Attack by 4.
 
@@ -1599,7 +2487,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Conflux troops gain +10% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/525/1/s^clt.tooltip.525^;
 !!VRs^clt.tooltip.526^:S^Worn about the shoulders, this artifact restores 5 spell points each
 day.
@@ -1614,7 +2504,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Conflux troops gain +10% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/526/1/s^clt.tooltip.526^;
 !!VRs^clt.tooltip.527^:S^Worn on the feet, this artifact increases your daily movement by
 300.
@@ -1629,7 +2521,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Conflux troops gain +10% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/527/1/s^clt.tooltip.527^;
 !!VRs^clt.tooltip.528^:S^Worn around the neck, this artifact increases your Spell Power by 2
 and Knowledge by 2.
@@ -1644,7 +2538,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Conflux troops gain +10% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/528/1/s^clt.tooltip.528^;
 !!VRs^clt.tooltip.529^:S^Worn on a finger, this artifact increases the Speed of your
 Firebirds and Phoenixes and their upgrades by 1.
@@ -1659,7 +2555,9 @@ Wearing %(count) of 8 pieces.
 7 pieces: Conflux troops gain +10% Health.
 
 Only worn pieces count. All troop upgrades are included. Extra
-copies give no further bonus.^;
+copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/529/1/s^clt.tooltip.529^;
 !!VRs^clt.tooltip.530^:S^Carried by the hero, this relic increases your Attack by 4, Defense
 by 4, Spell Power by 8 and Knowledge by 8. Restores 10 spell points
@@ -1678,7 +2576,9 @@ Open your battle spellbook and choose the relic power on your turn.
 Visit your own Conflux town while wearing the relic to add 2 weekly
 recruits to its Firebirds and Phoenixes dwelling. That dwelling must
 be built; lower-tier growth is unchanged.
-Includes all eight artifacts. Extra copies give no further bonus.^;
+Includes all eight artifacts. Extra copies give no further bonus.
+
+%(checklist)^;
 !!SN:H^art^/530/1/s^clt.tooltip.530^;
 
 ; Offering the forge on a fresh hero-window opening avoids mutating the
@@ -1998,3 +2898,118 @@ Includes all eight artifacts. Extra copies give no further bonus.^;
 {~Gold}Cloud Titans set: +2 weekly growth (included in total).{~}^;
 !!SN:B(PTR_TEXT_BUFFER)/d/(text);
 !!UN:C(hook)/(STRUCT_HOOK_CONTEXT_ECX)/4/(PTR_TEXT_BUFFER);
+
+; Uses official SN:H artifact-name lookup and the reviewed full-record bridge.
+!?FU(OnStartOrLoad);
+!!SN:L^cfs_relic_book.era^/?(library:y);
+!!FU&(library)=0:E;
+!!SN:A(library)/^CFSSortPrepare^/?(prepare:y) A(library)/^CFSSortApply^/?(apply:y);
+!!SN:W^cqt.sort.prepare^/(prepare) W^cqt.sort.apply^/(apply);
+
+!?FU(OnKeyPressed_HeroScreen);
+!#VA(key:x) (prevent:x);
+!!FU|(key)<>(KEY_N)/i^key_ctrl^=0:E;
+
+!!VR(prevent):S1;
+!!FU(CQT_InventoryMenu):P;
+
+!?FU(CQT_InventoryMenu);
+!!SN:W^clt.ui.hero^/?(hero:y);
+!!FU|(hero)<0/(hero)>155:E;
+!!HE(hero):O?(owner:y) B0/?(name:z);
+!!FU(CLT_IsLocalOwner):P(owner)/?(local:y);
+!!OW:C?(active:y);
+!!FU|(local)=0/(owner)<>(active):E;
+!!FU(RadioDlg_Reset):P;
+!!VR(title:z):S^%(name) - Inventory tools^;
+!!FU(RadioDlg_SetTitle):P(title);
+!!FU(RadioDlg_AddItem):P^Sort backpack by name^/0;
+!!FU(RadioDlg_AddCancelButton):P;
+!!FU(RadioDlg_Show):P?(selected:y)/?(choice:y)/?(tag:z);
+!!FU|(selected)<0/(choice)<>0:E;
+!!FU(CQT_RequestSort):P(hero);
+!!SN:W^clt.ui.refresh.%(hero)^/1;
+!!SN:F^GetGameState^/?(dialogs[2]:y);
+!!FU(CLT_RefreshHeroUI)&(dialogs[1])=(DLG_HERO_SCREEN):P(hero);
+
+!?FU(CQT_RequestSort);
+!#VA(hero:x);
+!!HE(hero):O?(owner:y);
+!!FU(CLT_IsLocalOwner):P(owner)/?(local:y);
+!!OW:C?(active:y);
+!!FU|(local)=0/(owner)<>(active):E;
+!!SN:W^cqt.sort.prepare^/?(prepareFn:y);
+!!FU&(prepareFn)=0:E;
+!!re (slot:y)/0/63;
+ !!VR(nativeSlot:y):S(slot) +(ART_SLOT_BACKPACK_FIRST);
+ !!FU(GetArtAtSlot):P(hero)/(nativeSlot)/?(art:y)/?i;
+ !!FU|(art)<-1/(art)>530:E;
+ !!if&(art)>=0;
+  !!SN:H^art^/(art)/0/?(name:z);
+  !!VRs^cqt.sort.name.%(slot)^:S(name);
+ !!en;
+!!en;
+!!SN:E(prepareFn)/(CALLCONV_STDCALL)/(hero);
+!!if&v1=0;
+ !!IF:M^Cannot sort this backpack now. Put down any held artifact and close other inventory dialogs. Unknown artifact extensions are not changed.^;
+ !!FU:E;
+!!en;
+!!SN:W^cqt.sort.hash^/?(hash:y) W^cqt.sort.seq^/?(sequence:y);
+!!SN:W^cqt.sort.word.0^/?(w0:y);
+!!SN:W^cqt.sort.word.1^/?(w1:y);
+!!SN:W^cqt.sort.word.2^/?(w2:y);
+!!SN:W^cqt.sort.word.3^/?(w3:y);
+!!SN:W^cqt.sort.word.4^/?(w4:y);
+!!SN:W^cqt.sort.word.5^/?(w5:y);
+!!SN:W^cqt.sort.word.6^/?(w6:y);
+!!SN:W^cqt.sort.word.7^/?(w7:y);
+!!SN:W^cqt.sort.word.8^/?(w8:y);
+!!SN:W^cqt.sort.word.9^/?(w9:y);
+!!SN:W^cqt.sort.word.10^/?(w10:y);
+!!SN:W^cqt.sort.word.11^/?(w11:y);
+!!SN:W^cqt.sort.word.12^/?(w12:y);
+!!FU26907:P(hero)/(hash)/(sequence)/(w0)/(w1)/(w2)/(w3)/(w4)/(w5)/(w6)/(w7)/(w8)/(w9)/(w10)/(w11)/(w12);
+!!SN:W^cqt.sort.result^/?(okay:y);
+!!if&(okay)=0;
+ !!IF:M^Backpack changed during sorting. Nothing was reordered. Close this window and try again.^;
+ !!FU:E;
+!!en;
+!!UN:V?i/?i/?i/?(network:y)/?i;
+!!if&(network)>0;
+ !!IP:D-1;
+ !!FU26907:D(hero)/(hash)/(sequence)/(w0)/(w1)/(w2)/(w3)/(w4)/(w5)/(w6)/(w7)/(w8)/(w9)/(w10)/(w11)/(w12);
+!!en;
+
+!?FU26907;
+!#VA(hero:x) (hash:x) (sequence:x) (w0:x) (w1:x) (w2:x) (w3:x) (w4:x) (w5:x) (w6:x) (w7:x) (w8:x) (w9:x) (w10:x) (w11:x) (w12:x);
+!!SN:W^cqt.sort.result^/0;
+!!FU|(hero)<0/(hero)>155:E;
+!!HE(hero):O?(owner:y);
+!!FU|(owner)<0/(owner)>7:E;
+!!OW:C?(active:y) I(owner)/?(ai:y);
+!!FU|(owner)<>(active)/(ai)>0:E;
+!!SN:W^cqt.sort.apply^/?(function:y);
+!!FU&(function)=0:E;
+!!SN:W^cqt.sort.hero^/(hero) W^cqt.sort.hash^/(hash) W^cqt.sort.seq^/(sequence);
+!!SN:W^cqt.sort.word.0^/(w0);
+!!SN:W^cqt.sort.word.1^/(w1);
+!!SN:W^cqt.sort.word.2^/(w2);
+!!SN:W^cqt.sort.word.3^/(w3);
+!!SN:W^cqt.sort.word.4^/(w4);
+!!SN:W^cqt.sort.word.5^/(w5);
+!!SN:W^cqt.sort.word.6^/(w6);
+!!SN:W^cqt.sort.word.7^/(w7);
+!!SN:W^cqt.sort.word.8^/(w8);
+!!SN:W^cqt.sort.word.9^/(w9);
+!!SN:W^cqt.sort.word.10^/(w10);
+!!SN:W^cqt.sort.word.11^/(w11);
+!!SN:W^cqt.sort.word.12^/(w12);
+!!SN:E(function)/(CALLCONV_STDCALL);
+!!SN:W^cqt.sort.result^/v1;
+!!SN&v1=0:W^cqt.sort.error^/1;
+
+!?FU(OnLoadHeroScreen);
+!#VA(hero:x);
+!!FU|(hero)<0/(hero)>155:E;
+!!SN:W^clt.ui.hero^/(hero);
+!!FU(CLT_UpdateTooltips):P(hero);

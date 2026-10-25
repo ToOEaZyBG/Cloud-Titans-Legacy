@@ -23,44 +23,44 @@ ZVSE2
 !?FU(CLT_QuestInfo);
 !#VA(quest:x) (target:x) (title:x) (objective:x);
 !!if&(quest)=0;
- !!VR(target):S404;
+ !!VR(target):S364;
  !!VR(title):Z^Crown of the Cloud Sovereign^;
- !!VR(objective):Z^Win 404 battles.^;
+ !!VR(objective):Z^Win 364 battles.^;
 !!en;
 !!if&(quest)=1;
- !!VR(target):S3230;
+ !!VR(target):S2907;
  !!VR(title):Z^Thunder Scepter^;
- !!VR(objective):Z^Defeat 3230 Mages or Arch Mages.^;
+ !!VR(objective):Z^Defeat 2907 Mages or Arch Mages.^;
 !!en;
 !!if&(quest)=2;
- !!VR(target):S8075;
+ !!VR(target):S7268;
  !!VR(title):Z^Aegis of the Sky^;
- !!VR(objective):Z^Defeat 8075 Skeletons or Skeleton Warriors.^;
+ !!VR(objective):Z^Defeat 7268 Skeletons or Skeleton Warriors.^;
 !!en;
 !!if&(quest)=3;
- !!VR(target):S80750;
+ !!VR(target):S72675;
  !!VR(title):Z^Armor of the Ancient Titan^;
- !!VR(objective):Z^Defeat 80750 enemy creatures of any kind.^;
+ !!VR(objective):Z^Defeat 72675 enemy creatures of any kind.^;
 !!en;
 !!if&(quest)=4;
- !!VR(target):S1615;
+ !!VR(target):S1454;
  !!VR(title):Z^Mantle of the Aurora^;
- !!VR(objective):Z^Defeat 1615 Vampires or Vampire Lords.^;
+ !!VR(objective):Z^Defeat 1454 Vampires or Vampire Lords.^;
 !!en;
 !!if&(quest)=5;
- !!VR(target):S808;
+ !!VR(target):S728;
  !!VR(title):Z^Boots of the Snow Wanderer^;
- !!VR(objective):Z^Win 808 battles.^;
+ !!VR(objective):Z^Win 728 battles.^;
 !!en;
 !!if&(quest)=6;
- !!VR(target):S122;
+ !!VR(target):S110;
  !!VR(title):Z^Pendant of the Celestial Forge^;
- !!VR(objective):Z^Defeat 122 Behemoths, Ancient Behemoths or Ghost Behemoths.^;
+ !!VR(objective):Z^Defeat 110 Behemoths, Ancient Behemoths or Ghost Behemoths.^;
 !!en;
 !!if&(quest)=7;
- !!VR(target):S8075;
+ !!VR(target):S7268;
  !!VR(title):Z^Ring of the Storm^;
- !!VR(objective):Z^Defeat 8075 Imps or Familiars.^;
+ !!VR(objective):Z^Defeat 7268 Imps or Familiars.^;
 !!en;
 
 !?FU(CLT_QuestMetric);
@@ -85,12 +85,7 @@ ZVSE2
 ; across nested/modal UI calls, which may replace temporary strings.
 !?FU(CLT_QuestState);
 !#VA(owner:x) (quest:x) (progress:x) (claimed:x);
-!!VR(progress):S0;
-!!VR(claimed):S0;
-!!FU|(owner)<0/(owner)>7/(quest)<0/(quest)>7:E;
-!!SN:W^clt.quest.%(owner).progress.%(quest)^/?(progress);
-!!SN&(quest)=6:W^clt.quest.%(owner).progress.behemoths^/?(progress);
-!!SN:W^clt.quest.%(owner).claimed.%(quest)^/?(claimed);
+!!FU(CFS_QuestState):P(owner)/8/(quest)/?(progress)/?(claimed);
 
 !?FU(CLT_QuestTownRequirements);
 !#VA(town:x) (missing:x);
@@ -150,86 +145,7 @@ Missing buildings: %(missing). Skyship/Grail is not required.^;
 !!en;
 
 !?FU(CLT_QuestMenu);
-!!FU(CLT_QuestLocal):P?(okay:y);
-!!FU&(okay)=0:E;
-!!CA-1:T?(kind:y) O?(owner:y) H1/?(hero:y);
-!!OW:C?(active:y);
-!!FU|(kind)<>(TOWN_TOWER)/(owner)<>(active):E;
-!!OW:I(owner)/?(ai:y);
-!!FU&(ai)>0:E;
-!!FU(CLT_IsLocalOwner):P(owner)/?(localOwner:y);
-!!FU&(localOwner)=0:E;
-!!CA-1&(hero)<0:H0/?(hero);
-!!if&(hero)>=0;
- !!HE(hero):O?(heroOwner:y);
- !!VR(hero)&(heroOwner)<>(owner):S-1;
-!!en;
-!!FU(CLT_PlayerOwnedParts):P(owner)/?(ownedMask:y);
-!!FU(RadioDlg_Reset):P;
-!!FU(RadioDlg_SetTitle):P^Legacy of the Cloud Titans - Quests^;
-!!re (q:y)/0/7;
- !!FU(CLT_QuestInfo):P(q)/?(target:y)/?(title:z)/?(objective:z);
- !!FU(CLT_QuestRequirements):P(q)/(hero)/?(eligible:y)/?(requirements:z);
- !!FU(CLT_QuestState):P(owner)/(q)/?(progress:y)/?(claimed:y);
- !!FU(CLT_QuestMetric):P(q)/?(metric:z);
- !!VR(caption:z):S^%(title): %(progress)/%(target) %(metric)^;
- !!VR(owned:y):S(ownedMask) Sd>>(q) &1;
- !!VR(caption)&(owned)>0:S^%(caption) - already owned^;
- !!VR(caption)&(claimed)>0:S^{~Lime}%(caption) - claimed{~}^;
- !!VR(caption)&(claimed)=0/(progress)>=(target)/(eligible)=0:S^%(caption) - requirements missing^;
- !!VR(caption)&(claimed)=0/(progress)>=(target)/(eligible)=1:S^{~Lime}%(caption) - READY{~}^;
- !!FU(RadioDlg_AddItem):P(caption)/(q);
-!!en;
-!!FU(RadioDlg_AddCancelButton):P;
-!!FU(RadioDlg_Show):P?(selected:y)/?(quest:y)/?(tag:z);
-!!FU&(selected)<0:E;
-!!FU|(quest)<0/(quest)>7:E;
-; Re-read the town context after the modal dialog instead of retaining its
-; owner/hero locals across callbacks from other mods.
-!!CA-1:T?(kind) O?(owner) H1/?(hero);
-!!OW:C?(active);
-!!FU|(kind)<>(TOWN_TOWER)/(owner)<>(active):E;
-!!CA-1&(hero)<0:H0/?(hero);
-!!if&(hero)>=0;
- !!HE(hero):O?(heroOwner);
- !!VR(hero)&(heroOwner)<>(owner):S-1;
-!!en;
-!!FU(CLT_QuestInfo):P(quest)/?(goal:y)/?(name:z)/?(description:z);
-!!FU(CLT_QuestRequirements):P(quest)/(hero)/?(canClaim:y)/?(claimRequirements:z);
-!!FU(CLT_QuestState):P(owner)/(quest)/?(current:y)/?(taken:y);
-!!FU(CLT_PlayerOwnedParts):P(owner)/?(detailMask:y);
-!!VR(detailOwned:y):S(detailMask) Sd>>(quest) &1;
-!!VR(ownership:z):S^You do not currently own this component.^;
-!!VR(ownership)&(detailOwned)>0:S^Already owned. This quest can still give another copy for a different hero.^;
-!!IF:M^{~Gold}%(name){~}
-
-%(description)
-Progress: %(current)/%(goal)
-%(ownership)
-%(claimRequirements)
-
-All your heroes share progress. Only confirmed battles count.
-Reward: one component, once per player in this game.^;
-!!if&(taken)>0;
- !!IF:M^This quest reward has already been claimed.^;
- !!FU:E;
-!!en;
-!!FU&(current)<(goal):E;
-!!FU&(canClaim)=0:E;
-!!IF:Q1^Claim %(name) for this hero?^;
-!!FU&-1:E;
-!!CA-1:U?(claimTown:y);
-!!UN:V?i/?i/?i/?(network:y)/?i;
-!!if&(network)>0;
- !!FU26893:P(hero)/(claimTown)/(quest);
- !!IP:D-1;
- !!FU26893:D(hero)/(claimTown)/(quest);
-!!el;
- !!FU(CLT_ClaimQuest):P(hero)/(claimTown)/(quest);
-!!en;
-!!SN:W^clt.quest.%(owner).claimed.%(quest)^/?(delivered:y);
-!!IF&(delivered)>0:M^Quest complete. %(name) was delivered to your hero.^;
-!!IF&(delivered)=0:M^The artifact could not be delivered. Make room and verify the requirements, then try again.^;
+!!FU(CQT_ComponentMenu):P;
 
 !?FU(OnStartOrLoad);
 !!SN:L^erm_hooker.era^/?(library:y);
@@ -295,7 +211,7 @@ Reward: one component, once per player in this game.^;
   !!FU(CFS_StageTowerKill)|(type)=42/(type)=43:P7/(killed);
  !!en;
 !!en;
-!!SN:W^clt.quest.pending.owner^/(owner) W^clt.quest.pending^/1;
+!!SN:W^clt.quest.pending.hero^/(hero) W^clt.quest.pending.owner^/(owner) W^clt.quest.pending^/1;
 
 !?FU(OnAfterBattleUniversal);
 !!SN:W^clt.quest.pending^/?(pending:y);
@@ -303,6 +219,7 @@ Reward: one component, once per player in this game.^;
 !!SN:W^clt.quest.pending^/0 W^clt.quest.snapshot^/0 W^clt.quest.pending.owner^/?(owner:y);
 !!FU(CFS_Commit):P(owner);
 !!FU(CFH_CommitBattle):P(owner);
+!!FU:E;
 !!re (q:y)/0/7;
  !!FU(CLT_QuestProgressKey):P(owner)/(q)/?(key:z);
  !!SN:W^clt.quest.delta.%(q)^/?(amount:y) W(key)/?(old:y);

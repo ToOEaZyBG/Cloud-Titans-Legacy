@@ -1,7 +1,15 @@
-LATEST PUBLIC BUILD: 0.6.0-batch-dev18
+LATEST PUBLIC BUILD: 0.6.0-batch-dev20
 
 --------------------------------------------------------------
 CHANGELOG
+
+25/10/2026 dev19 > dev20
+- Includes the previously private dev19 quest/inventory work; the previous public build was dev18.
+- Bind component/champion quests to the accepting hero and one permanent faction per player; reset unfinished progress after hero loss.
+- Reduce all component quest targets by another10%; show completed objectives outside town and compact quest rows.
+- Add colored component checklists and backpack name sorting; repair champion trial input with Ctrl+J alternative.
+- Remove the town Inventory tools entry; sorting remains available with Ctrl+N in the hero screen. The Backpack-window button is not included yet.
+- No PRIVATE QA script or menu in the delivered package. 539 offline regression checks passed before this menu cleanup; current release checks are recorded in VALIDATION.md. Native battle/save/Lobby acceptance remains pending.
 
 20/10/2026 dev17 > dev18
 - Separate adventure-map frame names from inventory names for all64 added faction components, correcting the resource-cache conflict behind clipped map icons. Tower names and all item artwork are unchanged.
@@ -22,9 +30,6 @@ CHANGELOG
 - Increase map component budgets by10% on every map size; keep equal surface/underground counts.
 - Reduce component quest targets by a further5%.
 - Add native AI artifact grant guards and safe-event cleanup; native enforcement acceptance is pending.
-
-19/10/2026 dev12 > dev13
-- Harden champion delivery retries, completed map-plan validation and quest counter overflow handling.
 
 --------------------------------------------------------------
 
@@ -48,7 +53,7 @@ FIND AND EARN COMPONENTS
 
 Map exploration: some eligible loose artifact sites become faction components when a new map is prepared. Finds can belong to any town. On maps with an underground level, the generated plan keeps equal component counts above and below ground. Availability depends on valid locations; exploring a particular area does not guarantee a component.
 
-Faction quests: open Faction set quests in your town menu. Each component has an objective and a progress counter. Defeat the listed enemies or complete the required battles, then return with a qualified matching-faction hero to claim it. Read the selected objective for its level and town requirements. Progress is shared by your heroes; each quest offers one copy per player. Finding a piece elsewhere does not consume that quest reward.
+Faction quests: open Faction set quests in your town menu. Each component has an objective and a progress counter. Defeat the listed enemies or complete the required battles, then return with the recorded qualified hero to claim it. Completed objectives stay green while that hero is away. Read the selected objective for its level and town requirements. Choose Accept with the hero in town. Only that recorded hero earns progress. Your first component or champion quest permanently locks one faction for this game. Death or dismissal resets unfinished progress; a replacement may accept for the same faction. Previously claimed component rewards remain claimed, once per player. Finding a piece elsewhere does not consume that quest reward.
 
 Level-up rewards: with WoG option 126 enabled, eligible human Relic-category level-up rewards can offer a matching-faction component. The component gate is 5% from level 18, with at least ten levels between component selections. This is a rare extra route, not a guaranteed reward every ten levels.
 
@@ -61,6 +66,12 @@ Different worn pieces unlock cumulative set bonuses. Components in the backpack 
 Collect all eight different components and use the assemble/disassemble action in the faction quest menu. The assembled relic represents the full collection. Its slot depends on the relic. Disassembly returns the components to the backpack, so leave enough space.
 
 Visit a matching owned developed town while wearing the relic to link its weekly top-tier recruitment bonus. The highest-level dwelling is required.
+
+BACKPACK AND SET CHECKLISTS
+
+Open Inventory tools in the town menu, or press Ctrl+N in the hero screen, and select Sort backpack by name. Names are grouped alphabetically; scroll modifiers, duplicates, equipment and backpack capacity are preserved. Put down any held item first. The current reviewed profile supports artifact IDs0-530; unknown extensions are left unchanged.
+
+Our artifact descriptions list all eight matching parts: gold means worn, green means owned but not worn, gray means missing. An assembled relic represents all eight. Only equipped pieces contribute set bonuses.
 
 USE YOUR RELIC'S BATTLE POWER
 
@@ -83,7 +94,7 @@ Choose Champion quest in a matching owned town to enroll and view the reward and
 
 To count the five qualifying victories, use a level-25 hero carrying four distinct matching components, or the assembled relic, and meet the town-building requirements. Commanders must be enabled. Fight with that faction's regular troops; commanders and war machines do not invalidate the army. The Grail is not required.
 
-After the victories, leave town and Alt-left-click your own adventure hero to begin the final trial. Return to the matching town with a free visitor space and fewer than eight heroes to receive the champion. A blocked delivery keeps the reward pending.
+After the victories, leave town and Alt-left-click the bound quest hero to begin the final trial, or press Ctrl+J on the adventure map. Component and champion quests each record their accepting hero; another hero cannot substitute. Return the bound hero to the matching town and put them in the garrison, leaving the visitor space free; keep fewer than eight heroes to receive the champion. A blocked delivery keeps the reward pending.
 
 Castle: Aldric. Rampart: Sylvara. Tower: Vaelion. Inferno: Zareth. Necropolis: Andonov. Dungeon: Nyssara. Stronghold: Kargan. Fortress: Ssareth. Conflux: Aurelis.
 
