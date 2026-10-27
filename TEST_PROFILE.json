@@ -119,7 +119,7 @@
   "limitations": [
     "Observed installed files; no complete native lifecycle or two-computer validation"
   ],
-  "mod_version": "0.6.0-batch-dev25",
+  "mod_version": "0.6.0-batch-dev26",
   "observed_utc": "2026-10-25",
   "era_platform_version": "2.299",
   "disabled_candidates": [

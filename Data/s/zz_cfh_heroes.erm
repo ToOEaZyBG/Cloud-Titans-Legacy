@@ -436,10 +436,12 @@ ZVSE2
 !#VA(hero:x) (outside:x);
 !!VR(outside):S0;
 !!FU|(hero)<0/(hero)>155:E;
-; Shipped H3API H3Hero::objectTypeUnder at12; id at26 and bag at468.
+; H3API: isVisible at6, objectBelow at11, objectTypeUnder at12.
+; objectTypeUnder is stale after leaving a town when objectBelow is false.
 !!HE(hero):Z?(heroPtr:y) P?(x:y)/?(y:y)/?(z:y);
-!!UN:C(heroPtr)/12/4/?(under:y);
-!!VR(outside)&(x)>=0/(y)>=0/(z)>=0/(under)<>(OBJ_TOWN):S1;
+!!UN:C(heroPtr)/6/1/?(visible:y) C(heroPtr)/11/1/?(below:y) C(heroPtr)/12/4/?(under:y);
+!!FU|(visible)=0/(x)<0/(y)<0/(z)<0:E;
+!!VR(outside)|(below)=0/(under)<>(OBJ_TOWN):S1;
 
 !?FU(CFH_ArmTrial);
 !#VA(owner:x) (kind:x) (city:x) (hero:x) (step:x) (sequence:x) (epoch:x) (okay:x);

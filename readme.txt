@@ -1,7 +1,13 @@
-LATEST PUBLIC BUILD: 0.6.0-batch-dev25
+LATEST PUBLIC BUILD: 0.6.0-batch-dev26
 
 --------------------------------------------------------------
 CHANGELOG
+
+27/10/2026 dev25 > dev26
+- All nine sets: active worn-piece bonus lines turn green at each threshold.
+- Replace Mage, Unicorn and Green Dragon quest families with Liches, Black Knights and undead Dragons wherever those targets occur.
+- Repair trial refusal after leaving town: ignore stale town type on empty tiles and reject hidden garrison heroes.
+- Start a NEW map. Reported post-battle crash and two-computer acceptance remain unresolved.
 
 27/10/2026 dev24 > dev25
 - All nine castles: component quests are another10% easier.
@@ -27,14 +33,6 @@ CHANGELOG
 - Increase every custom artifact primary and equipment/set stat bonus by50%, rounded up per positive bonus.
 - Show equipped parts in green, other parts in gray and the current equipped count as (N/8), following the native artifact presentation.
 - Keep spell costs, quest targets, growth, special battle powers and30% Life Leech unchanged. New map required; native and two-computer acceptance pending.
-
-25/10/2026 dev19 > dev20
-- Includes the previously private dev19 quest/inventory work; the previous public build was dev18.
-- Bind component/champion quests to the accepting hero and one permanent faction per player; reset unfinished progress after hero loss.
-- Reduce all component quest targets by another10%; show completed objectives outside town and compact quest rows.
-- Add colored component checklists and backpack name sorting; repair champion trial input with Ctrl+J alternative.
-- Remove the town Inventory tools entry; sorting remains available with Ctrl+N in the hero screen. The Backpack-window button is not included yet.
-- No PRIVATE QA script or menu in the delivered package. 539 offline regression checks passed before this menu cleanup; current release checks are recorded in VALIDATION.md. Native battle/save/Lobby acceptance remains pending.
 
 --------------------------------------------------------------
 

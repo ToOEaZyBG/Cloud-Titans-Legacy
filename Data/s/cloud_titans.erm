@@ -428,7 +428,7 @@ ZVSE2
 !!FU(CQT_InventoryMenu):P;
 
 !?FU(CLT_UpdateTooltips);
-!#VA(hero:x) (assembled:y) (carried:y) (worn:y) (checklist:z) (partName:z) (line:z) (artifactName:z);
+!#VA(hero:x) (assembled:y) (carried:y) (worn:y) (checklist:z) (partName:z) (line:z) (artifactName:z) (bonus2:z) (bonus3:z) (bonus4:z) (bonus5:z) (bonus6:z) (bonus7:z);
 !!VR(count:y):S0;
 !!VR(mask:y):S0;
 !!VR(count):S0;
@@ -436,6 +436,18 @@ ZVSE2
  !!FU(CLT_GetMask):P(hero)/?(mask);
  !!FU(CLT_Primary):P(mask)/?i/?i/?i/?i/?(count);
 !!en;
+!!VR(bonus2):S^2 pieces: +3 Spell Power and Knowledge.^;
+!!VR(bonus2)&(count)>=2:S^{~Lime}2 pieces: +3 Spell Power and Knowledge.{~}^;
+!!VR(bonus3):S^3 pieces: restores 8 extra spell points daily.^;
+!!VR(bonus3)&(count)>=3:S^{~Lime}3 pieces: restores 8 extra spell points daily.{~}^;
+!!VR(bonus4):S^4 pieces: Tower troops gain +3 Attack and Defense.^;
+!!VR(bonus4)&(count)>=4:S^{~Lime}4 pieces: Tower troops gain +3 Attack and Defense.{~}^;
+!!VR(bonus5):S^5 pieces: Tower troops gain +2 Speed.^;
+!!VR(bonus5)&(count)>=5:S^{~Lime}5 pieces: Tower troops gain +2 Speed.{~}^;
+!!VR(bonus6):S^6 pieces: Giants and Titans gain +5 extra Attack and Defense.^;
+!!VR(bonus6)&(count)>=6:S^{~Lime}6 pieces: Giants and Titans gain +5 extra Attack and Defense.{~}^;
+!!VR(bonus7):S^7 pieces: Giants, Titans and Lords of Thunder gain Lightning Bolt.^;
+!!VR(bonus7)&(count)>=7:S^{~Lime}7 pieces: Giants, Titans and Lords of Thunder gain Lightning Bolt.{~}^;
 !!HE(hero)&(hero)>=0:A2/458/?(assembled)/?i;
 !!VR(assembled)&(hero)<0:S0;
 !!VR(checklist):S^^;
@@ -517,12 +529,12 @@ ZVSE2
 Worn on the head, this artifact increases your Knowledge by 6.
 
 {~Lime}Legacy of the Cloud Titans (%(count)/8){~}
-2 pieces: +3 Spell Power and Knowledge.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Tower troops gain +3 Attack and Defense.
-5 pieces: Tower troops gain +2 Speed.
-6 pieces: Giants and Titans gain +5 extra Attack and Defense.
-7 pieces: Giants, Titans and Lords of Thunder gain Lightning Bolt.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -536,12 +548,12 @@ Held in the right hand, this artifact increases your Spell Power by
 6.
 
 {~Lime}Legacy of the Cloud Titans (%(count)/8){~}
-2 pieces: +3 Spell Power and Knowledge.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Tower troops gain +3 Attack and Defense.
-5 pieces: Tower troops gain +2 Speed.
-6 pieces: Giants and Titans gain +5 extra Attack and Defense.
-7 pieces: Giants, Titans and Lords of Thunder gain Lightning Bolt.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -554,12 +566,12 @@ copies give no further bonus.
 Held in the left hand, this artifact increases your Defense by 6.
 
 {~Lime}Legacy of the Cloud Titans (%(count)/8){~}
-2 pieces: +3 Spell Power and Knowledge.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Tower troops gain +3 Attack and Defense.
-5 pieces: Tower troops gain +2 Speed.
-6 pieces: Giants and Titans gain +5 extra Attack and Defense.
-7 pieces: Giants, Titans and Lords of Thunder gain Lightning Bolt.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -572,12 +584,12 @@ copies give no further bonus.
 Worn on the body, this artifact increases your Attack by 6.
 
 {~Lime}Legacy of the Cloud Titans (%(count)/8){~}
-2 pieces: +3 Spell Power and Knowledge.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Tower troops gain +3 Attack and Defense.
-5 pieces: Tower troops gain +2 Speed.
-6 pieces: Giants and Titans gain +5 extra Attack and Defense.
-7 pieces: Giants, Titans and Lords of Thunder gain Lightning Bolt.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -591,12 +603,12 @@ Worn about the shoulders, this artifact restores 8 spell points each
 day.
 
 {~Lime}Legacy of the Cloud Titans (%(count)/8){~}
-2 pieces: +3 Spell Power and Knowledge.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Tower troops gain +3 Attack and Defense.
-5 pieces: Tower troops gain +2 Speed.
-6 pieces: Giants and Titans gain +5 extra Attack and Defense.
-7 pieces: Giants, Titans and Lords of Thunder gain Lightning Bolt.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -610,12 +622,12 @@ Worn on the feet, this artifact increases your daily movement by
 450.
 
 {~Lime}Legacy of the Cloud Titans (%(count)/8){~}
-2 pieces: +3 Spell Power and Knowledge.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Tower troops gain +3 Attack and Defense.
-5 pieces: Tower troops gain +2 Speed.
-6 pieces: Giants and Titans gain +5 extra Attack and Defense.
-7 pieces: Giants, Titans and Lords of Thunder gain Lightning Bolt.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -629,12 +641,12 @@ Worn around the neck, this artifact increases your Spell Power by 3
 and Knowledge by 3.
 
 {~Lime}Legacy of the Cloud Titans (%(count)/8){~}
-2 pieces: +3 Spell Power and Knowledge.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Tower troops gain +3 Attack and Defense.
-5 pieces: Tower troops gain +2 Speed.
-6 pieces: Giants and Titans gain +5 extra Attack and Defense.
-7 pieces: Giants, Titans and Lords of Thunder gain Lightning Bolt.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -648,12 +660,12 @@ Worn on a finger, this artifact increases the Speed of your Giants
 and Titans and their upgrades by 2.
 
 {~Lime}Legacy of the Cloud Titans (%(count)/8){~}
-2 pieces: +3 Spell Power and Knowledge.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Tower troops gain +3 Attack and Defense.
-5 pieces: Tower troops gain +2 Speed.
-6 pieces: Giants and Titans gain +5 extra Attack and Defense.
-7 pieces: Giants, Titans and Lords of Thunder gain Lightning Bolt.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -682,6 +694,18 @@ Includes all eight artifacts. Extra copies give no further bonus.
 %(checklist)^;
 !!SN:H^art^/458/1/s^clt.tooltip.458^;
 !!FU(CFS_State):P(hero)/0/?(mask)/?(count);
+!!VR(bonus2):S^2 pieces: +3 Attack and Defense.^;
+!!VR(bonus2)&(count)>=2:S^{~Lime}2 pieces: +3 Attack and Defense.{~}^;
+!!VR(bonus3):S^3 pieces: restores 8 extra spell points daily.^;
+!!VR(bonus3)&(count)>=3:S^{~Lime}3 pieces: restores 8 extra spell points daily.{~}^;
+!!VR(bonus4):S^4 pieces: Castle troops gain +3 Attack and Defense.^;
+!!VR(bonus4)&(count)>=4:S^{~Lime}4 pieces: Castle troops gain +3 Attack and Defense.{~}^;
+!!VR(bonus5):S^5 pieces: Castle troops gain +2 Speed.^;
+!!VR(bonus5)&(count)>=5:S^{~Lime}5 pieces: Castle troops gain +2 Speed.{~}^;
+!!VR(bonus6):S^6 pieces: Angels gain +5 extra Attack and Defense.^;
+!!VR(bonus6)&(count)>=6:S^{~Lime}6 pieces: Angels gain +5 extra Attack and Defense.{~}^;
+!!VR(bonus7):S^7 pieces: Castle troops gain +15% Health.^;
+!!VR(bonus7)&(count)>=7:S^{~Lime}7 pieces: Castle troops gain +15% Health.{~}^;
 !!HE(hero)&(hero)>=0:A2/467/?(assembled)/?i;
 !!VR(assembled)&(hero)<0:S0;
 !!VR(checklist):S^^;
@@ -763,12 +787,12 @@ Includes all eight artifacts. Extra copies give no further bonus.
 Worn on the head, this artifact increases your Knowledge by 6.
 
 {~Lime}Legacy of the Dawn Seraphs (%(count)/8){~}
-2 pieces: +3 Attack and Defense.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Castle troops gain +3 Attack and Defense.
-5 pieces: Castle troops gain +2 Speed.
-6 pieces: Angels gain +5 extra Attack and Defense.
-7 pieces: Castle troops gain +15% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -781,12 +805,12 @@ copies give no further bonus.
 Held in the right hand, this artifact increases your Attack by 6.
 
 {~Lime}Legacy of the Dawn Seraphs (%(count)/8){~}
-2 pieces: +3 Attack and Defense.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Castle troops gain +3 Attack and Defense.
-5 pieces: Castle troops gain +2 Speed.
-6 pieces: Angels gain +5 extra Attack and Defense.
-7 pieces: Castle troops gain +15% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -799,12 +823,12 @@ copies give no further bonus.
 Held in the left hand, this artifact increases your Defense by 6.
 
 {~Lime}Legacy of the Dawn Seraphs (%(count)/8){~}
-2 pieces: +3 Attack and Defense.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Castle troops gain +3 Attack and Defense.
-5 pieces: Castle troops gain +2 Speed.
-6 pieces: Angels gain +5 extra Attack and Defense.
-7 pieces: Castle troops gain +15% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -817,12 +841,12 @@ copies give no further bonus.
 Worn on the body, this artifact increases your Attack by 6.
 
 {~Lime}Legacy of the Dawn Seraphs (%(count)/8){~}
-2 pieces: +3 Attack and Defense.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Castle troops gain +3 Attack and Defense.
-5 pieces: Castle troops gain +2 Speed.
-6 pieces: Angels gain +5 extra Attack and Defense.
-7 pieces: Castle troops gain +15% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -836,12 +860,12 @@ Worn about the shoulders, this artifact restores 8 spell points each
 day.
 
 {~Lime}Legacy of the Dawn Seraphs (%(count)/8){~}
-2 pieces: +3 Attack and Defense.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Castle troops gain +3 Attack and Defense.
-5 pieces: Castle troops gain +2 Speed.
-6 pieces: Angels gain +5 extra Attack and Defense.
-7 pieces: Castle troops gain +15% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -855,12 +879,12 @@ Worn on the feet, this artifact increases your daily movement by
 450.
 
 {~Lime}Legacy of the Dawn Seraphs (%(count)/8){~}
-2 pieces: +3 Attack and Defense.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Castle troops gain +3 Attack and Defense.
-5 pieces: Castle troops gain +2 Speed.
-6 pieces: Angels gain +5 extra Attack and Defense.
-7 pieces: Castle troops gain +15% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -874,12 +898,12 @@ Worn around the neck, this artifact increases your Attack by 3 and
 Defense by 3.
 
 {~Lime}Legacy of the Dawn Seraphs (%(count)/8){~}
-2 pieces: +3 Attack and Defense.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Castle troops gain +3 Attack and Defense.
-5 pieces: Castle troops gain +2 Speed.
-6 pieces: Angels gain +5 extra Attack and Defense.
-7 pieces: Castle troops gain +15% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -893,12 +917,12 @@ Worn on a finger, this artifact increases the Speed of your Angels
 and their upgrades by 2.
 
 {~Lime}Legacy of the Dawn Seraphs (%(count)/8){~}
-2 pieces: +3 Attack and Defense.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Castle troops gain +3 Attack and Defense.
-5 pieces: Castle troops gain +2 Speed.
-6 pieces: Angels gain +5 extra Attack and Defense.
-7 pieces: Castle troops gain +15% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -929,6 +953,18 @@ Includes all eight artifacts. Extra copies give no further bonus.
 %(checklist)^;
 !!SN:H^art^/467/1/s^clt.tooltip.467^;
 !!FU(CFS_State):P(hero)/1/?(mask)/?(count);
+!!VR(bonus2):S^2 pieces: +3 Attack and Defense.^;
+!!VR(bonus2)&(count)>=2:S^{~Lime}2 pieces: +3 Attack and Defense.{~}^;
+!!VR(bonus3):S^3 pieces: restores 8 extra spell points daily.^;
+!!VR(bonus3)&(count)>=3:S^{~Lime}3 pieces: restores 8 extra spell points daily.{~}^;
+!!VR(bonus4):S^4 pieces: Rampart troops gain +3 Attack and Defense.^;
+!!VR(bonus4)&(count)>=4:S^{~Lime}4 pieces: Rampart troops gain +3 Attack and Defense.{~}^;
+!!VR(bonus5):S^5 pieces: Rampart troops gain +2 Speed.^;
+!!VR(bonus5)&(count)>=5:S^{~Lime}5 pieces: Rampart troops gain +2 Speed.{~}^;
+!!VR(bonus6):S^6 pieces: Dragons gain +5 extra Attack and Defense.^;
+!!VR(bonus6)&(count)>=6:S^{~Lime}6 pieces: Dragons gain +5 extra Attack and Defense.{~}^;
+!!VR(bonus7):S^7 pieces: Rampart troops gain +15% Health.^;
+!!VR(bonus7)&(count)>=7:S^{~Lime}7 pieces: Rampart troops gain +15% Health.{~}^;
 !!HE(hero)&(hero)>=0:A2/476/?(assembled)/?i;
 !!VR(assembled)&(hero)<0:S0;
 !!VR(checklist):S^^;
@@ -1010,12 +1046,12 @@ Includes all eight artifacts. Extra copies give no further bonus.
 Worn on the head, this artifact increases your Knowledge by 6.
 
 {~Lime}Legacy of the Emerald Covenant (%(count)/8){~}
-2 pieces: +3 Attack and Defense.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Rampart troops gain +3 Attack and Defense.
-5 pieces: Rampart troops gain +2 Speed.
-6 pieces: Dragons gain +5 extra Attack and Defense.
-7 pieces: Rampart troops gain +15% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -1028,12 +1064,12 @@ copies give no further bonus.
 Held in the right hand, this artifact increases your Attack by 6.
 
 {~Lime}Legacy of the Emerald Covenant (%(count)/8){~}
-2 pieces: +3 Attack and Defense.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Rampart troops gain +3 Attack and Defense.
-5 pieces: Rampart troops gain +2 Speed.
-6 pieces: Dragons gain +5 extra Attack and Defense.
-7 pieces: Rampart troops gain +15% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -1046,12 +1082,12 @@ copies give no further bonus.
 Held in the left hand, this artifact increases your Defense by 6.
 
 {~Lime}Legacy of the Emerald Covenant (%(count)/8){~}
-2 pieces: +3 Attack and Defense.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Rampart troops gain +3 Attack and Defense.
-5 pieces: Rampart troops gain +2 Speed.
-6 pieces: Dragons gain +5 extra Attack and Defense.
-7 pieces: Rampart troops gain +15% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -1064,12 +1100,12 @@ copies give no further bonus.
 Worn on the body, this artifact increases your Attack by 6.
 
 {~Lime}Legacy of the Emerald Covenant (%(count)/8){~}
-2 pieces: +3 Attack and Defense.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Rampart troops gain +3 Attack and Defense.
-5 pieces: Rampart troops gain +2 Speed.
-6 pieces: Dragons gain +5 extra Attack and Defense.
-7 pieces: Rampart troops gain +15% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -1083,12 +1119,12 @@ Worn about the shoulders, this artifact restores 8 spell points each
 day.
 
 {~Lime}Legacy of the Emerald Covenant (%(count)/8){~}
-2 pieces: +3 Attack and Defense.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Rampart troops gain +3 Attack and Defense.
-5 pieces: Rampart troops gain +2 Speed.
-6 pieces: Dragons gain +5 extra Attack and Defense.
-7 pieces: Rampart troops gain +15% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -1102,12 +1138,12 @@ Worn on the feet, this artifact increases your daily movement by
 450.
 
 {~Lime}Legacy of the Emerald Covenant (%(count)/8){~}
-2 pieces: +3 Attack and Defense.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Rampart troops gain +3 Attack and Defense.
-5 pieces: Rampart troops gain +2 Speed.
-6 pieces: Dragons gain +5 extra Attack and Defense.
-7 pieces: Rampart troops gain +15% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -1121,12 +1157,12 @@ Worn around the neck, this artifact increases your Attack by 3 and
 Defense by 3.
 
 {~Lime}Legacy of the Emerald Covenant (%(count)/8){~}
-2 pieces: +3 Attack and Defense.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Rampart troops gain +3 Attack and Defense.
-5 pieces: Rampart troops gain +2 Speed.
-6 pieces: Dragons gain +5 extra Attack and Defense.
-7 pieces: Rampart troops gain +15% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -1140,12 +1176,12 @@ Worn on a finger, this artifact increases the Speed of your Dragons
 and their upgrades by 2.
 
 {~Lime}Legacy of the Emerald Covenant (%(count)/8){~}
-2 pieces: +3 Attack and Defense.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Rampart troops gain +3 Attack and Defense.
-5 pieces: Rampart troops gain +2 Speed.
-6 pieces: Dragons gain +5 extra Attack and Defense.
-7 pieces: Rampart troops gain +15% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -1176,6 +1212,18 @@ Includes all eight artifacts. Extra copies give no further bonus.
 %(checklist)^;
 !!SN:H^art^/476/1/s^clt.tooltip.476^;
 !!FU(CFS_State):P(hero)/2/?(mask)/?(count);
+!!VR(bonus2):S^2 pieces: +3 Attack and Spell Power.^;
+!!VR(bonus2)&(count)>=2:S^{~Lime}2 pieces: +3 Attack and Spell Power.{~}^;
+!!VR(bonus3):S^3 pieces: restores 8 extra spell points daily.^;
+!!VR(bonus3)&(count)>=3:S^{~Lime}3 pieces: restores 8 extra spell points daily.{~}^;
+!!VR(bonus4):S^4 pieces: Inferno troops gain +3 Attack and Defense.^;
+!!VR(bonus4)&(count)>=4:S^{~Lime}4 pieces: Inferno troops gain +3 Attack and Defense.{~}^;
+!!VR(bonus5):S^5 pieces: Inferno troops gain +2 Speed.^;
+!!VR(bonus5)&(count)>=5:S^{~Lime}5 pieces: Inferno troops gain +2 Speed.{~}^;
+!!VR(bonus6):S^6 pieces: Devils gain +5 extra Attack and Defense.^;
+!!VR(bonus6)&(count)>=6:S^{~Lime}6 pieces: Devils gain +5 extra Attack and Defense.{~}^;
+!!VR(bonus7):S^7 pieces: Inferno troops gain +15% Health.^;
+!!VR(bonus7)&(count)>=7:S^{~Lime}7 pieces: Inferno troops gain +15% Health.{~}^;
 !!HE(hero)&(hero)>=0:A2/485/?(assembled)/?i;
 !!VR(assembled)&(hero)<0:S0;
 !!VR(checklist):S^^;
@@ -1257,12 +1305,12 @@ Includes all eight artifacts. Extra copies give no further bonus.
 Worn on the head, this artifact increases your Knowledge by 6.
 
 {~Lime}Legacy of the Infernal Pact (%(count)/8){~}
-2 pieces: +3 Attack and Spell Power.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Inferno troops gain +3 Attack and Defense.
-5 pieces: Inferno troops gain +2 Speed.
-6 pieces: Devils gain +5 extra Attack and Defense.
-7 pieces: Inferno troops gain +15% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -1276,12 +1324,12 @@ Held in the right hand, this artifact increases your Spell Power by
 6.
 
 {~Lime}Legacy of the Infernal Pact (%(count)/8){~}
-2 pieces: +3 Attack and Spell Power.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Inferno troops gain +3 Attack and Defense.
-5 pieces: Inferno troops gain +2 Speed.
-6 pieces: Devils gain +5 extra Attack and Defense.
-7 pieces: Inferno troops gain +15% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -1294,12 +1342,12 @@ copies give no further bonus.
 Held in the left hand, this artifact increases your Defense by 6.
 
 {~Lime}Legacy of the Infernal Pact (%(count)/8){~}
-2 pieces: +3 Attack and Spell Power.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Inferno troops gain +3 Attack and Defense.
-5 pieces: Inferno troops gain +2 Speed.
-6 pieces: Devils gain +5 extra Attack and Defense.
-7 pieces: Inferno troops gain +15% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -1312,12 +1360,12 @@ copies give no further bonus.
 Worn on the body, this artifact increases your Attack by 6.
 
 {~Lime}Legacy of the Infernal Pact (%(count)/8){~}
-2 pieces: +3 Attack and Spell Power.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Inferno troops gain +3 Attack and Defense.
-5 pieces: Inferno troops gain +2 Speed.
-6 pieces: Devils gain +5 extra Attack and Defense.
-7 pieces: Inferno troops gain +15% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -1331,12 +1379,12 @@ Worn about the shoulders, this artifact restores 8 spell points each
 day.
 
 {~Lime}Legacy of the Infernal Pact (%(count)/8){~}
-2 pieces: +3 Attack and Spell Power.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Inferno troops gain +3 Attack and Defense.
-5 pieces: Inferno troops gain +2 Speed.
-6 pieces: Devils gain +5 extra Attack and Defense.
-7 pieces: Inferno troops gain +15% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -1350,12 +1398,12 @@ Worn on the feet, this artifact increases your daily movement by
 450.
 
 {~Lime}Legacy of the Infernal Pact (%(count)/8){~}
-2 pieces: +3 Attack and Spell Power.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Inferno troops gain +3 Attack and Defense.
-5 pieces: Inferno troops gain +2 Speed.
-6 pieces: Devils gain +5 extra Attack and Defense.
-7 pieces: Inferno troops gain +15% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -1369,12 +1417,12 @@ Worn around the neck, this artifact increases your Attack by 3 and
 Spell Power by 3.
 
 {~Lime}Legacy of the Infernal Pact (%(count)/8){~}
-2 pieces: +3 Attack and Spell Power.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Inferno troops gain +3 Attack and Defense.
-5 pieces: Inferno troops gain +2 Speed.
-6 pieces: Devils gain +5 extra Attack and Defense.
-7 pieces: Inferno troops gain +15% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -1388,12 +1436,12 @@ Worn on a finger, this artifact increases the Speed of your Devils
 and their upgrades by 2.
 
 {~Lime}Legacy of the Infernal Pact (%(count)/8){~}
-2 pieces: +3 Attack and Spell Power.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Inferno troops gain +3 Attack and Defense.
-5 pieces: Inferno troops gain +2 Speed.
-6 pieces: Devils gain +5 extra Attack and Defense.
-7 pieces: Inferno troops gain +15% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -1423,6 +1471,18 @@ Includes all eight artifacts. Extra copies give no further bonus.
 %(checklist)^;
 !!SN:H^art^/485/1/s^clt.tooltip.485^;
 !!FU(CFS_State):P(hero)/3/?(mask)/?(count);
+!!VR(bonus2):S^2 pieces: +3 Spell Power and Knowledge.^;
+!!VR(bonus2)&(count)>=2:S^{~Lime}2 pieces: +3 Spell Power and Knowledge.{~}^;
+!!VR(bonus3):S^3 pieces: restores 8 extra spell points daily.^;
+!!VR(bonus3)&(count)>=3:S^{~Lime}3 pieces: restores 8 extra spell points daily.{~}^;
+!!VR(bonus4):S^4 pieces: Necropolis troops gain +3 Attack and Defense.^;
+!!VR(bonus4)&(count)>=4:S^{~Lime}4 pieces: Necropolis troops gain +3 Attack and Defense.{~}^;
+!!VR(bonus5):S^5 pieces: Necropolis troops gain +2 Speed.^;
+!!VR(bonus5)&(count)>=5:S^{~Lime}5 pieces: Necropolis troops gain +2 Speed.{~}^;
+!!VR(bonus6):S^6 pieces: Dragons gain +5 extra Attack and Defense.^;
+!!VR(bonus6)&(count)>=6:S^{~Lime}6 pieces: Dragons gain +5 extra Attack and Defense.{~}^;
+!!VR(bonus7):S^7 pieces: Necropolis troops gain +23% Health.^;
+!!VR(bonus7)&(count)>=7:S^{~Lime}7 pieces: Necropolis troops gain +23% Health.{~}^;
 !!HE(hero)&(hero)>=0:A2/494/?(assembled)/?i;
 !!VR(assembled)&(hero)<0:S0;
 !!VR(checklist):S^^;
@@ -1504,12 +1564,12 @@ Includes all eight artifacts. Extra copies give no further bonus.
 Worn on the head, this artifact increases your Knowledge by 6.
 
 {~Lime}Legacy of Andonov (%(count)/8){~}
-2 pieces: +3 Spell Power and Knowledge.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Necropolis troops gain +3 Attack and Defense.
-5 pieces: Necropolis troops gain +2 Speed.
-6 pieces: Dragons gain +5 extra Attack and Defense.
-7 pieces: Necropolis troops gain +23% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -1523,12 +1583,12 @@ Held in the right hand, this artifact increases your Spell Power by
 6.
 
 {~Lime}Legacy of Andonov (%(count)/8){~}
-2 pieces: +3 Spell Power and Knowledge.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Necropolis troops gain +3 Attack and Defense.
-5 pieces: Necropolis troops gain +2 Speed.
-6 pieces: Dragons gain +5 extra Attack and Defense.
-7 pieces: Necropolis troops gain +23% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -1541,12 +1601,12 @@ copies give no further bonus.
 Held in the left hand, this artifact increases your Defense by 6.
 
 {~Lime}Legacy of Andonov (%(count)/8){~}
-2 pieces: +3 Spell Power and Knowledge.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Necropolis troops gain +3 Attack and Defense.
-5 pieces: Necropolis troops gain +2 Speed.
-6 pieces: Dragons gain +5 extra Attack and Defense.
-7 pieces: Necropolis troops gain +23% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -1559,12 +1619,12 @@ copies give no further bonus.
 Worn on the body, this artifact increases your Attack by 6.
 
 {~Lime}Legacy of Andonov (%(count)/8){~}
-2 pieces: +3 Spell Power and Knowledge.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Necropolis troops gain +3 Attack and Defense.
-5 pieces: Necropolis troops gain +2 Speed.
-6 pieces: Dragons gain +5 extra Attack and Defense.
-7 pieces: Necropolis troops gain +23% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -1578,12 +1638,12 @@ Worn about the shoulders, this artifact restores 8 spell points each
 day.
 
 {~Lime}Legacy of Andonov (%(count)/8){~}
-2 pieces: +3 Spell Power and Knowledge.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Necropolis troops gain +3 Attack and Defense.
-5 pieces: Necropolis troops gain +2 Speed.
-6 pieces: Dragons gain +5 extra Attack and Defense.
-7 pieces: Necropolis troops gain +23% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -1597,12 +1657,12 @@ Worn on the feet, this artifact increases your daily movement by
 450.
 
 {~Lime}Legacy of Andonov (%(count)/8){~}
-2 pieces: +3 Spell Power and Knowledge.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Necropolis troops gain +3 Attack and Defense.
-5 pieces: Necropolis troops gain +2 Speed.
-6 pieces: Dragons gain +5 extra Attack and Defense.
-7 pieces: Necropolis troops gain +23% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -1616,12 +1676,12 @@ Worn around the neck, this artifact increases your Spell Power by 3
 and Knowledge by 3.
 
 {~Lime}Legacy of Andonov (%(count)/8){~}
-2 pieces: +3 Spell Power and Knowledge.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Necropolis troops gain +3 Attack and Defense.
-5 pieces: Necropolis troops gain +2 Speed.
-6 pieces: Dragons gain +5 extra Attack and Defense.
-7 pieces: Necropolis troops gain +23% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -1635,12 +1695,12 @@ Worn on a finger, this artifact increases the Speed of your Dragons
 and their upgrades by 2.
 
 {~Lime}Legacy of Andonov (%(count)/8){~}
-2 pieces: +3 Spell Power and Knowledge.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Necropolis troops gain +3 Attack and Defense.
-5 pieces: Necropolis troops gain +2 Speed.
-6 pieces: Dragons gain +5 extra Attack and Defense.
-7 pieces: Necropolis troops gain +23% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -1674,6 +1734,18 @@ Includes all eight artifacts. Extra copies give no further bonus.
 %(checklist)^;
 !!SN:H^art^/494/1/s^clt.tooltip.494^;
 !!FU(CFS_State):P(hero)/4/?(mask)/?(count);
+!!VR(bonus2):S^2 pieces: +3 Spell Power and Knowledge.^;
+!!VR(bonus2)&(count)>=2:S^{~Lime}2 pieces: +3 Spell Power and Knowledge.{~}^;
+!!VR(bonus3):S^3 pieces: restores 8 extra spell points daily.^;
+!!VR(bonus3)&(count)>=3:S^{~Lime}3 pieces: restores 8 extra spell points daily.{~}^;
+!!VR(bonus4):S^4 pieces: Dungeon troops gain +3 Attack and Defense.^;
+!!VR(bonus4)&(count)>=4:S^{~Lime}4 pieces: Dungeon troops gain +3 Attack and Defense.{~}^;
+!!VR(bonus5):S^5 pieces: Dungeon troops gain +2 Speed.^;
+!!VR(bonus5)&(count)>=5:S^{~Lime}5 pieces: Dungeon troops gain +2 Speed.{~}^;
+!!VR(bonus6):S^6 pieces: Dragons gain +5 extra Attack and Defense.^;
+!!VR(bonus6)&(count)>=6:S^{~Lime}6 pieces: Dragons gain +5 extra Attack and Defense.{~}^;
+!!VR(bonus7):S^7 pieces: Dungeon troops gain +15% Health.^;
+!!VR(bonus7)&(count)>=7:S^{~Lime}7 pieces: Dungeon troops gain +15% Health.{~}^;
 !!HE(hero)&(hero)>=0:A2/503/?(assembled)/?i;
 !!VR(assembled)&(hero)<0:S0;
 !!VR(checklist):S^^;
@@ -1755,12 +1827,12 @@ Includes all eight artifacts. Extra copies give no further bonus.
 Worn on the head, this artifact increases your Knowledge by 6.
 
 {~Lime}Legacy of the Obsidian Dominion (%(count)/8){~}
-2 pieces: +3 Spell Power and Knowledge.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Dungeon troops gain +3 Attack and Defense.
-5 pieces: Dungeon troops gain +2 Speed.
-6 pieces: Dragons gain +5 extra Attack and Defense.
-7 pieces: Dungeon troops gain +15% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -1774,12 +1846,12 @@ Held in the right hand, this artifact increases your Spell Power by
 6.
 
 {~Lime}Legacy of the Obsidian Dominion (%(count)/8){~}
-2 pieces: +3 Spell Power and Knowledge.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Dungeon troops gain +3 Attack and Defense.
-5 pieces: Dungeon troops gain +2 Speed.
-6 pieces: Dragons gain +5 extra Attack and Defense.
-7 pieces: Dungeon troops gain +15% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -1792,12 +1864,12 @@ copies give no further bonus.
 Held in the left hand, this artifact increases your Defense by 6.
 
 {~Lime}Legacy of the Obsidian Dominion (%(count)/8){~}
-2 pieces: +3 Spell Power and Knowledge.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Dungeon troops gain +3 Attack and Defense.
-5 pieces: Dungeon troops gain +2 Speed.
-6 pieces: Dragons gain +5 extra Attack and Defense.
-7 pieces: Dungeon troops gain +15% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -1810,12 +1882,12 @@ copies give no further bonus.
 Worn on the body, this artifact increases your Attack by 6.
 
 {~Lime}Legacy of the Obsidian Dominion (%(count)/8){~}
-2 pieces: +3 Spell Power and Knowledge.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Dungeon troops gain +3 Attack and Defense.
-5 pieces: Dungeon troops gain +2 Speed.
-6 pieces: Dragons gain +5 extra Attack and Defense.
-7 pieces: Dungeon troops gain +15% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -1829,12 +1901,12 @@ Worn about the shoulders, this artifact restores 8 spell points each
 day.
 
 {~Lime}Legacy of the Obsidian Dominion (%(count)/8){~}
-2 pieces: +3 Spell Power and Knowledge.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Dungeon troops gain +3 Attack and Defense.
-5 pieces: Dungeon troops gain +2 Speed.
-6 pieces: Dragons gain +5 extra Attack and Defense.
-7 pieces: Dungeon troops gain +15% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -1848,12 +1920,12 @@ Worn on the feet, this artifact increases your daily movement by
 450.
 
 {~Lime}Legacy of the Obsidian Dominion (%(count)/8){~}
-2 pieces: +3 Spell Power and Knowledge.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Dungeon troops gain +3 Attack and Defense.
-5 pieces: Dungeon troops gain +2 Speed.
-6 pieces: Dragons gain +5 extra Attack and Defense.
-7 pieces: Dungeon troops gain +15% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -1867,12 +1939,12 @@ Worn around the neck, this artifact increases your Spell Power by 3
 and Knowledge by 3.
 
 {~Lime}Legacy of the Obsidian Dominion (%(count)/8){~}
-2 pieces: +3 Spell Power and Knowledge.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Dungeon troops gain +3 Attack and Defense.
-5 pieces: Dungeon troops gain +2 Speed.
-6 pieces: Dragons gain +5 extra Attack and Defense.
-7 pieces: Dungeon troops gain +15% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -1886,12 +1958,12 @@ Worn on a finger, this artifact increases the Speed of your Dragons
 and their upgrades by 2.
 
 {~Lime}Legacy of the Obsidian Dominion (%(count)/8){~}
-2 pieces: +3 Spell Power and Knowledge.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Dungeon troops gain +3 Attack and Defense.
-5 pieces: Dungeon troops gain +2 Speed.
-6 pieces: Dragons gain +5 extra Attack and Defense.
-7 pieces: Dungeon troops gain +15% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -1921,6 +1993,18 @@ Includes all eight artifacts. Extra copies give no further bonus.
 %(checklist)^;
 !!SN:H^art^/503/1/s^clt.tooltip.503^;
 !!FU(CFS_State):P(hero)/5/?(mask)/?(count);
+!!VR(bonus2):S^2 pieces: +3 Attack and Defense.^;
+!!VR(bonus2)&(count)>=2:S^{~Lime}2 pieces: +3 Attack and Defense.{~}^;
+!!VR(bonus3):S^3 pieces: restores 8 extra spell points daily.^;
+!!VR(bonus3)&(count)>=3:S^{~Lime}3 pieces: restores 8 extra spell points daily.{~}^;
+!!VR(bonus4):S^4 pieces: Stronghold troops gain +3 Attack and Defense.^;
+!!VR(bonus4)&(count)>=4:S^{~Lime}4 pieces: Stronghold troops gain +3 Attack and Defense.{~}^;
+!!VR(bonus5):S^5 pieces: Stronghold troops gain +2 Speed.^;
+!!VR(bonus5)&(count)>=5:S^{~Lime}5 pieces: Stronghold troops gain +2 Speed.{~}^;
+!!VR(bonus6):S^6 pieces: Behemoths gain +5 extra Attack and Defense.^;
+!!VR(bonus6)&(count)>=6:S^{~Lime}6 pieces: Behemoths gain +5 extra Attack and Defense.{~}^;
+!!VR(bonus7):S^7 pieces: Stronghold troops gain +15% Health.^;
+!!VR(bonus7)&(count)>=7:S^{~Lime}7 pieces: Stronghold troops gain +15% Health.{~}^;
 !!HE(hero)&(hero)>=0:A2/512/?(assembled)/?i;
 !!VR(assembled)&(hero)<0:S0;
 !!VR(checklist):S^^;
@@ -2002,12 +2086,12 @@ Includes all eight artifacts. Extra copies give no further bonus.
 Worn on the head, this artifact increases your Knowledge by 6.
 
 {~Lime}Legacy of the Earthshaker Horde (%(count)/8){~}
-2 pieces: +3 Attack and Defense.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Stronghold troops gain +3 Attack and Defense.
-5 pieces: Stronghold troops gain +2 Speed.
-6 pieces: Behemoths gain +5 extra Attack and Defense.
-7 pieces: Stronghold troops gain +15% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -2020,12 +2104,12 @@ copies give no further bonus.
 Held in the right hand, this artifact increases your Attack by 6.
 
 {~Lime}Legacy of the Earthshaker Horde (%(count)/8){~}
-2 pieces: +3 Attack and Defense.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Stronghold troops gain +3 Attack and Defense.
-5 pieces: Stronghold troops gain +2 Speed.
-6 pieces: Behemoths gain +5 extra Attack and Defense.
-7 pieces: Stronghold troops gain +15% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -2038,12 +2122,12 @@ copies give no further bonus.
 Held in the left hand, this artifact increases your Defense by 6.
 
 {~Lime}Legacy of the Earthshaker Horde (%(count)/8){~}
-2 pieces: +3 Attack and Defense.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Stronghold troops gain +3 Attack and Defense.
-5 pieces: Stronghold troops gain +2 Speed.
-6 pieces: Behemoths gain +5 extra Attack and Defense.
-7 pieces: Stronghold troops gain +15% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -2056,12 +2140,12 @@ copies give no further bonus.
 Worn on the body, this artifact increases your Attack by 6.
 
 {~Lime}Legacy of the Earthshaker Horde (%(count)/8){~}
-2 pieces: +3 Attack and Defense.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Stronghold troops gain +3 Attack and Defense.
-5 pieces: Stronghold troops gain +2 Speed.
-6 pieces: Behemoths gain +5 extra Attack and Defense.
-7 pieces: Stronghold troops gain +15% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -2075,12 +2159,12 @@ Worn about the shoulders, this artifact restores 8 spell points each
 day.
 
 {~Lime}Legacy of the Earthshaker Horde (%(count)/8){~}
-2 pieces: +3 Attack and Defense.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Stronghold troops gain +3 Attack and Defense.
-5 pieces: Stronghold troops gain +2 Speed.
-6 pieces: Behemoths gain +5 extra Attack and Defense.
-7 pieces: Stronghold troops gain +15% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -2094,12 +2178,12 @@ Worn on the feet, this artifact increases your daily movement by
 450.
 
 {~Lime}Legacy of the Earthshaker Horde (%(count)/8){~}
-2 pieces: +3 Attack and Defense.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Stronghold troops gain +3 Attack and Defense.
-5 pieces: Stronghold troops gain +2 Speed.
-6 pieces: Behemoths gain +5 extra Attack and Defense.
-7 pieces: Stronghold troops gain +15% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -2113,12 +2197,12 @@ Worn around the neck, this artifact increases your Attack by 3 and
 Defense by 3.
 
 {~Lime}Legacy of the Earthshaker Horde (%(count)/8){~}
-2 pieces: +3 Attack and Defense.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Stronghold troops gain +3 Attack and Defense.
-5 pieces: Stronghold troops gain +2 Speed.
-6 pieces: Behemoths gain +5 extra Attack and Defense.
-7 pieces: Stronghold troops gain +15% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -2132,12 +2216,12 @@ Worn on a finger, this artifact increases the Speed of your
 Behemoths and their upgrades by 2.
 
 {~Lime}Legacy of the Earthshaker Horde (%(count)/8){~}
-2 pieces: +3 Attack and Defense.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Stronghold troops gain +3 Attack and Defense.
-5 pieces: Stronghold troops gain +2 Speed.
-6 pieces: Behemoths gain +5 extra Attack and Defense.
-7 pieces: Stronghold troops gain +15% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -2168,6 +2252,18 @@ Includes all eight artifacts. Extra copies give no further bonus.
 %(checklist)^;
 !!SN:H^art^/512/1/s^clt.tooltip.512^;
 !!FU(CFS_State):P(hero)/6/?(mask)/?(count);
+!!VR(bonus2):S^2 pieces: +3 Defense and Knowledge.^;
+!!VR(bonus2)&(count)>=2:S^{~Lime}2 pieces: +3 Defense and Knowledge.{~}^;
+!!VR(bonus3):S^3 pieces: restores 8 extra spell points daily.^;
+!!VR(bonus3)&(count)>=3:S^{~Lime}3 pieces: restores 8 extra spell points daily.{~}^;
+!!VR(bonus4):S^4 pieces: Fortress troops gain +3 Attack and Defense.^;
+!!VR(bonus4)&(count)>=4:S^{~Lime}4 pieces: Fortress troops gain +3 Attack and Defense.{~}^;
+!!VR(bonus5):S^5 pieces: Fortress troops gain +2 Speed.^;
+!!VR(bonus5)&(count)>=5:S^{~Lime}5 pieces: Fortress troops gain +2 Speed.{~}^;
+!!VR(bonus6):S^6 pieces: Hydras gain +5 extra Attack and Defense.^;
+!!VR(bonus6)&(count)>=6:S^{~Lime}6 pieces: Hydras gain +5 extra Attack and Defense.{~}^;
+!!VR(bonus7):S^7 pieces: Fortress troops gain +15% Health.^;
+!!VR(bonus7)&(count)>=7:S^{~Lime}7 pieces: Fortress troops gain +15% Health.{~}^;
 !!HE(hero)&(hero)>=0:A2/521/?(assembled)/?i;
 !!VR(assembled)&(hero)<0:S0;
 !!VR(checklist):S^^;
@@ -2249,12 +2345,12 @@ Includes all eight artifacts. Extra copies give no further bonus.
 Worn on the head, this artifact increases your Knowledge by 6.
 
 {~Lime}Legacy of the Primordial Marsh (%(count)/8){~}
-2 pieces: +3 Defense and Knowledge.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Fortress troops gain +3 Attack and Defense.
-5 pieces: Fortress troops gain +2 Speed.
-6 pieces: Hydras gain +5 extra Attack and Defense.
-7 pieces: Fortress troops gain +15% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -2267,12 +2363,12 @@ copies give no further bonus.
 Held in the right hand, this artifact increases your Attack by 6.
 
 {~Lime}Legacy of the Primordial Marsh (%(count)/8){~}
-2 pieces: +3 Defense and Knowledge.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Fortress troops gain +3 Attack and Defense.
-5 pieces: Fortress troops gain +2 Speed.
-6 pieces: Hydras gain +5 extra Attack and Defense.
-7 pieces: Fortress troops gain +15% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -2285,12 +2381,12 @@ copies give no further bonus.
 Held in the left hand, this artifact increases your Defense by 6.
 
 {~Lime}Legacy of the Primordial Marsh (%(count)/8){~}
-2 pieces: +3 Defense and Knowledge.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Fortress troops gain +3 Attack and Defense.
-5 pieces: Fortress troops gain +2 Speed.
-6 pieces: Hydras gain +5 extra Attack and Defense.
-7 pieces: Fortress troops gain +15% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -2303,12 +2399,12 @@ copies give no further bonus.
 Worn on the body, this artifact increases your Attack by 6.
 
 {~Lime}Legacy of the Primordial Marsh (%(count)/8){~}
-2 pieces: +3 Defense and Knowledge.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Fortress troops gain +3 Attack and Defense.
-5 pieces: Fortress troops gain +2 Speed.
-6 pieces: Hydras gain +5 extra Attack and Defense.
-7 pieces: Fortress troops gain +15% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -2322,12 +2418,12 @@ Worn about the shoulders, this artifact restores 8 spell points each
 day.
 
 {~Lime}Legacy of the Primordial Marsh (%(count)/8){~}
-2 pieces: +3 Defense and Knowledge.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Fortress troops gain +3 Attack and Defense.
-5 pieces: Fortress troops gain +2 Speed.
-6 pieces: Hydras gain +5 extra Attack and Defense.
-7 pieces: Fortress troops gain +15% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -2341,12 +2437,12 @@ Worn on the feet, this artifact increases your daily movement by
 450.
 
 {~Lime}Legacy of the Primordial Marsh (%(count)/8){~}
-2 pieces: +3 Defense and Knowledge.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Fortress troops gain +3 Attack and Defense.
-5 pieces: Fortress troops gain +2 Speed.
-6 pieces: Hydras gain +5 extra Attack and Defense.
-7 pieces: Fortress troops gain +15% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -2360,12 +2456,12 @@ Worn around the neck, this artifact increases your Defense by 3 and
 Knowledge by 3.
 
 {~Lime}Legacy of the Primordial Marsh (%(count)/8){~}
-2 pieces: +3 Defense and Knowledge.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Fortress troops gain +3 Attack and Defense.
-5 pieces: Fortress troops gain +2 Speed.
-6 pieces: Hydras gain +5 extra Attack and Defense.
-7 pieces: Fortress troops gain +15% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -2379,12 +2475,12 @@ Worn on a finger, this artifact increases the Speed of your Hydras
 and their upgrades by 2.
 
 {~Lime}Legacy of the Primordial Marsh (%(count)/8){~}
-2 pieces: +3 Defense and Knowledge.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Fortress troops gain +3 Attack and Defense.
-5 pieces: Fortress troops gain +2 Speed.
-6 pieces: Hydras gain +5 extra Attack and Defense.
-7 pieces: Fortress troops gain +15% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -2414,6 +2510,18 @@ Includes all eight artifacts. Extra copies give no further bonus.
 %(checklist)^;
 !!SN:H^art^/521/1/s^clt.tooltip.521^;
 !!FU(CFS_State):P(hero)/7/?(mask)/?(count);
+!!VR(bonus2):S^2 pieces: +3 Spell Power and Knowledge.^;
+!!VR(bonus2)&(count)>=2:S^{~Lime}2 pieces: +3 Spell Power and Knowledge.{~}^;
+!!VR(bonus3):S^3 pieces: restores 8 extra spell points daily.^;
+!!VR(bonus3)&(count)>=3:S^{~Lime}3 pieces: restores 8 extra spell points daily.{~}^;
+!!VR(bonus4):S^4 pieces: Conflux troops gain +3 Attack and Defense.^;
+!!VR(bonus4)&(count)>=4:S^{~Lime}4 pieces: Conflux troops gain +3 Attack and Defense.{~}^;
+!!VR(bonus5):S^5 pieces: Conflux troops gain +2 Speed.^;
+!!VR(bonus5)&(count)>=5:S^{~Lime}5 pieces: Conflux troops gain +2 Speed.{~}^;
+!!VR(bonus6):S^6 pieces: Firebirds and Phoenixes gain +5 extra Attack and Defense.^;
+!!VR(bonus6)&(count)>=6:S^{~Lime}6 pieces: Firebirds and Phoenixes gain +5 extra Attack and Defense.{~}^;
+!!VR(bonus7):S^7 pieces: Conflux troops gain +15% Health.^;
+!!VR(bonus7)&(count)>=7:S^{~Lime}7 pieces: Conflux troops gain +15% Health.{~}^;
 !!HE(hero)&(hero)>=0:A2/530/?(assembled)/?i;
 !!VR(assembled)&(hero)<0:S0;
 !!VR(checklist):S^^;
@@ -2495,12 +2603,12 @@ Includes all eight artifacts. Extra copies give no further bonus.
 Worn on the head, this artifact increases your Knowledge by 6.
 
 {~Lime}Legacy of the Elemental Nexus (%(count)/8){~}
-2 pieces: +3 Spell Power and Knowledge.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Conflux troops gain +3 Attack and Defense.
-5 pieces: Conflux troops gain +2 Speed.
-6 pieces: Firebirds and Phoenixes gain +5 extra Attack and Defense.
-7 pieces: Conflux troops gain +15% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -2514,12 +2622,12 @@ Held in the right hand, this artifact increases your Spell Power by
 6.
 
 {~Lime}Legacy of the Elemental Nexus (%(count)/8){~}
-2 pieces: +3 Spell Power and Knowledge.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Conflux troops gain +3 Attack and Defense.
-5 pieces: Conflux troops gain +2 Speed.
-6 pieces: Firebirds and Phoenixes gain +5 extra Attack and Defense.
-7 pieces: Conflux troops gain +15% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -2532,12 +2640,12 @@ copies give no further bonus.
 Held in the left hand, this artifact increases your Defense by 6.
 
 {~Lime}Legacy of the Elemental Nexus (%(count)/8){~}
-2 pieces: +3 Spell Power and Knowledge.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Conflux troops gain +3 Attack and Defense.
-5 pieces: Conflux troops gain +2 Speed.
-6 pieces: Firebirds and Phoenixes gain +5 extra Attack and Defense.
-7 pieces: Conflux troops gain +15% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -2550,12 +2658,12 @@ copies give no further bonus.
 Worn on the body, this artifact increases your Attack by 6.
 
 {~Lime}Legacy of the Elemental Nexus (%(count)/8){~}
-2 pieces: +3 Spell Power and Knowledge.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Conflux troops gain +3 Attack and Defense.
-5 pieces: Conflux troops gain +2 Speed.
-6 pieces: Firebirds and Phoenixes gain +5 extra Attack and Defense.
-7 pieces: Conflux troops gain +15% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -2569,12 +2677,12 @@ Worn about the shoulders, this artifact restores 8 spell points each
 day.
 
 {~Lime}Legacy of the Elemental Nexus (%(count)/8){~}
-2 pieces: +3 Spell Power and Knowledge.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Conflux troops gain +3 Attack and Defense.
-5 pieces: Conflux troops gain +2 Speed.
-6 pieces: Firebirds and Phoenixes gain +5 extra Attack and Defense.
-7 pieces: Conflux troops gain +15% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -2588,12 +2696,12 @@ Worn on the feet, this artifact increases your daily movement by
 450.
 
 {~Lime}Legacy of the Elemental Nexus (%(count)/8){~}
-2 pieces: +3 Spell Power and Knowledge.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Conflux troops gain +3 Attack and Defense.
-5 pieces: Conflux troops gain +2 Speed.
-6 pieces: Firebirds and Phoenixes gain +5 extra Attack and Defense.
-7 pieces: Conflux troops gain +15% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -2607,12 +2715,12 @@ Worn around the neck, this artifact increases your Spell Power by 3
 and Knowledge by 3.
 
 {~Lime}Legacy of the Elemental Nexus (%(count)/8){~}
-2 pieces: +3 Spell Power and Knowledge.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Conflux troops gain +3 Attack and Defense.
-5 pieces: Conflux troops gain +2 Speed.
-6 pieces: Firebirds and Phoenixes gain +5 extra Attack and Defense.
-7 pieces: Conflux troops gain +15% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.
@@ -2626,12 +2734,12 @@ Worn on a finger, this artifact increases the Speed of your
 Firebirds and Phoenixes and their upgrades by 2.
 
 {~Lime}Legacy of the Elemental Nexus (%(count)/8){~}
-2 pieces: +3 Spell Power and Knowledge.
-3 pieces: restores 8 extra spell points daily.
-4 pieces: Conflux troops gain +3 Attack and Defense.
-5 pieces: Conflux troops gain +2 Speed.
-6 pieces: Firebirds and Phoenixes gain +5 extra Attack and Defense.
-7 pieces: Conflux troops gain +15% Health.
+%(bonus2)
+%(bonus3)
+%(bonus4)
+%(bonus5)
+%(bonus6)
+%(bonus7)
 
 Only worn pieces count. All troop upgrades are included. Extra
 copies give no further bonus.

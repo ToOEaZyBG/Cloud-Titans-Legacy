@@ -627,7 +627,7 @@ ZVSE2
 !!en;
 !!if&(set)=1;
  !!if&(q)=1;
-  !!VR(match)|(type)=34/(type)=35/(type)=136:S1;
+  !!VR(match)|(type)=64/(type)=65:S1;
  !!en;
  !!if&(q)=2;
   !!VR(match)|(type)=70/(type)=71:S1;
@@ -661,16 +661,16 @@ ZVSE2
 !!en;
 !!if&(set)=3;
  !!if&(q)=1;
-  !!VR(match)|(type)=34/(type)=35/(type)=136:S1;
+  !!VR(match)|(type)=64/(type)=65:S1;
  !!en;
  !!if&(q)=2;
   !!VR(match)|(type)=0/(type)=1:S1;
  !!en;
  !!if&(q)=4;
-  !!VR(match)|(type)=24/(type)=25/(type)=195:S1;
+  !!VR(match)|(type)=66/(type)=67:S1;
  !!en;
  !!if&(q)=6;
-  !!VR(match)|(type)=26/(type)=27/(type)=151:S1;
+  !!VR(match)|(type)=68/(type)=69/(type)=154/(type)=196:S1;
  !!en;
  !!if&(q)=7;
   !!VR(match)|(type)=42/(type)=43:S1;
@@ -684,7 +684,7 @@ ZVSE2
   !!VR(match)|(type)=118/(type)=119:S1;
  !!en;
  !!if&(q)=4;
-  !!VR(match)|(type)=24/(type)=25/(type)=195:S1;
+  !!VR(match)|(type)=66/(type)=67:S1;
  !!en;
  !!if&(q)=6;
   !!VR(match)|(type)=40/(type)=41/(type)=152:S1;
@@ -695,7 +695,7 @@ ZVSE2
 !!en;
 !!if&(set)=5;
  !!if&(q)=1;
-  !!VR(match)|(type)=34/(type)=35/(type)=136:S1;
+  !!VR(match)|(type)=64/(type)=65:S1;
  !!en;
  !!if&(q)=2;
   !!VR(match)|(type)=56/(type)=57:S1;
@@ -753,7 +753,7 @@ ZVSE2
 !!VR(metric)&(set)=0/(q)=4:Z^Pit Fiend defeated^;
 !!VR(metric)&(set)=0/(q)=6:Z^Bone Dragon defeated^;
 !!VR(metric)&(set)=0/(q)=7:Z^Imp defeated^;
-!!VR(metric)&(set)=1/(q)=1:Z^Mage defeated^;
+!!VR(metric)&(set)=1/(q)=1:Z^Lich defeated^;
 !!VR(metric)&(set)=1/(q)=2:Z^Troglodyte defeated^;
 !!VR(metric)&(set)=1/(q)=4:Z^Manticore defeated^;
 !!VR(metric)&(set)=1/(q)=6:Z^Devil defeated^;
@@ -763,17 +763,17 @@ ZVSE2
 !!VR(metric)&(set)=2/(q)=4:Z^Cavalier defeated^;
 !!VR(metric)&(set)=2/(q)=6:Z^Angel defeated^;
 !!VR(metric)&(set)=2/(q)=7:Z^Skeleton defeated^;
-!!VR(metric)&(set)=3/(q)=1:Z^Mage defeated^;
+!!VR(metric)&(set)=3/(q)=1:Z^Lich defeated^;
 !!VR(metric)&(set)=3/(q)=2:Z^Pikeman defeated^;
-!!VR(metric)&(set)=3/(q)=4:Z^Unicorn defeated^;
-!!VR(metric)&(set)=3/(q)=6:Z^Green Dragon defeated^;
+!!VR(metric)&(set)=3/(q)=4:Z^Black Knight defeated^;
+!!VR(metric)&(set)=3/(q)=6:Z^Bone Dragon defeated^;
 !!VR(metric)&(set)=3/(q)=7:Z^Imp defeated^;
 !!VR(metric)&(set)=4/(q)=1:Z^Monk defeated^;
 !!VR(metric)&(set)=4/(q)=2:Z^Pixie defeated^;
-!!VR(metric)&(set)=4/(q)=4:Z^Unicorn defeated^;
+!!VR(metric)&(set)=4/(q)=4:Z^Black Knight defeated^;
 !!VR(metric)&(set)=4/(q)=6:Z^Giant defeated^;
 !!VR(metric)&(set)=4/(q)=7:Z^Skeleton defeated^;
-!!VR(metric)&(set)=5/(q)=1:Z^Mage defeated^;
+!!VR(metric)&(set)=5/(q)=1:Z^Lich defeated^;
 !!VR(metric)&(set)=5/(q)=2:Z^Skeleton defeated^;
 !!VR(metric)&(set)=5/(q)=4:Z^Naga defeated^;
 !!VR(metric)&(set)=5/(q)=6:Z^Hydra defeated^;
@@ -815,7 +815,7 @@ ZVSE2
  !!VR(objective)&(q)=7:Z^Defeat 6542 enemy creatures of these types: Imp / Familiar.^;
 !!en;
 !!if&(set)=1;
- !!VR(objective)&(q)=1:Z^Defeat 2617 enemy creatures of these types: Mage / Arch Mage / Enchanter.^;
+ !!VR(objective)&(q)=1:Z^Defeat 2617 enemy creatures of these types: Lich / Power Lich.^;
  !!VR(objective)&(q)=2:Z^Defeat 6542 enemy creatures of these types: Troglodyte / Infernal Troglodyte.^;
  !!VR(objective)&(q)=4:Z^Defeat 1309 enemy creatures of these types: Manticore / Scorpicore.^;
  !!VR(objective)&(q)=6:Z^Defeat 99 enemy creatures of these types: Devil / Arch Devil / Hell Baron.^;
@@ -829,21 +829,21 @@ ZVSE2
  !!VR(objective)&(q)=7:Z^Defeat 6542 enemy creatures of these types: Skeleton / Skeleton Warrior.^;
 !!en;
 !!if&(set)=3;
- !!VR(objective)&(q)=1:Z^Defeat 2617 enemy creatures of these types: Mage / Arch Mage / Enchanter.^;
+ !!VR(objective)&(q)=1:Z^Defeat 2617 enemy creatures of these types: Lich / Power Lich.^;
  !!VR(objective)&(q)=2:Z^Defeat 6542 enemy creatures of these types: Pikeman / Halberdier.^;
- !!VR(objective)&(q)=4:Z^Defeat 1309 enemy creatures of these types: Unicorn / War Unicorn / Hell Steed.^;
- !!VR(objective)&(q)=6:Z^Defeat 99 enemy creatures of these types: Green Dragon / Gold Dragon / Diamond Dragon.^;
+ !!VR(objective)&(q)=4:Z^Defeat 1309 enemy creatures of these types: Black Knight / Dread Knight.^;
+ !!VR(objective)&(q)=6:Z^Defeat 99 enemy creatures of these types: Bone Dragon / Ghost Dragon / Blood Dragon / Dracolich.^;
  !!VR(objective)&(q)=7:Z^Defeat 6542 enemy creatures of these types: Imp / Familiar.^;
 !!en;
 !!if&(set)=4;
  !!VR(objective)&(q)=1:Z^Defeat 2617 enemy creatures of these types: Monk / Zealot / War Zealot.^;
  !!VR(objective)&(q)=2:Z^Defeat 6542 enemy creatures of these types: Pixie / Sprite.^;
- !!VR(objective)&(q)=4:Z^Defeat 1309 enemy creatures of these types: Unicorn / War Unicorn / Hell Steed.^;
+ !!VR(objective)&(q)=4:Z^Defeat 1309 enemy creatures of these types: Black Knight / Dread Knight.^;
  !!VR(objective)&(q)=6:Z^Defeat 99 enemy creatures of these types: Giant / Titan / Lord Of Thunder.^;
  !!VR(objective)&(q)=7:Z^Defeat 6542 enemy creatures of these types: Skeleton / Skeleton Warrior.^;
 !!en;
 !!if&(set)=5;
- !!VR(objective)&(q)=1:Z^Defeat 2617 enemy creatures of these types: Mage / Arch Mage / Enchanter.^;
+ !!VR(objective)&(q)=1:Z^Defeat 2617 enemy creatures of these types: Lich / Power Lich.^;
  !!VR(objective)&(q)=2:Z^Defeat 6542 enemy creatures of these types: Skeleton / Skeleton Warrior.^;
  !!VR(objective)&(q)=4:Z^Defeat 1309 enemy creatures of these types: Naga / Naga Queen.^;
  !!VR(objective)&(q)=6:Z^Defeat 99 enemy creatures of these types: Hydra / Chaos Hydra / Hell Hydra.^;
@@ -927,7 +927,7 @@ ZVSE2
 !#VA(set:x) (q:x) (label:x);
 !!VR(label):Z^Objective^;
 !!VR(label)&(q)=0:Z^Crown - wins^;
-!!VR(label)&(q)=1:Z^Weapon - Mages^;
+!!VR(label)&(q)=1:Z^Weapon - Liches^;
 !!VR(label)&(q)=2:Z^Shield - Skeletons^;
 !!VR(label)&(q)=3:Z^Armor - enemies^;
 !!VR(label)&(q)=4:Z^Mantle - Vampires^;
@@ -939,7 +939,7 @@ ZVSE2
 !!VR(label)&(set)=0/(q)=4:Z^Mantle - Pit Fiend^;
 !!VR(label)&(set)=0/(q)=6:Z^Pendant - Bone Dragon^;
 !!VR(label)&(set)=0/(q)=7:Z^Ring - Imp^;
-!!VR(label)&(set)=1/(q)=1:Z^Weapon - Mage^;
+!!VR(label)&(set)=1/(q)=1:Z^Weapon - Lich^;
 !!VR(label)&(set)=1/(q)=2:Z^Shield - Troglodyte^;
 !!VR(label)&(set)=1/(q)=4:Z^Mantle - Manticore^;
 !!VR(label)&(set)=1/(q)=6:Z^Pendant - Devil^;
@@ -949,17 +949,17 @@ ZVSE2
 !!VR(label)&(set)=2/(q)=4:Z^Mantle - Cavalier^;
 !!VR(label)&(set)=2/(q)=6:Z^Pendant - Angel^;
 !!VR(label)&(set)=2/(q)=7:Z^Ring - Skeleton^;
-!!VR(label)&(set)=3/(q)=1:Z^Weapon - Mage^;
+!!VR(label)&(set)=3/(q)=1:Z^Weapon - Lich^;
 !!VR(label)&(set)=3/(q)=2:Z^Shield - Pikeman^;
-!!VR(label)&(set)=3/(q)=4:Z^Mantle - Unicorn^;
-!!VR(label)&(set)=3/(q)=6:Z^Pendant - Green Dragon^;
+!!VR(label)&(set)=3/(q)=4:Z^Mantle - Black Knight^;
+!!VR(label)&(set)=3/(q)=6:Z^Pendant - Bone Dragon^;
 !!VR(label)&(set)=3/(q)=7:Z^Ring - Imp^;
 !!VR(label)&(set)=4/(q)=1:Z^Weapon - Monk^;
 !!VR(label)&(set)=4/(q)=2:Z^Shield - Pixie^;
-!!VR(label)&(set)=4/(q)=4:Z^Mantle - Unicorn^;
+!!VR(label)&(set)=4/(q)=4:Z^Mantle - Black Knight^;
 !!VR(label)&(set)=4/(q)=6:Z^Pendant - Giant^;
 !!VR(label)&(set)=4/(q)=7:Z^Ring - Skeleton^;
-!!VR(label)&(set)=5/(q)=1:Z^Weapon - Mage^;
+!!VR(label)&(set)=5/(q)=1:Z^Weapon - Lich^;
 !!VR(label)&(set)=5/(q)=2:Z^Shield - Skeleton^;
 !!VR(label)&(set)=5/(q)=4:Z^Mantle - Naga^;
 !!VR(label)&(set)=5/(q)=6:Z^Pendant - Hydra^;
@@ -1991,7 +1991,7 @@ ZVSE2
 !?FU(CFS_Status);
 !#VA(owner:x) (set:x);
 !!SN:W^clt.world.placed^/?(placed:y) W^clt.net.world.hash^/?(hash:y) W^clt.net.world.error^/?(worldError:y) W^clt.net.quest.error^/?(questError:y);
-!!VR(status:z):S^Build: 0.6.0-batch-dev25
+!!VR(status:z):S^Build: 0.6.0-batch-dev26
 Placed: %(placed). Map hash: %(hash).
 World errors: %(worldError). Quest errors: %(questError).
 Current player's faction quest counters:

@@ -1,3 +1,12 @@
+# 27/10/2026 dev25 > dev26 - 0.6.0-batch-dev26
+
+- All nine sets: the full active bonus line is green when its worn-piece threshold is reached. Carried items and duplicates do not unlock thresholds. Descriptions refresh when the inspected hero changes.
+- Replace the exact Mage/Arch Mage/Enchanter quest target family with Lich/Power Lich, including Tower. Replace Unicorn/War Unicorn/Hell Steed with Black Knight/Dread Knight, and Green/Gold/Diamond Dragon with Bone/Ghost/Blood Dragon/Dracolich, wherever those quest families occur. Other families and numerical requirements remain unchanged. These replacements reflect the encountered armies; availability still depends on the generated map.
+- Preserve the existing guaranteed missing own-faction rewards at18,23,28,33 and every5 levels thereafter. Read-only diagnostics from the reported save confirm five native rewards at18,23,28,33,38.
+- Repair the trial position guard using the native visibility and object-below fields. The engine retains the last town type after leaving onto an empty tile, which previously caused an incorrect leave-town refusal. Hidden garrison heroes and actual town visitors remain excluded.
+- 686 offline tests pass. Native champion post-battle crash investigation remains open; no crash fix or two-computer synchronization pass is claimed.
+- Close the game before updating via the existing Mod Browser entry. Start a NEW map; existing saves keep embedded scripts and quest targets.
+
 # 27/10/2026 dev24 > dev25 - 0.6.0-batch-dev25
 
 - Apply acquisition changes to all nine castles. Reduce each component quest target another10%, rounded up:328/2617/6542/65408/1309/656/99/6542. Champion requirements remain unchanged.

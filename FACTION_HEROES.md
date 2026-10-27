@@ -1,10 +1,10 @@
 # Legacy of the Cloud Titans â€” Online Lobby test
 
-Version **0.6.0-batch-dev25**. This is an experimental all-faction release for a new two-player test. Automated checks pass; native gameplay, save/load and two-computer synchronization still need player verification.
+Version **0.6.0-batch-dev26**. This is an experimental all-faction release for a new two-player test. Automated checks pass; native gameplay, save/load and two-computer synchronization still need player verification.
 
 ## Install the same build
 
-Both players close the game, then use the existing **Legacy of the Cloud Titans - TEST** entry in Heroes Launcher â†’ Mod Browser. Keep the folder **Cloud Titans Legacy - Local Test**; enable only one copy of this mod. The installed `mod.json` must say **0.6.0-batch-dev25** on both computers. Catalog metadata can lag behind downloaded files; an older version displayed in the browser does not establish which build was installed. Check the installed version before starting.
+Both players close the game, then use the existing **Legacy of the Cloud Titans - TEST** entry in Heroes Launcher â†’ Mod Browser. Keep the folder **Cloud Titans Legacy - Local Test**; enable only one copy of this mod. The installed `mod.json` must say **0.6.0-batch-dev26** on both computers. Catalog metadata can lag behind downloaded files; an older version displayed in the browser does not establish which build was installed. Check the installed version before starting.
 
 Use identical ERA/HD versions, enabled mods, load order and WoG options. The inspected base profile used ERA platform 2.299, HD 5.8 R22, Advanced Classes Mod 1.11, JS new objects 1.40, JS main module 1.21.2, JS commanders 1.02, JS map fixes 1.12 and JS terrains 1.4.1. Match the exact versions available to both players; TEST_PROFILE.json is an observed reference, not certification of every combination. Keep Knightmare Kingdoms and other metadata-listed incompatible packages disabled. Keep both ERAHDHeroes_3_Reborn (Full) and HD Editionfixai (Lite) disabled for this trial, following the selected remaster-free profile. Use their original Mod Browser files; this release does not patch them.
 
@@ -96,3 +96,9 @@ The champion starts at level 1, zero XP and base **25/25/25/25**, with a fresh m
 ## Known limits
 
 The earlier AI-turn and fullscreen crashes have no established fix in this release. Matching hashes and offline fixtures do not prove compatibility with every mod or real Lobby transport. The online experiment uses sequential turns. Quick Combat, replay, trials, native spellbook presentation, complete champion lifecycle, weekly changes and multiplayer save/load remain separate acceptance steps.
+
+## Dev26 local acceptance limits
+
+Active set thresholds are green for all nine towns. The Mage, Unicorn and Green Dragon quest families are replaced with Liches, Black Knights and undead Dragons wherever those exact families occur, including Tower. Quest quantities remain unchanged. The trial outside-town guard now checks actual visibility/object presence rather than a stale town type.
+
+The reported post-champion-battle crash remains unresolved. A prepared NEW local map is suitable for retesting, but this release does not establish that the trial or multiplayer is crash-free. The observed profile also has additional growth settings: Normal in the scenario screen does not override WoG map rules or Difficulty Mod growth. No third-party mod payloads or existing armies are altered.

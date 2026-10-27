@@ -30,7 +30,7 @@ ZVSE2
 !!if&(quest)=1;
  !!VR(target):S2617;
  !!VR(title):Z^Thunder Scepter^;
- !!VR(objective):Z^Defeat 2617 Mages or Arch Mages.^;
+ !!VR(objective):Z^Defeat 2617 Liches or Power Liches.^;
 !!en;
 !!if&(quest)=2;
  !!VR(target):S6542;
@@ -67,7 +67,7 @@ ZVSE2
 !#VA(quest:x) (metric:x);
 !!VR(metric):Z^progress^;
 !!VR(metric)&(quest)=0:Z^battle wins^;
-!!VR(metric)&(quest)=1:Z^Mages / Arch Mages defeated^;
+!!VR(metric)&(quest)=1:Z^Liches / Power Liches defeated^;
 !!VR(metric)&(quest)=2:Z^Skeletons / Skeleton Warriors defeated^;
 !!VR(metric)&(quest)=3:Z^enemy creatures defeated^;
 !!VR(metric)&(quest)=4:Z^Vampires / Vampire Lords defeated^;
@@ -204,7 +204,7 @@ Missing buildings: %(missing). Skyship/Grail is not required.^;
   !!VR(killed:y):S(original) -(living) F0/(original);
   !!FU(CFS_StageKill):P(type)/(killed);
   !!FU(CFS_StageTowerKill):P3/(killed);
-  !!FU(CFS_StageTowerKill)|(type)=34/(type)=35:P1/(killed);
+  !!FU(CFS_StageTowerKill)|(type)=64/(type)=65:P1/(killed);
   !!FU(CFS_StageTowerKill)|(type)=56/(type)=57:P2/(killed);
   !!FU(CFS_StageTowerKill)|(type)=62/(type)=63:P4/(killed);
   !!FU(CFS_StageTowerKill)|(type)=(MON_BEHEMOTH)/(type)=(MON_ANCIENT_BEHEMOTH)/(type)=(MON_GHOST_BEHEMOTH):P6/(killed);
