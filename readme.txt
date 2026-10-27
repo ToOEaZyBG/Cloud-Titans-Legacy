@@ -1,7 +1,13 @@
-LATEST PUBLIC BUILD: 0.6.0-batch-dev26
+LATEST PUBLIC BUILD: 0.6.0-batch-dev27
 
 --------------------------------------------------------------
 CHANGELOG
+
+27/10/2026 dev26 > dev27
+- Replace all nine scripted champion trials with held reserves: 50,000 Gold; 50 Wood and 50 Ore; 25 each of Mercury, Sulfur, Crystal and Gems. Resources are kept.
+- Complete the existing requirements and five ordinary faction victories, put the bound hero in the upper garrison slot and leave the lower visitor slot empty, then select Receive champion.
+- Explain incomplete requirements and occupied slots; blocked rewards remain available. Ctrl+J and Alt-click show status. Old trial requests cannot start combat.
+- Start a NEW map on matching versions. Native delivery and two-computer acceptance remain pending.
 
 27/10/2026 dev25 > dev26
 - All nine sets: active worn-piece bonus lines turn green at each threshold.
@@ -28,11 +34,6 @@ CHANGELOG
 - Add Sort directly to the HD Backpack window; sorting closes and rebuilds the popup to refresh every cell.
 - Reuse the existing full-record name sort and online transaction, preserving scroll spells and equipment.
 - Guard the integration for the inspected HD5.8R22 WoG provider; retain Ctrl+N as a fallback. Native UI and two-computer acceptance remain pending.
-
-25/10/2026 dev20 > dev21
-- Increase every custom artifact primary and equipment/set stat bonus by50%, rounded up per positive bonus.
-- Show equipped parts in green, other parts in gray and the current equipped count as (N/8), following the native artifact presentation.
-- Keep spell costs, quest targets, growth, special battle powers and30% Life Leech unchanged. New map required; native and two-computer acceptance pending.
 
 --------------------------------------------------------------
 
@@ -97,7 +98,9 @@ Choose Champion quest in a matching owned town to enroll and view the reward and
 
 To count the five qualifying victories, use a level-25 hero carrying four distinct matching components, or the assembled relic, and meet the town-building requirements. Commanders must be enabled. Fight with that faction's regular troops; commanders and war machines do not invalidate the army. The Grail is not required.
 
-After the victories, leave town and Alt-left-click the bound quest hero to begin the final trial, or press Ctrl+J on the adventure map. Component and champion quests each record their accepting hero; another hero cannot substitute. Return the bound hero to the matching town and put them in the garrison, leaving the visitor space free; keep fewer than eight heroes to receive the champion. A blocked delivery keeps the reward pending.
+Hold three resource reserves: 50,000 Gold; 50 Wood and 50 Ore; 25 each of Mercury, Sulfur, Crystal and Gems. Resources and matching components are kept. The same conditions apply to all nine factions. The five ordinary qualifying faction victories remain required. There are no scripted champion trial battles.
+
+After completing every requirement, place the bound quest hero in the matching town garrison (upper slot), leave the visitor space (lower slot) empty and select Champion quest > Receive champion. The champion appears in that lower slot. Another hero cannot substitute. A blocked delivery keeps the reward available: move the bound hero into the garrison, free the visitor slot and keep fewer than eight heroes. Current qualification and resource reserves are rechecked at receipt. Native position, army and visitor readbacks must pass before completion. A prepared pending champion that moved elsewhere must return to the delivery town before retrying; later progression is preserved. Ctrl+J or Alt-left-click opens the checklist.
 
 Castle: Aldric. Rampart: Sylvara. Tower: Vaelion. Inferno: Zareth. Necropolis: Andonov. Dungeon: Nyssara. Stronghold: Kargan. Fortress: Ssareth. Conflux: Aurelis.
 

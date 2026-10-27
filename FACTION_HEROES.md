@@ -1,10 +1,10 @@
 # Legacy of the Cloud Titans â€” Online Lobby test
 
-Version **0.6.0-batch-dev26**. This is an experimental all-faction release for a new two-player test. Automated checks pass; native gameplay, save/load and two-computer synchronization still need player verification.
+Version **0.6.0-batch-dev27**. This is an experimental all-faction release for a new two-player test. Automated checks pass; native gameplay, save/load and two-computer synchronization still need player verification.
 
 ## Install the same build
 
-Both players close the game, then use the existing **Legacy of the Cloud Titans - TEST** entry in Heroes Launcher â†’ Mod Browser. Keep the folder **Cloud Titans Legacy - Local Test**; enable only one copy of this mod. The installed `mod.json` must say **0.6.0-batch-dev26** on both computers. Catalog metadata can lag behind downloaded files; an older version displayed in the browser does not establish which build was installed. Check the installed version before starting.
+Both players close the game, then use the existing **Legacy of the Cloud Titans - TEST** entry in Heroes Launcher â†’ Mod Browser. Keep the folder **Cloud Titans Legacy - Local Test**; enable only one copy of this mod. The installed `mod.json` must say **0.6.0-batch-dev27** on both computers. Catalog metadata can lag behind downloaded files; an older version displayed in the browser does not establish which build was installed. Check the installed version before starting.
 
 Use identical ERA/HD versions, enabled mods, load order and WoG options. The inspected base profile used ERA platform 2.299, HD 5.8 R22, Advanced Classes Mod 1.11, JS new objects 1.40, JS main module 1.21.2, JS commanders 1.02, JS map fixes 1.12 and JS terrains 1.4.1. Match the exact versions available to both players; TEST_PROFILE.json is an observed reference, not certification of every combination. Keep Knightmare Kingdoms and other metadata-listed incompatible packages disabled. Keep both ERAHDHeroes_3_Reborn (Full) and HD Editionfixai (Lite) disabled for this trial, following the selected remaster-free profile. Use their original Mod Browser files; this release does not patch them.
 
@@ -77,7 +77,11 @@ Tower lightning is automatic, with its existing Giant/Titan/Lord of Thunder rule
 
 Choose **Champion quest**, then explicitly Accept with the hero here. Status always reads that bound hero, wherever they are. Only their faction wins count. Component quests have their own hero binding. The first acceptance locks one faction for the rest of the game across both quest families. Hero loss resets unfinished progress and permits a replacement of that same faction; previously claimed components and a delivered champion are never issued again. Enrollment can precede qualification. To count the five qualifying wins, bring a level-25 hero with four distinct matching components (kept; the assembled relic also qualifies), all required ordinary town buildings and enabled commanders. Grail and optional coastal buildings are excluded; each town uses its own available Mage Guild maximum. Use only the faction's regular troops in those wins; commanders/machines do not interfere.
 
-Leave town and Alt-left-click the bound hero for the final trial, or press Ctrl+J on the adventure map. Stronghold requires no hero spells in its trial; Conflux requires four distinct elemental steps. Return the bound hero to the matching town garrison, leaving a free visitor space, and keep fewer than eight heroes. A full roster, occupied visitor or unavailable matching unused native slot keeps the reward waiting. Delivery is complete only after the actual hero, town position, army and visitor checks pass. If an already prepared pending champion has moved away, bring that champion back to the delivery town before retrying; later progression is preserved.
+Hold three resource reserves: **50,000 Gold**; **50 Wood and 50 Ore**; **25 each of Mercury, Sulfur, Crystal and Gems**. Resources and matching components are kept. The same conditions apply to all nine factions. The five ordinary qualifying faction victories remain required. There are no scripted champion trial battles.
+
+After completing every requirement, place the bound quest hero in the matching town garrison (upper slot), leave the visitor space (lower slot) empty and select **Champion quest > Receive champion**. The champion appears in that lower slot. Another hero cannot substitute. A blocked delivery keeps the reward available: move the bound hero into the garrison, free the visitor slot and keep fewer than eight heroes. Current qualification and resource reserves are rechecked at receipt. Native position, army and visitor readbacks must pass before completion. A prepared pending champion that moved elsewhere must return to the delivery town before retrying; later progression is preserved.
+
+Ctrl+J or Alt-left-click now opens the bound hero checklist without combat. Old trial requests are inert. Start a NEW map on matching dev27 clients; old saves are not a supported migration path.
 
 | Town | Champion |
 | --- | --- |
@@ -95,10 +99,10 @@ The champion starts at level 1, zero XP and base **25/25/25/25**, with a fresh m
 
 ## Known limits
 
-The earlier AI-turn and fullscreen crashes have no established fix in this release. Matching hashes and offline fixtures do not prove compatibility with every mod or real Lobby transport. The online experiment uses sequential turns. Quick Combat, replay, trials, native spellbook presentation, complete champion lifecycle, weekly changes and multiplayer save/load remain separate acceptance steps.
+The earlier AI-turn and fullscreen crashes have no established fix in this release. Matching hashes and offline fixtures do not prove compatibility with every mod or real Lobby transport. The online experiment uses sequential turns. Quick Combat, replay, native spellbook presentation, complete champion lifecycle, weekly changes and multiplayer save/load remain separate acceptance steps.
 
-## Dev26 local acceptance limits
+## Dev27 local acceptance
 
-Active set thresholds are green for all nine towns. The Mage, Unicorn and Green Dragon quest families are replaced with Liches, Black Knights and undead Dragons wherever those exact families occur, including Tower. Quest quantities remain unchanged. The trial outside-town guard now checks actual visibility/object presence rather than a stale town type.
+Test the town-only champion quest on a NEW map. Check the resource amounts, incomplete-requirement and occupied-slot messages, retry after a blocked claim and exactly one level-one champion appearing in the lower slot without combat or resource spending. Save/reload and verify hero and commander progression. Actual native delivery/save-load and two-computer acceptance remain pending. This release removes the reported scripted-trial route; a general post-battle crash repair is not claimed.
 
-The reported post-champion-battle crash remains unresolved. A prepared NEW local map is suitable for retesting, but this release does not establish that the trial or multiplayer is crash-free. The observed profile also has additional growth settings: Normal in the scenario screen does not override WoG map rules or Difficulty Mod growth. No third-party mod payloads or existing armies are altered.
+Dev26 active set colors and Lich/Black Knight/undead Dragon component objectives remain included. Normal scenario difficulty does not override WoG map rules or Difficulty Mod growth. Third-party payloads and existing armies are unchanged.

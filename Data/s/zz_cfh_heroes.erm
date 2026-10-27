@@ -58,56 +58,7 @@ ZVSE2
 !#VA(town:x) (step:x) (type:x) (count:x) (goal:x);
 !!VR(type):S-1;
 !!VR(count):S0;
-!!VR(goal):S1;
-!!VR(goal)&(town)=8:S4;
-!!if&(town)=0/(step)=0;
- !!VR(type):S67;
- !!VR(count):S200;
-!!en;
-!!if&(town)=1/(step)=0;
- !!VR(type):S55;
- !!VR(count):S80;
-!!en;
-!!if&(town)=2/(step)=0;
- !!VR(type):S41;
- !!VR(count):S120;
-!!en;
-!!if&(town)=3/(step)=0;
- !!VR(type):S13;
- !!VR(count):S100;
-!!en;
-!!if&(town)=4/(step)=0;
- !!VR(type):S13;
- !!VR(count):S150;
-!!en;
-!!if&(town)=5/(step)=0;
- !!VR(type):S83;
- !!VR(count):S100;
-!!en;
-!!if&(town)=6/(step)=0;
- !!VR(type):S156;
- !!VR(count):S80;
-!!en;
-!!if&(town)=7/(step)=0;
- !!VR(type):S111;
- !!VR(count):S180;
-!!en;
-!!if&(town)=8/(step)=0;
- !!VR(type):S114;
- !!VR(count):S800;
-!!en;
-!!if&(town)=8/(step)=1;
- !!VR(type):S115;
- !!VR(count):S800;
-!!en;
-!!if&(town)=8/(step)=2;
- !!VR(type):S112;
- !!VR(count):S800;
-!!en;
-!!if&(town)=8/(step)=3;
- !!VR(type):S113;
- !!VR(count):S800;
-!!en;
+!!VR(goal):S0;
 !?FU(CFH_Style);
 !#VA(hero:x) (town:x);
 !!if&(town)=0;
@@ -251,18 +202,15 @@ ZVSE2
 !!VR(trials):S0;
 !!VR(claimed):S0;
 !!FU|(owner)<0/(owner)>7/(kind)<0/(kind)>8:E;
-!!SN:W^cfh.v1.accepted.%(owner).%(kind)^/?(accepted) W^cfh.v1.wins.%(owner).%(kind)^/?(wins) W^cfh.v1.trials.%(owner).%(kind)^/?(trials) W^cfh.v1.claimed.%(owner).%(kind)^/?(claimed);
+!!SN:W^cfh.v1.accepted.%(owner).%(kind)^/?(accepted) W^cfh.v1.wins.%(owner).%(kind)^/?(wins) W^cfh.v1.claimed.%(owner).%(kind)^/?(claimed);
 
 !?FU(CFH_MergeProgress);
 !#VA(owner:x) (kind:x) (wins:x) (trials:x);
-!!FU|(owner)<0/(owner)>7/(kind)<0/(kind)>8/(wins)<0/(wins)>5/(trials)<0/(trials)>4:E;
-!!FU(CFH_TrialData):P(kind)/0/?i/?i/?(goal:y);
-!!FU&(trials)>(goal):E;
-!!FU&(trials)>0/(wins)<5:E;
-!!SN:W^cfh.v1.wins.%(owner).%(kind)^/?(oldWins:y) W^cfh.v1.trials.%(owner).%(kind)^/?(oldTrials:y);
+!!FU|(owner)<0/(owner)>7/(kind)<0/(kind)>8/(wins)<0/(wins)>5:E;
+; The legacy trials field remains on the wire but cannot grant completion.
+!!SN:W^cfh.v1.wins.%(owner).%(kind)^/?(oldWins:y);
 !!VR(wins)&(wins)<(oldWins):S(oldWins);
-!!VR(trials)&(trials)<(oldTrials):S(oldTrials);
-!!SN:W^cfh.v1.wins.%(owner).%(kind)^/(wins) W^cfh.v1.trials.%(owner).%(kind)^/(trials);
+!!SN:W^cfh.v1.wins.%(owner).%(kind)^/(wins) W^cfh.v1.trials.%(owner).%(kind)^/0;
 
 !?FU(CFH_CityReady);
 !#VA(city:x) (kind:x) (owner:x) (okay:x);
@@ -373,19 +321,6 @@ ZVSE2
 !!en;
 !!SN:W^cfh.v1.battle.ready^/1;
 
-!?BA0;
-!!SN:W^cfh.v1.trial.active^/?(active:y) W^cfh.v1.trial.kind^/?(kind:y);
-!!BA&(active)>0/(kind)=6:Q0;
-
-!?BG0;
-!!SN:W^cfh.v1.trial.active^/?(active:y) W^cfh.v1.trial.kind^/?(kind:y);
-!!FU|(active)=0/(kind)<>6:E;
-!!BG:A?(action:y) Q?(side:y);
-!!FU&(action)<>1:E;
-!!BA:H(side)/?(hero:y);
-!!SN:W^cfh.v1.trial.hero^/?(expected:y);
-!!SN&(hero)=(expected):W^cfh.v1.trial.magic^/1;
-
 !?FU(CFH_StageBattle);
 !#VA(owner:x) (hero:x);
 !!SN:W^cfh.v1.battle.ready^/?(ready:y);
@@ -408,23 +343,17 @@ ZVSE2
  !!SN:W^cfh.v1.battle.match.%(side).%(kind)^/?(matches:y);
  !!SN&(matches)>0:W^cfh.v1.stage.win.%(kind)^/1;
 !!en;
-!!SN:W^cfh.v1.trial.active^/?(active:y) W^cfh.v1.trial.owner^/?(expectedOwner:y) W^cfh.v1.trial.hero^/?(expectedHero:y) W^cfh.v1.trial.kind^/?(trialKind:y) W^cfh.v1.trial.magic^/?(magic:y);
-!!FU|(active)=0/(expectedOwner)<>(owner)/(expectedHero)<>(hero):E;
-!!FU&(trialKind)=6/(magic)>0:E;
-!!SN:W^cfh.v1.battle.match.%(side).%(trialKind)^/?(trialMatches:y);
-!!SN&(trialMatches)>0:W^cfh.v1.stage.trial.%(trialKind)^/1;
-
 !?FU(CFH_CommitBattle);
 !#VA(owner:x);
 !!re (kind:y)/0/8;
- !!SN:W^cfh.v1.stage.win.%(kind)^/?(win:y) W^cfh.v1.stage.trial.%(kind)^/?(trial:y);
+ !!SN:W^cfh.v1.stage.win.%(kind)^/?(win:y);
  !!SN:W^cfh.v1.stage.win.%(kind)^/0 W^cfh.v1.stage.trial.%(kind)^/0;
- !!co&(win)=0/(trial)=0;
+ !!co&(win)=0;
  !!FU(CFH_QuestState):P(owner)/(kind)/?(accepted:y)/?(wins:y)/?(trials:y)/?i;
  !!co&(accepted)=0;
  !!VR(wins):+(win);
  !!VR(wins)&(wins)>5:S5;
- !!VR(trials):+(trial);
+ !!VR(trials):S0;
  !!FU(CQT_State):P(owner)/1/(kind)/?(hero:y)/?(epoch:y);
  !!co&(hero)<0;
  !!SN:W^cfh.v1.city.%(owner).%(kind)^/?(savedCity:y);
@@ -436,39 +365,29 @@ ZVSE2
 !#VA(hero:x) (outside:x);
 !!VR(outside):S0;
 !!FU|(hero)<0/(hero)>155:E;
-; H3API: isVisible at6, objectBelow at11, objectTypeUnder at12.
-; objectTypeUnder is stale after leaving a town when objectBelow is false.
-!!HE(hero):Z?(heroPtr:y) P?(x:y)/?(y:y)/?(z:y);
-!!UN:C(heroPtr)/6/1/?(visible:y) C(heroPtr)/11/1/?(below:y) C(heroPtr)/12/4/?(under:y);
-!!FU|(visible)=0/(x)<0/(y)<0/(z)<0:E;
-!!VR(outside)|(below)=0/(under)<>(OBJ_TOWN):S1;
+; Use the actual town slots. Native visibility/under-object fields can stay
+; stale after a garrison exit, including on a free adventure-map tile.
+!!HE(hero):P?(x:y)/?(y:y)/?(z:y);
+!!FU|(x)<0/(y)<0/(z)<0:E;
+; Shipped WoG UN:U counts all towns; CA0/id:H reads garrison and visitor.
+!!UN:U(OBJ_TOWN)/-1/?(towns:y);
+!!FU|(towns)<0/(towns)>48:E;
+!!if&(towns)>0;
+ !!VR(last:y):S(towns) -1;
+ !!re (town:y)/0/(last);
+  !!CA0/(town):H0/?(garrison:y) H1/?(visitor:y);
+  !!FU|(garrison)=(hero)/(visitor)=(hero):E;
+ !!en;
+!!en;
+!!VR(outside):S1;
 
 !?FU(CFH_ArmTrial);
 !#VA(owner:x) (kind:x) (city:x) (hero:x) (step:x) (sequence:x) (epoch:x) (okay:x);
+; Retired dev27: old trial requests are inert.
 !!VR(okay):S0;
-!!FU(CFH_OutsideTown):P(hero)/?(outside:y);
-!!FU&(outside)=0:E;
-!!FU(CQT_State):P(owner)/1/(kind)/?(bound:y)/?(current:y);
-!!FU|(bound)<>(hero)/(current)<>(epoch):E;
-!!FU|(sequence)<=0/(sequence)>1000000000:E;
-!!FU(CFH_Requirements):P(hero)/(city)/(kind)/(owner)/?(ready:y);
-!!FU&(ready)=0:E;
-!!FU(CFH_QuestState):P(owner)/(kind)/?(accepted:y)/?(wins:y)/?(trials:y)/?(claimed:y);
-!!FU(CFH_TrialData):P(kind)/(step)/?(enemy:y)/?i/?(goal:y);
-!!FU|(accepted)=0/(wins)<5/(trials)<>(step)/(trials)>=(goal)/(claimed)>0/(enemy)<0:E;
-!!SN:W^cfh.v1.trial.sequence.%(owner).%(kind)^/?(previous:y) W^cfh.v1.trial.active^/?(active:y);
-!!FU|(sequence)<=(previous)/(active)>0:E;
-!!SN:W^cfh.v1.trial.sequence.%(owner).%(kind)^/(sequence) W^cfh.v1.trial.active^/1 W^cfh.v1.trial.owner^/(owner) W^cfh.v1.trial.kind^/(kind) W^cfh.v1.trial.city^/(city) W^cfh.v1.trial.hero^/(hero) W^cfh.v1.trial.step^/(step);
-!!VR(okay):S1;
 
 !?FU(CFH_RunTrial);
-!!SN:W^cfh.v1.trial.active^/?(active:y) W^cfh.v1.trial.hero^/?(hero:y) W^cfh.v1.trial.kind^/?(kind:y) W^cfh.v1.trial.step^/?(step:y);
-!!FU&(active)=0:E;
-!!FU(CFH_TrialData):P(kind)/(step)/?(type:y)/?(count:y)/?i;
-!!HE(hero):P?(x:y)/?(y:y)/?(z:y);
-!!if&(type)>=0/(type)<=196/(count)>0/(x)>=0/(y)>=0/(z)>=0;
- !!HE(hero):T(x)/(y)/(z)/(type)/(count);
-!!en;
+; Retired dev27. A stale saved association must never resume scripted combat.
 !!SN:W^cfh.v1.trial.active^/0;
 
 !?FU26905;
@@ -477,30 +396,31 @@ ZVSE2
 
 !?FU(CFH_ReceiveTrial);
 !#VA(owner:x) (kind:x) (city:x) (hero:x) (step:x) (sequence:x) (epoch:x);
-!!FU(CFH_ArmTrial):P(owner)/(kind)/(city)/(hero)/(step)/(sequence)/(epoch)/?(okay:y);
-!!FU(CFH_RunTrial)&(okay)>0:P;
+; Retired dev27: old trial requests are inert.
 
 !?FU(CFH_RequestTrial);
 !#VA(owner:x) (kind:x) (city:x) (hero:x) (step:x);
-!!FU(CQT_State):P(owner)/1/(kind)/?(bound:y)/?(epoch:y);
-!!FU&(bound)<>(hero):E;
-!!FU(CFH_OutsideTown):P(hero)/?(outside:y);
-!!if&(outside)=0;
- !!IF:M^Leave town with the bound quest hero before starting a trial.^;
- !!FU:E;
-!!en;
-!!SN:W^cfh.v1.trial.sequence.%(owner).%(kind)^/?(sequence:y);
-!!VR(sequence):+1;
-; Commit local arm/sequence before broadcasting. Native scripted battle must
-; then be invoked once on each peer; do not wait for local combat to end first.
-!!FU(CFH_ArmTrial):P(owner)/(kind)/(city)/(hero)/(step)/(sequence)/(epoch)/?(okay:y);
-!!FU&(okay)=0:E;
-!!UN:V?i/?i/?i/?(network:y)/?i;
-!!if&(network)>0;
- !!IP:D-1;
- !!FU26905:D(owner)/(kind)/(city)/(hero)/(step)/(sequence)/(epoch);
-!!en;
-!!FU(CFH_RunTrial):P;
+; Retired dev27: old trial requests are inert.
+
+!?FU(CFH_Reserves);
+!#VA(owner:x) (gold:x) (wood:x) (ore:x) (mercury:x) (sulfur:x) (crystal:x) (gems:x) (okay:x);
+!!VR(okay):S0;
+!!FU|(owner)<0/(owner)>7:E;
+; Documented OW:R resource IDs. Read only: the stockpile is not a fee.
+!!OW:R(owner)/(RES_GOLD)/?(gold) R(owner)/(RES_WOOD)/?(wood) R(owner)/(RES_ORE)/?(ore);
+!!OW:R(owner)/(RES_MERCURY)/?(mercury) R(owner)/(RES_SULFUR)/?(sulfur) R(owner)/(RES_CRYSTAL)/?(crystal) R(owner)/(RES_GEMS)/?(gems);
+!!FU|(gold)<50000/(wood)<50/(ore)<50/(mercury)<25/(sulfur)<25/(crystal)<25/(gems)<25:E;
+!!VR(okay):S1;
+
+!?FU(CFH_Ready);
+!#VA(owner:x) (kind:x) (city:x) (hero:x) (okay:x);
+!!VR(okay):S0;
+!!FU(CFH_Requirements):P(hero)/(city)/(kind)/(owner)/?(qualified:y);
+!!FU&(qualified)=0:E;
+!!FU(CFH_QuestState):P(owner)/(kind)/?(accepted:y)/?(wins:y)/?i/?(claimed:y);
+!!FU|(accepted)=0/(wins)<5/(claimed)>0:E;
+!!FU(CFH_Reserves):P(owner)/?i/?i/?i/?i/?i/?i/?i/?(reserves:y);
+!!VR(okay)&(reserves)>0:S1;
 
 !?FU(CFH_FreeHero);
 !#VA(owner:x) (kind:x) (result:x);
@@ -543,10 +463,10 @@ ZVSE2
 !!FU(CQT_State):P(owner)/1/(kind)/?(bound:y)/?i;
 !!FU&(bound)<0:E;
 !!CA0/(city):H0/?(boundGarrison:y) H1/?(boundVisitor:y);
-!!FU&(bound)<>(boundGarrison)/(bound)<>(boundVisitor):E;
+!!FU&(bound)<>(boundGarrison):E;
 !!FU(CFH_QuestState):P(owner)/(kind)/?(accepted:y)/?(wins:y)/?(trials:y)/?(claimed:y);
-!!FU(CFH_TrialData):P(kind)/0/?i/?i/?(goal:y);
-!!FU|(accepted)=0/(wins)<5/(trials)<(goal)/(claimed)>0:E;
+!!FU(CFH_Ready):P(owner)/(kind)/(city)/(bound)/?(complete:y);
+!!FU&(complete)=0:E;
 !!VR(expected:y):S(kind) +1;
 !!VR(saved:y):S(hero) +1;
 !!SN:W^cfh.v1.delivery.%(owner).%(kind)^/?(delivery:y) W^cfh.v1.initialized.%(hero)^/?(initialized:y);
@@ -626,7 +546,7 @@ ZVSE2
 !!VR(name):S^%(name) - %(faction) Champion
 Quest hero: %(note)^;
 !!FU(CFH_QuestState):P(owner)/(kind)/?(accepted:y)/?(wins:y)/?(trials:y)/?(claimed:y);
-!!FU(CFH_TrialData):P(kind)/0/?i/?i/?(goal:y);
+!!FU(CFH_Reserves):P(owner)/?(gold:y)/?(wood:y)/?(ore:y)/?(mercury:y)/?(sulfur:y)/?(crystal:y)/?(gems:y)/?(reserves:y);
 !!VR(level:y):S0;
 !!VR(parts:y):S0;
 !!VR(base:y):S450;
@@ -662,11 +582,11 @@ Quest hero: %(note)^;
 !!VR(winMark:z):S^[ ]^;
 !!VR(winMark)&(wins)>=5:S^[OK]^;
 !!VR(trialMark:z):S^[ ]^;
-!!VR(trialMark)&(trials)>=(goal):S^[OK]^;
+!!VR(trialMark)&(reserves)>0:S^[OK]^;
 !!VR(specialty:z):S^+1 Attack, +1 Defense, +1 Speed to faction troops; another +1 Attack and Defense every 10 levels.^;
 !!VR(specialty)&(kind)=4:S^+2 Attack, +2 Defense, +2 Speed to Necropolis troops; another +1 Attack and Defense every 5 levels.^;
 !!VR(note):S^Complete the first three requirements before faction victories count. Parts are kept. Grail and shipyard are not required.^;
-!!VR(note)&(accepted)>0:S^Complete the first three requirements, then win battles with only matching regular troops. Commanders and war machines are allowed. Leave town and Alt-left-click the bound hero on the map (or press Ctrl+J) for final trials.^;
+!!VR(note)&(accepted)>0:S^Complete the first three requirements, then win battles with only matching regular troops. Commanders and war machines are allowed. Hold the three required resource reserves, then place the bound hero in the town garrison and leave the visitor space empty. Resources are kept.^;
 !!VR(note)&(disabled)>0:S^Enable Commanders in the game options for this quest.^;
 !!VR(note)&(hook)=0:S^The champion specialty could not be initialized on this game profile. The reward remains available; report this message.^;
 !!VR(note)&(claimed)>0:S^Champion received.^;
@@ -680,24 +600,28 @@ Reward: level 1, Attack 25, Defense 25, Power 25, Knowledge 25 and a matching co
 %(townMark) Fully built owned town: %(missing) buildings missing
 %(acceptMark) Champion quest started
 %(winMark) Faction victories: %(wins)/5
-%(trialMark) Final trials: %(trials)/%(goal)
+%(trialMark) Resource reserves (kept):
+Gold: %(gold)/50000
+Wood: %(wood)/50; Ore: %(ore)/50
+Mercury: %(mercury)/25; Sulfur: %(sulfur)/25
+Crystal: %(crystal)/25; Gems: %(gems)/25
 
 %(note)
-Delivery: an empty town visitor space and fewer than eight heroes.^;
+Delivery: bound quest hero in the garrison (upper slot), empty visitor space (lower slot), fewer than eight heroes. Click Receive champion.^;
 
 !?FU(CFH_TownMenu);
 !!CA-1:U?(city:y) T?(kind:y) O?(owner:y) H1/?(hero:y);
 !!CA-1&(hero)<0:H0/?(hero);
 !!FU(CFH_Identity):P(kind)/?(name:z)/?i/?i;
 !!FU(CFH_QuestState):P(owner)/(kind)/?(accepted:y)/?(wins:y)/?(trials:y)/?(claimed:y);
-!!FU(CFH_TrialData):P(kind)/(trials)/?i/?i/?(goal:y);
+
 !!VR(title:z):S^%(name) - Champion quest^;
 !!FU(RadioDlg_Reset):P;
 !!FU(RadioDlg_SetTitle):P(title);
 !!FU(CQT_State):P(owner)/1/(kind)/?(bound:y)/?i;
 !!FU(RadioDlg_AddItem):P^Champion quest status^/0;
 !!FU(RadioDlg_AddItem)&(bound)<0/(claimed)=0:P^Accept champion quest with the hero here^/2;
-!!FU(RadioDlg_AddItem)&(accepted)>0/(wins)>=5/(trials)>=(goal):P^Receive champion (empty visitor space required)^/1;
+!!FU(RadioDlg_AddItem)&(accepted)>0/(claimed)=0:P^Receive champion (free lower town slot)^/1;
 !!FU(RadioDlg_AddCancelButton):P;
 !!FU(RadioDlg_Show):P?(selected:y)/?(choice:y)/?(tag:z);
 !!FU&(selected)<0:E;
@@ -710,10 +634,29 @@ Delivery: an empty town visitor space and fewer than eight heroes.^;
  !!FU(CFH_Checklist):P(hero)/(city)/(kind)/(owner);
 !!en;
 !!if&(choice)=1;
+ !!FU(CQT_State):P(owner)/1/(kind)/?(bound)/?i;
+ !!FU(CFH_Ready):P(owner)/(kind)/(city)/(bound)/?(complete:y);
+ !!if&(complete)=0;
+  !!IF:M^Complete every champion requirement first. Open Champion quest status to see the remaining objectives. No resources are spent.^;
+  !!FU:E;
+ !!en;
  !!SN:W^cfh.v1.delivery.%(owner).%(kind)^/?(pending:y);
  !!VR(rewardHero:y):S(pending) -1;
+ !!CA0/(city):H0/?(garrison:y) H1/?(visitor:y);
+ !!VR(blocked:y):S0;
+ !!VR(blocked)&(visitor)>=0:S1;
+ ; A previously prepared delivery may already occupy H1 after a refused
+ ; readback. Permit its exact retry; never displace another visitor.
+ !!VR(blocked)&(pending)>0/(visitor)=(rewardHero):S0;
+ !!if|(garrison)<>(bound)/(blocked)>0;
+  !!IF:M^Place the bound quest hero in the town garrison (upper slot) and free the visitor space (lower slot) for the new champion. The reward remains available.^;
+  !!FU:E;
+ !!en;
  !!FU(CFH_FreeHero)&(pending)=0:P(owner)/(kind)/?(rewardHero);
- !!FU&(rewardHero)<0:E;
+ !!if&(rewardHero)<0;
+  !!IF:M^No unused matching champion slot is available. The reward remains available.^;
+  !!FU:E;
+ !!en;
  !!FU26904:P(owner)/(kind)/(city)/(rewardHero);
  !!UN:V?i/?i/?i/?(network:y)/?i;
  !!if&(network)>0;
@@ -721,7 +664,7 @@ Delivery: an empty town visitor space and fewer than eight heroes.^;
   !!FU26904:D(owner)/(kind)/(city)/(rewardHero);
  !!en;
  !!FU(CFH_QuestState):P(owner)/(kind)/?i/?i/?i/?(delivered:y);
- !!IF&(delivered)=0:M^Reward is still waiting. Empty the town visitor space, free a hero slot and verify that an unused matching native hero is available.^;
+ !!IF&(delivered)=0:M^Reward is still waiting. Keep the bound quest hero in the garrison, free the lower visitor slot and keep fewer than eight heroes. An unused matching native hero must be available.^;
 !!en;
 
 !!if&(choice)=2;
@@ -766,37 +709,19 @@ Delivery: an empty town visitor space and fewer than eight heroes.^;
 
 !?FU(CFH_AdventureMenu);
 !#VA(owner:x) (hero:x);
-!!FU(RadioDlg_Reset):P;
-!!FU(RadioDlg_SetTitle):P^Champion trials - save before fighting^;
-!!VR(choices:y):S0;
-!!re (kind:y)/0/8;
- !!FU(CFH_QuestState):P(owner)/(kind)/?(accepted:y)/?(wins:y)/?(trials:y)/?(claimed:y);
- !!FU(CFH_TrialData):P(kind)/(trials)/?(type:y)/?(count:y)/?(goal:y);
- !!co|(accepted)=0/(wins)<5/(claimed)>0/(trials)>=(goal);
- !!FU(CQT_State):P(owner)/1/(kind)/?(bound:y)/?i;
- !!co&(bound)<>(hero);
- !!FU(CFH_Identity):P(kind)/?(name:z)/?i/?i;
- !!FU(CSP_UnitName):P(type)/?(enemy:z);
- !!VR(caption:z):S^%(name): fight %(count) %(enemy), trial %(trials)/%(goal)^;
- !!FU(RadioDlg_AddItem):P(caption)/(kind);
- !!VR(choices):+1;
-!!en;
-!!if&(choices)=0;
- !!IF:M^No final trial is ready. Accept a champion quest in the matching town and win five faction-only battles first.^;
- !!FU:E;
-!!en;
-!!FU(RadioDlg_AddCancelButton):P;
-!!FU(RadioDlg_Show):P?(selected:y)/?(kindChosen:y)/?(tag:z);
-!!FU&(selected)<0:E;
-!!IF:Q1^Start this difficult trial now? Save first. Stronghold trials require no hero spells. Your army must contain only the matching faction's regular troops.^;
-!!FU&-1:E;
-!!SN:W^cfh.v1.city.%(owner).%(kindChosen)^/?(savedCity:y);
+!!SN:W^cqt.v2.faction.%(owner)^/?(faction:y);
+!!FU|(faction)<1/(faction)>9:E;
+!!VR(kind:y):S(faction) -1;
+!!FU(CQT_State):P(owner)/1/(kind)/?(bound:y)/?i;
+!!FU|(bound)<0/(bound)<>(hero):E;
+!!SN:W^cfh.v1.city.%(owner).%(kind)^/?(savedCity:y);
 !!VR(city:y):S(savedCity) -1;
 !!FU&(city)<0:E;
-!!FU(CFH_QuestState):P(owner)/(kindChosen)/?i/?i/?(step:y)/?i;
-!!FU(CFH_RequestTrial):P(owner)/(kindChosen)/(city)/(hero)/(step);
+!!FU(CFH_Checklist):P(bound)/(city)/(kind)/(owner);
 
 !?FU(OnStartOrLoad);
+; Retire stale pre-dev27 trial associations without issuing rewards.
+!!SN:W^cfh.v1.trial.active^/0 W^cfh.v1.trial.magic^/0;
 !!re (hero:y)/0/155;
  !!SN:W^cfh.v1.initialized.%(hero)^/?(registered:y);
  !!co|(registered)<1/(registered)>9;

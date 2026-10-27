@@ -1,3 +1,12 @@
+# 27/10/2026 dev26 > dev27 - 0.6.0-batch-dev27
+
+- Remove scripted champion trials for all nine towns, including Andonov's 150 Archangels and Conflux's four elemental steps. Replace them with three held reserves: 50,000 Gold; 50 Wood and 50 Ore; 25 each of Mercury, Sulfur, Crystal and Gems. These are checked at receipt and are not spent.
+- Retain the bound hero, level25, four distinct matching components (or assembled relic), fully developed owned town, enabled commanders and five ordinary faction-only victories. Recheck qualification when claiming. Parts are kept.
+- Choose Champion quest > Receive champion with the bound hero in the upper garrison slot and an empty lower visitor slot. The new champion goes into that lower slot. Missing conditions, an absent hero, occupied slot, full roster or unavailable unused matching hero leave the reward available. Native readback and retry safeguards preserve initialized hero/commander progression.
+- Show current reserve amounts in status. Ctrl+J and Alt-click open the checklist. Retired trial requests and delayed trial packets cannot invoke a battle; load clears stale active associations without rewards.
+- 706 offline tests pass, covering reserve boundaries and town delivery for all nine factions, resource retention, lost qualification, blocked/retried grants and obsolete requests. Offline fixtures do not execute real ERA dialogs or Lobby transport. The reported scripted-trial route is removed; a general post-battle crash repair is not claimed. Native delivery/save-load and two-computer acceptance remain pending.
+- Close the game before updating through the existing Mod Browser entry. Both clients need matching dev27 and a NEW sequential-turn map; do not use F12 or migrate old saves for acceptance.
+
 # 27/10/2026 dev25 > dev26 - 0.6.0-batch-dev26
 
 - All nine sets: the full active bonus line is green when its worn-piece threshold is reached. Carried items and duplicates do not unlock thresholds. Descriptions refresh when the inspected hero changes.
