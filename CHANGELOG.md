@@ -1,3 +1,12 @@
+# 27/10/2026 dev24 > dev25 - 0.6.0-batch-dev25
+
+- Apply acquisition changes to all nine castles. Reduce each component quest target another10%, rounded up:328/2617/6542/65408/1309/656/99/6542. Champion requirements remain unchanged.
+- Replace the5% gate and ten-level cooldown with a guaranteed own-faction component at18,23,28,33,38,43 and every5 levels thereafter, with WoG option126 enabled. Each reward in a multiple-level gain uses its individual level. The hero class determines its faction.
+- Choose a component currently missing from the player's collection across all owned heroes' equipment and backpacks. An assembled relic represents all eight parts. If the collection is complete, award an ordinary native Relic instead. Found and level-up parts do not consume quest claims. Native reward code still grants one item per level; the selector never adds a second grant.
+- Double the spacing-limited map top-up target, within the existing map-size cap,55% loose-artifact density limit and maximum140 sites. Retain guarded eligible locations, minimum four-tile separation and complete equal surface/underground pairs. Counts depend on generated eligible locations; old maps are not repopulated.
+- 639 offline tests pass. A NEW local G map reached the first turn and placed140 components,70 per layer,error0. Native artifact guard reports1. The all-faction selector and real level18/23 delivery are covered by offline fixtures; their native acceptance and save/load remain pending. No two-computer synchronization pass is claimed.
+- Close the game before updating through the existing Mod Browser entry. Start a NEW map; old save scripts and missed past rewards are not migrated.
+
 # 26/10/2026 dev23 > dev24 - 0.6.0-batch-dev24
 
 - Fix the HD Backpack Sort caption button: native LBUTTON_CLICK is13, whereas12 is LBUTTON_DOWN. Preserve normal clicks, held-item rejection and deferred sorting after popup destruction. Apply the same completed-click handling to the Relics page caption button; relic icon selection retains its native icon event.

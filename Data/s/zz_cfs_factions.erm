@@ -796,72 +796,72 @@ ZVSE2
 !#VA(set:x) (q:x) (goal:x) (objective:x);
 !!VR(goal):S0;
 !!VR(objective):Z^Unknown objective^;
-!!VR(goal)&(q)=0:S364;
-!!VR(objective)&(q)=0:Z^Win 364 confirmed battles.^;
-!!VR(goal)&(q)=1:S2907;
-!!VR(goal)&(q)=2:S7268;
-!!VR(goal)&(q)=3:S72675;
-!!VR(objective)&(q)=3:Z^Defeat 72675 enemy creatures of any kind.^;
-!!VR(goal)&(q)=4:S1454;
-!!VR(goal)&(q)=5:S728;
-!!VR(objective)&(q)=5:Z^Win 728 confirmed battles.^;
-!!VR(goal)&(q)=6:S110;
-!!VR(goal)&(q)=7:S7268;
+!!VR(goal)&(q)=0:S328;
+!!VR(objective)&(q)=0:Z^Win 328 confirmed battles.^;
+!!VR(goal)&(q)=1:S2617;
+!!VR(goal)&(q)=2:S6542;
+!!VR(goal)&(q)=3:S65408;
+!!VR(objective)&(q)=3:Z^Defeat 65408 enemy creatures of any kind.^;
+!!VR(goal)&(q)=4:S1309;
+!!VR(goal)&(q)=5:S656;
+!!VR(objective)&(q)=5:Z^Win 656 confirmed battles.^;
+!!VR(goal)&(q)=6:S99;
+!!VR(goal)&(q)=7:S6542;
 !!if&(set)=0;
- !!VR(objective)&(q)=1:Z^Defeat 2907 enemy creatures of these types: Lich / Power Lich.^;
- !!VR(objective)&(q)=2:Z^Defeat 7268 enemy creatures of these types: Skeleton / Skeleton Warrior.^;
- !!VR(objective)&(q)=4:Z^Defeat 1454 enemy creatures of these types: Pit Fiend / Pit Lord.^;
- !!VR(objective)&(q)=6:Z^Defeat 110 enemy creatures of these types: Bone Dragon / Ghost Dragon / Blood Dragon / Dracolich.^;
- !!VR(objective)&(q)=7:Z^Defeat 7268 enemy creatures of these types: Imp / Familiar.^;
+ !!VR(objective)&(q)=1:Z^Defeat 2617 enemy creatures of these types: Lich / Power Lich.^;
+ !!VR(objective)&(q)=2:Z^Defeat 6542 enemy creatures of these types: Skeleton / Skeleton Warrior.^;
+ !!VR(objective)&(q)=4:Z^Defeat 1309 enemy creatures of these types: Pit Fiend / Pit Lord.^;
+ !!VR(objective)&(q)=6:Z^Defeat 99 enemy creatures of these types: Bone Dragon / Ghost Dragon / Blood Dragon / Dracolich.^;
+ !!VR(objective)&(q)=7:Z^Defeat 6542 enemy creatures of these types: Imp / Familiar.^;
 !!en;
 !!if&(set)=1;
- !!VR(objective)&(q)=1:Z^Defeat 2907 enemy creatures of these types: Mage / Arch Mage / Enchanter.^;
- !!VR(objective)&(q)=2:Z^Defeat 7268 enemy creatures of these types: Troglodyte / Infernal Troglodyte.^;
- !!VR(objective)&(q)=4:Z^Defeat 1454 enemy creatures of these types: Manticore / Scorpicore.^;
- !!VR(objective)&(q)=6:Z^Defeat 110 enemy creatures of these types: Devil / Arch Devil / Hell Baron.^;
- !!VR(objective)&(q)=7:Z^Defeat 7268 enemy creatures of these types: Imp / Familiar.^;
+ !!VR(objective)&(q)=1:Z^Defeat 2617 enemy creatures of these types: Mage / Arch Mage / Enchanter.^;
+ !!VR(objective)&(q)=2:Z^Defeat 6542 enemy creatures of these types: Troglodyte / Infernal Troglodyte.^;
+ !!VR(objective)&(q)=4:Z^Defeat 1309 enemy creatures of these types: Manticore / Scorpicore.^;
+ !!VR(objective)&(q)=6:Z^Defeat 99 enemy creatures of these types: Devil / Arch Devil / Hell Baron.^;
+ !!VR(objective)&(q)=7:Z^Defeat 6542 enemy creatures of these types: Imp / Familiar.^;
 !!en;
 !!if&(set)=2;
- !!VR(objective)&(q)=1:Z^Defeat 2907 enemy creatures of these types: Monk / Zealot / War Zealot.^;
- !!VR(objective)&(q)=2:Z^Defeat 7268 enemy creatures of these types: Pikeman / Halberdier.^;
- !!VR(objective)&(q)=4:Z^Defeat 1454 enemy creatures of these types: Cavalier / Champion.^;
- !!VR(objective)&(q)=6:Z^Defeat 110 enemy creatures of these types: Angel / Archangel / Supreme Archangel.^;
- !!VR(objective)&(q)=7:Z^Defeat 7268 enemy creatures of these types: Skeleton / Skeleton Warrior.^;
+ !!VR(objective)&(q)=1:Z^Defeat 2617 enemy creatures of these types: Monk / Zealot / War Zealot.^;
+ !!VR(objective)&(q)=2:Z^Defeat 6542 enemy creatures of these types: Pikeman / Halberdier.^;
+ !!VR(objective)&(q)=4:Z^Defeat 1309 enemy creatures of these types: Cavalier / Champion.^;
+ !!VR(objective)&(q)=6:Z^Defeat 99 enemy creatures of these types: Angel / Archangel / Supreme Archangel.^;
+ !!VR(objective)&(q)=7:Z^Defeat 6542 enemy creatures of these types: Skeleton / Skeleton Warrior.^;
 !!en;
 !!if&(set)=3;
- !!VR(objective)&(q)=1:Z^Defeat 2907 enemy creatures of these types: Mage / Arch Mage / Enchanter.^;
- !!VR(objective)&(q)=2:Z^Defeat 7268 enemy creatures of these types: Pikeman / Halberdier.^;
- !!VR(objective)&(q)=4:Z^Defeat 1454 enemy creatures of these types: Unicorn / War Unicorn / Hell Steed.^;
- !!VR(objective)&(q)=6:Z^Defeat 110 enemy creatures of these types: Green Dragon / Gold Dragon / Diamond Dragon.^;
- !!VR(objective)&(q)=7:Z^Defeat 7268 enemy creatures of these types: Imp / Familiar.^;
+ !!VR(objective)&(q)=1:Z^Defeat 2617 enemy creatures of these types: Mage / Arch Mage / Enchanter.^;
+ !!VR(objective)&(q)=2:Z^Defeat 6542 enemy creatures of these types: Pikeman / Halberdier.^;
+ !!VR(objective)&(q)=4:Z^Defeat 1309 enemy creatures of these types: Unicorn / War Unicorn / Hell Steed.^;
+ !!VR(objective)&(q)=6:Z^Defeat 99 enemy creatures of these types: Green Dragon / Gold Dragon / Diamond Dragon.^;
+ !!VR(objective)&(q)=7:Z^Defeat 6542 enemy creatures of these types: Imp / Familiar.^;
 !!en;
 !!if&(set)=4;
- !!VR(objective)&(q)=1:Z^Defeat 2907 enemy creatures of these types: Monk / Zealot / War Zealot.^;
- !!VR(objective)&(q)=2:Z^Defeat 7268 enemy creatures of these types: Pixie / Sprite.^;
- !!VR(objective)&(q)=4:Z^Defeat 1454 enemy creatures of these types: Unicorn / War Unicorn / Hell Steed.^;
- !!VR(objective)&(q)=6:Z^Defeat 110 enemy creatures of these types: Giant / Titan / Lord Of Thunder.^;
- !!VR(objective)&(q)=7:Z^Defeat 7268 enemy creatures of these types: Skeleton / Skeleton Warrior.^;
+ !!VR(objective)&(q)=1:Z^Defeat 2617 enemy creatures of these types: Monk / Zealot / War Zealot.^;
+ !!VR(objective)&(q)=2:Z^Defeat 6542 enemy creatures of these types: Pixie / Sprite.^;
+ !!VR(objective)&(q)=4:Z^Defeat 1309 enemy creatures of these types: Unicorn / War Unicorn / Hell Steed.^;
+ !!VR(objective)&(q)=6:Z^Defeat 99 enemy creatures of these types: Giant / Titan / Lord Of Thunder.^;
+ !!VR(objective)&(q)=7:Z^Defeat 6542 enemy creatures of these types: Skeleton / Skeleton Warrior.^;
 !!en;
 !!if&(set)=5;
- !!VR(objective)&(q)=1:Z^Defeat 2907 enemy creatures of these types: Mage / Arch Mage / Enchanter.^;
- !!VR(objective)&(q)=2:Z^Defeat 7268 enemy creatures of these types: Skeleton / Skeleton Warrior.^;
- !!VR(objective)&(q)=4:Z^Defeat 1454 enemy creatures of these types: Naga / Naga Queen.^;
- !!VR(objective)&(q)=6:Z^Defeat 110 enemy creatures of these types: Hydra / Chaos Hydra / Hell Hydra.^;
- !!VR(objective)&(q)=7:Z^Defeat 7268 enemy creatures of these types: Imp / Familiar.^;
+ !!VR(objective)&(q)=1:Z^Defeat 2617 enemy creatures of these types: Mage / Arch Mage / Enchanter.^;
+ !!VR(objective)&(q)=2:Z^Defeat 6542 enemy creatures of these types: Skeleton / Skeleton Warrior.^;
+ !!VR(objective)&(q)=4:Z^Defeat 1309 enemy creatures of these types: Naga / Naga Queen.^;
+ !!VR(objective)&(q)=6:Z^Defeat 99 enemy creatures of these types: Hydra / Chaos Hydra / Hell Hydra.^;
+ !!VR(objective)&(q)=7:Z^Defeat 6542 enemy creatures of these types: Imp / Familiar.^;
 !!en;
 !!if&(set)=6;
- !!VR(objective)&(q)=1:Z^Defeat 2907 enemy creatures of these types: Beholder / Evil Eye.^;
- !!VR(objective)&(q)=2:Z^Defeat 7268 enemy creatures of these types: Goblin / Hobgoblin / Boar.^;
- !!VR(objective)&(q)=4:Z^Defeat 1454 enemy creatures of these types: Ogre / Ogre Mage.^;
- !!VR(objective)&(q)=6:Z^Defeat 110 enemy creatures of these types: Red Dragon / Black Dragon / Darkness Dragon.^;
- !!VR(objective)&(q)=7:Z^Defeat 7268 enemy creatures of these types: Imp / Familiar.^;
+ !!VR(objective)&(q)=1:Z^Defeat 2617 enemy creatures of these types: Beholder / Evil Eye.^;
+ !!VR(objective)&(q)=2:Z^Defeat 6542 enemy creatures of these types: Goblin / Hobgoblin / Boar.^;
+ !!VR(objective)&(q)=4:Z^Defeat 1309 enemy creatures of these types: Ogre / Ogre Mage.^;
+ !!VR(objective)&(q)=6:Z^Defeat 99 enemy creatures of these types: Red Dragon / Black Dragon / Darkness Dragon.^;
+ !!VR(objective)&(q)=7:Z^Defeat 6542 enemy creatures of these types: Imp / Familiar.^;
 !!en;
 !!if&(set)=7;
- !!VR(objective)&(q)=1:Z^Defeat 2907 enemy creatures of these types: Lich / Power Lich.^;
- !!VR(objective)&(q)=2:Z^Defeat 7268 enemy creatures of these types: Imp / Familiar.^;
- !!VR(objective)&(q)=4:Z^Defeat 1454 enemy creatures of these types: Efreeti / Efreet Sultan.^;
- !!VR(objective)&(q)=6:Z^Defeat 110 enemy creatures of these types: Behemoth / Ancient Behemoth / Ghost Behemoth.^;
- !!VR(objective)&(q)=7:Z^Defeat 7268 enemy creatures of these types: Skeleton / Skeleton Warrior.^;
+ !!VR(objective)&(q)=1:Z^Defeat 2617 enemy creatures of these types: Lich / Power Lich.^;
+ !!VR(objective)&(q)=2:Z^Defeat 6542 enemy creatures of these types: Imp / Familiar.^;
+ !!VR(objective)&(q)=4:Z^Defeat 1309 enemy creatures of these types: Efreeti / Efreet Sultan.^;
+ !!VR(objective)&(q)=6:Z^Defeat 99 enemy creatures of these types: Behemoth / Ancient Behemoth / Ghost Behemoth.^;
+ !!VR(objective)&(q)=7:Z^Defeat 6542 enemy creatures of these types: Skeleton / Skeleton Warrior.^;
 !!en;
 !!if&(set)=8;
  !!FU(CLT_QuestInfo):P(q)/?(goal)/?i/?(objective);
@@ -1106,7 +1106,7 @@ ZVSE2
 !!en;
 
 ; A nominal budget increase alone cannot help a spacing-limited map. Add at
-; most ten percent to that first plan, relaxing only the extra sites down to
+; up to twice that first plan, relaxing only the extra sites down to
 ; the existing minimum four-tile separation. Keep the declared density cap.
 !?FU(CFS_WorldBudget);
 !#VA(old:x) (underground:x) (count:x);
@@ -1121,7 +1121,7 @@ ZVSE2
 !#VA(size:x) (limit:x) (underground:x);
 !!SN:W^clt.world.placed^/?(placed:y) W^clt.world.error^/?(error:y);
 !!FU|(placed)=0/(error)>0:E;
-!!FU(CFS_WorldBudget):P(placed)/(underground)/?(target:y);
+!!VR(target:y):S(placed) *2;
 !!VR(target)&(target)>(limit):S(limit);
 !!VR(target)&(underground)>0::2 *2;
 !!VR(spacing:y):S(size) :12 F4/1000;
@@ -1896,6 +1896,32 @@ ZVSE2
  !!en;
 !!en;
 
+; Select a missing component, including equipment/backpacks on every owned hero.
+; The assembled relic represents all eight pieces. A complete collection falls
+; back to an ordinary native Relic; selection never grants or removes an item.
+!?FU(CFS_MissingLevelPart);
+!#VA(hero:x) (ticket:x) (artifact:x);
+!!VR(artifact):S-1;
+!!HE(hero):B2/?(class:y) O?(owner:y);
+!!FU|(class)<0/(class)>17/(owner)<0/(owner)>7:E;
+!!VR(town:y):S(class) :2;
+!!FU(CFS_FromTown):P(town)/?(set:y);
+!!VR(set)&(town)=2:S8;
+!!FU&(set)<0:E;
+!!FU(CFS_Owned):P(owner)/(set)/?(mask:y);
+!!FU&(mask)=255:E;
+!!FU(CFS_LevelPart):P(hero)/0/?(base:y);
+!!VR(ticket):%8;
+!!re (offset:y)/0/7;
+ !!VR(part:y):S(ticket) +(offset) %8;
+ !!VR(bit:y):S1 Sd<<(part);
+ !!VR(present:y):S(mask) &(bit);
+ !!if&(present)=0;
+  !!VR(artifact):S(base) +(part);
+  !!FU:E;
+ !!en;
+!!en;
+
 !?FU(CFS_Requirements);
 !#VA(hero:x) (town:x) (set:x) (ready:x) (missing:x) (level:x);
 !!VR(ready):S0;
@@ -1965,7 +1991,7 @@ ZVSE2
 !?FU(CFS_Status);
 !#VA(owner:x) (set:x);
 !!SN:W^clt.world.placed^/?(placed:y) W^clt.net.world.hash^/?(hash:y) W^clt.net.world.error^/?(worldError:y) W^clt.net.quest.error^/?(questError:y);
-!!VR(status:z):S^Build: 0.6.0-batch-dev24
+!!VR(status:z):S^Build: 0.6.0-batch-dev25
 Placed: %(placed). Map hash: %(hash).
 World errors: %(worldError). Quest errors: %(questError).
 Current player's faction quest counters:

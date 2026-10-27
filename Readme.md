@@ -1,7 +1,12 @@
-LATEST PUBLIC BUILD: 0.6.0-batch-dev24
+LATEST PUBLIC BUILD: 0.6.0-batch-dev25
 
 --------------------------------------------------------------
 ## CHANGELOG
+
+27/10/2026 dev24 > dev25
+- All nine castles: component quests are another10% easier.
+- Guaranteed missing own-faction component at levels18,23,28,33 and every5 levels thereafter with option126. Check all owned heroes; a complete collection gives an ordinary Relic instead.
+- Double the spacing-limited map top-up target, within existing guarded-site,55% density,140-site and equal-layer limits. Start a NEW map.
 
 26/10/2026 dev23 > dev24
 - Fix Sort and the Relics page button to handle the native completed-click event rather than mouse-down.
@@ -31,10 +36,6 @@ LATEST PUBLIC BUILD: 0.6.0-batch-dev24
 - Remove the town Inventory tools entry; sorting remains available with Ctrl+N in the hero screen. The Backpack-window button is not included yet.
 - No PRIVATE QA script or menu in the delivered package. 539 offline regression checks passed before this menu cleanup; current release checks are recorded in VALIDATION.md. Native battle/save/Lobby acceptance remains pending.
 
-20/10/2026 dev17 > dev18
-- Separate adventure-map frame names from inventory names for all64 added faction components, correcting the resource-cache conflict behind clipped map icons. Tower names and all item artwork are unchanged.
-- Add a release check against conflicting frame names across all bundled DEF resources.
-
 --------------------------------------------------------------
 
 ## LEGACY OF THE CLOUD TITANS - TEST
@@ -59,7 +60,7 @@ Map exploration: some eligible loose artifact sites become faction components wh
 
 Faction quests: open Faction set quests in your town menu. Each component has an objective and a progress counter. Defeat the listed enemies or complete the required battles, then return with the recorded qualified hero to claim it. Completed objectives stay green while that hero is away. Read the selected objective for its level and town requirements. Choose Accept with the hero in town. Only that recorded hero earns progress. Your first component or champion quest permanently locks one faction for this game. Death or dismissal resets unfinished progress; a replacement may accept for the same faction. Previously claimed component rewards remain claimed, once per player. Finding a piece elsewhere does not consume that quest reward.
 
-Level-up rewards: with WoG option 126 enabled, eligible human Relic-category level-up rewards can offer a matching-faction component. The component gate is 5% from level 18, with at least ten levels between component selections. After nine missed eligible attempts, the tenth guarantees one component. Cooldown levels do not count.
+Level-up rewards: with WoG option 126 enabled, eligible human Relic-category level-up rewards can offer a matching-faction component. A missing own-faction component is guaranteed at levels18,23,28,33 and every5 levels thereafter. Equipment and backpacks of all owned heroes count; assembled relics represent all eight parts. A complete collection gives an ordinary Relic instead.
 
 Custom relics are assembled from components; Dragon Utopia does not award a complete custom set. Level-up and faction-quest component rewards follow the hero's faction. A foreign-faction component found on the map is allowed.
 
@@ -73,7 +74,7 @@ Visit a matching owned developed town while wearing the relic to link its weekly
 
 ## BACKPACK AND SET CHECKLISTS
 
-Open Inventory tools in the town menu, or press Ctrl+N in the hero screen, and select Sort backpack by name. Names are grouped alphabetically; scroll modifiers, duplicates, equipment and backpack capacity are preserved. Put down any held item first. The current reviewed profile supports artifact IDs0-530; unknown extensions are left unchanged.
+Click Sort in the HD Backpack window, or press Ctrl+N in the hero screen and select Sort backpack by name. Names are grouped alphabetically; scroll modifiers, duplicates, equipment and backpack capacity are preserved. Put down any held item first. The current reviewed profile supports artifact IDs0-530; unknown extensions are left unchanged.
 
 Our artifact descriptions list all eight matching parts: gold means worn, green means owned but not worn, gray means missing. An assembled relic represents all eight. Only equipped pieces contribute set bonuses.
 

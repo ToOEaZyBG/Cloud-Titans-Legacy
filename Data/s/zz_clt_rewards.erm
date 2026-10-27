@@ -1,6 +1,6 @@
 ZVSE2
 ; DEVELOPMENT repair: validate every selection; fail closed before grants/dialogs.
-; Human components:5% gate, pity on tenth eligible attempt, ten-level cooldown.
+; Human components: guaranteed on levels18,23,28,... with option126.
 
 !?FU(CLT_LevelArtifact);
 !#VA(hero:x) (rank:x) (artifact:x) (step:x);
@@ -12,7 +12,7 @@ ZVSE2
 !!FU(CLT_TryLevelComponent):P(hero)/(rank)/?(artifact)/(rewardLevel);
 !!if&(artifact)<0;
  !!FU(CLT_IsHuman):P(hero)/?(human:y);
- ; Human Relics were already selected with the 5% component gate. An empty
+ ; Human Relics were already selected with the scheduled component gate. An empty
  ; ordinary pool must not get a second native draw into custom components.
  !!if|(human)=0/(rank)<>(ART_LEVEL_RELIC);
   !!UN:J6/(rank)/?(artifact);
@@ -32,29 +32,15 @@ ZVSE2
 !!FU&(human)=0:E;
 !!FU&(rewardLevel)<18:E;
 !!UN:V?i/?i/?i/?(network:y)/?i;
-!!VR(component:y):S0;
+!!FU(CLT_NetworkRewardAllowed):P0/(rewardLevel)/?(component:y);
 !!VR(key:y):S(hero);
 !!if&(network)>0;
  ; Map salt is shared by the existing map plan. No extra RNG or grant RPC.
  !!SN:W^clt.net.world.hash^/?(salt:y);
  !!VR(key):+(salt) %65521;
- !!FU(CLT_NetworkRewardAllowed):P(key)/(rewardLevel)/?(component);
 !!el;
  !!SN:W^clt.reward.last.%(hero)^/?(lastReward:y);
- !!VR(nextLevel:y):S(lastReward) +10;
- !!if|(lastReward)=0/(rewardLevel)>=(nextLevel);
-  !!SN:W^clt.reward.attempt.%(hero)^/?(lastAttempt:y) W^clt.reward.misses.%(hero)^/?(misses:y);
-  !!if&(rewardLevel)>(lastAttempt);
-   !!VR(misses):+1;
-   !!VR(roll:y):S99;
-   !!if&(misses)<10;
-    !!VR(roll):R0/0/99;
-   !!en;
-   !!VR(component)|(roll)<5/(misses)>=10:S1;
-   !!VR(misses)&(component)>0:S0;
-   !!SN:W^clt.reward.attempt.%(hero)^/(rewardLevel) W^clt.reward.misses.%(hero)^/(misses);
-  !!en;
- !!en;
+ !!VR(component)&(lastReward)>=(rewardLevel):S0;
 !!en;
 !!SN:F^WriteStrToIni^/^last_hero^/^%(hero)^/^attempt^/^Debug\CloudTitansRewards.ini^;
 !!SN:F^WriteStrToIni^/^last_level^/^%(rewardLevel)^/^attempt^/^Debug\CloudTitansRewards.ini^;
@@ -66,7 +52,8 @@ ZVSE2
  !!el;
   !!VR(partTicket):R0/0/7;
  !!en;
- !!FU(CFS_LevelPart):P(hero)/(partTicket)/?(artifact);
+ !!FU(CFS_MissingLevelPart):P(hero)/(partTicket)/?(artifact);
+ !!if&(artifact)>=0;
  !!SN:W^clt.reward.last.%(hero)^/(rewardLevel);
  !!SN:W^clt.reward.level.count^/?(count:y);
  !!VR(count):+1;
@@ -74,6 +61,7 @@ ZVSE2
  !!SN:F^WriteStrToIni^/^reward%(count)^/^hero=%(hero),level=%(rewardLevel),artifact=%(artifact)^/^level-up^/^Debug\CloudTitansRewards.ini^;
  !!SN:F^SaveIni^/^Debug\CloudTitansRewards.ini^;
  !!FU:E;
+ !!en;
 !!en;
 !!FU(CLT_StockLevelArtifact):P(hero)/(rank)/(rewardLevel)/?(artifact);
 
@@ -125,27 +113,13 @@ ZVSE2
 !!UN:A(artifact)/?(banned:y) A(artifact)/3/?(actualRank:y);
 !!VR(valid)&(banned)=0/(actualRank)=(rank):S1;
 
-; Recompute the per-map/per-hero schedule, making it independent of RPC
-; arrival order or a peer-local cooldown. The saved last level is diagnostic
-; online and authoritative for local random selection. A candidate succeeds
-; only with a roll below 5 and no scheduled component in the previous 9 levels.
+; Shared fixed schedule, independent of map salt, RNG and query order.
 !?FU(CLT_NetworkRewardAllowed);
 !#VA(key:x) (level:x) (allowed:x);
 !!VR(allowed):S0;
 !!FU|(key)<0/(level)<18/(level)>104:E;
-!!VR(previous:y):S-10;
-!!VR(misses:y):S0;
-!!re (walk:y)/18/(level);
- !!VR(next:y):S(previous) +10;
- !!co&(walk)<(next);
- !!FU(CLT_LevelTicket):P(key)/(walk)/99/?(roll:y);
- !!VR(misses):+1;
- !!if|(roll)<5/(misses)>=10;
-  !!VR(previous):S(walk);
-  !!VR(misses):S0;
- !!en;
-!!en;
-!!VR(allowed)&(previous)=(level):S1;
+!!VR(remainder:y):S(level) -18 %5;
+!!VR(allowed)&(remainder)=0:S1;
 
 ; Small bounded integer hash. The first argument is a salted selection key.
 !?FU(CLT_LevelTicket);
