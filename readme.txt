@@ -1,7 +1,12 @@
-LATEST PUBLIC BUILD: 0.6.0-batch-dev34
+LATEST PUBLIC BUILD: 0.6.0-batch-dev35
 
 --------------------------------------------------------------
 CHANGELOG
+
+28/10/2026 dev34 > dev35
+- New commander parts and relics use the normal Commander icon and actual six equipment slots. Green N/6 progress counts those slots; one assembled relic leaves five slots free. Ctrl+N is only for forging/assembly. New items cannot equip on heroes.
+- Add native translucent ground shadows to all90 individual map artifacts; preserve artwork, one-cell footprints, two copies per item, external monsters and level18+7k rewards.
+- Full restart, matching35 and NEW map required. Targeted checks pass; native UI/battle/save/Lobby acceptance remains pending. No installed-file or game-control changes.
 
 28/10/2026 dev33 > dev34
 - Reduce NEW-map generation from3to2copies of every individual part:180finds instead of270,90/90with underground. No full relics; level18+7k rewards unchanged.
@@ -30,10 +35,6 @@ CHANGELOG
 - Replace the ignored synthetic Escape with the documented native CloseDialog helper. Preserve held-artifact guards, complete artifact records and the existing multiplayer transaction.
 - Verified with targeted background tests; actual in-game click acceptance remains pending.
 
-28/10/2026 dev28 > dev29
-- Help improve Cloud Titans Legacy: report bugs and share suggestions using the feedback links below.
-- Add guided bug and suggestion forms. Gameplay, scripts, native plugin and artwork are identical to dev28.
-
 --------------------------------------------------------------
 
 HELP IMPROVE CLOUD TITANS LEGACY
@@ -51,7 +52,7 @@ Legacy of the Cloud Titans adds an artifact-collection and hero-progression syst
 
 WHAT YOU GET
 
-- Three universal commander sets with18 new items; Commander equipment and forge is available through Ctrl+N in the hero screen. Bonuses require commander equipping.
+- Three universal commander sets with18 new items and three assembled relics. Give an item from the backpack to the normal Commander icon; it appears in one of the six real Commander-screen slots. Ctrl+N is an optional forge/assembly menu. Bonuses count actual commander equipment only.
 - Nine faction sets: eight components and one assembled relic for each town.
 - 72 components and nine complete relics in total, with themed artifact artwork.
 - Individual item effects and cumulative bonuses for wearing different matching pieces.
@@ -80,7 +81,7 @@ Visit a matching owned developed town while wearing the relic to link its weekly
 
 BACKPACK AND SET CHECKLISTS
 
-Click Sort in the HD Backpack window, or press Ctrl+N in the hero screen and select Sort backpack by name. Names are grouped alphabetically; scroll modifiers, duplicates, equipment and backpack capacity are preserved. Put down any held item first. The current reviewed profile supports artifact IDs0-530; unknown extensions are left unchanged.
+Click Sort in the HD Backpack window, or press Ctrl+N in the hero screen and select Sort backpack by name. Names are grouped alphabetically; scroll modifiers, duplicates, equipment and backpack capacity are preserved. Put down any held item first. The current reviewed profile supports artifact IDs0-551; unknown extensions are left unchanged.
 
 Our artifact descriptions list all eight matching parts: gold means worn, green means owned but not worn, gray means missing. An assembled relic represents all eight. Only equipped pieces contribute set bonuses.
 
@@ -126,7 +127,7 @@ REPORTING A PROBLEM
 Keep the save and Debug folder locally. Record the installed version, faction, exact action and a screenshot of the first error. Include whether it happened locally or through Online Lobby. Detailed test instructions are in NETWORK_TEST.md.
 
 COMMANDER RELIC ASSEMBLY
-Combine all six matching commander parts into one Pendant relic through Ctrl+N > Commander equipment and forge. Retain all full-set bonuses and free five native positions. Green N/6 headings and part checklists show active progress; two matching parts retain their2/6bonus. Complete relics never drop or forge whole. Dismantle back into six parts when needed. See COMMANDER_SETS.md.
+Combine all six matching commander parts into one relic through Ctrl+N > Commander forge and relics. Retain all full-set bonuses and free five native positions. Green N/6 headings and part checklists show active progress; two matching parts retain their2/6bonus. Complete relics never drop or forge whole. Dismantle back into six parts when needed. See COMMANDER_SETS.md.
 
 SUPPORT THE NEXT ADVENTURE
 

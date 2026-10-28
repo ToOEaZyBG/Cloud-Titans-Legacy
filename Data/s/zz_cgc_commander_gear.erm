@@ -1,5 +1,5 @@
 ZVSE2
-; Generated commander identities; do not write these IDs with CO:A3.
+; Native six-slot identities; requires the checked commander UI bridge.
 !?FU(CGC_Info);
 !#VA(art:x) (name:x) (setName:x);
 !!VR(name):Z^Empty^;
@@ -107,29 +107,11 @@ ZVSE2
 !!FU&(disabled)<>0:E;
 !!CO(hero):E?(enabled:y) D?(dead:y);
 !!FU|(enabled)<>1/(dead)<>0:E;
-!!VR(c0:y):S0;
-!!VR(c1:y):S0;
-!!VR(c2:y):S0;
-!!VR(relic:y):S-1;
-!!re (slot:y)/0/5;
- !!CO(hero):A3/(slot)/?(native:y)/?i;
- !!co&(native)<>0;
- !!SN:W^cgc.v1.gear.%(hero).%(slot)^/?(saved:y);
- !!VR(art:y):S(saved) -1;
- !!VR(relic)&(slot)=5/(art)>=549/(art)<=551:S(art) -549;
- !!co|(art)<531/(art)>548;
- !!VR(itemSlot:y):S(art) -531 %6;
- !!co&(itemSlot)<>(slot);
- !!VR(kind:y):S(art) -531 :6;
- !!VR(c0)&(kind)=0:+1;
- !!VR(c1)&(kind)=1:+1;
- !!VR(c2)&(kind)=2:+1;
-!!en;
-!!VR(c0)&(relic)=0:S0;
-!!VR(c1)&(relic)=1:S0;
-!!VR(c2)&(relic)=2:S0;
+!!FU(CGC_State):P(hero)/0/?i/?(c0:y);
+!!FU(CGC_State):P(hero)/1/?i/?(c1:y);
+!!FU(CGC_State):P(hero)/2/?i/?(c2:y);
 !!VR(total:y):S(c0) +(c1) +(c2) *5;
-!!re (kind)/0/2;
+!!re (kind:y)/0/2;
  !!VR(count:y):S(c0);
  !!VR(count)&(kind)=1:S(c1);
  !!VR(count)&(kind)=2:S(c2);
@@ -151,20 +133,6 @@ ZVSE2
 !!VR(health)&(c1)=6:+40;
 !!VR(spell)&(c2)=6:+40;
 !!VR(passive)&(c2)=6:+40;
-!!VR(attack)&(relic)>=0:+50;
-!!VR(defence)&(relic)>=0:+50;
-!!VR(damage)&(relic)>=0:+50;
-!!VR(health)&(relic)>=0:+50;
-!!VR(speed)&(relic)>=0:+50;
-!!VR(spell)&(relic)>=0:+50;
-!!VR(passive)&(relic)>=0:+50;
-!!VR(aura)&(relic)>=0:+50;
-!!VR(attack)&(relic)=0:+40;
-!!VR(damage)&(relic)=0:+40;
-!!VR(defence)&(relic)=1:+40;
-!!VR(health)&(relic)=1:+40;
-!!VR(spell)&(relic)=2:+40;
-!!VR(passive)&(relic)=2:+40;
 !?FU(CGC_SlotName);
 !#VA(slot:x) (name:x);
 !!VR(name):Z^Unknown slot^;
@@ -176,7 +144,7 @@ ZVSE2
 !!VR(name)&(slot)=5:Z^Pendant^;
 
 !?FU(OnStartOrLoad);
-!!SN:W^cgc.ready^/0 W^cgc.transaction^/0 W^cgc.hash^/0;
+!!SN:W^cgc.ready^/0 W^cgc.native.ready^/0 W^cgc.transaction^/0 W^cgc.hash^/0;
 !!SN:L^cfs_relic_book.era^/?(library:y);
 !!FU&(library)=0:E;
 !!SN:A(library)/^CFSCommanderTransaction^/?(transaction:y) A(library)/^CFSCommanderBagHash^/?(hash:y);
@@ -185,6 +153,12 @@ ZVSE2
 !!FU&(query)=0:E;
 !!SN:E(query)/(CALLCONV_STDCALL);
 !!FU&v1<>1:E;
+!!SN:A(library)/^CFSCommanderNativeReady^/?(nativeQuery:y);
+!!FU&(nativeQuery)=0:E;
+!!SN:E(nativeQuery)/(CALLCONV_STDCALL);
+!!FU&v1<>1:E;
+!!SN:W^cgc.native.ready^/1;
+!!SN:W^cgc.updateTooltips^/(CGC_UpdateTooltips);
 !!SN:W^cgc.transaction^/(transaction) W^cgc.hash^/(hash) W^cgc.ready^/1;
 
 ; Multiple FU handlers run in registration order. Preserve the provider outputs.
@@ -210,8 +184,9 @@ ZVSE2
 !!FU&(function)=0:E;
 !!SN:E(function)/(CALLCONV_STDCALL)/(hero);
 !!VR(hash:y):Sv1;
-!!SN:W^cgc.v1.gear.%(hero).%(slot)^/?(saved:y) W^cgc.v1.txn.%(hero).seq^/?(sequence:y);
-!!VR(old:y):S(saved) -1;
+!!FU(CGC_Equipped):P(hero)/(slot)/?(old:y);
+!!VR(old)|(old)<531/(old)>551:S-1;
+!!SN:W^cgc.v1.txn.%(hero).seq^/?(sequence:y);
 !!VR(sequence):+1;
 !!FU26909:P(hero)/(owner)/(op)/(slot)/(art)/(old)/(hash)/(sequence);
 !!SN:W^cgc.result^/?(okay:y);
@@ -219,6 +194,7 @@ ZVSE2
  !!IF:M^Cannot complete this change. Put down any held item. Assembly needs all six matching parts on this commander page or in the backpack, and room for the relic. Dismantling needs the relic in the backpack and five more free cells. Forging needs a level-20 hero, living commander, 50,000 Gold, 20 Wood and 20 Ore. Native commander items reserve their same slots.^;
  !!FU:E;
 !!en;
+!!FU(CGC_UpdateTooltips):P(hero);
 !!UN:V?i/?i/?i/?(network:y)/?i;
 !!if&(network)>0;
  !!IP:D-1;
@@ -258,6 +234,11 @@ ZVSE2
 !!SN:W^cgc.ready^/?(ready:y);
 !!IF&(ready)<>1:M^Commander equipment is unavailable on this profile.^;
 !!FU&(ready)<>1:E;
+!!SN:W^cgc.native.ready^/?(nativeMode:y);
+!!if&(nativeMode)=1;
+ !!FU(CGC_ForgeAndRelics):P(hero);
+ !!FU:E;
+!!en;
 !!re (page:y)/0/999;
  !!FU(CGC_UpdateTooltips):P(hero);
  !!FU(RadioDlg_Reset):P;
@@ -320,14 +301,21 @@ ZVSE2
 !!VR(base:y):S(kind) *6 +531;
 !!VR(relic:y):S549 +(kind);
 !!re (slot:y)/0/5;
- !!CO(hero):A3/(slot)/?(native:y)/?i;
- !!co&(native)<>0;
- !!SN:W^cgc.v1.gear.%(hero).%(slot)^/?(saved:y);
- !!VR(art:y):S(saved) -1;
+ !!FU(CGC_Equipped):P(hero)/(slot)/?(art:y);
  !!VR(expected:y):S(base) +(slot);
  !!VR(bit:y):S1 Sd<<(slot);
- !!VR(mask)&(art)=(expected):|(bit);
- !!VR(mask)&(slot)=5/(art)=(relic):S63;
+ !!SN:W^cgc.native.ready^/?(nativeMode:y);
+ !!if&(nativeMode)=1;
+  !!VR(part:y):S(art) -(base);
+  !!if&(part)>=0/(part)<6;
+   !!VR(bit):S1 Sd<<(part);
+   !!VR(mask):|(bit);
+  !!en;
+  !!VR(mask)&(art)=(relic):S63;
+ !!el;
+  !!VR(mask)&(art)=(expected):|(bit);
+  !!VR(mask)&(slot)=5/(art)=(relic):S63;
+ !!en;
 !!en;
 !!re (slot)/0/5;
  !!VR(bit):S(mask) Sd>>(slot) &1;
@@ -375,7 +363,7 @@ ZVSE2
 !!FU|(selected)<0/(slot)<0/(slot)>5:E;
 !!VR(art):S(kind) *6 +531 +(slot);
 !!FU(CGC_Info):P(art)/?(name)/?i;
-!!IF:Q1/8/(art)/2^Forge %(name) for 50,000 Gold, 20 Wood and 20 Ore? It goes into your backpack; equip it on the Commander equipment page.^;
+!!IF:Q1/8/(art)/2^Forge %(name) for 50,000 Gold, 20 Wood and 20 Ore? It goes into your backpack; give it to the normal Commander icon.^;
 !!FU&-1:E;
 !!FU(CGC_Submit):P(hero)/1/(slot)/(art);
 
@@ -419,9 +407,57 @@ ZVSE2
  !!FU(CLT_IsHuman):P(hero)/?(human:y);
  !!co&(human)>0;
  !!re (slot:y)/0/5;
+  !!SN:W^cgc.native.ready^/?(nativeMode:y);
+  !!if&(nativeMode)=1;
+   !!CO(hero):A3/(slot)/?(art:y)/?i;
+   !!CO(hero)&(art)>=531/(art)<=551:A3/(slot)/0/0;
+  !!en;
   !!SN:W^cgc.v1.gear.%(hero).%(slot)^/0;
  !!en;
 !!en;
+
+!?FU(CGC_Equipped);
+!#VA(hero:x) (slot:x) (art:x);
+!!VR(art):S-1;
+!!FU|(hero)<0/(hero)>155/(slot)<0/(slot)>5:E;
+!!CO(hero):A3/(slot)/?(native:y)/?i;
+!!SN:W^cgc.native.ready^/?(nativeMode:y);
+!!if&(nativeMode)=1;
+ !!VR(art):S(native);
+!!el;
+ !!FU&(native)<>0:E;
+ !!SN:W^cgc.v1.gear.%(hero).%(slot)^/?(saved:y);
+ !!VR(art):S(saved) -1;
+!!en;
+
+!?FU(CGC_ForgeAndRelics);
+!#VA(hero:x);
+!!FU(RadioDlg_Reset):P;
+!!FU(RadioDlg_SetTitle):P^Commander forge and relics - equip through the normal Commander icon^;
+!!FU(RadioDlg_AddItem):P^Forge new commander gear^/0;
+!!FU(RadioDlg_AddItem):P^Set bonuses and green N/6 progress^/1;
+!!FU(RadioDlg_AddItem):P^Assemble six parts into one relic^/2;
+!!FU(RadioDlg_AddItem):P^Dismantle a backpack relic into six parts^/3;
+!!FU(RadioDlg_AddCancelButton):P;
+!!FU(RadioDlg_Show):P?(selected:y)/?(choice:y)/?i;
+!!FU|(selected)<0/(choice)<0:E;
+!!FU(CGC_ForgeMenu)&(choice)=0:P(hero);
+!!FU(CGC_ProgressMenu)&(choice)=1:P(hero);
+!!FU(CGC_AssemblyMenu)&(choice)=2:P(hero)/2;
+!!FU(CGC_AssemblyMenu)&(choice)=3:P(hero)/3;
+
+!?CO1;
+!!SN:W^cgc.native.ready^/?(nativeMode:y);
+!!FU&(nativeMode)<>1:E;
+!!HE-1:N?(hero:y);
+!!FU|(hero)<0/(hero)>155:E;
+!!re (slot:y)/0/5;
+ !!FU(CGC_Equipped):P(hero)/(slot)/?(art:y);
+ !!VR(saved:y):S0;
+ !!VR(saved)&(art)>=531/(art)<=551:S(art) +1;
+ !!SN:W^cgc.v1.gear.%(hero).%(slot)^/(saved);
+!!en;
+!!FU(CGC_UpdateTooltips):P(hero);
 
 !?FU(CLT_UpdateTooltips);
 !#VA(hero:x);
@@ -558,7 +594,7 @@ Only active commander equipment counts; hero equipment and backpack give no bonu
 !!VRs^cgc.tooltip.549^:S^Ember Oath Relic
 
 {~Lime}Ember Oath (%(count)/6){~}
-Assembled relic: +50 to all eight ACM commander modifiers; +90 total to Attack/Damage. Uses only Pendant; five native positions remain free.
+Assembled relic: +50 to all eight ACM commander modifiers; +90 total to Attack/Damage. Uses one native commander slot; five positions remain free.
 
 %(bonus2)
 %(bonus4)
@@ -694,7 +730,7 @@ Only active commander equipment counts; hero equipment and backpack give no bonu
 !!VRs^cgc.tooltip.550^:S^Iron Covenant Relic
 
 {~Lime}Iron Covenant (%(count)/6){~}
-Assembled relic: +50 to all eight ACM commander modifiers; +90 total to Defense/Health. Uses only Pendant; five native positions remain free.
+Assembled relic: +50 to all eight ACM commander modifiers; +90 total to Defense/Health. Uses one native commander slot; five positions remain free.
 
 %(bonus2)
 %(bonus4)
@@ -830,7 +866,7 @@ Only active commander equipment counts; hero equipment and backpack give no bonu
 !!VRs^cgc.tooltip.551^:S^Astral Conclave Relic
 
 {~Lime}Astral Conclave (%(count)/6){~}
-Assembled relic: +50 to all eight ACM commander modifiers; +90 total to Spell/Passive. Uses only Pendant; five native positions remain free.
+Assembled relic: +50 to all eight ACM commander modifiers; +90 total to Spell/Passive. Uses one native commander slot; five positions remain free.
 
 %(bonus2)
 %(bonus4)

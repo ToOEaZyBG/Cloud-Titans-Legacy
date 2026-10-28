@@ -1,3 +1,36 @@
+# Native Commander equipment and map shadows:0.6.0-batch-dev35
+
+Close the game before updating through the existing Mod Browser entry; restart
+fully and create a NEW map. Both peers must run35. Old saved scripts and the
+former separate equipment ledger are not migrated. Do not use F12.
+
+To equip a new commander part or relic, pick it up from the hero's backpack
+and give it to the normal Commander icon, exactly as with an original item.
+Open the Commander screen to see it in the actual six slots. Click its icon
+to return it to the backpack; make room first. Right-click shows green N/6
+progress. No Ctrl+N shortcut is required for equipping or taking items off.
+Ctrl+N > Commander forge and relics remains an optional crafting menu.
+New commander items cannot be worn on the hero. Carried items give no bonus.
+
+Assemble six matching parts from the native commander slots and/or backpack.
+The single relic uses one real slot; five remain available for original items.
+Native shooting/revival/growth and existing battle counts are preserved.
+Two matching parts still grant15 points to all eight ACM modifiers; a full
+set/relic grants50 to all eight and90 total to its favored pair.
+
+All90 individual map-artifact types now contain native translucent shadows.
+Exactly2copies per type remain:180finds,90/90with underground. External map
+monsters and level18+7k rewards are unchanged; no complete relics appear.
+
+Targeted source/native-code fixtures and packed-resource checks pass. These
+do not execute the game's renderer, battle engine, real save/load or Lobby.
+First player acceptance: equip/take off one part through the normal icon,
+inspect green1/6 and2/6 and changed attributes, assemble/equip a relic, retain
+an original bow in another slot, then save/reload and compare peers.
+No game was controlled and no installed file, setting or save was changed.
+
+Earlier release notes below are historical when they conflict with this section.
+
 # Map-density update: 0.6.0-batch-dev34
 
 NEW maps contain two copies of each individual part:72 faction parts +18

@@ -446,6 +446,11 @@ ZVSE2
  !!re (gearSlot:y)/0/5;
   !!SN:W^cgc.v1.gear.%(hero).%(gearSlot)^/?(gear:y);
   !!VR(gearUsed)&(gear)<>0:S1;
+  !!SN:W^cgc.native.ready^/?(nativeGearMode:y);
+  !!if&(nativeGearMode)=1;
+   !!CO(hero):A3/(gearSlot)/?(nativeGear:y)/?i;
+   !!VR(gearUsed)&(nativeGear)<>0:S1;
+  !!en;
  !!en;
  !!co&(gearUsed)>0;
  !!HE(hero):O?(heroOwner:y) P?(x:y)/?(y:y)/?(z:y) B2/?(class:y);

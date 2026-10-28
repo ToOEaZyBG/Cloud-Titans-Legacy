@@ -1,20 +1,28 @@
-# Validation for0.6.0-batch-dev34
+# Validation for0.6.0-batch-dev35
 
-15targeted tests pass:9authored ERM map/replication/pickup/terrain/access tests,
-3catalog tests and3Launcher release tests. Exact180coordinates, two copies of
-each of90parts,90/90layers, original external-monster proximity at every selected
-site and identical sender/receiver native object-mutation order are verified.
-Surface-only generation, old third-copy packet181 rejection, no-monster cells,
-blocked terrain, AI/full-bag pickup refusal and unchanged level reward script
-are covered. These use fake native map/transport bindings, not a native game.
+62targeted checks pass:14headless x86 production-code tests,5new native-slot
+ERM/executable-contract tests,9commander bonus tests,7assembly/progress tests,
+5map visibility tests,4frame-cache tests,2all-part native-shadow tests,
+3catalog tests,3Launcher tests and10champion-pool regressions.
+The final52test group takes29.691s; champion regressions take2.854s.
+No full-suite repeat. Native bindings are explicit fakes, not a running game.
 
-393of398runtime files are byte-identical to33, including all images, configs,
-native plugins, rewards, equipment and champions. Five map-related scripts change.
-The prior776test/dev32 evidence applies to retained components with its original
-limitations; the full suite was not repeated. Current candidate parser/resource/
-arity/fingerprint gates and release450-file hashes pass. No new native combat,
-real save/load or two-computer acceptance is claimed. No game/UI/install changes.
+Checks include2160six-part orderings in actual-size native NPC records,
+duplicate/full/AI/disabled refusal, native icon/green text setup and lookup
+bypass, scrambled worn/backpack assembly and preservation of original growing
+item records. Authored ERM exercises1152partial-mask/rotation cases, relics in
+all six positions, original-item coexistence and ignored stale equipment ledgers.
+Champion allocation rejects real native gear without a local mirror.
 
-The retained external guard rule checks for a native map monster within3x3.
-Ordinary game movement, flight, teleport and guarding rules remain unchanged;
-this is not an embedded army or an unconditional scripted battle on pickup.
+All90map part types have native translucent body/edge runs; existing subject
+pixels/palettes, MSK/MSG, frame names and the complete inventory archive are
+byte/pixel-identical where applicable. Exactly2copies/180sites, external guards
+and the standalone18+7k reward script are retained. Candidate parser, function,
+CFG/native-source fingerprints and552inventory-frame/652cache-name gates pass.
+All55immutable baseline files remain unchanged. Public450-file hashes match
+the reviewed export; historical full-suite evidence retains its original limits.
+
+Actual hook invocation, native rendering, combat, real save/load and two-computer
+Lobby acceptance remain PENDING. Restart fully and use matching35 NEW maps;
+old saved scripts are not migrated. No game control or installed/settings/save
+changes. Historical AI-turn/fullscreen incidents are not proven fixed.

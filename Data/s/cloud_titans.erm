@@ -3117,7 +3117,7 @@ Includes all eight artifacts. Extra copies give no further bonus.
 !!VR(title:z):S^%(name) - Inventory tools^;
 !!FU(RadioDlg_SetTitle):P(title);
 !!FU(RadioDlg_AddItem):P^Sort backpack by name^/0;
-!!FU(RadioDlg_AddItem):P^Commander equipment and forge^/1;
+!!FU(RadioDlg_AddItem):P^Commander forge and relics^/1;
 !!FU(RadioDlg_AddCancelButton):P;
 !!FU(RadioDlg_Show):P?(selected:y)/?(choice:y)/?(tag:z);
 !!FU|(selected)<0/(choice)<0:E;

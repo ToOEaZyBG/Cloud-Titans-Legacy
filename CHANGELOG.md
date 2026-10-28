@@ -1,3 +1,10 @@
+# 28/10/2026 dev34 > dev35 - 0.6.0-batch-dev35
+
+- Equip the18 new commander parts and three assembled relics through the normal Commander icon. They appear in the actual six Commander-screen slots, alongside original artifacts. Click an equipped icon to return it to the backpack; right-click for green N/6 set progress. Ctrl+N is only an optional forge/assembly menu, no longer an equipment requirement. New commander items cannot be worn on the hero.
+- Count actual commander equipment in any physical slot. Preserve partial2/4/6 bonuses; assembling six matching parts from native slots and/or the backpack consumes only those parts. A relic occupies one real slot, leaving five free; preserve original artifact abilities and battle-growth records. Guard custom rendering before the original ten-item lookup. Require matching35, a full restart and a NEW map; old saved scripts are not migrated.
+- Add native-format translucent ground shadows to all90 individual map artifacts. Retain their painted subject pixels, adaptive colors, one-cell footprints and separate frame-cache names. Keep exactly two copies per item,180finds, external map monsters and level18+7k rewards unchanged.
+- Targeted native-code, authored ERM, resource and release checks only; no full-suite repeat. Actual native UI, battle, save/load and two-computer acceptance remain pending. No game control or installed/settings/save changes.
+
 # 28/10/2026 dev33 > dev34 - 0.6.0-batch-dev34
 
 - Reduce NEW-map generation to exactly2copies of every individual faction component and commander item:90types*2=180finds, with90on each layer when underground exists. Do not generate complete assembled relics. Existing maps keep their original objects; level rewards at18,25,32,39and every7levels thereafter are unchanged.

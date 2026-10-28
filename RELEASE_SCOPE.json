@@ -1,16 +1,16 @@
 {
-  "version": "0.6.0-batch-dev34",
+  "version": "0.6.0-batch-dev35",
   "distribution": "EXPERIMENTAL ONLINE LOBBY TEST",
   "new_map_required": true,
   "sequential_turns_only": true,
-  "offline_tests_passed": 15,
+  "offline_tests_passed": 62,
   "native_runtime_accepted": false,
   "two_computer_accepted": false,
   "production_ready": false,
   "candidate_validation": {
     "global_frame_cache_names": 652,
     "status": "OFFLINE CHECKS PASSED",
-    "functions": 165,
+    "functions": 167,
     "new_sets": 8,
     "artifact_configs": 102,
     "max_config_parser_write_bytes": 463,
@@ -22,7 +22,7 @@
     "AI-turn crash",
     "fullscreen crash"
   ],
-  "reviewed_candidate_zip_sha256": "cc684190813b908dae410e1a8fd042a2545ba9252bfb3619c620a0a0d7084fac",
+  "reviewed_candidate_zip_sha256": "8f9b8aef6b70a8e4872899144402255cf77cfd3eaff674cf5395eaf270c01f23",
   "export_overrides": [
     "mod.json catalog caption/description",
     "Readme.md",
@@ -30,17 +30,13 @@
     "readme.txt"
   ],
   "full_suite_repeated": false,
-  "targeted_tests_passed": 15,
-  "map_components": 90,
-  "map_copies_per_component": 2,
-  "map_sites": 180,
-  "two_layer_sites": [
-    90,
-    90
-  ],
-  "guard_policy": "Original external adventure-map monsters in3x3neighborhood; no embedded army or scripted battle.",
+  "targeted_tests_passed": 62,
+  "native_commander_slots": 6,
+  "shadowed_part_types": 90,
+  "native_game_accepted": false,
   "installed_files_changed": false,
-  "runtime_files_unchanged": 393,
-  "commander_parts": 18,
-  "commander_relics": 3
+  "runtime_files_unchanged": 278,
+  "map_sites": 180,
+  "map_copies_per_part": 2,
+  "old_saved_scripts_migrated": false
 }

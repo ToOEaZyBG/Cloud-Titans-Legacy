@@ -1,36 +1,41 @@
-# Commander sets — dev32
+# Commander sets - dev35
 
-![The three assembled commander relics; artwork and native-size preview, not gameplay](Screens/commander-relics.png)
+![The three assembled commander relics; artwork preview, not gameplay](Screens/commander-relics.png)
 
-## One-slot commander relics — dev32
+## Normal Commander equipment
 
-Use Ctrl+N > Commander equipment and forge > Assemble six parts into one relic.
-One of each matching part must be in this commander's custom equipment or the
-hero's backpack. Hero-worn items must first be moved to the backpack. Assembly
-has no extra charge and replaces exactly six parts with one backpack relic.
-Equip that relic in the custom Pendant position; it reserves only native
-commander position5, leaving positions0..4 for five native items and their
-original abilities/growth. No extended ID is written into the native NPC table.
+Pick a new item up from the hero's backpack and give it to the normal
+Commander icon, exactly as with original commander artifacts. It occupies
+one of the actual six slots shown on the Commander screen. Click its icon
+there to return it to the backpack; leave room first. Right-click shows
+its description and green set progress. No Ctrl+N shortcut is required for
+equipping or taking items off. New commander gear cannot be worn by the hero.
+Items in a backpack give no bonus; disabled/dead or AI commanders get no bonus.
 
-Ember Oath Relic, Iron Covenant Relic and Astral Conclave Relic preserve their
-set's full50-point bonus to all eight ACM modifiers and90total to the favored
-pair. These totals include thresholds; they are not added again. An assembled
-relic counts6/6. Partial sets retain individual and2/4/6 thresholds: two active
-matching parts give15points to all eight modifiers. Set headings show green
-N/6; active names and earned thresholds are green, inactive names gray. Progress
-updates for the inspected hero. Backpack and hero-worn gear never count active.
+Parts may use any free native slot. Matching2/4/6 progress counts different
+identities actually equipped on that commander, regardless of slot order.
+Names and earned thresholds turn green; carried items remain inactive.
 
-Only parts can be found or forged. All three complete relics are excluded from
-map generation and native random pools; the180-item map plan is unchanged.
-To dismantle, first unequip the relic to the backpack, leave five more empty
-cells and choose Dismantle a backpack relic into six parts. Both operations
-preserve unrelated complete artifact records and refuse safely on missing parts,
-insufficient space, held artifact, wrong owner or stale/replayed conflicts.
+## Assembly and forge
 
-Each assembled relic has its own original painted icon. Native visual, battle, save/load
-and two-computer acceptance remain pending; no game was controlled. Matchdev32
-on both peers and use a NEW map. The other public guide sections describe the
-retained dev31 parts and base bonuses.
+Ctrl+N > Commander forge and relics is an optional crafting menu. Assemble one
+of each of the six matching parts from native commander equipment and/or the
+backpack, with no extra fee. The relic enters the backpack. Give it to the
+normal Commander icon: it occupies one real slot, counts6/6 and leaves five
+slots for original items, retaining their abilities and accumulated battles.
+Represented same-set parts do not add duplicate bonuses alongside their relic.
+
+To dismantle, return the relic to the backpack and leave five more free cells.
+Choose Dismantle a backpack relic into six parts. Failures preserve all items
+and resources. Only individual parts can be forged or found on the map;
+complete relics never drop. Forging each part costs50,000Gold,20Wood,20Ore,
+and requires a level20hero and a living enabled commander. Forging places
+the part in the backpack; it does not silently equip it.
+
+Exactly2copies of each72hero-set part and18commander parts appear on a
+successful NEW map:180finds,90/90with underground. Separate adventure-map
+monsters guard eligible locations under ordinary native movement rules.
+The level18+7k hero-part rewards are unchanged.
 
 Three universal sets, six items each. All nine standard towns and all ACM
 commander classes can use every set. The sets share acquisition costs and a
@@ -47,29 +52,6 @@ commander classes can use every set. The sets share acquisition costs and a
 Original artwork preview, not a gameplay screenshot. Native icons use the
 existing44x44 inventory palette with clear margins. Artwork is pending player
 approval and may be revised following feedback.
-
-## Equip and obtain
-
-In the hero screen press **Ctrl+N**, then **Commander equipment and forge**.
-Use the separate Helm, Weapon, Shield, Armor, Boots and Pendant positions on
-this commander page. Select a position and choose a matching item from the hero's
-backpack. The item transfers into commander equipment. Removing it returns it to
-the backpack; make room first. Swapping returns the former item safely.
-
-Items in hero equipment or a backpack give **no commander bonus**. A native
-commander item reserves its existing numbered position and suppresses our same
-position. Remove the native item through the ordinary commander screen before
-using that position for new gear. Existing items are not replaced or converted.
-You may remove retained new gear even while the commander is dead or a native
-item reserves its position. A disabled or dead commander gets no custom bonus.
-
-**Forge:** hero level20, enabled living commander,50000Gold,20Wood and20Ore for
-each item. A complete set costs300000Gold,120Wood and120Ore. Every item enters the
-backpack first; forging never silently equips it. Every town gets the same costs.
-Each of these18items also appears exactly2times in the explicit new-map plan,
-alongside2copies of each of72faction components:180finds. Full relics never
-appear on the map. Ordinary native random-loot and level-up pools remain unchanged. AI cannot receive or
-activate the new items; human-owned items remain subject to normal loss/transfer.
 
 ## Bonuses
 
@@ -105,22 +87,17 @@ in every situation. Further balance changes will follow actual play feedback.
 
 ## Compatibility and acceptance
 
-The integration reads the documented six native positions without writing new
-IDs into the native commander table. It augments ACM1.11's normal eight returned
-modifiers while preserving class previews and alternate resistance results.
-JS commanders1.02 and WoG commander settings are not changed. Difficulty Mod's
-neutral commanders have no eligible human equipment. Arena bonuses remain part
-of ACM's baseline. Enhanced Henchmen's separate Warlord Banner is untouched.
+Dev35 adds a checked native transfer/render bridge for the original six-slot
+Commander screen. It preserves original artifacts, NPC record layout and
+ordinary save/network transfer. ACM1.11's eight normal modifiers are augmented;
+class previews and alternate resistance outputs are preserved. Other mods'
+classes, original item growth and Enhanced Henchmen's Warlord Banner remain
+unchanged. Existing metadata incompatibilities still apply; this is not
+certification for every mod or future native-plugin version.
 
-Source review covered the current installed profile of36active mods and54LOD/PAC
-archives; no conflicting new artifact configuration IDs were found. This is
-not certification for every mod, unpublished plugin or future update. Existing
-distribution incompatibilities remain: Knightmare Kingdoms, ERA+, Land Of New
-Towns, ResOunD and TUM Enchanted. Keep a matching complete profile on both peers.
-
-No game was controlled or updated during development. Headless fixtures and
-package gates do not establish native rendering, native save/load or actual
-two-computer synchronization. Start a **NEW map** on matching dev31 clients.
-First acceptance: forge one item, equip it on the commander page, inspect its
-ACM attributes, then unequip it and verify that the bonus disappears. Follow
-with save/load and a shared Lobby check before relying on the complete feature.
+Close the game before updating, restart fully and use matching dev35 clients
+with a NEW map. Old saved scripts and former equipment-page ledgers are not
+migrated. The bridge refuses new equipment transactions on unsupported native
+code or old scripts. No F12. Targeted headless tests and resource gates pass;
+actual native UI, battle, save/load and two-computer acceptance remain pending.
+No game, installed file, setting or save was changed during this development.
