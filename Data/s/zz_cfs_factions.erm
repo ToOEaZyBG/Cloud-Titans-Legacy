@@ -990,7 +990,7 @@ ZVSE2
 !!re (pass:y)/0/82;
  !!VR(slot:y):S82 -(pass);
  !!FU(GetArtAtSlot):P(hero)/(slot)/?(art:y)/?i;
- !!co|(art)<450/(art)>548;
+ !!co|(art)<450/(art)>551;
  !!FU(CLT_RemoveOne):P(hero)/(art);
 !!en;
 
@@ -1990,7 +1990,7 @@ ZVSE2
 !?FU(CFS_Status);
 !#VA(owner:x) (set:x);
 !!SN:W^clt.world.placed^/?(placed:y) W^clt.net.world.hash^/?(hash:y) W^clt.net.world.error^/?(worldError:y) W^clt.net.quest.error^/?(questError:y);
-!!VR(status:z):S^Build: 0.6.0-batch-dev31
+!!VR(status:z):S^Build: 0.6.0-batch-dev32
 Placed: %(placed). Map hash: %(hash).
 World errors: %(worldError). Quest errors: %(questError).
 Current player's faction quest counters:

@@ -1,7 +1,13 @@
-LATEST PUBLIC BUILD: 0.6.0-batch-dev31
+LATEST PUBLIC BUILD: 0.6.0-batch-dev32
 
 --------------------------------------------------------------
 ## CHANGELOG
+
+28/10/2026 dev31 > dev32
+- Assemble all six matching commander parts into one relic. Equip the relic in Pendant to retain the full set bonus and leave five native commander positions free. No extra assembly fee.
+- Set names display green N/6 progress; active parts and earned2/4/6 bonuses are green in descriptions. A worn relic counts6/6; hero equipment and backpack count0.
+- Parts retain their individual and2/4/6 bonuses. Relics can be dismantled back into six parts, never drop or forge whole; map generation remains270 individual finds and level18+7k rewards are unchanged.
+- Background checks only; native UI/save/load/Lobby acceptance pending. Both peers close, update and start a NEW map on matchingdev32.
 
 28/10/2026 dev30 > dev31
 - Three universal commander sets: Ember Oath, Iron Covenant and Astral Conclave; six new items each, usable by every town.
@@ -31,12 +37,6 @@ LATEST PUBLIC BUILD: 0.6.0-batch-dev31
 - Complete the existing requirements and five ordinary faction victories, put the bound hero in the upper garrison slot and leave the lower visitor slot empty, then select Receive champion.
 - Explain incomplete requirements and occupied slots; blocked rewards remain available. Ctrl+J and Alt-click show status. Old trial requests cannot start combat.
 - Start a NEW map on matching versions. Native delivery and two-computer acceptance remain pending.
-
-27/10/2026 dev25 > dev26
-- All nine sets: active worn-piece bonus lines turn green at each threshold.
-- Replace Mage, Unicorn and Green Dragon quest families with Liches, Black Knights and undead Dragons wherever those targets occur.
-- Repair trial refusal after leaving town: ignore stale town type on empty tiles and reject hidden garrison heroes.
-- Start a NEW map. Reported post-battle crash and two-computer acceptance remain unresolved.
 
 --------------------------------------------------------------
 
@@ -128,6 +128,9 @@ For an online test, both players need the same build, dependencies, mod order an
 ## REPORTING A PROBLEM
 
 Keep the save and Debug folder locally. Record the installed version, faction, exact action and a screenshot of the first error. Include whether it happened locally or through Online Lobby. Detailed test instructions are in NETWORK_TEST.md.
+
+## COMMANDER RELIC ASSEMBLY
+Combine all six matching commander parts into one Pendant relic through Ctrl+N > Commander equipment and forge. Retain all full-set bonuses and free five native positions. Green N/6 headings and part checklists show active progress; two matching parts retain their2/6bonus. Complete relics never drop or forge whole. Dismantle back into six parts when needed. See COMMANDER_SETS.md.
 
 ## Artwork gallery
 

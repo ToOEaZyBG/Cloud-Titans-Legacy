@@ -1,4 +1,36 @@
-# Commander sets
+# Commander sets — dev32
+
+![The three assembled commander relics; artwork and native-size preview, not gameplay](Screens/commander-relics.png)
+
+## One-slot commander relics — dev32
+
+Use Ctrl+N > Commander equipment and forge > Assemble six parts into one relic.
+One of each matching part must be in this commander's custom equipment or the
+hero's backpack. Hero-worn items must first be moved to the backpack. Assembly
+has no extra charge and replaces exactly six parts with one backpack relic.
+Equip that relic in the custom Pendant position; it reserves only native
+commander position5, leaving positions0..4 for five native items and their
+original abilities/growth. No extended ID is written into the native NPC table.
+
+Ember Oath Relic, Iron Covenant Relic and Astral Conclave Relic preserve their
+set's full50-point bonus to all eight ACM modifiers and90total to the favored
+pair. These totals include thresholds; they are not added again. An assembled
+relic counts6/6. Partial sets retain individual and2/4/6 thresholds: two active
+matching parts give15points to all eight modifiers. Set headings show green
+N/6; active names and earned thresholds are green, inactive names gray. Progress
+updates for the inspected hero. Backpack and hero-worn gear never count active.
+
+Only parts can be found or forged. All three complete relics are excluded from
+map generation and native random pools; the270-item map plan is unchanged.
+To dismantle, first unequip the relic to the backpack, leave five more empty
+cells and choose Dismantle a backpack relic into six parts. Both operations
+preserve unrelated complete artifact records and refuse safely on missing parts,
+insufficient space, held artifact, wrong owner or stale/replayed conflicts.
+
+Each assembled relic has its own original painted icon. Native visual, battle, save/load
+and two-computer acceptance remain pending; no game was controlled. Matchdev32
+on both peers and use a NEW map. The other public guide sections describe the
+retained dev31 parts and base bonuses.
 
 Three universal sets, six items each. All nine standard towns and all ACM
 commander classes can use every set. The sets share acquisition costs and a

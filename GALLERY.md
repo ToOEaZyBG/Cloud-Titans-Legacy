@@ -109,3 +109,11 @@ Full-size approved portraits. Artwork previews; not gameplay screenshots.
 
 ![Conflux assembled relic close-up](Screens/relic-conflux.png)
 
+## Dev32 — assembled commander relics
+
+![Ember Oath, Iron Covenant and Astral Conclave relics](Screens/commander-relics.png)
+
+Original artwork plus enlarged actual44x44 inventory pixels, not gameplay.
+Each relic is assembled from six separate parts and reserves only Pendant.
+See [commander sets](COMMANDER_SETS.md) for greenN/6 progress and assembly.
+

@@ -1,10 +1,10 @@
 # Legacy of the Cloud Titans â€” Online Lobby test
 
-Version **0.6.0-batch-dev31**. This is an experimental all-faction release for a new two-player test. Automated checks pass; native gameplay, save/load and two-computer synchronization still need player verification.
+Version **0.6.0-batch-dev32**. This is an experimental all-faction release for a new two-player test. Automated checks pass; native gameplay, save/load and two-computer synchronization still need player verification.
 
 ## Install the same build
 
-Both players close the game, then use the existing **Legacy of the Cloud Titans - TEST** entry in Heroes Launcher â†’ Mod Browser. Keep the folder **Cloud Titans Legacy - Local Test**; enable only one copy of this mod. The installed `mod.json` must say **0.6.0-batch-dev31** on both computers. Catalog metadata can lag behind downloaded files; an older version displayed in the browser does not establish which build was installed. Check the installed version before starting.
+Both players close the game, then use the existing **Legacy of the Cloud Titans - TEST** entry in Heroes Launcher â†’ Mod Browser. Keep the folder **Cloud Titans Legacy - Local Test**; enable only one copy of this mod. The installed `mod.json` must say **0.6.0-batch-dev32** on both computers. Catalog metadata can lag behind downloaded files; an older version displayed in the browser does not establish which build was installed. Check the installed version before starting.
 
 Use identical ERA/HD versions, enabled mods, load order and WoG options. The inspected base profile used ERA platform 2.299, HD 5.8 R22, Advanced Classes Mod 1.11, JS new objects 1.40, JS main module 1.21.2, JS commanders 1.02, JS map fixes 1.12 and JS terrains 1.4.1. Match the exact versions available to both players; TEST_PROFILE.json is an observed reference, not certification of every combination. Keep Knightmare Kingdoms and other metadata-listed incompatible packages disabled. Keep both ERAHDHeroes_3_Reborn (Full) and HD Editionfixai (Lite) disabled for this trial, following the selected remaster-free profile. Use their original Mod Browser files; this release does not patch them.
 
@@ -81,7 +81,7 @@ Hold three resource reserves: **200,000 Gold**; **200 Wood and 200 Ore**; **200 
 
 After completing every requirement, place the bound quest hero in the matching town garrison (upper slot), leave the visitor space (lower slot) empty and select **Champion quest > Receive champion**. Close the town screen to complete delivery; the champion appears in that lower slot. Another hero cannot substitute. A blocked delivery keeps the reward available: move the bound hero into the garrison, free the visitor slot and keep fewer than eight heroes. Current qualification and resource reserves are rechecked at receipt. Native position, army and visitor readbacks must pass before completion. A prepared pending champion that moved elsewhere must return to the delivery town before retrying; later progression is preserved.
 
-Ctrl+J or Alt-left-click now opens the bound hero checklist without combat. Old trial requests are inert. Start a NEW map on matching dev31 clients; old saves are not a supported migration path.
+Ctrl+J or Alt-left-click now opens the bound hero checklist without combat. Old trial requests are inert. Start a NEW map on matching dev32 clients; old saves are not a supported migration path.
 
 | Town | Champion |
 | --- | --- |
@@ -150,7 +150,37 @@ If insufficient safe space exists, the world diagnostic reports an incomplete
 plan and no partial plan is certified/broadcast as complete. Do not use that map
 for acceptance; create a larger/new random map. Actual ERA map-generation
 acceptance remains pending. The seven-field map-site packet includes whether a
-safe new site must be created on the receiving peer; both peers require dev31.
+safe new site must be created on the receiving peer; both peers require dev32.
 
 This map-only change does not alter level-up rewards at18,25,32,39 and every7
 levels thereafter, quest rewards or relic assembly. No full relic drops.
+
+## One-slot commander relics — dev32
+
+Use Ctrl+N > Commander equipment and forge > Assemble six parts into one relic.
+One of each matching part must be in this commander's custom equipment or the
+hero's backpack. Hero-worn items must first be moved to the backpack. Assembly
+has no extra charge and replaces exactly six parts with one backpack relic.
+Equip that relic in the custom Pendant position; it reserves only native
+commander position5, leaving positions0..4 for five native items and their
+original abilities/growth. No extended ID is written into the native NPC table.
+
+Ember Oath Relic, Iron Covenant Relic and Astral Conclave Relic preserve their
+set's full50-point bonus to all eight ACM modifiers and90total to the favored
+pair. These totals include thresholds; they are not added again. An assembled
+relic counts6/6. Partial sets retain individual and2/4/6 thresholds: two active
+matching parts give15points to all eight modifiers. Set headings show green
+N/6; active names and earned thresholds are green, inactive names gray. Progress
+updates for the inspected hero. Backpack and hero-worn gear never count active.
+
+Only parts can be found or forged. All three complete relics are excluded from
+map generation and native random pools; the270-item map plan is unchanged.
+To dismantle, first unequip the relic to the backpack, leave five more empty
+cells and choose Dismantle a backpack relic into six parts. Both operations
+preserve unrelated complete artifact records and refuse safely on missing parts,
+insufficient space, held artifact, wrong owner or stale/replayed conflicts.
+
+Each assembled relic has its own original painted icon. Native visual, battle, save/load
+and two-computer acceptance remain pending; no game was controlled. Matchdev32
+on both peers and use a NEW map. The other public guide sections describe the
+retained dev31 parts and base bonuses.

@@ -76,6 +76,18 @@ ZVSE2
  !!VR(name):Z^Conclave Astrolabe^;
  !!VR(setName):Z^Astral Conclave^;
 !!en;
+!!if&(art)=549;
+ !!VR(name):Z^Ember Oath Relic^;
+ !!VR(setName):Z^Ember Oath^;
+!!en;
+!!if&(art)=550;
+ !!VR(name):Z^Iron Covenant Relic^;
+ !!VR(setName):Z^Iron Covenant^;
+!!en;
+!!if&(art)=551;
+ !!VR(name):Z^Astral Conclave Relic^;
+ !!VR(setName):Z^Astral Conclave^;
+!!en;
 !?FU(CGC_Bonuses);
 !#VA(hero:x) (attack:x) (defence:x) (damage:x) (health:x) (speed:x) (spell:x) (passive:x) (aura:x);
 !!VR(attack):S0;
@@ -98,11 +110,13 @@ ZVSE2
 !!VR(c0:y):S0;
 !!VR(c1:y):S0;
 !!VR(c2:y):S0;
+!!VR(relic:y):S-1;
 !!re (slot:y)/0/5;
  !!CO(hero):A3/(slot)/?(native:y)/?i;
  !!co&(native)<>0;
  !!SN:W^cgc.v1.gear.%(hero).%(slot)^/?(saved:y);
  !!VR(art:y):S(saved) -1;
+ !!VR(relic)&(slot)=5/(art)>=549/(art)<=551:S(art) -549;
  !!co|(art)<531/(art)>548;
  !!VR(itemSlot:y):S(art) -531 %6;
  !!co&(itemSlot)<>(slot);
@@ -111,6 +125,9 @@ ZVSE2
  !!VR(c1)&(kind)=1:+1;
  !!VR(c2)&(kind)=2:+1;
 !!en;
+!!VR(c0)&(relic)=0:S0;
+!!VR(c1)&(relic)=1:S0;
+!!VR(c2)&(relic)=2:S0;
 !!VR(total:y):S(c0) +(c1) +(c2) *5;
 !!re (kind)/0/2;
  !!VR(count:y):S(c0);
@@ -134,6 +151,20 @@ ZVSE2
 !!VR(health)&(c1)=6:+40;
 !!VR(spell)&(c2)=6:+40;
 !!VR(passive)&(c2)=6:+40;
+!!VR(attack)&(relic)>=0:+50;
+!!VR(defence)&(relic)>=0:+50;
+!!VR(damage)&(relic)>=0:+50;
+!!VR(health)&(relic)>=0:+50;
+!!VR(speed)&(relic)>=0:+50;
+!!VR(spell)&(relic)>=0:+50;
+!!VR(passive)&(relic)>=0:+50;
+!!VR(aura)&(relic)>=0:+50;
+!!VR(attack)&(relic)=0:+40;
+!!VR(damage)&(relic)=0:+40;
+!!VR(defence)&(relic)=1:+40;
+!!VR(health)&(relic)=1:+40;
+!!VR(spell)&(relic)=2:+40;
+!!VR(passive)&(relic)=2:+40;
 !?FU(CGC_SlotName);
 !#VA(slot:x) (name:x);
 !!VR(name):Z^Unknown slot^;
@@ -185,7 +216,7 @@ ZVSE2
 !!FU26909:P(hero)/(owner)/(op)/(slot)/(art)/(old)/(hash)/(sequence);
 !!SN:W^cgc.result^/?(okay:y);
 !!if&(okay)=0;
- !!IF:M^Cannot complete this change. Equip items from your backpack, put down any held item, and leave room when removing gear. Forging needs a level-20 hero, living commander, 50,000 Gold, 20 Wood and 20 Ore. Native commander items reserve their same slots.^;
+ !!IF:M^Cannot complete this change. Put down any held item. Assembly needs all six matching parts on this commander page or in the backpack, and room for the relic. Dismantling needs the relic in the backpack and five more free cells. Forging needs a level-20 hero, living commander, 50,000 Gold, 20 Wood and 20 Ore. Native commander items reserve their same slots.^;
  !!FU:E;
 !!en;
 !!UN:V?i/?i/?i/?(network:y)/?i;
@@ -228,6 +259,7 @@ ZVSE2
 !!IF&(ready)<>1:M^Commander equipment is unavailable on this profile.^;
 !!FU&(ready)<>1:E;
 !!re (page:y)/0/999;
+ !!FU(CGC_UpdateTooltips):P(hero);
  !!FU(RadioDlg_Reset):P;
  !!FU(RadioDlg_SetTitle):P^Commander equipment - six slots, all towns^;
  !!re (slot:y)/0/5;
@@ -242,14 +274,84 @@ ZVSE2
   !!FU(RadioDlg_AddItem):P(label)/(slot);
  !!en;
  !!FU(RadioDlg_AddItem):P^Forge new commander gear^/6;
- !!FU(RadioDlg_AddItem):P^Set bonuses and rules^/7;
+ !!FU(RadioDlg_AddItem):P^Set bonuses and green N/6 progress^/7;
+ !!FU(RadioDlg_AddItem):P^Assemble six parts into one relic^/8;
+ !!FU(RadioDlg_AddItem):P^Dismantle a backpack relic into six parts^/9;
  !!FU(RadioDlg_AddCancelButton):P;
  !!FU(RadioDlg_Show):P?(selected:y)/?(choice:y)/?i;
  !!FU|(selected)<0/(choice)<0:E;
  !!FU(CGC_SlotMenu)&(choice)<6:P(hero)/(choice)/0;
  !!FU(CGC_ForgeMenu)&(choice)=6:P(hero);
- !!IF&(choice)=7:M^Only gear equipped on this page gives bonuses. A native commander item reserves the same numbered slot. Each active piece: +5 points to all eight ACM attribute modifiers. Matching 2/4/6 parts: +5/+5/+10 more to all. Full Ember Oath: +40 Attack/Damage; Iron Covenant: +40 Defense/Health; Astral Conclave: +40 Spell/Passive. All towns can use every set. No bonus on a hero, in a backpack, or for AI, a dead or disabled commander.^;
+ !!FU(CGC_AssemblyMenu)&(choice)=8:P(hero)/2;
+ !!FU(CGC_AssemblyMenu)&(choice)=9:P(hero)/3;
+ !!FU(CGC_ProgressMenu)&(choice)=7:P(hero);
 !!en;
+
+!?FU(CGC_ProgressMenu);
+!#VA(hero:x);
+!!FU(RadioDlg_Reset):P;
+!!FU(RadioDlg_SetTitle):P^Commander set progress - active equipment only^;
+!!re (kind:y)/0/2;
+ !!FU(CGC_State):P(hero)/(kind)/?i/?(count:y);
+ !!VR(relic:y):S549 +(kind);
+ !!FU(CGC_Info):P(relic)/?i/?(setName:z);
+ !!VR(label:z):S^{~Lime}%(setName) (%(count)/6){~} - details^;
+ !!FU(RadioDlg_AddItem):P(label)/(relic);
+!!en;
+!!FU(RadioDlg_AddCancelButton):P;
+!!FU(RadioDlg_Show):P?(selected:y)/?(relic)/?i;
+!!FU|(selected)<0/(relic)<549/(relic)>551:E;
+!!FU(CGC_UpdateTooltips):P(hero);
+!!SN:H^art^/(relic)/1/?(details:z);
+!!IF:Q1/8/(relic)/1^%(details)^;
+
+!?FU(CGC_State);
+!#VA(hero:x) (kind:x) (mask:x) (count:x);
+!!VR(mask):S0;
+!!VR(count):S0;
+!!FU|(hero)<0/(hero)>155/(kind)<0/(kind)>2:E;
+!!SN:W^cgc.ready^/?(ready:y);
+!!FU&(ready)<>1:E;
+!!FU(CLT_IsHuman):P(hero)/?(human:y);
+!!FU&(human)=0:E;
+!!UN:P3/?(disabled:y);
+!!CO(hero):E?(enabled:y) D?(dead:y);
+!!FU|(disabled)<>0/(enabled)<>1/(dead)<>0:E;
+!!VR(base:y):S(kind) *6 +531;
+!!VR(relic:y):S549 +(kind);
+!!re (slot:y)/0/5;
+ !!CO(hero):A3/(slot)/?(native:y)/?i;
+ !!co&(native)<>0;
+ !!SN:W^cgc.v1.gear.%(hero).%(slot)^/?(saved:y);
+ !!VR(art:y):S(saved) -1;
+ !!VR(expected:y):S(base) +(slot);
+ !!VR(bit:y):S1 Sd<<(slot);
+ !!VR(mask)&(art)=(expected):|(bit);
+ !!VR(mask)&(slot)=5/(art)=(relic):S63;
+!!en;
+!!re (slot)/0/5;
+ !!VR(bit):S(mask) Sd>>(slot) &1;
+ !!VR(count):+(bit);
+!!en;
+
+!?FU(CGC_AssemblyMenu);
+!#VA(hero:x) (op:x);
+!!FU(RadioDlg_Reset):P;
+!!FU(RadioDlg_SetTitle):P^Commander relics - all six parts required; no extra fee^;
+!!re (kind:y)/0/2;
+ !!VR(art:y):S549 +(kind);
+ !!FU(CGC_Info):P(art)/?(name:z)/?i;
+ !!FU(RadioDlg_AddItem):P(name)/(art);
+!!en;
+!!FU(RadioDlg_AddCancelButton):P;
+!!FU(RadioDlg_Show):P?(selected:y)/?(art)/?i;
+!!FU|(selected)<0/(art)<549/(art)>551:E;
+!!FU(CGC_Info):P(art)/?(name)/?i;
+!!VR(prompt:z):S^Assemble %(name)? Consume one of each matching part from this commander page or backpack. The relic enters the backpack and must be equipped in Pendant. Five native commander positions remain free. No extra charge.^;
+!!VR(prompt)&(op)=3:S^Dismantle %(name) from the backpack into its six parts? Unequip it first and leave five extra free cells. No extra charge.^;
+!!IF:Q1/8/(art)/2^%(prompt)^;
+!!FU&-1:E;
+!!FU(CGC_Submit):P(hero)/(op)/5/(art);
 
 !?FU(CGC_ForgeMenu);
 !#VA(hero:x);
@@ -286,6 +388,13 @@ ZVSE2
  !!FU(CGC_Info):P(art)/?(name:z)/?i;
  !!FU(RadioDlg_AddItem):P(name)/(art);
 !!en;
+!!if&(slot)=5;
+ !!re (kind)/0/2;
+  !!VR(art):S549 +(kind);
+  !!FU(CGC_Info):P(art)/?(name)/?i;
+  !!FU(RadioDlg_AddItem):P(name)/(art);
+ !!en;
+!!en;
 !!FU(RadioDlg_AddItem):P^Unequip to backpack^/-1;
 !!FU(RadioDlg_AddCancelButton):P;
 !!FU(RadioDlg_Show):P?(selected:y)/?(art)/?i;
@@ -313,3 +422,422 @@ ZVSE2
   !!SN:W^cgc.v1.gear.%(hero).%(slot)^/0;
  !!en;
 !!en;
+
+!?FU(CLT_UpdateTooltips);
+!#VA(hero:x);
+!!FU(CGC_UpdateTooltips):P(hero);
+!?FU(CGC_UpdateTooltips);
+!#VA(hero:x);
+!!VR(checklist:z):S^^;
+!!VR(line:z):S^^;
+!!VR(bonus2:z):S^^;
+!!VR(bonus4:z):S^^;
+!!VR(bonus6:z):S^^;
+!!FU(CGC_State):P(hero)/0/?(mask:y)/?(count:y);
+!!VR(checklist):S^^;
+!!VR(worn:y):S(mask) Sd>>0 &1;
+!!VR(line):S^{~Gray}Embercrest Helm{~}^;
+!!VR(line)&(worn)>0:S^{~Lime}Embercrest Helm{~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(worn):S(mask) Sd>>1 &1;
+!!VR(line):S^{~Gray}Rubycleaver{~}^;
+!!VR(line)&(worn)>0:S^{~Lime}Rubycleaver{~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(worn):S(mask) Sd>>2 &1;
+!!VR(line):S^{~Gray}Shield of the Ember Oath{~}^;
+!!VR(line)&(worn)>0:S^{~Lime}Shield of the Ember Oath{~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(worn):S(mask) Sd>>3 &1;
+!!VR(line):S^{~Gray}Emberforged Cuirass{~}^;
+!!VR(line)&(worn)>0:S^{~Lime}Emberforged Cuirass{~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(worn):S(mask) Sd>>4 &1;
+!!VR(line):S^{~Gray}Ashwarden Sabatons{~}^;
+!!VR(line)&(worn)>0:S^{~Lime}Ashwarden Sabatons{~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(worn):S(mask) Sd>>5 &1;
+!!VR(line):S^{~Gray}Heart of the Ember Oath{~}^;
+!!VR(line)&(worn)>0:S^{~Lime}Heart of the Ember Oath{~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(bonus2):S^2/6: +5 further points to all eight modifiers.^;
+!!VR(bonus2)&(count)>=2:S^{~Lime}2/6: +5 further points to all eight modifiers.{~}^;
+!!VR(bonus4):S^4/6: +5 further points to all eight modifiers.^;
+!!VR(bonus4)&(count)>=4:S^{~Lime}4/6: +5 further points to all eight modifiers.{~}^;
+!!VR(bonus6):S^6/6: +10 further points to all eight modifiers.^;
+!!VR(bonus6)&(count)>=6:S^{~Lime}6/6: +10 further points to all eight modifiers.{~}^;
+!!VRs^cgc.tooltip.531^:S^Ember Oath
+
+{~Lime}Ember Oath (%(count)/6){~}
+Part: +5 points to all eight ACM commander modifiers.
+
+%(bonus2)
+%(bonus4)
+%(bonus6)
+Full set: +40 further to Attack/Damage.
+Thresholds are included in the assembled relic, not added twice.
+
+%(checklist)
+Only active commander equipment counts; hero equipment and backpack give no bonus. Assemble all six matching parts; complete relics never drop.^;
+!!SN:H^art^/531/1/s^cgc.tooltip.531^;
+!!VRs^cgc.tooltip.532^:S^Ember Oath
+
+{~Lime}Ember Oath (%(count)/6){~}
+Part: +5 points to all eight ACM commander modifiers.
+
+%(bonus2)
+%(bonus4)
+%(bonus6)
+Full set: +40 further to Attack/Damage.
+Thresholds are included in the assembled relic, not added twice.
+
+%(checklist)
+Only active commander equipment counts; hero equipment and backpack give no bonus. Assemble all six matching parts; complete relics never drop.^;
+!!SN:H^art^/532/1/s^cgc.tooltip.532^;
+!!VRs^cgc.tooltip.533^:S^Ember Oath
+
+{~Lime}Ember Oath (%(count)/6){~}
+Part: +5 points to all eight ACM commander modifiers.
+
+%(bonus2)
+%(bonus4)
+%(bonus6)
+Full set: +40 further to Attack/Damage.
+Thresholds are included in the assembled relic, not added twice.
+
+%(checklist)
+Only active commander equipment counts; hero equipment and backpack give no bonus. Assemble all six matching parts; complete relics never drop.^;
+!!SN:H^art^/533/1/s^cgc.tooltip.533^;
+!!VRs^cgc.tooltip.534^:S^Ember Oath
+
+{~Lime}Ember Oath (%(count)/6){~}
+Part: +5 points to all eight ACM commander modifiers.
+
+%(bonus2)
+%(bonus4)
+%(bonus6)
+Full set: +40 further to Attack/Damage.
+Thresholds are included in the assembled relic, not added twice.
+
+%(checklist)
+Only active commander equipment counts; hero equipment and backpack give no bonus. Assemble all six matching parts; complete relics never drop.^;
+!!SN:H^art^/534/1/s^cgc.tooltip.534^;
+!!VRs^cgc.tooltip.535^:S^Ember Oath
+
+{~Lime}Ember Oath (%(count)/6){~}
+Part: +5 points to all eight ACM commander modifiers.
+
+%(bonus2)
+%(bonus4)
+%(bonus6)
+Full set: +40 further to Attack/Damage.
+Thresholds are included in the assembled relic, not added twice.
+
+%(checklist)
+Only active commander equipment counts; hero equipment and backpack give no bonus. Assemble all six matching parts; complete relics never drop.^;
+!!SN:H^art^/535/1/s^cgc.tooltip.535^;
+!!VRs^cgc.tooltip.536^:S^Ember Oath
+
+{~Lime}Ember Oath (%(count)/6){~}
+Part: +5 points to all eight ACM commander modifiers.
+
+%(bonus2)
+%(bonus4)
+%(bonus6)
+Full set: +40 further to Attack/Damage.
+Thresholds are included in the assembled relic, not added twice.
+
+%(checklist)
+Only active commander equipment counts; hero equipment and backpack give no bonus. Assemble all six matching parts; complete relics never drop.^;
+!!SN:H^art^/536/1/s^cgc.tooltip.536^;
+!!VRs^cgc.tooltip.549^:S^Ember Oath Relic
+
+{~Lime}Ember Oath (%(count)/6){~}
+Assembled relic: +50 to all eight ACM commander modifiers; +90 total to Attack/Damage. Uses only Pendant; five native positions remain free.
+
+%(bonus2)
+%(bonus4)
+%(bonus6)
+Full set: +40 further to Attack/Damage.
+Thresholds are included in the assembled relic, not added twice.
+
+%(checklist)
+Only active commander equipment counts; hero equipment and backpack give no bonus. Assemble all six matching parts; complete relics never drop.^;
+!!SN:H^art^/549/1/s^cgc.tooltip.549^;
+!!FU(CGC_State):P(hero)/1/?(mask)/?(count);
+!!VR(checklist):S^^;
+!!VR(worn):S(mask) Sd>>0 &1;
+!!VR(line):S^{~Gray}Ironwatch Helm{~}^;
+!!VR(line)&(worn)>0:S^{~Lime}Ironwatch Helm{~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(worn):S(mask) Sd>>1 &1;
+!!VR(line):S^{~Gray}Covenant Mace{~}^;
+!!VR(line)&(worn)>0:S^{~Lime}Covenant Mace{~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(worn):S(mask) Sd>>2 &1;
+!!VR(line):S^{~Gray}Shield of the Iron Covenant{~}^;
+!!VR(line)&(worn)>0:S^{~Lime}Shield of the Iron Covenant{~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(worn):S(mask) Sd>>3 &1;
+!!VR(line):S^{~Gray}Ironbound Breastplate{~}^;
+!!VR(line)&(worn)>0:S^{~Lime}Ironbound Breastplate{~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(worn):S(mask) Sd>>4 &1;
+!!VR(line):S^{~Gray}Covenant Greaves{~}^;
+!!VR(line)&(worn)>0:S^{~Lime}Covenant Greaves{~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(worn):S(mask) Sd>>5 &1;
+!!VR(line):S^{~Gray}Seal of the Iron Covenant{~}^;
+!!VR(line)&(worn)>0:S^{~Lime}Seal of the Iron Covenant{~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(bonus2):S^2/6: +5 further points to all eight modifiers.^;
+!!VR(bonus2)&(count)>=2:S^{~Lime}2/6: +5 further points to all eight modifiers.{~}^;
+!!VR(bonus4):S^4/6: +5 further points to all eight modifiers.^;
+!!VR(bonus4)&(count)>=4:S^{~Lime}4/6: +5 further points to all eight modifiers.{~}^;
+!!VR(bonus6):S^6/6: +10 further points to all eight modifiers.^;
+!!VR(bonus6)&(count)>=6:S^{~Lime}6/6: +10 further points to all eight modifiers.{~}^;
+!!VRs^cgc.tooltip.537^:S^Iron Covenant
+
+{~Lime}Iron Covenant (%(count)/6){~}
+Part: +5 points to all eight ACM commander modifiers.
+
+%(bonus2)
+%(bonus4)
+%(bonus6)
+Full set: +40 further to Defense/Health.
+Thresholds are included in the assembled relic, not added twice.
+
+%(checklist)
+Only active commander equipment counts; hero equipment and backpack give no bonus. Assemble all six matching parts; complete relics never drop.^;
+!!SN:H^art^/537/1/s^cgc.tooltip.537^;
+!!VRs^cgc.tooltip.538^:S^Iron Covenant
+
+{~Lime}Iron Covenant (%(count)/6){~}
+Part: +5 points to all eight ACM commander modifiers.
+
+%(bonus2)
+%(bonus4)
+%(bonus6)
+Full set: +40 further to Defense/Health.
+Thresholds are included in the assembled relic, not added twice.
+
+%(checklist)
+Only active commander equipment counts; hero equipment and backpack give no bonus. Assemble all six matching parts; complete relics never drop.^;
+!!SN:H^art^/538/1/s^cgc.tooltip.538^;
+!!VRs^cgc.tooltip.539^:S^Iron Covenant
+
+{~Lime}Iron Covenant (%(count)/6){~}
+Part: +5 points to all eight ACM commander modifiers.
+
+%(bonus2)
+%(bonus4)
+%(bonus6)
+Full set: +40 further to Defense/Health.
+Thresholds are included in the assembled relic, not added twice.
+
+%(checklist)
+Only active commander equipment counts; hero equipment and backpack give no bonus. Assemble all six matching parts; complete relics never drop.^;
+!!SN:H^art^/539/1/s^cgc.tooltip.539^;
+!!VRs^cgc.tooltip.540^:S^Iron Covenant
+
+{~Lime}Iron Covenant (%(count)/6){~}
+Part: +5 points to all eight ACM commander modifiers.
+
+%(bonus2)
+%(bonus4)
+%(bonus6)
+Full set: +40 further to Defense/Health.
+Thresholds are included in the assembled relic, not added twice.
+
+%(checklist)
+Only active commander equipment counts; hero equipment and backpack give no bonus. Assemble all six matching parts; complete relics never drop.^;
+!!SN:H^art^/540/1/s^cgc.tooltip.540^;
+!!VRs^cgc.tooltip.541^:S^Iron Covenant
+
+{~Lime}Iron Covenant (%(count)/6){~}
+Part: +5 points to all eight ACM commander modifiers.
+
+%(bonus2)
+%(bonus4)
+%(bonus6)
+Full set: +40 further to Defense/Health.
+Thresholds are included in the assembled relic, not added twice.
+
+%(checklist)
+Only active commander equipment counts; hero equipment and backpack give no bonus. Assemble all six matching parts; complete relics never drop.^;
+!!SN:H^art^/541/1/s^cgc.tooltip.541^;
+!!VRs^cgc.tooltip.542^:S^Iron Covenant
+
+{~Lime}Iron Covenant (%(count)/6){~}
+Part: +5 points to all eight ACM commander modifiers.
+
+%(bonus2)
+%(bonus4)
+%(bonus6)
+Full set: +40 further to Defense/Health.
+Thresholds are included in the assembled relic, not added twice.
+
+%(checklist)
+Only active commander equipment counts; hero equipment and backpack give no bonus. Assemble all six matching parts; complete relics never drop.^;
+!!SN:H^art^/542/1/s^cgc.tooltip.542^;
+!!VRs^cgc.tooltip.550^:S^Iron Covenant Relic
+
+{~Lime}Iron Covenant (%(count)/6){~}
+Assembled relic: +50 to all eight ACM commander modifiers; +90 total to Defense/Health. Uses only Pendant; five native positions remain free.
+
+%(bonus2)
+%(bonus4)
+%(bonus6)
+Full set: +40 further to Defense/Health.
+Thresholds are included in the assembled relic, not added twice.
+
+%(checklist)
+Only active commander equipment counts; hero equipment and backpack give no bonus. Assemble all six matching parts; complete relics never drop.^;
+!!SN:H^art^/550/1/s^cgc.tooltip.550^;
+!!FU(CGC_State):P(hero)/2/?(mask)/?(count);
+!!VR(checklist):S^^;
+!!VR(worn):S(mask) Sd>>0 &1;
+!!VR(line):S^{~Gray}Astral Circlet{~}^;
+!!VR(line)&(worn)>0:S^{~Lime}Astral Circlet{~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(worn):S(mask) Sd>>1 &1;
+!!VR(line):S^{~Gray}Conclave Scepter{~}^;
+!!VR(line)&(worn)>0:S^{~Lime}Conclave Scepter{~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(worn):S(mask) Sd>>2 &1;
+!!VR(line):S^{~Gray}Shield of the Astral Conclave{~}^;
+!!VR(line)&(worn)>0:S^{~Lime}Shield of the Astral Conclave{~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(worn):S(mask) Sd>>3 &1;
+!!VR(line):S^{~Gray}Starwoven Cuirass{~}^;
+!!VR(line)&(worn)>0:S^{~Lime}Starwoven Cuirass{~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(worn):S(mask) Sd>>4 &1;
+!!VR(line):S^{~Gray}Astral Treads{~}^;
+!!VR(line)&(worn)>0:S^{~Lime}Astral Treads{~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(worn):S(mask) Sd>>5 &1;
+!!VR(line):S^{~Gray}Conclave Astrolabe{~}^;
+!!VR(line)&(worn)>0:S^{~Lime}Conclave Astrolabe{~}^;
+!!VR(checklist):+^%(line)
+^;
+!!VR(bonus2):S^2/6: +5 further points to all eight modifiers.^;
+!!VR(bonus2)&(count)>=2:S^{~Lime}2/6: +5 further points to all eight modifiers.{~}^;
+!!VR(bonus4):S^4/6: +5 further points to all eight modifiers.^;
+!!VR(bonus4)&(count)>=4:S^{~Lime}4/6: +5 further points to all eight modifiers.{~}^;
+!!VR(bonus6):S^6/6: +10 further points to all eight modifiers.^;
+!!VR(bonus6)&(count)>=6:S^{~Lime}6/6: +10 further points to all eight modifiers.{~}^;
+!!VRs^cgc.tooltip.543^:S^Astral Conclave
+
+{~Lime}Astral Conclave (%(count)/6){~}
+Part: +5 points to all eight ACM commander modifiers.
+
+%(bonus2)
+%(bonus4)
+%(bonus6)
+Full set: +40 further to Spell/Passive.
+Thresholds are included in the assembled relic, not added twice.
+
+%(checklist)
+Only active commander equipment counts; hero equipment and backpack give no bonus. Assemble all six matching parts; complete relics never drop.^;
+!!SN:H^art^/543/1/s^cgc.tooltip.543^;
+!!VRs^cgc.tooltip.544^:S^Astral Conclave
+
+{~Lime}Astral Conclave (%(count)/6){~}
+Part: +5 points to all eight ACM commander modifiers.
+
+%(bonus2)
+%(bonus4)
+%(bonus6)
+Full set: +40 further to Spell/Passive.
+Thresholds are included in the assembled relic, not added twice.
+
+%(checklist)
+Only active commander equipment counts; hero equipment and backpack give no bonus. Assemble all six matching parts; complete relics never drop.^;
+!!SN:H^art^/544/1/s^cgc.tooltip.544^;
+!!VRs^cgc.tooltip.545^:S^Astral Conclave
+
+{~Lime}Astral Conclave (%(count)/6){~}
+Part: +5 points to all eight ACM commander modifiers.
+
+%(bonus2)
+%(bonus4)
+%(bonus6)
+Full set: +40 further to Spell/Passive.
+Thresholds are included in the assembled relic, not added twice.
+
+%(checklist)
+Only active commander equipment counts; hero equipment and backpack give no bonus. Assemble all six matching parts; complete relics never drop.^;
+!!SN:H^art^/545/1/s^cgc.tooltip.545^;
+!!VRs^cgc.tooltip.546^:S^Astral Conclave
+
+{~Lime}Astral Conclave (%(count)/6){~}
+Part: +5 points to all eight ACM commander modifiers.
+
+%(bonus2)
+%(bonus4)
+%(bonus6)
+Full set: +40 further to Spell/Passive.
+Thresholds are included in the assembled relic, not added twice.
+
+%(checklist)
+Only active commander equipment counts; hero equipment and backpack give no bonus. Assemble all six matching parts; complete relics never drop.^;
+!!SN:H^art^/546/1/s^cgc.tooltip.546^;
+!!VRs^cgc.tooltip.547^:S^Astral Conclave
+
+{~Lime}Astral Conclave (%(count)/6){~}
+Part: +5 points to all eight ACM commander modifiers.
+
+%(bonus2)
+%(bonus4)
+%(bonus6)
+Full set: +40 further to Spell/Passive.
+Thresholds are included in the assembled relic, not added twice.
+
+%(checklist)
+Only active commander equipment counts; hero equipment and backpack give no bonus. Assemble all six matching parts; complete relics never drop.^;
+!!SN:H^art^/547/1/s^cgc.tooltip.547^;
+!!VRs^cgc.tooltip.548^:S^Astral Conclave
+
+{~Lime}Astral Conclave (%(count)/6){~}
+Part: +5 points to all eight ACM commander modifiers.
+
+%(bonus2)
+%(bonus4)
+%(bonus6)
+Full set: +40 further to Spell/Passive.
+Thresholds are included in the assembled relic, not added twice.
+
+%(checklist)
+Only active commander equipment counts; hero equipment and backpack give no bonus. Assemble all six matching parts; complete relics never drop.^;
+!!SN:H^art^/548/1/s^cgc.tooltip.548^;
+!!VRs^cgc.tooltip.551^:S^Astral Conclave Relic
+
+{~Lime}Astral Conclave (%(count)/6){~}
+Assembled relic: +50 to all eight ACM commander modifiers; +90 total to Spell/Passive. Uses only Pendant; five native positions remain free.
+
+%(bonus2)
+%(bonus4)
+%(bonus6)
+Full set: +40 further to Spell/Passive.
+Thresholds are included in the assembled relic, not added twice.
+
+%(checklist)
+Only active commander equipment counts; hero equipment and backpack give no bonus. Assemble all six matching parts; complete relics never drop.^;
+!!SN:H^art^/551/1/s^cgc.tooltip.551^;

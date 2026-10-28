@@ -1,3 +1,11 @@
+# 28/10/2026 dev31 > dev32 - 0.6.0-batch-dev32
+
+- Combine the six matching commander parts into a single Ember Oath Relic, Iron Covenant Relic or Astral Conclave Relic. Consume one of each from commander equipment or the backpack, with no extra fee. The relic enters the backpack; equip it in the commander Pendant position to retain the full50-point bonus to all eight ACM modifiers and90total to its favored pair. Five native commander positions remain available with their original effects.
+- Show green set headings with N/6 progress and a six-part checklist. Active parts and earned2/4/6 thresholds turn green; an active assembled relic represents6/6. Two active matching parts still give15points to all eight modifiers. Hero equipment and backpacks do not count as active gear. Refresh descriptions for the inspected commander and after equipment changes.
+- Dismantle a backpack relic into six parts after unequipping it. Validate all component identities, capacity, cursor, owner, full-record backpack hash, saved gear and sequence before committing; failures preserve all items, gear and resources, and replay does not duplicate rewards. Direct forging of complete relics is refused.
+- New relics549..551 are excluded from map templates and native random pools, receive no AI grants or activation, and have no effect as hero equipment. Give each assembled relic its own original painted icon. Map generation stays90individual part types*3=270finds; no full relics. Level18+7k rewards, hero sets, champions, portraits, Sort and feedback forms remain included.
+- 776 offline tests pass; native rendering, commander battle integration, native save/load and two-computer acceptance remain pending. No game/UI control or installed/settings/save changes. Both players close and update through the existing Mod Browser entry, matchdev32 and start a NEW map.
+
 # 28/10/2026 dev30 > dev31 - 0.6.0-batch-dev31
 
 - NEW random maps now target exactly3 copies of each of72 faction components and18 commander items:270 finds,135 per layer when underground exists. Complete relics are never placed. Existing eligible sites are reused and additional safe open land sites are added without deleting other objects; an incomplete plan is reported as an error.

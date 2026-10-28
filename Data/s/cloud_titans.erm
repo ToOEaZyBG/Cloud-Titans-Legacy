@@ -3145,7 +3145,7 @@ Includes all eight artifacts. Extra copies give no further bonus.
 !!re (slot:y)/0/63;
  !!VR(nativeSlot:y):S(slot) +(ART_SLOT_BACKPACK_FIRST);
  !!FU(GetArtAtSlot):P(hero)/(nativeSlot)/?(art:y)/?i;
- !!FU|(art)<-1/(art)>548:E;
+ !!FU|(art)<-1/(art)>551:E;
  !!if&(art)>=0;
   !!SN:H^art^/(art)/0/?(name:z);
   !!VRs^cqt.sort.name.%(slot)^:S(name);
