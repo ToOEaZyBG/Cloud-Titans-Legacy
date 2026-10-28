@@ -1,5 +1,5 @@
 {
-  "version": "0.6.0-batch-dev32",
+  "version": "0.6.0-batch-dev33",
   "distribution": "EXPERIMENTAL ONLINE LOBBY TEST",
   "new_map_required": true,
   "sequential_turns_only": true,
@@ -47,5 +47,12 @@
   "source_profile_active_mods": 36,
   "archives_scanned": 54,
   "artwork_player_approved": false,
-  "native_game_accepted": false
+  "native_game_accepted": false,
+  "runtime_version": "0.6.0-batch-dev32",
+  "release_kind": "presentation-only; optional creator support",
+  "runtime_files_unchanged": 398,
+  "full_suite_repeated": false,
+  "targeted_tests_passed": 6,
+  "donation_url": "https://revolut.me/antonezwt",
+  "installed_files_changed": false
 }

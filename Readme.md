@@ -1,7 +1,11 @@
-LATEST PUBLIC BUILD: 0.6.0-batch-dev32
+LATEST PUBLIC BUILD: 0.6.0-batch-dev33
 
 --------------------------------------------------------------
 ## CHANGELOG
+
+28/10/2026 dev32 > dev33
+- Add optional Revolut support for @antonezwt and English/Russian invitations to share feedback and help fund improvements and future mods.
+- Add a GitHub funding link; preserve bug-report and feedback forms. Presentation-only update: all398 gameplay/runtime files remain identical to dev32; runtime diagnostics still report32.
 
 28/10/2026 dev31 > dev32
 - Assemble all six matching commander parts into one relic. Equip the relic in Pendant to retain the full set bonus and leave five native commander positions free. No extra assembly fee.
@@ -31,12 +35,6 @@ LATEST PUBLIC BUILD: 0.6.0-batch-dev32
 - Pack all18 champion portraits in the native resource archive, with no loose H3-PCX files shadowing the archive. Native Andonov receipt, hero inspection and actual save/reload passed.
 - Correct native hero-pool availability checks and accept unused heroes with normal starting XP and level-one commanders. Preserve used heroes, prisoners, tavern candidates and one-time delivery guards.
 - Option126 guarantees missing faction parts at18,25,32,39 and every7levels thereafter, replacing the five-level interval. Start a NEW map.
-
-27/10/2026 dev26 > dev27
-- Replace all nine scripted champion trials with held reserves: 50,000 Gold; 50 Wood and 50 Ore; 25 each of Mercury, Sulfur, Crystal and Gems. Resources are kept.
-- Complete the existing requirements and five ordinary faction victories, put the bound hero in the upper garrison slot and leave the lower visitor slot empty, then select Receive champion.
-- Explain incomplete requirements and occupied slots; blocked rewards remain available. Ctrl+J and Alt-click show status. Old trial requests cannot start combat.
-- Start a NEW map on matching versions. Native delivery and two-computer acceptance remain pending.
 
 --------------------------------------------------------------
 
@@ -131,6 +129,24 @@ Keep the save and Debug folder locally. Record the installed version, faction, e
 
 ## COMMANDER RELIC ASSEMBLY
 Combine all six matching commander parts into one Pendant relic through Ctrl+N > Commander equipment and forge. Retain all full-set bonuses and free five native positions. Green N/6 headings and part checklists show active progress; two matching parts retain their2/6bonus. Complete relics never drop or forge whole. Dismantle back into six parts when needed. See COMMANDER_SETS.md.
+
+## SUPPORT THE NEXT ADVENTURE
+
+Enjoying Legacy of the Cloud Titans? Help the next adventure take shape! Your feedback, bug reports and ideas make this mod better. If you would also like to support its creator, an optional donation helps me dedicate more time and resources to improvements, new sets, heroes and entirely new mods.
+
+Support via Revolut: [@antonezwt](https://revolut.me/antonezwt)
+Feedback and bug reports: [Share your thoughts](https://github.com/ToOEaZyBG/Cloud-Titans-Legacy/issues/new/choose)
+
+Every contribution is appreciated, and donations are completely optional. Playing, sharing the mod and sending feedback are wonderful ways to help too. Thank you for keeping the adventure alive!
+
+## ПОДДЕРЖАТЬ СЛЕДУЮЩЕЕ ПРИКЛЮЧЕНИЕ
+
+Нравится Legacy of the Cloud Titans? Помогите следующему приключению стать реальностью! Ваши отзывы, сообщения об ошибках и идеи делают мод лучше. Если хотите поддержать автора, добровольное пожертвование поможет мне уделять больше времени и ресурсов улучшениям, новым наборам артефактов, героям и совершенно новым модам.
+
+Поддержать через Revolut: [@antonezwt](https://revolut.me/antonezwt)
+Отзывы и сообщения об ошибках: [Поделиться впечатлениями](https://github.com/ToOEaZyBG/Cloud-Titans-Legacy/issues/new/choose)
+
+Я благодарен за любую поддержку, а пожертвования полностью добровольны. Играйте, рассказывайте о моде и присылайте отзывы — это тоже очень помогает. Спасибо, что поддерживаете дух приключений!
 
 ## Artwork gallery
 

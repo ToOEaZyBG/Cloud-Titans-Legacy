@@ -1,5 +1,3 @@
-# Validation for 0.6.0-batch-dev32
+# Validation for0.6.0-batch-dev33
 
-776 offline tests pass, including executed authored ERM fixtures, seeded map/Health cases and headless x86 production spellbook logic with fake bindings. Candidate parser/resource/function gates and archive hashes pass. Native bridge is source-fingerprinted x86. Offline tests do not execute a native renderer, actual ERA save or real Lobby connection. Separately performed native spot checks are described with their coverage and limits in CHANGELOG.md. These results do not certify two-computer compatibility. See Readme.md for the user-operated acceptance sequence. Historical earlier-version observations are not passes for this release.
-
-Test accounting:773 tests in the full run (250.123s), followed by targeted commander and native runs covering three additional unique tests: menu capacity, duplicate-set suppression and randomized production transactions.776 unique offline tests pass. Extra stress rounds use different seeded inputs, not extra test-method counts. No native game ran.
+Presentation-only release:398 runtime files are byte-identical to reviewed dev32. Six targeted catalog/release tests pass; no full-suite rerun. The previous776 unique offline tests and additional dev32 stress/matrix results apply to the identical runtime with their original headless-only limits. No new native game/save/Lobby acceptance or installed changes. The user-provided Revolut page responded HTTP200; no payment was attempted or account ownership independently verified.

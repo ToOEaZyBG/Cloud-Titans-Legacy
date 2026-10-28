@@ -1,3 +1,10 @@
+# 28/10/2026 dev32 > dev33 - 0.6.0-batch-dev33
+
+- Add optional Revolut support at https://revolut.me/antonezwt and English/Russian invitations for feedback, bug reports and support for improvements and future mods.
+- Add the repository funding link and preserve all existing feedback forms. Donations are optional; playing, sharing and reporting issues are welcome too.
+- Presentation-only release: all398 Data/EraPlugins/Lang files are byte-identical to dev32. Runtime diagnostics remain32; public metadata is33. Existing dev32 maps are unaffected by this documentation update. Earlier native acceptance limits remain unchanged.
+- Six targeted catalog/release tests pass; the full gameplay test suite is not repeated. No game control, installation, settings or save changes.
+
 # 28/10/2026 dev31 > dev32 - 0.6.0-batch-dev32
 
 - Combine the six matching commander parts into a single Ember Oath Relic, Iron Covenant Relic or Astral Conclave Relic. Consume one of each from commander equipment or the backpack, with no extra fee. The relic enters the backpack; equip it in the commander Pendant position to retain the full50-point bonus to all eight ACM modifiers and90total to its favored pair. Five native commander positions remain available with their original effects.
