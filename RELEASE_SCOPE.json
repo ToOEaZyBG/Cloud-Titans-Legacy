@@ -1,9 +1,9 @@
 {
-  "version": "0.6.0-batch-dev29",
+  "version": "0.6.0-batch-dev30",
   "distribution": "EXPERIMENTAL ONLINE LOBBY TEST",
   "new_map_required": true,
   "sequential_turns_only": true,
-  "offline_tests_passed": 716,
+  "offline_tests_passed": 32,
   "native_runtime_accepted": false,
   "two_computer_accepted": false,
   "production_ready": false,
@@ -22,15 +22,16 @@
     "AI-turn crash",
     "fullscreen crash"
   ],
-  "reviewed_candidate_zip_sha256": "c2f16820855b3dc87161706499428cb427c0310fee3e47908a26b1c86b3a1d32",
+  "reviewed_candidate_zip_sha256": "5ed8b98286eef728811070c836a5c7c0f2d3845770a3d49292b89f4cf9fad886",
   "export_overrides": [
     "mod.json catalog caption/description",
     "Readme.md",
     "NETWORK_TEST.md",
     "readme.txt"
   ],
-  "runtime_base_version": "0.6.0-batch-dev28",
-  "release_kind": "feedback forms and documentation only",
-  "full_suite_repeated": false,
-  "offline_test_evidence_version": "0.6.0-batch-dev28"
+  "targeted_tests_passed": 32,
+  "offline_test_scope": "targeted book/backpack, shipped message contracts and release checks only",
+  "previous_full_suite_tests": 716,
+  "previous_full_suite_version": "0.6.0-batch-dev28",
+  "full_suite_repeated": false
 }

@@ -1,3 +1,10 @@
+# 28/10/2026 dev29 > dev30 - 0.6.0-batch-dev30
+
+- Fix the reported delayed Sort button: clicking Sort in the supported HD5.8R22 Backpack closes the current modal immediately, sorts after destruction of cached cells and reopens the updated backpack without waiting for another click.
+- Use H3API H3Msg::CloseDialog instead of an ignored synthetic Escape key-down. Keep the provider's cancellation result and ordinary item behavior; held artifacts still prevent sorting. Complete artifact records, sequence/hash checks and network sorting transactions are unchanged.
+- Background verification includes the production x86 popup lifecycle fixture, a regression that fails against the old handler, and isolated execution of the shipped native close/default-message helpers. Actual in-game rendering/click response and two-computer synchronization remain pending; no game was launched or controlled. The full suite was not repeated; the previous 716-test record belongs to dev28 development.
+- The dev29 feedback invitation and bug/suggestion forms remain included. Close the game before updating through the existing Mod Browser entry; match dev30 on both clients. Older embedded save scripts are not migrated.
+
 # 28/10/2026 dev28 > dev29 - 0.6.0-batch-dev29
 
 - Add a visible feedback invitation to the Mod Browser description and project README, with separate guided forms for bugs and suggestions.

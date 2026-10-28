@@ -1,7 +1,12 @@
-LATEST PUBLIC BUILD: 0.6.0-batch-dev29
+LATEST PUBLIC BUILD: 0.6.0-batch-dev30
 
 --------------------------------------------------------------
 ## CHANGELOG
+
+28/10/2026 dev29 > dev30
+- Sort in the supported HD Backpack now ends its modal on the first click, sorts after its cached cells are destroyed and immediately rebuilds the window.
+- Replace the ignored synthetic Escape with the documented native CloseDialog helper. Preserve held-artifact guards, complete artifact records and the existing multiplayer transaction.
+- Verified with targeted background tests; actual in-game click acceptance remains pending.
 
 28/10/2026 dev28 > dev29
 - Help improve Cloud Titans Legacy: report bugs and share suggestions using the feedback links below.
@@ -29,11 +34,6 @@ LATEST PUBLIC BUILD: 0.6.0-batch-dev29
 - All nine castles: component quests are another10% easier.
 - Guaranteed missing own-faction component at levels18,23,28,33 and every5 levels thereafter with option126. Check all owned heroes; a complete collection gives an ordinary Relic instead.
 - Double the spacing-limited map top-up target, within existing guarded-site,55% density,140-site and equal-layer limits. Start a NEW map.
-
-26/10/2026 dev23 > dev24
-- Fix Sort and the Relics page button to handle the native completed-click event rather than mouse-down.
-- Correct opposite-layer artifact selection: all nine towns can have parts on both layers; new map required.
-- Keep the5% level gate and ten-level cooldown; guarantee a component on the tenth eligible attempt. Log failed attempts as well as successes.
 
 --------------------------------------------------------------
 
