@@ -62,40 +62,49 @@ ZVSE2
 !?FU(CFH_Style);
 !#VA(hero:x) (town:x);
 !!if&(town)=0;
- !!HE(hero):B0/^Aldric^ B1/^Aldric answers the call of a proven Castle champion. Loyalty to the whole faction is the source of this unique military specialization.^ R2/0 L1^cfh0s.pcx^ L2^cfh0l.pcx^;
- !!UN:G2/(hero)/0/^Castle Champion^ G2/(hero)/1/^Aldric - Castle Champion^ G2/(hero)/2/^Aldric: Castle Champion. All eligible Castle troops, including supported third upgrades: +1 Attack/Defense, +1 Speed; another +1 Attack/Defense every 10 hero levels. Works without set items. Commanders and war machines excluded.^ G2/(hero)/3/2;
+ !!HE(hero):B0/^Aldric^ B1/^Aldric answers the call of a proven Castle champion. Loyalty to the whole faction is the source of this unique military specialization.^ R2/0 L5/^cfh0l.pcx^/^cfh0s.pcx^;
+ !!SN:H^spec^/(hero)/0/^Castle Champion^ H^spec^/(hero)/1/^Aldric - Castle Champion^ H^spec^/(hero)/2/^Aldric: Castle Champion. All eligible Castle troops, including supported third upgrades: +1 Attack/Defense, +1 Speed; another +1 Attack/Defense every 10 hero levels. Works without set items. Commanders and war machines excluded.^;
+ !!UN:G2/(hero)/1/2 G2/(hero)/3/2;
 !!en;
 !!if&(town)=1;
- !!HE(hero):B0/^Sylvara^ B1/^Sylvara answers the call of a proven Rampart champion. Loyalty to the whole faction is the source of this unique military specialization.^ R2/1 L1^cfh1s.pcx^ L2^cfh1l.pcx^;
- !!UN:G2/(hero)/0/^Rampart Champion^ G2/(hero)/1/^Sylvara - Rampart Champion^ G2/(hero)/2/^Sylvara: Rampart Champion. All eligible Rampart troops, including supported third upgrades: +1 Attack/Defense, +1 Speed; another +1 Attack/Defense every 10 hero levels. Works without set items. Commanders and war machines excluded.^ G2/(hero)/3/21;
+ !!HE(hero):B0/^Sylvara^ B1/^Sylvara answers the call of a proven Rampart champion. Loyalty to the whole faction is the source of this unique military specialization.^ R2/1 L5/^cfh1l.pcx^/^cfh1s.pcx^;
+ !!SN:H^spec^/(hero)/0/^Rampart Champion^ H^spec^/(hero)/1/^Sylvara - Rampart Champion^ H^spec^/(hero)/2/^Sylvara: Rampart Champion. All eligible Rampart troops, including supported third upgrades: +1 Attack/Defense, +1 Speed; another +1 Attack/Defense every 10 hero levels. Works without set items. Commanders and war machines excluded.^;
+ !!UN:G2/(hero)/1/21 G2/(hero)/3/21;
 !!en;
 !!if&(town)=2;
- !!HE(hero):B0/^Vaelion^ B1/^Vaelion answers the call of a proven Tower champion. Loyalty to the whole faction is the source of this unique military specialization.^ R2/0 L1^cfh2s.pcx^ L2^cfh2l.pcx^;
- !!UN:G2/(hero)/0/^Tower Champion^ G2/(hero)/1/^Vaelion - Tower Champion^ G2/(hero)/2/^Vaelion: Tower Champion. All eligible Tower troops, including supported third upgrades: +1 Attack/Defense, +1 Speed; another +1 Attack/Defense every 10 hero levels. Works without set items. Commanders and war machines excluded.^ G2/(hero)/3/38;
+ !!HE(hero):B0/^Vaelion^ B1/^Vaelion answers the call of a proven Tower champion. Loyalty to the whole faction is the source of this unique military specialization.^ R2/0 L5/^cfh2l.pcx^/^cfh2s.pcx^;
+ !!SN:H^spec^/(hero)/0/^Tower Champion^ H^spec^/(hero)/1/^Vaelion - Tower Champion^ H^spec^/(hero)/2/^Vaelion: Tower Champion. All eligible Tower troops, including supported third upgrades: +1 Attack/Defense, +1 Speed; another +1 Attack/Defense every 10 hero levels. Works without set items. Commanders and war machines excluded.^;
+ !!UN:G2/(hero)/1/38 G2/(hero)/3/38;
 !!en;
 !!if&(town)=3;
- !!HE(hero):B0/^Zareth^ B1/^Zareth answers the call of a proven Inferno champion. Loyalty to the whole faction is the source of this unique military specialization.^ R2/0 L1^cfh3s.pcx^ L2^cfh3l.pcx^;
- !!UN:G2/(hero)/0/^Inferno Champion^ G2/(hero)/1/^Zareth - Inferno Champion^ G2/(hero)/2/^Zareth: Inferno Champion. All eligible Inferno troops, including supported third upgrades: +1 Attack/Defense, +1 Speed; another +1 Attack/Defense every 10 hero levels. Works without set items. Commanders and war machines excluded.^ G2/(hero)/3/51;
+ !!HE(hero):B0/^Zareth^ B1/^Zareth answers the call of a proven Inferno champion. Loyalty to the whole faction is the source of this unique military specialization.^ R2/0 L5/^cfh3l.pcx^/^cfh3s.pcx^;
+ !!SN:H^spec^/(hero)/0/^Inferno Champion^ H^spec^/(hero)/1/^Zareth - Inferno Champion^ H^spec^/(hero)/2/^Zareth: Inferno Champion. All eligible Inferno troops, including supported third upgrades: +1 Attack/Defense, +1 Speed; another +1 Attack/Defense every 10 hero levels. Works without set items. Commanders and war machines excluded.^;
+ !!UN:G2/(hero)/1/51 G2/(hero)/3/51;
 !!en;
 !!if&(town)=4;
- !!HE(hero):B0/^Andonov^ B1/^Andonov, sovereign of the Eternal Crypt, binds the legions of Necropolis to his will. His emerald regalia and mastery over death surpass those of the other champions.^ R2/0 L1^cfh4s.pcx^ L2^cfh4l.pcx^;
- !!UN:G2/(hero)/0/^Necropolis Champion^ G2/(hero)/1/^Andonov - Necropolis Champion^ G2/(hero)/2/^Andonov: Necropolis Champion. All eligible Necropolis troops, including supported third upgrades: +2 Attack/Defense, +2 Speed; another +1 Attack/Defense every 5 hero levels. Works without set items. Commanders and war machines excluded.^ G2/(hero)/3/65;
+ !!HE(hero):B0/^Andonov^ B1/^Andonov, sovereign of the Eternal Crypt, binds the legions of Necropolis to his will. His emerald regalia and mastery over death surpass those of the other champions.^ R2/0 L5/^cfh4l.pcx^/^cfh4s.pcx^;
+ !!SN:H^spec^/(hero)/0/^Necropolis Champion^ H^spec^/(hero)/1/^Andonov - Necropolis Champion^ H^spec^/(hero)/2/^Andonov: Necropolis Champion. All eligible Necropolis troops, including supported third upgrades: +2 Attack/Defense, +2 Speed; another +1 Attack/Defense every 5 hero levels. Works without set items. Commanders and war machines excluded.^;
+ !!UN:G2/(hero)/1/65 G2/(hero)/3/65;
 !!en;
 !!if&(town)=5;
- !!HE(hero):B0/^Nyssara^ B1/^Nyssara answers the call of a proven Dungeon champion. Loyalty to the whole faction is the source of this unique military specialization.^ R2/1 L1^cfh5s.pcx^ L2^cfh5l.pcx^;
- !!UN:G2/(hero)/0/^Dungeon Champion^ G2/(hero)/1/^Nyssara - Dungeon Champion^ G2/(hero)/2/^Nyssara: Dungeon Champion. All eligible Dungeon troops, including supported third upgrades: +1 Attack/Defense, +1 Speed; another +1 Attack/Defense every 10 hero levels. Works without set items. Commanders and war machines excluded.^ G2/(hero)/3/82;
+ !!HE(hero):B0/^Nyssara^ B1/^Nyssara answers the call of a proven Dungeon champion. Loyalty to the whole faction is the source of this unique military specialization.^ R2/1 L5/^cfh5l.pcx^/^cfh5s.pcx^;
+ !!SN:H^spec^/(hero)/0/^Dungeon Champion^ H^spec^/(hero)/1/^Nyssara - Dungeon Champion^ H^spec^/(hero)/2/^Nyssara: Dungeon Champion. All eligible Dungeon troops, including supported third upgrades: +1 Attack/Defense, +1 Speed; another +1 Attack/Defense every 10 hero levels. Works without set items. Commanders and war machines excluded.^;
+ !!UN:G2/(hero)/1/82 G2/(hero)/3/82;
 !!en;
 !!if&(town)=6;
- !!HE(hero):B0/^Kargan^ B1/^Kargan answers the call of a proven Stronghold champion. Loyalty to the whole faction is the source of this unique military specialization.^ R2/0 L1^cfh6s.pcx^ L2^cfh6l.pcx^;
- !!UN:G2/(hero)/0/^Stronghold Champion^ G2/(hero)/1/^Kargan - Stronghold Champion^ G2/(hero)/2/^Kargan: Stronghold Champion. All eligible Stronghold troops, including supported third upgrades: +1 Attack/Defense, +1 Speed; another +1 Attack/Defense every 10 hero levels. Works without set items. Commanders and war machines excluded.^ G2/(hero)/3/103;
+ !!HE(hero):B0/^Kargan^ B1/^Kargan answers the call of a proven Stronghold champion. Loyalty to the whole faction is the source of this unique military specialization.^ R2/0 L5/^cfh6l.pcx^/^cfh6s.pcx^;
+ !!SN:H^spec^/(hero)/0/^Stronghold Champion^ H^spec^/(hero)/1/^Kargan - Stronghold Champion^ H^spec^/(hero)/2/^Kargan: Stronghold Champion. All eligible Stronghold troops, including supported third upgrades: +1 Attack/Defense, +1 Speed; another +1 Attack/Defense every 10 hero levels. Works without set items. Commanders and war machines excluded.^;
+ !!UN:G2/(hero)/1/103 G2/(hero)/3/103;
 !!en;
 !!if&(town)=7;
- !!HE(hero):B0/^Ssareth^ B1/^Ssareth answers the call of a proven Fortress champion. Loyalty to the whole faction is the source of this unique military specialization.^ R2/0 L1^cfh7s.pcx^ L2^cfh7l.pcx^;
- !!UN:G2/(hero)/0/^Fortress Champion^ G2/(hero)/1/^Ssareth - Fortress Champion^ G2/(hero)/2/^Ssareth: Fortress Champion. All eligible Fortress troops, including supported third upgrades: +1 Attack/Defense, +1 Speed; another +1 Attack/Defense every 10 hero levels. Works without set items. Commanders and war machines excluded.^ G2/(hero)/3/112;
+ !!HE(hero):B0/^Ssareth^ B1/^Ssareth answers the call of a proven Fortress champion. Loyalty to the whole faction is the source of this unique military specialization.^ R2/0 L5/^cfh7l.pcx^/^cfh7s.pcx^;
+ !!SN:H^spec^/(hero)/0/^Fortress Champion^ H^spec^/(hero)/1/^Ssareth - Fortress Champion^ H^spec^/(hero)/2/^Ssareth: Fortress Champion. All eligible Fortress troops, including supported third upgrades: +1 Attack/Defense, +1 Speed; another +1 Attack/Defense every 10 hero levels. Works without set items. Commanders and war machines excluded.^;
+ !!UN:G2/(hero)/1/112 G2/(hero)/3/112;
 !!en;
 !!if&(town)=8;
- !!HE(hero):B0/^Aurelis^ B1/^Aurelis answers the call of a proven Conflux champion. Loyalty to the whole faction is the source of this unique military specialization.^ R2/1 L1^cfh8s.pcx^ L2^cfh8l.pcx^;
- !!UN:G2/(hero)/0/^Conflux Champion^ G2/(hero)/1/^Aurelis - Conflux Champion^ G2/(hero)/2/^Aurelis: Conflux Champion. All eligible Conflux troops, including supported third upgrades: +1 Attack/Defense, +1 Speed; another +1 Attack/Defense every 10 hero levels. Works without set items. Commanders and war machines excluded.^ G2/(hero)/3/132;
+ !!HE(hero):B0/^Aurelis^ B1/^Aurelis answers the call of a proven Conflux champion. Loyalty to the whole faction is the source of this unique military specialization.^ R2/1 L5/^cfh8l.pcx^/^cfh8s.pcx^;
+ !!SN:H^spec^/(hero)/0/^Conflux Champion^ H^spec^/(hero)/1/^Aurelis - Conflux Champion^ H^spec^/(hero)/2/^Aurelis: Conflux Champion. All eligible Conflux troops, including supported third upgrades: +1 Attack/Defense, +1 Speed; another +1 Attack/Defense every 10 hero levels. Works without set items. Commanders and war machines excluded.^;
+ !!UN:G2/(hero)/1/132 G2/(hero)/3/132;
 !!en;
 ; Shared champion bonus and one-time fresh reward initialization.
 ; hero_traits.erm and hero_quests.erm supply the development integration.
@@ -138,9 +147,9 @@ ZVSE2
 !!FU&(disabled)>0:E;
 !!HE(hero):B2/?(class:y) E?(experience:y)/?(level:y);
 !!VR(actualTown:y):S(class) :2;
-!!FU|(class)<0/(class)>17/(actualTown)<>(town)/(level)<0/(level)>1/(experience)<>0:E;
+!!FU|(class)<0/(class)>17/(actualTown)<>(town)/(level)<0/(level)>1/(experience)<0/(experience)>99:E;
 !!CO(hero):X1/?(commanderExperience:y) X2/?(commanderLevel:y);
-!!FU|(commanderExperience)<>0/(commanderLevel)<>0:E;
+!!FU|(commanderExperience)<0/(commanderExperience)>99/(commanderLevel)<0/(commanderLevel)>1:E;
 !!FU(CFH_Profile):P(town)/?i/?(commander:y);
 ; Caller guarantees a fresh naked quest reward. Never a general hero reset.
 !!HE(hero):E0/1 F25/25/25/25 X7/0/0/0/0/0/0;
@@ -409,7 +418,7 @@ ZVSE2
 ; Documented OW:R resource IDs. Read only: the stockpile is not a fee.
 !!OW:R(owner)/(RES_GOLD)/?(gold) R(owner)/(RES_WOOD)/?(wood) R(owner)/(RES_ORE)/?(ore);
 !!OW:R(owner)/(RES_MERCURY)/?(mercury) R(owner)/(RES_SULFUR)/?(sulfur) R(owner)/(RES_CRYSTAL)/?(crystal) R(owner)/(RES_GEMS)/?(gems);
-!!FU|(gold)<50000/(wood)<50/(ore)<50/(mercury)<25/(sulfur)<25/(crystal)<25/(gems)<25:E;
+!!FU|(gold)<200000/(wood)<200/(ore)<200/(mercury)<200/(sulfur)<200/(crystal)<200/(gems)<200:E;
 !!VR(okay):S1;
 
 !?FU(CFH_Ready);
@@ -436,11 +445,13 @@ ZVSE2
  ; The installed ERA stdlib uses all three negative coordinates to exclude
  ; Prison heroes as well as heroes already placed on the map.
  !!co|(heroOwner)>=0/(x)>=0/(y)>=0/(z)>=0/(class)<>(wanted);
- !!HE(hero):E?(experience:y)/?(level:y)/1 R3/?(enabled:y)/?(allowed:y);
- !!VR(canHire:y):S(allowed) &(mask);
- !!co|(enabled)=0/(canHire)=0/(experience)<>0/(level)<0/(level)>1;
+ ; As in shipped WOG_GetRandomUnoccupiedHero, R3's player mask is INPUT.
+ ; Querying it as a second output asks the wrong availability question.
+ !!HE(hero):E?(experience:y)/?(level:y)/1 R3/?(enabled:y)/(mask);
+ ; Native unused heroes have random starting XP below100, not necessarily0.
+ !!co|(enabled)=0/(experience)<0/(experience)>99/(level)<0/(level)>1;
  !!CO(hero):X1/?(commanderXp:y) X2/?(commanderLevel:y);
- !!co|(commanderXp)<>0/(commanderLevel)<>0;
+ !!co|(commanderXp)<0/(commanderXp)>99/(commanderLevel)<0/(commanderLevel)>1;
  !!VR(tavern:y):S0;
  !!re (player:y)/0/7;
   !!OW:V(player)/?(left:y)/?(right:y);
@@ -586,7 +597,7 @@ Quest hero: %(note)^;
 !!VR(specialty:z):S^+1 Attack, +1 Defense, +1 Speed to faction troops; another +1 Attack and Defense every 10 levels.^;
 !!VR(specialty)&(kind)=4:S^+2 Attack, +2 Defense, +2 Speed to Necropolis troops; another +1 Attack and Defense every 5 levels.^;
 !!VR(note):S^Complete the first three requirements before faction victories count. Parts are kept. Grail and shipyard are not required.^;
-!!VR(note)&(accepted)>0:S^Complete the first three requirements, then win battles with only matching regular troops. Commanders and war machines are allowed. Hold the three required resource reserves, then place the bound hero in the town garrison and leave the visitor space empty. Resources are kept.^;
+!!VR(note)&(accepted)>0:S^Complete the first three requirements, then win battles with only matching regular troops. Commanders and war machines are allowed. Hold all required resource reserves, then place the bound hero in the town garrison and leave the visitor space empty. Resources are kept.^;
 !!VR(note)&(disabled)>0:S^Enable Commanders in the game options for this quest.^;
 !!VR(note)&(hook)=0:S^The champion specialty could not be initialized on this game profile. The reward remains available; report this message.^;
 !!VR(note)&(claimed)>0:S^Champion received.^;
@@ -601,13 +612,13 @@ Reward: level 1, Attack 25, Defense 25, Power 25, Knowledge 25 and a matching co
 %(acceptMark) Champion quest started
 %(winMark) Faction victories: %(wins)/5
 %(trialMark) Resource reserves (kept):
-Gold: %(gold)/50000
-Wood: %(wood)/50; Ore: %(ore)/50
-Mercury: %(mercury)/25; Sulfur: %(sulfur)/25
-Crystal: %(crystal)/25; Gems: %(gems)/25
+Gold: %(gold)/200000
+Wood: %(wood)/200; Ore: %(ore)/200
+Mercury: %(mercury)/200; Sulfur: %(sulfur)/200
+Crystal: %(crystal)/200; Gems: %(gems)/200
 
 %(note)
-Delivery: bound quest hero in the garrison (upper slot), empty visitor space (lower slot), fewer than eight heroes. Click Receive champion.^;
+Delivery: bound quest hero in the garrison (upper slot), empty visitor space (lower slot), fewer than eight heroes. Click Receive champion, then close the town screen.^;
 
 !?FU(CFH_TownMenu);
 !!CA-1:U?(city:y) T?(kind:y) O?(owner:y) H1/?(hero:y);
@@ -657,14 +668,12 @@ Delivery: bound quest hero in the garrison (upper slot), empty visitor space (lo
   !!IF:M^No unused matching champion slot is available. The reward remains available.^;
   !!FU:E;
  !!en;
- !!FU26904:P(owner)/(kind)/(city)/(rewardHero);
- !!UN:V?i/?i/?i/?(network:y)/?i;
- !!if&(network)>0;
-  !!IP:D-1;
-  !!FU26904:D(owner)/(kind)/(city)/(rewardHero);
- !!en;
- !!FU(CFH_QuestState):P(owner)/(kind)/?i/?i/?i/?(delivered:y);
- !!IF&(delivered)=0:M^Reward is still waiting. Keep the bound quest hero in the garrison, free the lower visitor slot and keep fewer than eight heroes. An unused matching native hero must be available.^;
+ ; Apply after the native town manager has returned; adding a visitor while
+ ; its empty garrison interfaces are alive leaves HD Mod with null army pointers.
+ !!VR(request:y):S(rewardHero) +1;
+ !!VR(requestCity:y):S(city) +1;
+ !!SN:W^cfh.v1.request.%(owner).%(kind)^/(request) W^cfh.v1.request.city.%(owner).%(kind)^/(requestCity);
+ !!IF:M^Close the town screen to receive your champion in the lower visitor slot. Keep the quest hero in the upper garrison slot and leave the lower slot empty. Resources are kept.^;
 !!en;
 
 !!if&(choice)=2;
@@ -728,4 +737,32 @@ Delivery: bound quest hero in the garrison (upper slot), empty visitor space (lo
  !!VR(kind:y):S(registered) -1;
  !!FU(CFH_Style):P(hero)/(kind);
 !!en;
+
+!?FU(OnCloseTownScreen);
+; ERA Triggers.pas fires this only after the native town dialog manager returns.
+!!re (owner:y)/0/7;
+ !!FU(CLT_IsLocalOwner):P(owner)/?(local:y);
+ !!co&(local)=0;
+ !!re (kind:y)/0/8;
+  !!FU(CFH_FinishRequested):P(owner)/(kind);
+ !!en;
+!!en;
+
+!?FU(CFH_FinishRequested);
+!#VA(owner:x) (kind:x);
+!!FU(CLT_IsLocalOwner):P(owner)/?(local:y);
+!!FU&(local)=0:E;
+!!SN:W^cfh.v1.request.%(owner).%(kind)^/?(request:y) W^cfh.v1.request.city.%(owner).%(kind)^/?(requestCity:y);
+!!FU|(request)<1/(requestCity)<1:E;
+!!SN:W^cfh.v1.request.%(owner).%(kind)^/0 W^cfh.v1.request.city.%(owner).%(kind)^/0;
+!!VR(rewardHero:y):S(request) -1;
+!!VR(city:y):S(requestCity) -1;
+!!FU26904:P(owner)/(kind)/(city)/(rewardHero);
+!!UN:V?i/?i/?i/?(network:y)/?i;
+!!if&(network)>0;
+ !!IP:D-1;
+ !!FU26904:D(owner)/(kind)/(city)/(rewardHero);
+!!en;
+!!FU(CFH_QuestState):P(owner)/(kind)/?i/?i/?i/?(delivered:y);
+!!IF&(delivered)=0:M^Reward is still waiting. Return the bound quest hero to the garrison, free the lower visitor slot and keep fewer than eight heroes. Check the required reserves and request the champion again.^;
 

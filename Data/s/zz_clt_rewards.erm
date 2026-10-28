@@ -1,6 +1,6 @@
 ZVSE2
 ; DEVELOPMENT repair: validate every selection; fail closed before grants/dialogs.
-; Human components: guaranteed on levels18,23,28,... with option126.
+; Human components: guaranteed on levels18,25,32,... with option126.
 
 !?FU(CLT_LevelArtifact);
 !#VA(hero:x) (rank:x) (artifact:x) (step:x);
@@ -118,7 +118,7 @@ ZVSE2
 !#VA(key:x) (level:x) (allowed:x);
 !!VR(allowed):S0;
 !!FU|(key)<0/(level)<18/(level)>104:E;
-!!VR(remainder:y):S(level) -18 %5;
+!!VR(remainder:y):S(level) -18 %7;
 !!VR(allowed)&(remainder)=0:S1;
 
 ; Small bounded integer hash. The first argument is a salted selection key.

@@ -1,7 +1,13 @@
-LATEST PUBLIC BUILD: 0.6.0-batch-dev27
+LATEST PUBLIC BUILD: 0.6.0-batch-dev28
 
 --------------------------------------------------------------
 ## CHANGELOG
+
+28/10/2026 dev27 > dev28
+- Champion reserves:200 each of Wood, Ore, Mercury, Sulfur, Crystal and Gems, plus200,000 Gold. Resources are kept.
+- Pack all18 champion portraits in the native resource archive, with no loose H3-PCX files shadowing the archive. Native Andonov receipt, hero inspection and actual save/reload passed.
+- Correct native hero-pool availability checks and accept unused heroes with normal starting XP and level-one commanders. Preserve used heroes, prisoners, tavern candidates and one-time delivery guards.
+- Option126 guarantees missing faction parts at18,25,32,39 and every7levels thereafter, replacing the five-level interval. Start a NEW map.
 
 27/10/2026 dev26 > dev27
 - Replace all nine scripted champion trials with held reserves: 50,000 Gold; 50 Wood and 50 Ore; 25 each of Mercury, Sulfur, Crystal and Gems. Resources are kept.
@@ -30,11 +36,6 @@ LATEST PUBLIC BUILD: 0.6.0-batch-dev27
 - Add read-only live stack-experience row diagnostics and clarify the provider-owned switches needed for rank bonuses. Restore the selected WoG profile locally without changing third-party payloads.
 - Include the HD Backpack Sort button from dev22. Native table/button rendering and two-computer acceptance remain pending.
 
-25/10/2026 dev21 > dev22
-- Add Sort directly to the HD Backpack window; sorting closes and rebuilds the popup to refresh every cell.
-- Reuse the existing full-record name sort and online transaction, preserving scroll spells and equipment.
-- Guard the integration for the inspected HD5.8R22 WoG provider; retain Ctrl+N as a fallback. Native UI and two-computer acceptance remain pending.
-
 --------------------------------------------------------------
 
 ## LEGACY OF THE CLOUD TITANS - TEST
@@ -59,7 +60,7 @@ Map exploration: some eligible loose artifact sites become faction components wh
 
 Faction quests: open Faction set quests in your town menu. Each component has an objective and a progress counter. Defeat the listed enemies or complete the required battles, then return with the recorded qualified hero to claim it. Completed objectives stay green while that hero is away. Read the selected objective for its level and town requirements. Choose Accept with the hero in town. Only that recorded hero earns progress. Your first component or champion quest permanently locks one faction for this game. Death or dismissal resets unfinished progress; a replacement may accept for the same faction. Previously claimed component rewards remain claimed, once per player. Finding a piece elsewhere does not consume that quest reward.
 
-Level-up rewards: with WoG option 126 enabled, eligible human Relic-category level-up rewards can offer a matching-faction component. A missing own-faction component is guaranteed at levels18,23,28,33 and every5 levels thereafter. Equipment and backpacks of all owned heroes count; assembled relics represent all eight parts. A complete collection gives an ordinary Relic instead.
+Level-up rewards: with WoG option 126 enabled, eligible human Relic-category level-up rewards can offer a matching-faction component. A missing own-faction component is guaranteed at levels18,25,32,39 and every7 levels thereafter. Equipment and backpacks of all owned heroes count; assembled relics represent all eight parts. A complete collection gives an ordinary Relic instead.
 
 Custom relics are assembled from components; Dragon Utopia does not award a complete custom set. Level-up and faction-quest component rewards follow the hero's faction. A foreign-faction component found on the map is allowed.
 
@@ -98,9 +99,9 @@ Choose Champion quest in a matching owned town to enroll and view the reward and
 
 To count the five qualifying victories, use a level-25 hero carrying four distinct matching components, or the assembled relic, and meet the town-building requirements. Commanders must be enabled. Fight with that faction's regular troops; commanders and war machines do not invalidate the army. The Grail is not required.
 
-Hold three resource reserves: 50,000 Gold; 50 Wood and 50 Ore; 25 each of Mercury, Sulfur, Crystal and Gems. Resources and matching components are kept. The same conditions apply to all nine factions. The five ordinary qualifying faction victories remain required. There are no scripted champion trial battles.
+Hold three resource reserves: 200,000 Gold; 200 Wood and 200 Ore; 200 each of Mercury, Sulfur, Crystal and Gems. Resources and matching components are kept. The same conditions apply to all nine factions. The five ordinary qualifying faction victories remain required. There are no scripted champion trial battles.
 
-After completing every requirement, place the bound quest hero in the matching town garrison (upper slot), leave the visitor space (lower slot) empty and select Champion quest > Receive champion. The champion appears in that lower slot. Another hero cannot substitute. A blocked delivery keeps the reward available: move the bound hero into the garrison, free the visitor slot and keep fewer than eight heroes. Current qualification and resource reserves are rechecked at receipt. Native position, army and visitor readbacks must pass before completion. A prepared pending champion that moved elsewhere must return to the delivery town before retrying; later progression is preserved. Ctrl+J or Alt-left-click opens the checklist.
+After completing every requirement, place the bound quest hero in the matching town garrison (upper slot), leave the visitor space (lower slot) empty and select Champion quest > Receive champion. Close the town screen to complete delivery; the champion appears in that lower slot. Another hero cannot substitute. A blocked delivery keeps the reward available: move the bound hero into the garrison, free the visitor slot and keep fewer than eight heroes. Current qualification and resource reserves are rechecked at receipt. Native position, army and visitor readbacks must pass before completion. A prepared pending champion that moved elsewhere must return to the delivery town before retrying; later progression is preserved. Ctrl+J or Alt-left-click opens the checklist.
 
 Castle: Aldric. Rampart: Sylvara. Tower: Vaelion. Inferno: Zareth. Necropolis: Andonov. Dungeon: Nyssara. Stronghold: Kargan. Fortress: Ssareth. Conflux: Aurelis.
 

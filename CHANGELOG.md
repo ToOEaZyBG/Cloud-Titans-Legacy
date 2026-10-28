@@ -1,3 +1,13 @@
+# 28/10/2026 dev27 > dev28 - 0.6.0-batch-dev28
+
+- Require200 each of Wood, Ore, Mercury, Sulfur, Crystal and Gems and200,000Gold for champion receipt. Resources are retained.
+- Fix the unused native champion selector: pass the requested player's mask as the input to the documented hero-availability check, and accept normal unused starting XP below100 and level-one commanders. Recheck those starting-state limits during authorized one-time initialization. Keep owned, placed/prison, tavern, already initialized and existing equipment-ledger heroes protected.
+- Retain the bound garrison hero/free lower visitor slot requirements, live qualification checks, native readback and retry safeguards. No scripted trial battles return.
+- Change guaranteed missing own-faction component rewards with option126 from every5 to every7levels, starting at18:18,25,32,39,46,53,60,67,74,81,88,95,102. Retain collection checks, ordinary Relics for complete sets and the native grant path.
+- Deliver the champion after closing the town screen. Use the documented ERA specialty hints and paired portrait command. Package all18 indexed portraits inside the native resource archive; remove loose H3-format PCX files that the external-file decoder loaded as empty images.
+- 716 offline tests passed during dev28 development; the resource-only correction was checked with package/resource gates and targeted tests without repeating the full suite. Native spot acceptance on a protected local save passed actual Andonov receipt through the town menu, both portraits, level1/25/25/25/25, town exit/reentry and actual save/reload. All18 native portrait resources load with correct dimensions and nonempty pixels. Other individual champion lifecycles and real two-computer Lobby synchronization remain pending.
+- Close the game before updating through the existing Mod Browser entry. Match dev28 on both clients and start a NEW map; old embedded save scripts are not automatically migrated.
+
 # 27/10/2026 dev26 > dev27 - 0.6.0-batch-dev27
 
 - Remove scripted champion trials for all nine towns, including Andonov's 150 Archangels and Conflux's four elemental steps. Replace them with three held reserves: 50,000 Gold; 50 Wood and 50 Ore; 25 each of Mercury, Sulfur, Crystal and Gems. These are checked at receipt and are not spent.
