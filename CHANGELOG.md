@@ -1,3 +1,9 @@
+# 28/10/2026 dev28 > dev29 - 0.6.0-batch-dev29
+
+- Add a visible feedback invitation to the Mod Browser description and project README, with separate guided forms for bugs and suggestions.
+- Bug reports request installed mod/ERA/HD versions, enabled mods, reproduction steps and expected/actual results. Screenshots are optional; saves, raw logs, crash dumps and personal information should remain private.
+- Documentation and release metadata only. All Data, EraPlugins and Lang files are byte-for-byte identical to dev28. No new gameplay fix or native acceptance is claimed. The existing dev28 record of 716 passing offline tests is retained; the full suite was not repeated for this update.
+
 # 28/10/2026 dev27 > dev28 - 0.6.0-batch-dev28
 
 - Require200 each of Wood, Ore, Mercury, Sulfur, Crystal and Gems and200,000Gold for champion receipt. Resources are retained.

@@ -1,7 +1,11 @@
-LATEST PUBLIC BUILD: 0.6.0-batch-dev28
+LATEST PUBLIC BUILD: 0.6.0-batch-dev29
 
 --------------------------------------------------------------
 ## CHANGELOG
+
+28/10/2026 dev28 > dev29
+- Help improve Cloud Titans Legacy: report bugs and share suggestions using the feedback links below.
+- Add guided bug and suggestion forms. Gameplay, scripts, native plugin and artwork are identical to dev28.
 
 28/10/2026 dev27 > dev28
 - Champion reserves:200 each of Wood, Ore, Mercury, Sulfur, Crystal and Gems, plus200,000 Gold. Resources are kept.
@@ -31,12 +35,14 @@ LATEST PUBLIC BUILD: 0.6.0-batch-dev28
 - Correct opposite-layer artifact selection: all nine towns can have parts on both layers; new map required.
 - Keep the5% level gate and ten-level cooldown; guarantee a component on the tenth eligible attempt. Log failed attempts as well as successes.
 
-25/10/2026 dev22 > dev23
-- All nine newly awarded champions start at level1 with 25 Attack, Defense, Spell Power and Knowledge; later progression is preserved.
-- Add read-only live stack-experience row diagnostics and clarify the provider-owned switches needed for rank bonuses. Restore the selected WoG profile locally without changing third-party payloads.
-- Include the HD Backpack Sort button from dev22. Native table/button rendering and two-computer acceptance remain pending.
-
 --------------------------------------------------------------
+
+## HELP IMPROVE CLOUD TITANS LEGACY
+
+Playing Cloud Titans Legacy? Help us improve it! Report bugs or share suggestions:
+https://github.com/ToOEaZyBG/Cloud-Titans-Legacy/issues/new/choose
+
+Please include your installed mod version, ERA/HD versions, enabled mods and what happened. Screenshots are welcome. A GitHub account is required. Reports are public: keep saves, crash dumps, raw logs and personal information private; describe what evidence you have so we can arrange a suitable way to share it if needed.
 
 ## LEGACY OF THE CLOUD TITANS - TEST
 

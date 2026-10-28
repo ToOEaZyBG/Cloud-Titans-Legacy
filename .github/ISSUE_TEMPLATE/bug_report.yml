@@ -1,0 +1,106 @@
+{
+  "name": "Report a bug",
+  "description": "Report a crash, incorrect behavior or another problem.",
+  "title": "[Bug] ",
+  "body": [
+    {
+      "type": "markdown",
+      "attributes": {
+        "value": "Thanks for helping improve Cloud Titans Legacy! A report does not need to be perfect. Please search existing issues first. Issues are public: do not attach saves, raw logs, crash dumps or personal information. Describe available evidence; we can arrange suitable sharing if needed."
+      }
+    },
+    {
+      "type": "input",
+      "id": "mod-version",
+      "attributes": {
+        "label": "Installed mod version",
+        "description": "Read mod_version in the installed mod.json; the browser catalog can lag behind.",
+        "placeholder": "Example: 0.6.0-batch-dev29"
+      },
+      "validations": {
+        "required": true
+      }
+    },
+    {
+      "type": "input",
+      "id": "platform",
+      "attributes": {
+        "label": "ERA / Heroes Launcher platform and HD Mod versions",
+        "description": "Enter the versions you see, or say unknown."
+      },
+      "validations": {
+        "required": true
+      }
+    },
+    {
+      "type": "dropdown",
+      "id": "mode",
+      "attributes": {
+        "label": "Game mode",
+        "options": [
+          "Local single player",
+          "Hotseat",
+          "Online Lobby / multiplayer",
+          "Other / unsure"
+        ]
+      },
+      "validations": {
+        "required": true
+      }
+    },
+    {
+      "type": "textarea",
+      "id": "mods",
+      "attributes": {
+        "label": "Enabled mods and load order",
+        "description": "Include WoG options relevant to the problem, if known."
+      },
+      "validations": {
+        "required": true
+      }
+    },
+    {
+      "type": "textarea",
+      "id": "steps",
+      "attributes": {
+        "label": "Steps to reproduce",
+        "description": "Include town, hero, map/day and the last action before the problem, if relevant.",
+        "placeholder": "1. ...\n2. ...\n3. ..."
+      },
+      "validations": {
+        "required": true
+      }
+    },
+    {
+      "type": "textarea",
+      "id": "actual",
+      "attributes": {
+        "label": "What happened?"
+      },
+      "validations": {
+        "required": true
+      }
+    },
+    {
+      "type": "textarea",
+      "id": "expected",
+      "attributes": {
+        "label": "What did you expect?"
+      },
+      "validations": {
+        "required": true
+      }
+    },
+    {
+      "type": "textarea",
+      "id": "evidence",
+      "attributes": {
+        "label": "Screenshots and additional context",
+        "description": "Optional: paste screenshots after checking for personal information. Mention whether it happens again and whether a save or crash report is available privately."
+      },
+      "validations": {
+        "required": false
+      }
+    }
+  ]
+}

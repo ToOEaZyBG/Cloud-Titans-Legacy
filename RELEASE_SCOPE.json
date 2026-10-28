@@ -1,5 +1,5 @@
 {
-  "version": "0.6.0-batch-dev28",
+  "version": "0.6.0-batch-dev29",
   "distribution": "EXPERIMENTAL ONLINE LOBBY TEST",
   "new_map_required": true,
   "sequential_turns_only": true,
@@ -28,5 +28,9 @@
     "Readme.md",
     "NETWORK_TEST.md",
     "readme.txt"
-  ]
+  ],
+  "runtime_base_version": "0.6.0-batch-dev28",
+  "release_kind": "feedback forms and documentation only",
+  "full_suite_repeated": false,
+  "offline_test_evidence_version": "0.6.0-batch-dev28"
 }

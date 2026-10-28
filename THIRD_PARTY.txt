@@ -1,4 +1,4 @@
-Current distribution: experimental Mod Browser test 0.6.0-batch-dev28. Original credits and historical bundle provenance follow; older local-only status text is historical. H3API/patcher notices are also in THIRD_PARTY_RELIC_BOOK.txt.
+Current distribution: experimental Mod Browser test 0.6.0-batch-dev29. Original credits and historical bundle provenance follow; older local-only status text is historical. H3API/patcher notices are also in THIRD_PARTY_RELIC_BOOK.txt.
 
 Emerald artifact extension — third-party component, unchanged local binary.
 Copied from the user's installed Land Of New Towns/EraPlugins/emerald3_3.era.

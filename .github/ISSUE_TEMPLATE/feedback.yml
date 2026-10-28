@@ -1,0 +1,46 @@
+{
+  "name": "Share feedback or a suggestion",
+  "description": "Tell us what works, what feels difficult or what you would change.",
+  "title": "[Feedback] ",
+  "body": [
+    {
+      "type": "markdown",
+      "attributes": {
+        "value": "Thanks for helping improve Cloud Titans Legacy! A report does not need to be perfect. Please search existing issues first. Issues are public: do not attach saves, raw logs, crash dumps or personal information. Describe available evidence; we can arrange suitable sharing if needed."
+      }
+    },
+    {
+      "type": "input",
+      "id": "version",
+      "attributes": {
+        "label": "Mod version",
+        "description": "If known; read the installed mod.json."
+      },
+      "validations": {
+        "required": false
+      }
+    },
+    {
+      "type": "textarea",
+      "id": "feedback",
+      "attributes": {
+        "label": "Your feedback or suggestion",
+        "description": "What did you enjoy, what was confusing, or what would you change?"
+      },
+      "validations": {
+        "required": true
+      }
+    },
+    {
+      "type": "textarea",
+      "id": "context",
+      "attributes": {
+        "label": "Gameplay context",
+        "description": "Optional: town, hero, map size, game mode and why the change would help."
+      },
+      "validations": {
+        "required": false
+      }
+    }
+  ]
+}
