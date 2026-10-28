@@ -990,7 +990,7 @@ ZVSE2
 !!re (pass:y)/0/82;
  !!VR(slot:y):S82 -(pass);
  !!FU(GetArtAtSlot):P(hero)/(slot)/?(art:y)/?i;
- !!co|(art)<450/(art)>530;
+ !!co|(art)<450/(art)>548;
  !!FU(CLT_RemoveOne):P(hero)/(art);
 !!en;
 
@@ -1057,7 +1057,7 @@ ZVSE2
 !?FU(CFS_WorldPlanReady);
 !#VA(count:x) (ready:x);
 !!VR(ready):S0;
-!!FU|(count)<0/(count)>140:E;
+!!FU|(count)<0/(count)>270:E;
 !!SN:W^clt.net.world.complete^/?(complete:y) W^clt.world.placed^/?(savedCount:y);
 !!FU&(complete)>0/(count)<>(savedCount):E;
 !!UN:X?(size:y)/?(underground:y);
@@ -1065,7 +1065,7 @@ ZVSE2
 !!VR(below:y):S0;
 !!re (index:y)/1/(count);
  !!SN:W^clt.world.p.%(index).x^/?(px:y) W^clt.world.p.%(index).y^/?(py:y) W^clt.world.p.%(index).z^/?(pz:y) W^clt.world.p.%(index).old^/?(old:y) W^clt.world.p.%(index).art^/?(part:y);
- !!FU(CFS_IsComponent):P(part)/?(valid:y);
+ !!FU(CGC_IsMapArtifact):P(part)/?(valid:y);
  !!FU|(valid)=0/(px)<0/(py)<0/(px)>=(size)/(py)>=(size)/(pz)<0/(pz)>(underground)/(old)<7/(old)>128:E;
  !!SN:W^clt.pickup.site.%(px).%(py).%(pz)^/?(known:y);
  !!FU&(known)<>(index):E;
@@ -1074,15 +1074,15 @@ ZVSE2
 !!en;
 ; A lower completion count must not hide already received trailing sites.
 !!VR(firstExtra:y):S(count) +1;
-!!if&(firstExtra)<=140;
- !!re (extra:y)/(firstExtra)/140;
+!!if&(firstExtra)<=270;
+ !!re (extra:y)/(firstExtra)/270;
   !!SN:W^clt.world.p.%(extra).art^/?(extraPart:y);
   !!FU&(extraPart)>0:E;
  !!en;
 !!en;
 !!FU&(underground)>0/(above)<>(below):E;
 !!SN:W^clt.net.world.layer.0^/(above) W^clt.net.world.layer.1^/(below);
-!!VR(ready):S1;
+!!FU(CGC_MapCounts):P(count)/?(ready);
 
 ; Before starting an underground/surface pair, reserve the ability to finish it.
 ; Spacing is layer-local, so the first placement cannot invalidate the second.
@@ -1095,7 +1095,8 @@ ZVSE2
  !!co|(used)>0/(z)<>(layer);
  !!SN:W^clt.world.c.%(index).x^/?(x:y) W^clt.world.c.%(index).y^/?(y:y) W^clt.world.c.%(index).old^/?(old:y);
  !!OB(x)/(y)/(z):T?(kind:y) U?(current:y);
- !!co|(kind)<>(OBJ_ARTIFACT)/(current)<>(old);
+ !!FU(CGC_CandidateReady):P(index)/(x)/(y)/(z)/(old)/?(candidateReady:y);
+ !!co&(candidateReady)=0;
  !!SN:W^clt.pickup.site.%(x).%(y).%(z)^/?(existing:y);
  !!co&(existing)>0;
  !!FU(CLT_WorldSpacing):P(x)/(y)/(z)/(spacing)/?(okay:y);
@@ -1147,13 +1148,16 @@ ZVSE2
 !!OB(bx)/(by)/(bz):T?(kind:y) U?(actual:y);
 !!FU|(kind)<>(OBJ_ARTIFACT)/(actual)<>(old):E;
 !!UN:O(bx)/(by)/(bz)/1/0;
-!!UN:I(bx)/(by)/(bz)/(OBJ_ARTIFACT)/(old)/(OBJ_ARTIFACT)/(old)/-1/0;
-!!OB(bx)/(by)/(bz):C0;
+!!SN:W^clt.world.c.%(candidate).seed^/?(seed:y);
+!!if&(seed)=0;
+ !!UN:I(bx)/(by)/(bz)/(OBJ_ARTIFACT)/(old)/(OBJ_ARTIFACT)/(old)/-1/0;
+ !!OB(bx)/(by)/(bz):C0;
+!!en;
 !!SN:H^-object^/(bx)/(by)/(bz)/^^;
 !!SN:W^clt.pickup.site.%(bx).%(by).%(bz)^/0 W^clt.world.c.%(candidate).used^/0;
 !!SN:W^clt.world.p.%(placed).x^/0 W^clt.world.p.%(placed).y^/0 W^clt.world.p.%(placed).z^/0 W^clt.world.p.%(placed).old^/0 W^clt.world.p.%(placed).art^/0 W^clt.world.p.%(placed).candidate^/0;
 !!SN:W^cfs.world.layer.%(bz)^/?(layerIndex:y);
-!!VR(layerIndex):-1 F0/140;
+!!VR(layerIndex):-1 F0/270;
 !!SN:W^cfs.world.layer.%(bz)^/(layerIndex);
 !!VR(placed):-1;
 !!SN:W^clt.world.placed^/(placed);
@@ -1188,14 +1192,9 @@ ZVSE2
 ; Never store a function-local string index in the legacy OB:H field.
 !?FU(CFS_MapHint);
 !#VA(bx:x) (by:x) (bz:x) (part:x);
-!!FU(CFS_IsComponent):P(part)/?(valid:y);
+!!FU(CGC_IsMapArtifact):P(part)/?(valid:y);
 !!FU&(valid)=0:E;
-!!if&(part)<459;
- !!VR(quest:y):S(part) -450;
- !!FU(CLT_QuestInfo):P(quest)/?i/?(name:z)/?i;
-!!el;
- !!FU(CFS_Item):P(part)/?(name)/?i/?i/?i/?i/?i;
-!!en;
+!!SN:H^art^/(part)/0/?(name:z);
 !!SN:H^object^/(bx)/(by)/(bz)/^%(name)^;
 
 !?FU(CFS_CountCarried);
@@ -1991,7 +1990,7 @@ ZVSE2
 !?FU(CFS_Status);
 !#VA(owner:x) (set:x);
 !!SN:W^clt.world.placed^/?(placed:y) W^clt.net.world.hash^/?(hash:y) W^clt.net.world.error^/?(worldError:y) W^clt.net.quest.error^/?(questError:y);
-!!VR(status:z):S^Build: 0.6.0-batch-dev28
+!!VR(status:z):S^Build: 0.6.0-batch-dev31
 Placed: %(placed). Map hash: %(hash).
 World errors: %(worldError). Quest errors: %(questError).
 Current player's faction quest counters:

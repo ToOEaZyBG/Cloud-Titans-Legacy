@@ -1,7 +1,15 @@
-LATEST PUBLIC BUILD: 0.6.0-batch-dev30
+LATEST PUBLIC BUILD: 0.6.0-batch-dev31
 
 --------------------------------------------------------------
 CHANGELOG
+
+28/10/2026 dev30 > dev31
+- Three universal commander sets: Ember Oath, Iron Covenant and Astral Conclave; six new items each, usable by every town.
+- Open Inventory tools with Ctrl+N in the hero screen, then Commander equipment and forge. Only its six equipped slots grant bonuses; hero equipment and backpacks do not.
+- Each active part adds5 percentage points to all eight ACM commander attributes. Matching2/4/6 parts add5/5/10 more; a full set adds40 to its two favored attributes. Same480-point budget across all three sets.
+- Forge each part with a level20 hero and living commander for50,000Gold,20Wood and20Ore. Existing commander items reserve their same slots. AI cannot obtain or use these items. NEW map required; native/Lobby acceptance pending.
+- NEW random maps now target exactly3 copies of each of72 faction components and18 commander items:270 finds,135 per layer when underground exists. Complete relics are never placed. Existing eligible sites are reused and additional safe open land sites are added without deleting other objects; an incomplete plan is reported as an error.
+- Level-up rewards remain unchanged: faction components at18,25,32,39 and every7levels thereafter. This three-copy policy concerns map generation only.
 
 28/10/2026 dev29 > dev30
 - Sort in the supported HD Backpack now ends its modal on the first click, sorts after its cached cells are destroyed and immediately rebuilds the window.
@@ -30,11 +38,6 @@ CHANGELOG
 - Repair trial refusal after leaving town: ignore stale town type on empty tiles and reject hidden garrison heroes.
 - Start a NEW map. Reported post-battle crash and two-computer acceptance remain unresolved.
 
-27/10/2026 dev24 > dev25
-- All nine castles: component quests are another10% easier.
-- Guaranteed missing own-faction component at levels18,23,28,33 and every5 levels thereafter with option126. Check all owned heroes; a complete collection gives an ordinary Relic instead.
-- Double the spacing-limited map top-up target, within existing guarded-site,55% density,140-site and equal-layer limits. Start a NEW map.
-
 --------------------------------------------------------------
 
 HELP IMPROVE CLOUD TITANS LEGACY
@@ -52,6 +55,7 @@ Legacy of the Cloud Titans adds an artifact-collection and hero-progression syst
 
 WHAT YOU GET
 
+- Three universal commander sets with18 new items; Commander equipment and forge is available through Ctrl+N in the hero screen. Bonuses require commander equipping.
 - Nine faction sets: eight components and one assembled relic for each town.
 - 72 components and nine complete relics in total, with themed artifact artwork.
 - Individual item effects and cumulative bonuses for wearing different matching pieces.
@@ -62,7 +66,7 @@ WHAT YOU GET
 
 FIND AND EARN COMPONENTS
 
-Map exploration: some eligible loose artifact sites become faction components when a new map is prepared. Finds can belong to any town. On maps with an underground level, the generated plan keeps equal component counts above and below ground. Availability depends on valid locations; exploring a particular area does not guarantee a component.
+Map exploration: each successful NEW random map contains3 copies of each of72 faction components and18 commander items,270 finds in total. With underground,135 sites are placed on each layer and each item appears on both layers. Existing eligible artifact sites are reused; additional items use free passable land without replacing other objects. Complete relics never appear: assemble them from their parts. If the map cannot fit the complete plan safely, generation reports an error instead of silently claiming success.
 
 Faction quests: open Faction set quests in your town menu. Each component has an objective and a progress counter. Defeat the listed enemies or complete the required battles, then return with the recorded qualified hero to claim it. Completed objectives stay green while that hero is away. Read the selected objective for its level and town requirements. Choose Accept with the hero in town. Only that recorded hero earns progress. Your first component or champion quest permanently locks one faction for this game. Death or dismissal resets unfinished progress; a replacement may accept for the same faction. Previously claimed component rewards remain claimed, once per player. Finding a piece elsewhere does not consume that quest reward.
 

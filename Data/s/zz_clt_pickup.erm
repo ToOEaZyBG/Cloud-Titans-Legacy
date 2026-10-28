@@ -9,10 +9,9 @@ ZVSE2
 !!SN:W^clt.pickup.site.%(bx).%(by).%(bz)^/?(index:y);
 !!FU&(index)<1:E;
 !!HE-1:N?(hero:y);
+!!OB(bx)/(by)/(bz):S;
 !!FU(CLT_IsHuman):P(hero)/?(human:y);
 !!FU&(human)=0:E;
-; Disable native pickup before doing anything: failed delivery leaves a retryable site.
-!!OB(bx)/(by)/(bz):S;
 !!HE(hero):O?(owner:y);
 !!FU(CLT_IsLocalOwner):P(owner)/?(local:y);
 !!FU&(local)=0:E;
@@ -28,11 +27,7 @@ ZVSE2
 !!el;
  !!SN:W^clt.world.p.%(index).art^/?(part:y);
  !!VR(quest:y):S(part) -450;
- !!if&(part)<459;
-  !!FU(CLT_QuestInfo):P(quest)/?i/?(name:z)/?i;
- !!el;
-  !!FU(CFS_Item):P(part)/?(name)/?i/?i/?i/?i/?i;
- !!en;
+ !!SN:H^art^/(part)/0/?(name:z);
  !!IF:Q1/8/(part)/1^You found %(name).^;
 !!en;
 
@@ -41,14 +36,14 @@ ZVSE2
 
 !?FU(CLT_CollectSite);
 !#VA(hero:x) (index:x) (bx:x) (by:x) (bz:x);
-!!FU|(hero)<0/(hero)>155/(index)<1/(index)>140:E;
+!!FU|(hero)<0/(hero)>155/(index)<1/(index)>270:E;
 !!UN:X?(size:y)/?(underground:y);
 !!FU|(bx)<0/(by)<0/(bx)>=(size)/(by)>=(size)/(bz)<0/(bz)>(underground):E;
 !!SN:W^clt.world.p.%(index).taken^/?(taken:y);
 !!FU&(taken)>0:E;
 !!SN:W^clt.world.p.%(index).x^/?(px:y) W^clt.world.p.%(index).y^/?(py:y) W^clt.world.p.%(index).z^/?(pz:y) W^clt.world.p.%(index).art^/?(part:y) W^clt.world.p.%(index).old^/?(previous:y);
 !!FU|(px)<>(bx)/(py)<>(by)/(pz)<>(bz):E;
-!!FU(CFS_IsComponent):P(part)/?(valid:y);
+!!FU(CGC_IsMapArtifact):P(part)/?(valid:y);
 !!FU&(valid)=0:E;
 !!OB(bx)/(by)/(bz):T?(kind:y) U?(actual:y);
 !!FU&(kind)<>(OBJ_ARTIFACT):E;

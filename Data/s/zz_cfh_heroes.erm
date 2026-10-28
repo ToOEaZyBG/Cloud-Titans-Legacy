@@ -441,6 +441,13 @@ ZVSE2
  ; equipment correction ledgers. Never reuse that state as a new champion.
  !!SN:W^cfh.v1.initialized.%(hero)^/?(used:y) W^clt.primary.ready.%(hero)^/?(towerUsed:y) W^cfs.v1.primary.ready.%(hero)^/?(factionUsed:y);
  !!co|(used)>0/(towerUsed)>0/(factionUsed)>0;
+ ; Commander equipment is also retained ownership, even at zero hero XP.
+ !!VR(gearUsed:y):S0;
+ !!re (gearSlot:y)/0/5;
+  !!SN:W^cgc.v1.gear.%(hero).%(gearSlot)^/?(gear:y);
+  !!VR(gearUsed)&(gear)<>0:S1;
+ !!en;
+ !!co&(gearUsed)>0;
  !!HE(hero):O?(heroOwner:y) P?(x:y)/?(y:y)/?(z:y) B2/?(class:y);
  ; The installed ERA stdlib uses all three negative coordinates to exclude
  ; Prison heroes as well as heroes already placed on the map.

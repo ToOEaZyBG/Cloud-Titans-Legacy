@@ -1,3 +1,11 @@
+## Commander sets — dev31
+
+18 original new items in three universal sets. Artwork preview; not gameplay.
+
+![Ember Oath, Iron Covenant and Astral Conclave](Screens/commander-sets.png)
+
+[Commander equipment, bonuses and compatibility](COMMANDER_SETS.md).
+
 ## Champion portraits
 
 Full-size approved portraits. Artwork previews; not gameplay screenshots.

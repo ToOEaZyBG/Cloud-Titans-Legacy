@@ -1,3 +1,18 @@
+# 28/10/2026 dev30 > dev31 - 0.6.0-batch-dev31
+
+- NEW random maps now target exactly3 copies of each of72 faction components and18 commander items:270 finds,135 per layer when underground exists. Complete relics are never placed. Existing eligible sites are reused and additional safe open land sites are added without deleting other objects; an incomplete plan is reported as an error.
+- Level-up rewards remain unchanged: faction components at18,25,32,39 and every7levels thereafter. This three-copy policy concerns map generation only.
+
+
+- Add18 original painted commander artifacts in three six-piece universal sets: Ember Oath (Attack/Damage), Iron Covenant (Defense/Health), Astral Conclave (Spell/Passive). Every town and commander class may use each set.
+- In the hero screen press Ctrl+N, select Commander equipment and forge. This separate six-slot page owns the new equipment. Carrying an item in hero equipment or backpack gives no bonus. Native commander items reserve matching positions; new IDs are never forced into the native commander artifact table and existing items are unchanged.
+- Each active piece adds5 percentage points to all eight ACM commander attribute modifiers. At2/4/6 matching parts, add another5/5/10 points to all. A full set adds40 to its two favored modifiers:50 points to all eight,90 to its favored pair; identical480-point budget. Bonuses augment ACM outputs without replacing commander classes, learned abilities, passive mechanics or existing modifiers. Actual balance awaits player feedback.
+- Forge each part for50,000Gold,20Wood and20Ore with a level20 hero and enabled living human commander. Forged items enter the backpack and require explicit commander equipping. Capacity/currency/owner/slot/hash/sequence validation prevents failed changes from losing items or money, and prevents duplicate packet rewards.
+- Extend native AI grant rejection and inventory cleanup through artifact548. AI, dead/disabled commanders and native-occupied custom positions receive no custom bonus. Removing retained gear is allowed even while a commander is dead or its native slot is occupied.
+- Preserve prior hero-set stats, quests, level-up acquisition, champions, portraits, first-click Backpack Sort and feedback forms. No installed files, settings or saves were changed and no game was controlled. Offline checks do not establish native UI/save/load or two-computer compatibility; those acceptance steps remain pending. Match dev31 and start a NEW map after both players close and update.
+
+- Background validation: 751 offline tests pass, including4096 commander gear combinations, exact270-site generation, three-copy counts, sender/receiver native mutation-order equality, replay and commander pickups. No new native game acceptance is claimed.
+
 # 28/10/2026 dev29 > dev30 - 0.6.0-batch-dev30
 
 - Fix the reported delayed Sort button: clicking Sort in the supported HD5.8R22 Backpack closes the current modal immediately, sorts after destruction of cached cells and reopens the updated backpack without waiting for another click.

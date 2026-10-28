@@ -3117,12 +3117,21 @@ Includes all eight artifacts. Extra copies give no further bonus.
 !!VR(title:z):S^%(name) - Inventory tools^;
 !!FU(RadioDlg_SetTitle):P(title);
 !!FU(RadioDlg_AddItem):P^Sort backpack by name^/0;
+!!FU(RadioDlg_AddItem):P^Commander equipment and forge^/1;
 !!FU(RadioDlg_AddCancelButton):P;
 !!FU(RadioDlg_Show):P?(selected:y)/?(choice:y)/?(tag:z);
-!!FU|(selected)<0/(choice)<>0:E;
+!!FU|(selected)<0/(choice)<0:E;
+!!if&(choice)=1;
+ !!FU(CGC_Menu):P(hero);
+ !!SN:W^clt.ui.refresh.%(hero)^/1;
+ !!SN:F^GetGameState^/?(dialogs[2]:y);
+ !!FU(CLT_RefreshHeroUI)&(dialogs[1])=(DLG_HERO_SCREEN):P(hero);
+ !!FU:E;
+!!en;
+!!FU&(choice)<>0:E;
 !!FU(CQT_RequestSort):P(hero);
 !!SN:W^clt.ui.refresh.%(hero)^/1;
-!!SN:F^GetGameState^/?(dialogs[2]:y);
+!!SN:F^GetGameState^/?(dialogs);
 !!FU(CLT_RefreshHeroUI)&(dialogs[1])=(DLG_HERO_SCREEN):P(hero);
 
 !?FU(CQT_RequestSort);
@@ -3136,7 +3145,7 @@ Includes all eight artifacts. Extra copies give no further bonus.
 !!re (slot:y)/0/63;
  !!VR(nativeSlot:y):S(slot) +(ART_SLOT_BACKPACK_FIRST);
  !!FU(GetArtAtSlot):P(hero)/(nativeSlot)/?(art:y)/?i;
- !!FU|(art)<-1/(art)>530:E;
+ !!FU|(art)<-1/(art)>548:E;
  !!if&(art)>=0;
   !!SN:H^art^/(art)/0/?(name:z);
   !!VRs^cqt.sort.name.%(slot)^:S(name);

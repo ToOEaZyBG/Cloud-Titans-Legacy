@@ -1,18 +1,18 @@
 {
-  "version": "0.6.0-batch-dev30",
+  "version": "0.6.0-batch-dev31",
   "distribution": "EXPERIMENTAL ONLINE LOBBY TEST",
   "new_map_required": true,
   "sequential_turns_only": true,
-  "offline_tests_passed": 32,
+  "offline_tests_passed": 751,
   "native_runtime_accepted": false,
   "two_computer_accepted": false,
   "production_ready": false,
   "candidate_validation": {
-    "global_frame_cache_names": 613,
+    "global_frame_cache_names": 649,
     "status": "OFFLINE CHECKS PASSED",
-    "functions": 143,
+    "functions": 161,
     "new_sets": 8,
-    "artifact_configs": 81,
+    "artifact_configs": 99,
     "max_config_parser_write_bytes": 463,
     "component_resources": 64,
     "old_inventory_frames_preserved": 459,
@@ -22,16 +22,23 @@
     "AI-turn crash",
     "fullscreen crash"
   ],
-  "reviewed_candidate_zip_sha256": "5ed8b98286eef728811070c836a5c7c0f2d3845770a3d49292b89f4cf9fad886",
+  "reviewed_candidate_zip_sha256": "d344ec1959437e67d6f09f897152db4e4a47497af54e76790a5f0b1d833208cb",
   "export_overrides": [
     "mod.json catalog caption/description",
     "Readme.md",
     "NETWORK_TEST.md",
     "readme.txt"
   ],
-  "targeted_tests_passed": 32,
-  "offline_test_scope": "targeted book/backpack, shipped message contracts and release checks only",
-  "previous_full_suite_tests": 716,
-  "previous_full_suite_version": "0.6.0-batch-dev28",
-  "full_suite_repeated": false
+  "commander_sets": 3,
+  "commander_items": 18,
+  "source_profile_active_mods": 36,
+  "source_profile_archives_scanned": 54,
+  "native_commander_equipment_accepted": false,
+  "artwork_player_approved": false,
+  "map_component_types": 90,
+  "map_copies_per_component": 3,
+  "map_total_sites": 270,
+  "map_assembled_relics": false,
+  "level_rewards_unchanged": true,
+  "offline_tests_seconds": 243.043
 }

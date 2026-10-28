@@ -70,13 +70,20 @@ ZVSE2
 !!SN&(after)>(before):W^clt.quest.%(owner).claimed.%(quest)^/1;
 
 !?FU(CLT_NetWorldSite);
-!#VA(index:x) (bx:x) (by:x) (bz:x) (previous:x) (part:x);
+!#VA(index:x) (bx:x) (by:x) (bz:x) (previous:x) (part:x) (seed:x);
 !!UN:X?(size:y)/?(underground:y);
-!!FU|(index)<1/(index)>140/(bx)<0/(by)<0/(bx)>=(size)/(by)>=(size)/(bz)<0/(bz)>(underground)/(previous)<7/(previous)>128:E;
-!!FU(CFS_IsComponent):P(part)/?(valid:y);
+!!FU|(index)<1/(index)>270/(bx)<0/(by)<0/(bx)>=(size)/(by)>=(size)/(bz)<0/(bz)>(underground)/(previous)<7/(previous)>128:E;
+!!FU(CGC_IsMapArtifact):P(part)/?(valid:y);
 !!FU&(valid)=0:E;
 !!FU(CFS_WorldPacketReady):P(index)/(bx)/(by)/(bz)/(previous)/(part)/?(packetReady:y);
 !!FU&(packetReady)=0:E;
+!!FU(CGC_SeedReceive):P(index)/(bx)/(by)/(bz)/(previous)/(seed)/?(seedReady:y);
+!!if&(seedReady)=0;
+ !!FU(CFS_WorldError):P;
+ !!FU:E;
+!!en;
+!!SN:W^clt.world.p.%(index).seed^/(seed);
+
 !!SN:W^clt.world.p.%(index).taken^/?(taken:y);
 !!FU&(taken)>0:E;
 !!OB(bx)/(by)/(bz):T?(kind:y) U?(actual:y);
@@ -88,18 +95,22 @@ ZVSE2
 !!SN:W^clt.world.p.%(index).x^/(bx) W^clt.world.p.%(index).y^/(by) W^clt.world.p.%(index).z^/(bz) W^clt.world.p.%(index).art^/(part) W^clt.world.p.%(index).old^/(previous) W^clt.pickup.site.%(bx).%(by).%(bz)^/(index);
  !!FU:E;
 !!en;
+!!if&(seed)=0;
 !!if|(kind)<>(OBJ_ARTIFACT)/(actual)<>(previous);
  !!FU(CFS_WorldError):P;
  !!FU:E;
 !!en;
-!!UN:O(bx)/(by)/(bz)/1/0;
+!!en;
+!!UN&(seed)=0:O(bx)/(by)/(bz)/1/0;
 !!UN:I(bx)/(by)/(bz)/(OBJ_ARTIFACT)/(previous)/(OBJ_ARTIFACT)/(part)/-1/0;
 !!OB(bx)/(by)/(bz):U(previous) C0;
 !!OB(bx)/(by)/(bz):T?(actualType:y) U?(actual);
 !!if|(actualType)<>(OBJ_ARTIFACT)/(actual)<>(previous);
  !!UN:O(bx)/(by)/(bz)/1/0;
- !!UN:I(bx)/(by)/(bz)/(OBJ_ARTIFACT)/(previous)/(OBJ_ARTIFACT)/(previous)/-1/0;
- !!OB(bx)/(by)/(bz):C0;
+ !!if&(seed)=0;
+  !!UN:I(bx)/(by)/(bz)/(OBJ_ARTIFACT)/(previous)/(OBJ_ARTIFACT)/(previous)/-1/0;
+  !!OB(bx)/(by)/(bz):C0;
+ !!en;
  !!FU(CFS_WorldError):P;
  !!FU:E;
 !!en;
@@ -108,7 +119,7 @@ ZVSE2
 
 !?FU(CLT_NetWorldDone);
 !#VA(count:x);
-!!FU|(count)<0/(count)>140:E;
+!!FU|(count)<0/(count)>270:E;
 !!FU(CFS_WorldPlanReady):P(count)/?(planReady:y);
 !!if&(planReady)=0;
  !!FU(CFS_WorldError):P;
@@ -134,7 +145,7 @@ ZVSE2
 !!SN:F^WriteStrToIni^/^surface^/^%(surface)^/^network^/^Debug\CloudTitansNetwork.ini^;
 !!SN:F^WriteStrToIni^/^underground^/^%(lower)^/^network^/^Debug\CloudTitansNetwork.ini^;
 !!SN:F^WriteStrToIni^/^world_error^/^%(error)^/^network^/^Debug\CloudTitansNetwork.ini^;
-!!SN:F^WriteStrToIni^/^version^/^0.6.0-batch-dev30^/^network^/^Debug\CloudTitansNetwork.ini^;
+!!SN:F^WriteStrToIni^/^version^/^0.6.0-batch-dev31^/^network^/^Debug\CloudTitansNetwork.ini^;
 !!SN:F^SaveIni^/^Debug\CloudTitansNetwork.ini^;
 !!IF&(error)>0:M^Cloud Titans NETWORK TEST: map placement mismatch. Stop this test and keep both saves/debug folders.^;
 
@@ -147,7 +158,7 @@ ZVSE2
 !?FU26893;
 !!FU(CLT_ClaimQuest):Px1/x2/x3;
 !?FU26894;
-!!FU(CLT_NetWorldSite):Px1/x2/x3/x4/x5/x6;
+!!FU(CLT_NetWorldSite):Px1/x2/x3/x4/x5/x6/x7;
 !?FU26895;
 !!FU(CLT_NetWorldDone):Px1;
 !?FU26896;
@@ -176,7 +187,7 @@ ZVSE2
 !!FU&(selected)<0:E;
 !!if&(action)=0;
  !!SN:W^clt.world.placed^/?(placed:y) W^clt.net.world.hash^/?(hash:y) W^clt.net.world.error^/?(error:y) W^clt.net.quest.error^/?(questError:y);
- !!VR(status:z):S^Build: 0.6.0-batch-dev30
+ !!VR(status:z):S^Build: 0.6.0-batch-dev31
 Placed: %(placed). Map hash: %(hash). Errors: %(error).
 Quest write errors: %(questError).
 Confirmed wins per player (compare on both computers):

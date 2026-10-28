@@ -1,10 +1,10 @@
 # Legacy of the Cloud Titans â€” Online Lobby test
 
-Version **0.6.0-batch-dev30**. This is an experimental all-faction release for a new two-player test. Automated checks pass; native gameplay, save/load and two-computer synchronization still need player verification.
+Version **0.6.0-batch-dev31**. This is an experimental all-faction release for a new two-player test. Automated checks pass; native gameplay, save/load and two-computer synchronization still need player verification.
 
 ## Install the same build
 
-Both players close the game, then use the existing **Legacy of the Cloud Titans - TEST** entry in Heroes Launcher â†’ Mod Browser. Keep the folder **Cloud Titans Legacy - Local Test**; enable only one copy of this mod. The installed `mod.json` must say **0.6.0-batch-dev30** on both computers. Catalog metadata can lag behind downloaded files; an older version displayed in the browser does not establish which build was installed. Check the installed version before starting.
+Both players close the game, then use the existing **Legacy of the Cloud Titans - TEST** entry in Heroes Launcher â†’ Mod Browser. Keep the folder **Cloud Titans Legacy - Local Test**; enable only one copy of this mod. The installed `mod.json` must say **0.6.0-batch-dev31** on both computers. Catalog metadata can lag behind downloaded files; an older version displayed in the browser does not establish which build was installed. Check the installed version before starting.
 
 Use identical ERA/HD versions, enabled mods, load order and WoG options. The inspected base profile used ERA platform 2.299, HD 5.8 R22, Advanced Classes Mod 1.11, JS new objects 1.40, JS main module 1.21.2, JS commanders 1.02, JS map fixes 1.12 and JS terrains 1.4.1. Match the exact versions available to both players; TEST_PROFILE.json is an observed reference, not certification of every combination. Keep Knightmare Kingdoms and other metadata-listed incompatible packages disabled. Keep both ERAHDHeroes_3_Reborn (Full) and HD Editionfixai (Lite) disabled for this trial, following the selected remaster-free profile. Use their original Mod Browser files; this release does not patch them.
 
@@ -12,7 +12,7 @@ Start a **NEW G random map with underground through Heroes Launcher Online Lobby
 
 ## Dev25 first checks
 
-Click Sort in HD Backpack; it should close and rebuild with name-sorted items. Native local dev24 acceptance confirmed that Sort preserved all valid artifact records; both-computer acceptance remains pending. On a NEW G map with underground, component plans retain equal layer totals and include some opposite-layer faction parts. Necropolis/Inferno/Dungeon must no longer be entirely absent from the surface. Old maps are not changed.
+Click Sort in HD Backpack; it should close and rebuild with name-sorted items. The dev30 first-click regression and full-record permutation fixtures pass; actual current native click response and two-computer acceptance remain pending. On a NEW G map with underground, component plans retain equal layer totals and include some opposite-layer faction parts. Necropolis/Inferno/Dungeon must no longer be entirely absent from the surface. Old maps are not changed.
 
 Enable option126. Verify missing own-faction parts at18,25,32,39 and every7 levels; check batch levels, other owned heroes and save/reload. Complete collections give ordinary Relics.
 
@@ -20,7 +20,7 @@ Enable option126. Verify missing own-faction parts at18,25,32,39 and every7 leve
 
 Start a NEW local map with the installed build. On the first adventure turn, inspect `Debug/CloudTitansWorld.ini`: `version` must match the installed build, `error` zero and surface/underground equal when both levels exist. Read declared counts, not old trailing item rows. `Debug/CloudTitansAccess.ini`, section `native`, must show `artifact_guard=1`; stop and preserve Debug if protection is unavailable. Then hover and collect one component and check its name, picture and slot.
 
-Dev25 doubles the spacing-limited top-up target for all factions and sizes, within the retained nominal and density caps. Complete-pair caps for widths 36/72/108/144/180/216/252 are 20/40/60/80/100/120/140 total sites. Surface-only caps are 20/40/60/80/99/119/139. Valid-site shortages can reduce counts. A bounded top-up adds sites to spacing-limited plans while retaining at least four tiles of separation; it cannot guarantee a part on every explored route. Option126 now guarantees missing parts at18+7k.
+Dev31 replaces the historical size/density budgets with exactly270 finds:3 copies of each of72 faction components and18 commander items. Complete relics are excluded. A successful two-layer plan has135 sites per layer and each item on both layers. Additional candidates are virtual until selected; no temporary ordinary artifacts are created. Insufficient safe space is an explicit error, not a successful reduced count.
 
 Observe AI encounters and captured loot: no custom part or relic should remain with an AI. Human inventories, including other human players, must remain intact. Report the first violation with the matching save. The automated fixtures do not establish actual native interception or loot behavior.
 
@@ -36,7 +36,7 @@ Dev23 writes a read-only check after game entry to Debug/CloudTitansStackExperie
 
 ## First shared test
 
-1. Each player reaches their first adventure turn. Open `Debug/CloudTitansNetwork.ini` in the game folder and compare `version`, `placed`, `hash`, `surface`, `underground` and `world_error` on both computers. Errors must be zero. Counts must agree; surface and underground must be equal, up to 70/70 on G with adequate valid sites. A shortage reduces both equally. These read-only checks require no development gifts or quest-menu debug rows.
+1. Each player reaches their first adventure turn. Open `Debug/CloudTitansNetwork.ini` in the game folder and compare `version`, `placed`, `hash`, `surface`, `underground` and `world_error` on both computers. Errors must be zero. Counts must agree; surface and underground must be equal, exactly135/135 on a successful two-layer map. An incomplete270-site plan is an error; start a larger/new map. These read-only checks require no development gifts or quest-menu debug rows.
 2. Hover and collect one map component. Hover, pickup picture/name and inventory must identify the same item and its equipment slot. A foreign faction part found on the map is allowed. After turn transfer, confirm that the object is absent on the other computer; the receiving player checks their inventory. A second visit must give nothing.
 3. Finish one ordinary battle and record the winner's faction quest progress before/after. Then save together, exit normally, reload through the same Lobby workflow and check that player's progress/inventory again. Actual save/load and reconnect are acceptance tests, not established support claims.
 
@@ -81,7 +81,7 @@ Hold three resource reserves: **200,000 Gold**; **200 Wood and 200 Ore**; **200 
 
 After completing every requirement, place the bound quest hero in the matching town garrison (upper slot), leave the visitor space (lower slot) empty and select **Champion quest > Receive champion**. Close the town screen to complete delivery; the champion appears in that lower slot. Another hero cannot substitute. A blocked delivery keeps the reward available: move the bound hero into the garrison, free the visitor slot and keep fewer than eight heroes. Current qualification and resource reserves are rechecked at receipt. Native position, army and visitor readbacks must pass before completion. A prepared pending champion that moved elsewhere must return to the delivery town before retrying; later progression is preserved.
 
-Ctrl+J or Alt-left-click now opens the bound hero checklist without combat. Old trial requests are inert. Start a NEW map on matching dev30 clients; old saves are not a supported migration path.
+Ctrl+J or Alt-left-click now opens the bound hero checklist without combat. Old trial requests are inert. Start a NEW map on matching dev31 clients; old saves are not a supported migration path.
 
 | Town | Champion |
 | --- | --- |
@@ -108,3 +108,49 @@ Test the town-only champion quest on a NEW map. Check the resource amounts, inco
 Dev26 active set colors and Lich/Black Knight/undead Dragon component objectives remain included. Normal scenario difficulty does not override WoG map rules or Difficulty Mod growth. Third-party payloads and existing armies are unchanged.
 
 Dev28 native spot check: Andonov was received through the real town menu on a protected local save; town exit/reentry, hero inspection and an actual save/reload passed. He remained level1 with25/25/25/25 and correct portraits. All18 portrait resources loaded correctly. This is limited local evidence; other individual champion lifecycles and two-computer synchronization remain pending.
+
+## Commander sets — dev31
+
+Press Ctrl+N in the hero screen and choose Commander equipment and forge.
+Use its Helm, Weapon, Shield, Armor, Boots and Pendant slots; new items on the
+hero or in the backpack provide no commander bonus. Native commander artifacts
+reserve matching positions and suppress custom gear in those positions. You can
+remove retained custom gear to a free backpack slot even if the commander is dead.
+
+Every town can use all three sets. Each active piece grants5 percentage points
+to the eight ACM commander modifiers. Matching2/4/6 parts add5/5/10 further points
+to all; a full set adds40 to its favored pair. Complete Ember Oath favors Attack
+and Damage; Iron Covenant favors Defense and Health; Astral Conclave favors Spell
+and Passive. Full totals:50 points to all eight,90 to the favored pair. Bonuses
+are added to ACM class modifiers, not hero stats, and do not accumulate on reopen.
+
+Forge each item for50,000Gold,20Wood and20Ore using a level20 hero with an enabled
+living commander. Forging creates a backpack item; equip it explicitly on the
+commander page. All18 new icons have an item preview in the selection dialog.
+AI cannot receive or activate these artifacts. Existing native commander items are preserved.
+
+Development checked the source contracts of ACM1.11, JS commanders1.02 and WoG
+Scripts, plus the neutral-commander mechanisms of Difficulty Mod, Arena rewards
+and Enhanced Henchmen's separate equipment. This is not a runtime certificate for
+every mod. Knightmare Kingdoms, ERA+, Land Of New Towns, ResOunD and TUM Enchanted
+remain incompatible with this distribution. See COMMANDER_SETS.md for items,
+the comparison with existing commander artifacts and pending acceptance.
+
+## Three copies of every part on the map
+
+Exactly3 copies of each of72 faction parts and18 commander items:270 finds,
+without any complete assembled relic. Successful two-layer maps have135 sites
+per layer, with each item represented on both. Ordinary eligible artifact sites
+are reused first; additional placements use empty passable non-water/non-rock
+land with clear neighboring access, without removing other objects. The planner
+spreads finds, relaxing distance only when needed while keeping all coordinates
+unique. Unused virtual candidates never create native objects. Successful sender/receiver fixtures verify identical native object-mutation order.
+
+If insufficient safe space exists, the world diagnostic reports an incomplete
+plan and no partial plan is certified/broadcast as complete. Do not use that map
+for acceptance; create a larger/new random map. Actual ERA map-generation
+acceptance remains pending. The seven-field map-site packet includes whether a
+safe new site must be created on the receiving peer; both peers require dev31.
+
+This map-only change does not alter level-up rewards at18,25,32,39 and every7
+levels thereafter, quest rewards or relic assembly. No full relic drops.
