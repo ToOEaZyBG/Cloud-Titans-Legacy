@@ -184,7 +184,7 @@ ZVSE2
 !!SN:F^WriteStrToIni^/^stage^/^scan-complete^/^world^/^Debug\CloudTitansWorld.ini^;
 !!SN:F^SaveIni^/^Debug\CloudTitansWorld.ini^;
 !!FU(CGC_SeedPool):P(size)/(underground);
-!!VR(limit:y):S270;
+!!VR(limit:y):S180;
 !!SN:W^cfs.world.limit^/(limit) W^clt.world.error^/?(seedError:y);
 !!FU(CLT_WorldPlace)&(seedError)=0:P(size)/(limit)/6;
 !!FU(CGC_FillMap):P(size)/(limit)/(underground);
@@ -200,7 +200,7 @@ ZVSE2
 !!SN:F^WriteStrToIni^/^surface^/^%(surface)^/^world^/^Debug\CloudTitansWorld.ini^;
 !!SN:F^WriteStrToIni^/^underground^/^%(lower)^/^world^/^Debug\CloudTitansWorld.ini^;
 !!SN:F^WriteStrToIni^/^error^/^%(error)^/^world^/^Debug\CloudTitansWorld.ini^;
-!!SN:F^WriteStrToIni^/^version^/^0.6.0-batch-dev32^/^world^/^Debug\CloudTitansWorld.ini^;
+!!SN:F^WriteStrToIni^/^version^/^0.6.0-batch-dev34^/^world^/^Debug\CloudTitansWorld.ini^;
 !!SN:F^SaveIni^/^Debug\CloudTitansWorld.ini^;
 !!if&(network)>0/(error)=0;
   !!re (entry:y)/1/(placed);
@@ -217,11 +217,11 @@ ZVSE2
 
 %(placed) set components were placed on this new random map.
 This mod gives no extra artifacts or troops to your starting hero.
-Exactly3copies of each of90parts are planned:270finds. Complete relics are never placed.
+Exactly2copies of each of90parts are planned:180finds. Complete relics are never placed.
 
 Look for faction-colored components on the adventure map.
 Each faction has eight different parts and a distinct combined relic.^;
-!!IF&(error)>0:M^Cloud Titans: the complete270-item plan could not be placed safely on this map. Do not use this map for the test; start a larger/new random map and keep the world diagnostic.^;
+!!IF&(error)>0:M^Cloud Titans: the complete180-item plan could not be placed at suitable externally guarded locations on this map. Do not use this map for the test; start a larger/new random map and keep the world diagnostic.^;
 
 ; TM1 is the standard post-load day event. This script sorts after the WoG
 ; converter's TM1 handler. UN:O requires the initialized adventure manager;

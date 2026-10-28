@@ -1,7 +1,11 @@
-LATEST PUBLIC BUILD: 0.6.0-batch-dev33
+LATEST PUBLIC BUILD: 0.6.0-batch-dev34
 
 --------------------------------------------------------------
 CHANGELOG
+
+28/10/2026 dev33 > dev34
+- Reduce NEW-map generation from3to2copies of every individual part:180finds instead of270,90/90with underground. No full relics; level18+7k rewards unchanged.
+- Restore the original external adventure-map monster check for ALL placements, including added sites. No armies inside artifacts or new scripted battles. Never fill a short plan with unguarded sites. Existing maps and installed files are not modified.
 
 28/10/2026 dev32 > dev33
 - Add optional Revolut support for @antonezwt and English/Russian invitations to share feedback and help fund improvements and future mods.
@@ -29,12 +33,6 @@ CHANGELOG
 28/10/2026 dev28 > dev29
 - Help improve Cloud Titans Legacy: report bugs and share suggestions using the feedback links below.
 - Add guided bug and suggestion forms. Gameplay, scripts, native plugin and artwork are identical to dev28.
-
-28/10/2026 dev27 > dev28
-- Champion reserves:200 each of Wood, Ore, Mercury, Sulfur, Crystal and Gems, plus200,000 Gold. Resources are kept.
-- Pack all18 champion portraits in the native resource archive, with no loose H3-PCX files shadowing the archive. Native Andonov receipt, hero inspection and actual save/reload passed.
-- Correct native hero-pool availability checks and accept unused heroes with normal starting XP and level-one commanders. Preserve used heroes, prisoners, tavern candidates and one-time delivery guards.
-- Option126 guarantees missing faction parts at18,25,32,39 and every7levels thereafter, replacing the five-level interval. Start a NEW map.
 
 --------------------------------------------------------------
 
@@ -64,7 +62,7 @@ WHAT YOU GET
 
 FIND AND EARN COMPONENTS
 
-Map exploration: each successful NEW random map contains3 copies of each of72 faction components and18 commander items,270 finds in total. With underground,135 sites are placed on each layer and each item appears on both layers. Existing eligible artifact sites are reused; additional items use free passable land without replacing other objects. Complete relics never appear: assemble them from their parts. If the map cannot fit the complete plan safely, generation reports an error instead of silently claiming success.
+Map exploration: each successful NEW random map contains2 copies of each of72 faction components and18 commander items,180 finds in total. With underground,90 sites are placed on each layer and each item appears on both layers. Existing eligible artifact sites are reused; additional items use free passable land next to existing adventure-map monsters, without replacing other objects or changing those armies. Complete relics never appear: assemble them from their parts. If the map cannot fit the complete plan safely, generation reports an error instead of silently claiming success. All selected sites must pass the original external-monster proximity check. No embedded armies or extra scripted battles are added; ordinary map movement and guarding rules apply.
 
 Faction quests: open Faction set quests in your town menu. Each component has an objective and a progress counter. Defeat the listed enemies or complete the required battles, then return with the recorded qualified hero to claim it. Completed objectives stay green while that hero is away. Read the selected objective for its level and town requirements. Choose Accept with the hero in town. Only that recorded hero earns progress. Your first component or champion quest permanently locks one faction for this game. Death or dismissal resets unfinished progress; a replacement may accept for the same faction. Previously claimed component rewards remain claimed, once per player. Finding a piece elsewhere does not consume that quest reward.
 

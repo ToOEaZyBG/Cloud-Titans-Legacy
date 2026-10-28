@@ -21,7 +21,7 @@ N/6; active names and earned thresholds are green, inactive names gray. Progress
 updates for the inspected hero. Backpack and hero-worn gear never count active.
 
 Only parts can be found or forged. All three complete relics are excluded from
-map generation and native random pools; the270-item map plan is unchanged.
+map generation and native random pools; the180-item map plan is unchanged.
 To dismantle, first unequip the relic to the backpack, leave five more empty
 cells and choose Dismantle a backpack relic into six parts. Both operations
 preserve unrelated complete artifact records and refuse safely on missing parts,
@@ -66,8 +66,8 @@ item reserves its position. A disabled or dead commander gets no custom bonus.
 **Forge:** hero level20, enabled living commander,50000Gold,20Wood and20Ore for
 each item. A complete set costs300000Gold,120Wood and120Ore. Every item enters the
 backpack first; forging never silently equips it. Every town gets the same costs.
-Each of these18items also appears exactly3times in the explicit new-map plan,
-alongside3copies of each of72faction components:270finds. Full relics never
+Each of these18items also appears exactly2times in the explicit new-map plan,
+alongside2copies of each of72faction components:180finds. Full relics never
 appear on the map. Ordinary native random-loot and level-up pools remain unchanged. AI cannot receive or
 activate the new items; human-owned items remain subject to normal loss/transfer.
 

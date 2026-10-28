@@ -36,7 +36,7 @@ ZVSE2
 
 !?FU(CLT_CollectSite);
 !#VA(hero:x) (index:x) (bx:x) (by:x) (bz:x);
-!!FU|(hero)<0/(hero)>155/(index)<1/(index)>270:E;
+!!FU|(hero)<0/(hero)>155/(index)<1/(index)>180:E;
 !!UN:X?(size:y)/?(underground:y);
 !!FU|(bx)<0/(by)<0/(bx)>=(size)/(by)>=(size)/(bz)<0/(bz)>(underground):E;
 !!SN:W^clt.world.p.%(index).taken^/?(taken:y);

@@ -1,3 +1,10 @@
+# 28/10/2026 dev33 > dev34 - 0.6.0-batch-dev34
+
+- Reduce NEW-map generation to exactly2copies of every individual faction component and commander item:90types*2=180finds, with90on each layer when underground exists. Do not generate complete assembled relics. Existing maps keep their original objects; level rewards at18,25,32,39and every7levels thereafter are unchanged.
+- Align placement, completion, pickup and network bounds with180sites; require matching34on both peers and a NEW map. Preserve all set bonuses, assembly, artwork, champions, AI grant rules, Sort, feedback forms and optional English/Russian Revolut support.
+- Require the original external adventure-map monster proximity check for every new or reused site. Additional items no longer use unguarded open land. Preserve existing monster armies and ordinary guarding/movement behavior; add no embedded armies, custom Yes/No dialog or scripted battle. A plan without enough suitable guarded locations fails explicitly instead of filling unguarded sites.
+- 15 targeted generation/replication/pickup and catalog/release checks pass; no full-suite rerun or native game/save/Lobby acceptance. No game control or installed/settings/save changes.
+
 # 28/10/2026 dev32 > dev33 - 0.6.0-batch-dev33
 
 - Add optional Revolut support at https://revolut.me/antonezwt and English/Russian invitations for feedback, bug reports and support for improvements and future mods.

@@ -1057,7 +1057,7 @@ ZVSE2
 !?FU(CFS_WorldPlanReady);
 !#VA(count:x) (ready:x);
 !!VR(ready):S0;
-!!FU|(count)<0/(count)>270:E;
+!!FU|(count)<0/(count)>180:E;
 !!SN:W^clt.net.world.complete^/?(complete:y) W^clt.world.placed^/?(savedCount:y);
 !!FU&(complete)>0/(count)<>(savedCount):E;
 !!UN:X?(size:y)/?(underground:y);
@@ -1074,8 +1074,8 @@ ZVSE2
 !!en;
 ; A lower completion count must not hide already received trailing sites.
 !!VR(firstExtra:y):S(count) +1;
-!!if&(firstExtra)<=270;
- !!re (extra:y)/(firstExtra)/270;
+!!if&(firstExtra)<=180;
+ !!re (extra:y)/(firstExtra)/180;
   !!SN:W^clt.world.p.%(extra).art^/?(extraPart:y);
   !!FU&(extraPart)>0:E;
  !!en;
@@ -1157,7 +1157,7 @@ ZVSE2
 !!SN:W^clt.pickup.site.%(bx).%(by).%(bz)^/0 W^clt.world.c.%(candidate).used^/0;
 !!SN:W^clt.world.p.%(placed).x^/0 W^clt.world.p.%(placed).y^/0 W^clt.world.p.%(placed).z^/0 W^clt.world.p.%(placed).old^/0 W^clt.world.p.%(placed).art^/0 W^clt.world.p.%(placed).candidate^/0;
 !!SN:W^cfs.world.layer.%(bz)^/?(layerIndex:y);
-!!VR(layerIndex):-1 F0/270;
+!!VR(layerIndex):-1 F0/180;
 !!SN:W^cfs.world.layer.%(bz)^/(layerIndex);
 !!VR(placed):-1;
 !!SN:W^clt.world.placed^/(placed);
@@ -1990,7 +1990,7 @@ ZVSE2
 !?FU(CFS_Status);
 !#VA(owner:x) (set:x);
 !!SN:W^clt.world.placed^/?(placed:y) W^clt.net.world.hash^/?(hash:y) W^clt.net.world.error^/?(worldError:y) W^clt.net.quest.error^/?(questError:y);
-!!VR(status:z):S^Build: 0.6.0-batch-dev32
+!!VR(status:z):S^Build: 0.6.0-batch-dev34
 Placed: %(placed). Map hash: %(hash).
 World errors: %(worldError). Quest errors: %(questError).
 Current player's faction quest counters:

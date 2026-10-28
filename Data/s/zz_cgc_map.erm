@@ -113,6 +113,7 @@ ZVSE2
 !!FU|(kind)<-1/(kind)>0:E;
 !!TR(x)/(y)/(z):P?(pass:y) E?(notYellow:y) T?(terrain:y);
 !!FU|(pass)<>1/(notYellow)<>1/(terrain)<0/(terrain)>7:E;
+!!VR(access:y):S0;
 !!re (edge:y)/0/3;
  !!VR(nx:y):S(x);
  !!VR(ny:y):S(y);
@@ -121,16 +122,21 @@ ZVSE2
  !!VR(ny)&(edge)=2:-1;
  !!VR(ny)&(edge)=3:+1;
  !!TR(nx)/(ny)/(z):P?(pass) E?(notYellow);
- !!FU|(pass)<>1/(notYellow)<>1:E;
+ !!VR(access)&(pass)=1/(notYellow)=1:+1;
 !!en;
+!!FU&(access)=0:E;
+; Retain the original external adventure-map monster protection policy.
+; Do not add an embedded AR army or a separate scripted battle.
+!!FU(CLT_WorldGuarded):P(x)/(y)/(z)/(size)/?(guarded:y);
+!!FU&(guarded)=0:E;
 !!VR(okay):S1;
 
 !?FU(CGC_SeedPool);
 !#VA(size:x) (underground:x);
 !!SN:W^cgc.world.size^/(size);
 !!VR(cells:y):S(size) *(size);
-!!VR(wanted:y):S540;
-!!VR(wanted)&(underground)>0:S270;
+!!VR(wanted:y):S360;
+!!VR(wanted)&(underground)>0:S180;
 !!re (z:y)/0/(underground);
  !!VR(position:y):S(size) *127 +(z) *31 %(cells);
  !!re (scan:y)/1/(cells);
@@ -184,12 +190,15 @@ ZVSE2
 !!en;
 !!VR(okay):S0;
 !!OB(x)/(y)/(z):T?(kind:y) U?(actual:y);
+!!UN:X?(size)/?i;
+!!FU(CLT_WorldGuarded):P(x)/(y)/(z)/(size)/?(guarded:y);
+!!FU&(guarded)=0:E;
 !!VR(okay)&(kind)=(OBJ_ARTIFACT)/(actual)=(old):S1;
 
 !?FU(CGC_MapCounts);
 !#VA(count:x) (okay:x);
 !!VR(okay):S0;
-!!FU&(count)<>270:E;
+!!FU&(count)<>180:E;
 !!re (item:y)/0/89;
  !!FU(CGC_MapArt):P(item)/?(wanted:y);
  !!VR(copies:y):S0;
@@ -197,7 +206,7 @@ ZVSE2
   !!SN:W^clt.world.p.%(index).art^/?(art:y);
   !!VR(copies)&(art)=(wanted):+1;
  !!en;
- !!FU&(copies)<>3:E;
+ !!FU&(copies)<>2:E;
 !!en;
 !!VR(okay):S1;
 

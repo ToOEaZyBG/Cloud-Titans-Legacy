@@ -1,3 +1,17 @@
+# Map-density update: 0.6.0-batch-dev34
+
+NEW maps contain two copies of each individual part:72 faction parts +18
+commander items,180finds total,90/90with underground. No complete relics.
+Level18+7k rewards are unchanged. Existing maps are not edited or reduced.
+Both peers need34and a NEW map. All placements use the original external
+adventure-map monster proximity check. No embedded armies, custom confirmation
+or scripted battles are added; ordinary map guarding/movement rules apply.
+Earlier version notes below are historical where they conflict with this update.
+
+# Presentation update: 0.6.0-batch-dev33
+
+English/Russian optional creator support and feedback links only. Gameplay files are identical to dev32, so runtime diagnostics still show32. Existing dev32 maps can continue; the underlying dev32 guide and its pending native acceptance limits follow.
+
 # Legacy of the Cloud Titans â€” Online Lobby test
 
 Version **0.6.0-batch-dev32**. This is an experimental all-faction release for a new two-player test. Automated checks pass; native gameplay, save/load and two-computer synchronization still need player verification.
@@ -20,7 +34,7 @@ Enable option126. Verify missing own-faction parts at18,25,32,39 and every7 leve
 
 Start a NEW local map with the installed build. On the first adventure turn, inspect `Debug/CloudTitansWorld.ini`: `version` must match the installed build, `error` zero and surface/underground equal when both levels exist. Read declared counts, not old trailing item rows. `Debug/CloudTitansAccess.ini`, section `native`, must show `artifact_guard=1`; stop and preserve Debug if protection is unavailable. Then hover and collect one component and check its name, picture and slot.
 
-Dev31 replaces the historical size/density budgets with exactly270 finds:3 copies of each of72 faction components and18 commander items. Complete relics are excluded. A successful two-layer plan has135 sites per layer and each item on both layers. Additional candidates are virtual until selected; no temporary ordinary artifacts are created. Insufficient safe space is an explicit error, not a successful reduced count.
+Dev34 uses exactly180 finds:2 copies of each of72 faction components and18 commander items. Complete relics are excluded. A successful two-layer plan has90 sites per layer and each item on both layers. Additional candidates are virtual until selected; no temporary ordinary artifacts are created. Insufficient suitable guarded space is an explicit error, not a successful reduced count.
 
 Observe AI encounters and captured loot: no custom part or relic should remain with an AI. Human inventories, including other human players, must remain intact. Report the first violation with the matching save. The automated fixtures do not establish actual native interception or loot behavior.
 
@@ -36,7 +50,7 @@ Dev23 writes a read-only check after game entry to Debug/CloudTitansStackExperie
 
 ## First shared test
 
-1. Each player reaches their first adventure turn. Open `Debug/CloudTitansNetwork.ini` in the game folder and compare `version`, `placed`, `hash`, `surface`, `underground` and `world_error` on both computers. Errors must be zero. Counts must agree; surface and underground must be equal, exactly135/135 on a successful two-layer map. An incomplete270-site plan is an error; start a larger/new map. These read-only checks require no development gifts or quest-menu debug rows.
+1. Each player reaches their first adventure turn. Open `Debug/CloudTitansNetwork.ini` in the game folder and compare `version`, `placed`, `hash`, `surface`, `underground` and `world_error` on both computers. Errors must be zero. Counts must agree; surface and underground must be equal, exactly90/90 on a successful two-layer map. An incomplete180-site plan is an error; start a larger/new map. These read-only checks require no development gifts or quest-menu debug rows.
 2. Hover and collect one map component. Hover, pickup picture/name and inventory must identify the same item and its equipment slot. A foreign faction part found on the map is allowed. After turn transfer, confirm that the object is absent on the other computer; the receiving player checks their inventory. A second visit must give nothing.
 3. Finish one ordinary battle and record the winner's faction quest progress before/after. Then save together, exit normally, reload through the same Lobby workflow and check that player's progress/inventory again. Actual save/load and reconnect are acceptance tests, not established support claims.
 
@@ -136,13 +150,14 @@ every mod. Knightmare Kingdoms, ERA+, Land Of New Towns, ResOunD and TUM Enchant
 remain incompatible with this distribution. See COMMANDER_SETS.md for items,
 the comparison with existing commander artifacts and pending acceptance.
 
-## Three copies of every part on the map
+## Two copies of every part on the map
 
-Exactly3 copies of each of72 faction parts and18 commander items:270 finds,
-without any complete assembled relic. Successful two-layer maps have135 sites
+Exactly2 copies of each of72 faction parts and18 commander items:180 finds,
+without any complete assembled relic. Successful two-layer maps have90 sites
 per layer, with each item represented on both. Ordinary eligible artifact sites
 are reused first; additional placements use empty passable non-water/non-rock
-land with clear neighboring access, without removing other objects. The planner
+land next to existing adventure-map monsters, with at least one clear cardinal
+approach and without removing other objects. The planner
 spreads finds, relaxing distance only when needed while keeping all coordinates
 unique. Unused virtual candidates never create native objects. Successful sender/receiver fixtures verify identical native object-mutation order.
 
@@ -174,7 +189,7 @@ N/6; active names and earned thresholds are green, inactive names gray. Progress
 updates for the inspected hero. Backpack and hero-worn gear never count active.
 
 Only parts can be found or forged. All three complete relics are excluded from
-map generation and native random pools; the270-item map plan is unchanged.
+map generation and native random pools; the180-item map plan is unchanged.
 To dismantle, first unequip the relic to the backpack, leave five more empty
 cells and choose Dismantle a backpack relic into six parts. Both operations
 preserve unrelated complete artifact records and refuse safely on missing parts,
