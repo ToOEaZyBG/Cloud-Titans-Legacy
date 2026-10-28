@@ -156,10 +156,10 @@ Missing buildings: %(missing). Skyship/Grail is not required.^;
 !!SN:E(setHook)/1/4681149/(CLT_QuestBattleResult);
 
 !?FU(OnBeforeBattleUniversal);
-!!SN:W^clt.quest.snapshot^/0 W^clt.quest.pending^/0;
+!!SN:W^clt.quest.snapshot^/0 W^clt.quest.pending^/0 W^cgc.battle.pending^/0;
 
 !?FU(OnBattleReplay);
-!!SN:W^clt.quest.snapshot^/0 W^clt.quest.pending^/0;
+!!SN:W^clt.quest.snapshot^/0 W^clt.quest.pending^/0 W^cgc.battle.pending^/0;
 
 !?BF;
 !!FU(CLT_QuestLocal):P?(okay:y);
@@ -211,6 +211,7 @@ Missing buildings: %(missing). Skyship/Grail is not required.^;
   !!FU(CFS_StageTowerKill)|(type)=42/(type)=43:P7/(killed);
  !!en;
 !!en;
+!!SN:W^cgc.battle.pending.hero^/(hero) W^cgc.battle.pending^/1;
 !!SN:W^clt.quest.pending.hero^/(hero) W^clt.quest.pending.owner^/(owner) W^clt.quest.pending^/1;
 
 !?FU(OnAfterBattleUniversal);
@@ -219,6 +220,8 @@ Missing buildings: %(missing). Skyship/Grail is not required.^;
 !!SN:W^clt.quest.pending^/0 W^clt.quest.snapshot^/0 W^clt.quest.pending.owner^/?(owner:y);
 !!FU(CFS_Commit):P(owner);
 !!FU(CFH_CommitBattle):P(owner);
+!!SN:W^cgc.battle.pending.hero^/?(rewardHero:y);
+!!FU(CGC_RollBattle):P(rewardHero)/(owner);
 !!FU:E;
 !!re (q:y)/0/7;
  !!FU(CLT_QuestProgressKey):P(owner)/(q)/?(key:z);

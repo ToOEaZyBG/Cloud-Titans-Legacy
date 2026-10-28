@@ -1,3 +1,11 @@
+# 28/10/2026 dev35 > dev36 - 0.6.0-batch-dev36
+
+- Remove the mod's Ctrl+N shortcut, separate commander menus and commander purchases with resources. Keep the normal HD Backpack Sort button. Equip commander items through the normal Commander icon.
+- Right-click a part when all six different matching parts are equipped on the Commander to confirm assembly. After the Commander window closes, replace them with one equipped relic in the clicked slot. Right-click an equipped relic to confirm dismantling: preserve original items and their battle growth; place parts in free commander slots and send remaining parts to the backpack. A full backpack refuses atomically when required; declining changes nothing.
+- Add a5%chance of one random commander part after every confirmed human victory. Include all18parts and exclude complete relics. Preserve the two-copy map plan,180finds, original external monsters and guaranteed hero parts at18,25,32,39and every7levels thereafter. Existing normal battle loot remains unchanged. AI gets no custom reward.
+- Use the existing confirmed battle result/commit flow for normal and Quick Combat; simulations, failed/replayed results and duplicate packets create no extra attempts. Rewards enter the backpack and show the normal artifact picture. A full backpack consumes the attempt without rerolling or altering existing items. No gold, wood, ore, hero-level or commander-level purchase requirement.
+- Restart fully and create a NEW map on matching36 clients. Targeted native-code/ERM/resource/release checks pass; actual native UI, battle, save/load and two-computer acceptance remain pending. No game control or installed/settings/save changes.
+
 # 28/10/2026 dev34 > dev35 - 0.6.0-batch-dev35
 
 - Equip the18 new commander parts and three assembled relics through the normal Commander icon. They appear in the actual six Commander-screen slots, alongside original artifacts. Click an equipped icon to return it to the backpack; right-click for green N/6 set progress. Ctrl+N is only an optional forge/assembly menu, no longer an equipment requirement. New commander items cannot be worn on the hero.

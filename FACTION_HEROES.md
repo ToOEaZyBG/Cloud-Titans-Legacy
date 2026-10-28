@@ -1,3 +1,24 @@
+# Standard commander combinations and victory rewards:0.6.0-batch-dev36
+
+Close the game, update through the existing Mod Browser entry, restart fully
+and create a NEW map. Both peers require36; old saved scripts are not migrated.
+No F12. Follow COMMANDER_SETS.md for the current commander workflow; older
+sections below are historical when they conflict with this update.
+
+There is no Ctrl+N shortcut, separate commander menu or resource purchase.
+Give parts to the normal Commander icon. With all six matching parts equipped,
+right-click a part and confirm assembly; the window closes and one relic replaces
+the set in the clicked slot. Right-click the equipped relic to dismantle.
+Original artifacts and growth are retained; overflow parts need backpack space.
+Refusal/cancel changes nothing. Each confirmed human victory also has a5%chance
+of one random commander part, with no whole relic or AI rewards. A full backpack
+consumes the attempt without rerolling. Normal loot is retained.
+
+The map remains2copies per individual type,180finds,90/90layers, external map
+monsters; hero-set rewards at18+7k remain unchanged. Native map shadows and all
+artwork from35 are retained. Targeted offline checks do not establish actual
+native rendering, combat, save/load or Lobby acceptance. No game/UI/install writes.
+
 # Native Commander equipment and map shadows:0.6.0-batch-dev35
 
 Close the game before updating through the existing Mod Browser entry; restart

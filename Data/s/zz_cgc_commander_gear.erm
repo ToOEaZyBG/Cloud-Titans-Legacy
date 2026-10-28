@@ -158,7 +158,9 @@ ZVSE2
 !!SN:E(nativeQuery)/(CALLCONV_STDCALL);
 !!FU&v1<>1:E;
 !!SN:W^cgc.native.ready^/1;
-!!SN:W^cgc.updateTooltips^/(CGC_UpdateTooltips);
+!!SN:W^cgc.updateTooltips^/(CGC_UpdateTooltips) W^cgc.confirm^/(CGC_ConfirmNative);
+!!SN:A(library)/^CFSCommanderBattleReward^/?(battle:y);
+!!SN:W^cgc.battle.function^/(battle) W^cgc.ui.pending^/0;
 !!SN:W^cgc.transaction^/(transaction) W^cgc.hash^/(hash) W^cgc.ready^/1;
 
 ; Multiple FU handlers run in registration order. Preserve the provider outputs.
@@ -191,7 +193,7 @@ ZVSE2
 !!FU26909:P(hero)/(owner)/(op)/(slot)/(art)/(old)/(hash)/(sequence);
 !!SN:W^cgc.result^/?(okay:y);
 !!if&(okay)=0;
- !!IF:M^Cannot complete this change. Put down any held item. Assembly needs all six matching parts on this commander page or in the backpack, and room for the relic. Dismantling needs the relic in the backpack and five more free cells. Forging needs a level-20 hero, living commander, 50,000 Gold, 20 Wood and 20 Ore. Native commander items reserve their same slots.^;
+ !!IF:M^Cannot combine these artifacts. Put down the held item, equip all six different matching parts to assemble, or make backpack room for parts when dismantling. No items were changed.^;
  !!FU:E;
 !!en;
 !!FU(CGC_UpdateTooltips):P(hero);
@@ -224,67 +226,6 @@ ZVSE2
 !!SN:E(function)/(CALLCONV_STDCALL);
 !!SN:W^cgc.result^/v1;
 !!SN&v1=0:W^cgc.network.error^/1;
-
-!?FU(CGC_Menu);
-!#VA(hero:x);
-!!FU|(hero)<0/(hero)>155:E;
-!!HE(hero):O?(owner:y);
-!!FU(CLT_IsLocalOwner):P(owner)/?(local:y);
-!!FU&(local)=0:E;
-!!SN:W^cgc.ready^/?(ready:y);
-!!IF&(ready)<>1:M^Commander equipment is unavailable on this profile.^;
-!!FU&(ready)<>1:E;
-!!SN:W^cgc.native.ready^/?(nativeMode:y);
-!!if&(nativeMode)=1;
- !!FU(CGC_ForgeAndRelics):P(hero);
- !!FU:E;
-!!en;
-!!re (page:y)/0/999;
- !!FU(CGC_UpdateTooltips):P(hero);
- !!FU(RadioDlg_Reset):P;
- !!FU(RadioDlg_SetTitle):P^Commander equipment - six slots, all towns^;
- !!re (slot:y)/0/5;
-  !!SN:W^cgc.v1.gear.%(hero).%(slot)^/?(saved:y);
-  !!VR(art:y):S(saved) -1;
-  !!FU(CGC_Info):P(art)/?(name:z)/?i;
-  !!FU(CGC_SlotName):P(slot)/?(slotName:z);
-  !!CO(hero):A3/(slot)/?(native:y)/?i;
-  !!VR(status:z):S^^;
-  !!VR(status)&(native)<>0:S^ [native item reserves this slot]^;
-  !!VR(label:z):S^%(slotName): %(name)%(status)^;
-  !!FU(RadioDlg_AddItem):P(label)/(slot);
- !!en;
- !!FU(RadioDlg_AddItem):P^Forge new commander gear^/6;
- !!FU(RadioDlg_AddItem):P^Set bonuses and green N/6 progress^/7;
- !!FU(RadioDlg_AddItem):P^Assemble six parts into one relic^/8;
- !!FU(RadioDlg_AddItem):P^Dismantle a backpack relic into six parts^/9;
- !!FU(RadioDlg_AddCancelButton):P;
- !!FU(RadioDlg_Show):P?(selected:y)/?(choice:y)/?i;
- !!FU|(selected)<0/(choice)<0:E;
- !!FU(CGC_SlotMenu)&(choice)<6:P(hero)/(choice)/0;
- !!FU(CGC_ForgeMenu)&(choice)=6:P(hero);
- !!FU(CGC_AssemblyMenu)&(choice)=8:P(hero)/2;
- !!FU(CGC_AssemblyMenu)&(choice)=9:P(hero)/3;
- !!FU(CGC_ProgressMenu)&(choice)=7:P(hero);
-!!en;
-
-!?FU(CGC_ProgressMenu);
-!#VA(hero:x);
-!!FU(RadioDlg_Reset):P;
-!!FU(RadioDlg_SetTitle):P^Commander set progress - active equipment only^;
-!!re (kind:y)/0/2;
- !!FU(CGC_State):P(hero)/(kind)/?i/?(count:y);
- !!VR(relic:y):S549 +(kind);
- !!FU(CGC_Info):P(relic)/?i/?(setName:z);
- !!VR(label:z):S^{~Lime}%(setName) (%(count)/6){~} - details^;
- !!FU(RadioDlg_AddItem):P(label)/(relic);
-!!en;
-!!FU(RadioDlg_AddCancelButton):P;
-!!FU(RadioDlg_Show):P?(selected:y)/?(relic)/?i;
-!!FU|(selected)<0/(relic)<549/(relic)>551:E;
-!!FU(CGC_UpdateTooltips):P(hero);
-!!SN:H^art^/(relic)/1/?(details:z);
-!!IF:Q1/8/(relic)/1^%(details)^;
 
 !?FU(CGC_State);
 !#VA(hero:x) (kind:x) (mask:x) (count:x);
@@ -322,78 +263,6 @@ ZVSE2
  !!VR(count):+(bit);
 !!en;
 
-!?FU(CGC_AssemblyMenu);
-!#VA(hero:x) (op:x);
-!!FU(RadioDlg_Reset):P;
-!!FU(RadioDlg_SetTitle):P^Commander relics - all six parts required; no extra fee^;
-!!re (kind:y)/0/2;
- !!VR(art:y):S549 +(kind);
- !!FU(CGC_Info):P(art)/?(name:z)/?i;
- !!FU(RadioDlg_AddItem):P(name)/(art);
-!!en;
-!!FU(RadioDlg_AddCancelButton):P;
-!!FU(RadioDlg_Show):P?(selected:y)/?(art)/?i;
-!!FU|(selected)<0/(art)<549/(art)>551:E;
-!!FU(CGC_Info):P(art)/?(name)/?i;
-!!VR(prompt:z):S^Assemble %(name)? Consume one of each matching part from this commander page or backpack. The relic enters the backpack and must be equipped in Pendant. Five native commander positions remain free. No extra charge.^;
-!!VR(prompt)&(op)=3:S^Dismantle %(name) from the backpack into its six parts? Unequip it first and leave five extra free cells. No extra charge.^;
-!!IF:Q1/8/(art)/2^%(prompt)^;
-!!FU&-1:E;
-!!FU(CGC_Submit):P(hero)/(op)/5/(art);
-
-!?FU(CGC_ForgeMenu);
-!#VA(hero:x);
-!!FU(RadioDlg_Reset):P;
-!!FU(RadioDlg_SetTitle):P^Forge: level 20; each item 50,000 Gold +20 Wood +20 Ore^;
-!!FU(RadioDlg_AddItem):P^Ember Oath - Attack / Damage^/0;
-!!FU(RadioDlg_AddItem):P^Iron Covenant - Defense / Health^/1;
-!!FU(RadioDlg_AddItem):P^Astral Conclave - Spell / Passive^/2;
-!!FU(RadioDlg_AddCancelButton):P;
-!!FU(RadioDlg_Show):P?(selected:y)/?(kind:y)/?i;
-!!FU|(selected)<0/(kind)<0/(kind)>2:E;
-!!FU(RadioDlg_Reset):P;
-!!FU(RadioDlg_SetTitle):P^Choose a new item for your backpack^;
-!!re (slot:y)/0/5;
- !!VR(art:y):S(kind) *6 +531 +(slot);
- !!FU(CGC_Info):P(art)/?(name:z)/?i;
- !!FU(RadioDlg_AddItem):P(name)/(slot);
-!!en;
-!!FU(RadioDlg_AddCancelButton):P;
-!!FU(RadioDlg_Show):P?(selected)/?(slot)/?i;
-!!FU|(selected)<0/(slot)<0/(slot)>5:E;
-!!VR(art):S(kind) *6 +531 +(slot);
-!!FU(CGC_Info):P(art)/?(name)/?i;
-!!IF:Q1/8/(art)/2^Forge %(name) for 50,000 Gold, 20 Wood and 20 Ore? It goes into your backpack; give it to the normal Commander icon.^;
-!!FU&-1:E;
-!!FU(CGC_Submit):P(hero)/1/(slot)/(art);
-
-!?FU(CGC_SlotMenu);
-!#VA(hero:x) (slot:x) (unused:x);
-!!FU(RadioDlg_Reset):P;
-!!FU(RadioDlg_SetTitle):P^Choose gear from your backpack for this commander slot^;
-!!re (kind:y)/0/2;
- !!VR(art:y):S(kind) *6 +531 +(slot);
- !!FU(CGC_Info):P(art)/?(name:z)/?i;
- !!FU(RadioDlg_AddItem):P(name)/(art);
-!!en;
-!!if&(slot)=5;
- !!re (kind)/0/2;
-  !!VR(art):S549 +(kind);
-  !!FU(CGC_Info):P(art)/?(name)/?i;
-  !!FU(RadioDlg_AddItem):P(name)/(art);
- !!en;
-!!en;
-!!FU(RadioDlg_AddItem):P^Unequip to backpack^/-1;
-!!FU(RadioDlg_AddCancelButton):P;
-!!FU(RadioDlg_Show):P?(selected:y)/?(art)/?i;
-!!FU&(selected)<0:E;
-!!if&(art)>=531;
- !!FU(CGC_Info):P(art)/?(name)/?i;
- !!IF:Q1/8/(art)/2^Equip %(name) from your backpack? Items carried by the hero do not give commander bonuses.^;
- !!FU&-1:E;
-!!en;
-!!FU(CGC_Submit):P(hero)/0/(slot)/(art);
-
 !?FU(OnEveryDay);
 !!FU(CGC_PruneAi):P;
 !?FU(OnStartOrLoad);
@@ -430,22 +299,6 @@ ZVSE2
  !!VR(art):S(saved) -1;
 !!en;
 
-!?FU(CGC_ForgeAndRelics);
-!#VA(hero:x);
-!!FU(RadioDlg_Reset):P;
-!!FU(RadioDlg_SetTitle):P^Commander forge and relics - equip through the normal Commander icon^;
-!!FU(RadioDlg_AddItem):P^Forge new commander gear^/0;
-!!FU(RadioDlg_AddItem):P^Set bonuses and green N/6 progress^/1;
-!!FU(RadioDlg_AddItem):P^Assemble six parts into one relic^/2;
-!!FU(RadioDlg_AddItem):P^Dismantle a backpack relic into six parts^/3;
-!!FU(RadioDlg_AddCancelButton):P;
-!!FU(RadioDlg_Show):P?(selected:y)/?(choice:y)/?i;
-!!FU|(selected)<0/(choice)<0:E;
-!!FU(CGC_ForgeMenu)&(choice)=0:P(hero);
-!!FU(CGC_ProgressMenu)&(choice)=1:P(hero);
-!!FU(CGC_AssemblyMenu)&(choice)=2:P(hero)/2;
-!!FU(CGC_AssemblyMenu)&(choice)=3:P(hero)/3;
-
 !?CO1;
 !!SN:W^cgc.native.ready^/?(nativeMode:y);
 !!FU&(nativeMode)<>1:E;
@@ -458,6 +311,82 @@ ZVSE2
  !!SN:W^cgc.v1.gear.%(hero).%(slot)^/(saved);
 !!en;
 !!FU(CGC_UpdateTooltips):P(hero);
+!!FU(CGC_FinishNative):P;
+
+!?FU(CGC_ConfirmNative);
+!#VA(hero:x) (slot:x) (art:x);
+!!SN:W^cgc.ui.accepted^/0;
+!!HE(hero):O?(owner:y);
+!!FU(CLT_IsLocalOwner):P(owner)/?(local:y);
+!!OW:C?(active:y);
+!!FU|(local)=0/(active)<>(owner)/(art)<531/(art)>551:E;
+!!VR(op:y):S4;
+!!VR(relic:y):S(art) -531 :6 +549;
+!!VR(question:z):S^Assemble these six equipped parts into one commander relic?^;
+!!if&(art)>=549;
+ !!VR(op):S5;
+ !!VR(relic):S(art);
+ !!VR(question):S^Disassemble this relic into its six parts? Existing commander items are kept; parts without a free commander slot go into the backpack.^;
+!!en;
+!!IF:Q1/8/(relic)/2^%(question)^;
+!!FU&-1:E;
+!!SN:W^cgc.ui.hero^/(hero) W^cgc.ui.slot^/(slot) W^cgc.ui.art^/(relic) W^cgc.ui.op^/(op) W^cgc.ui.pending^/1 W^cgc.ui.accepted^/1;
+
+!?FU(CGC_FinishNative);
+!!SN:W^cgc.ui.pending^/?(pending:y);
+!!FU&(pending)<>1:E;
+!!SN:W^cgc.ui.pending^/0 W^cgc.ui.hero^/?(hero:y) W^cgc.ui.slot^/?(slot:y) W^cgc.ui.art^/?(art:y) W^cgc.ui.op^/?(op:y);
+!!FU(CGC_Submit):P(hero)/(op)/(slot)/(art);
+!!UN:R3/(hero);
+
+!?FU(CGC_BattlePart);
+!#VA(salt:x) (hero:x) (victory:x) (art:x);
+!!VR(art):S-1;
+!!FU|(hero)<0/(hero)>155/(victory)<1/(victory)>1000000000:E;
+!!VR(key:y):S(salt) %65521 +65521 %65521;
+!!VR(term:y):S(hero) *379;
+!!VR(key):+(term);
+!!VR(term):S(victory) %65521 *17;
+!!VR(key):+(term) %65521 *25173 +13849 %65521;
+!!VR(chance:y):S(key) %100;
+!!VR(art)&(chance)<5:S(key) :100 %18 +531;
+
+!?FU(CGC_RollBattle);
+!#VA(hero:x) (owner:x);
+!!SN:W^cgc.ready^/?(ready:y) W^cgc.battle.pending^/?(pending:y);
+!!FU|(ready)<>1/(pending)<>1/(hero)<0/(hero)>155/(owner)<0/(owner)>7:E;
+!!SN:W^cgc.battle.pending^/0;
+!!HE(hero):O?(actual:y);
+!!FU&(actual)<>(owner):E;
+!!FU(CLT_IsLocalOwner):P(owner)/?(local:y);
+!!FU&(local)=0:E;
+!!SN:W^clt.net.world.hash^/?(salt:y) W^cgc.battle.v1.%(owner).victory^/?(previous:y);
+!!FU|(previous)<0/(previous)>=1000000000:E;
+!!VR(victory:y):S(previous) +1;
+!!FU(CGC_BattlePart):P(salt)/(hero)/(victory)/?(art:y);
+!!SN:W^cgc.hash^/?(function:y);
+!!FU&(function)=0:E;
+!!SN:E(function)/(CALLCONV_STDCALL)/(hero);
+!!VR(hash:y):Sv1;
+!!FU26910:P(hero)/(owner)/(victory)/(art)/(hash);
+!!SN:W^cgc.battle.result^/?(result:y);
+!!FU&(result)=0:E;
+!!UN:V?i/?i/?i/?(network:y)/?i;
+!!if&(network)>0;
+ !!IP:D-1;
+ !!FU26910:D(hero)/(owner)/(victory)/(art)/(hash);
+!!en;
+!!IF&(result)=2:Q1/8/(art)/1^You have discovered a commander artifact after the battle.^;
+!!IF&(result)=3:M^Your backpack is full. There is no room for the discovered commander artifact.^;
+
+!?FU26910;
+!#VA(hero:x) (owner:x) (victory:x) (art:x) (hash:x);
+!!SN:W^cgc.battle.result^/0 W^cgc.battle.function^/?(function:y);
+!!FU|(function)=0/(hero)<0/(hero)>155/(owner)<0/(owner)>7:E;
+!!SN:W^cgc.battle.req.hero^/(hero) W^cgc.battle.req.owner^/(owner) W^cgc.battle.req.victory^/(victory) W^cgc.battle.req.art^/(art) W^cgc.battle.req.hash^/(hash);
+!!SN:E(function)/(CALLCONV_STDCALL);
+!!SN:W^cgc.battle.result^/v1;
+!!SN&v1=0:W^cgc.network.error^/1;
 
 !?FU(CLT_UpdateTooltips);
 !#VA(hero:x);
@@ -519,7 +448,7 @@ Full set: +40 further to Attack/Damage.
 Thresholds are included in the assembled relic, not added twice.
 
 %(checklist)
-Only active commander equipment counts; hero equipment and backpack give no bonus. Assemble all six matching parts; complete relics never drop.^;
+Only active commander equipment counts; hero equipment and backpack give no bonus. Right-click a part after equipping all six matching parts to assemble. Right-click the relic to dismantle. Complete relics never drop.^;
 !!SN:H^art^/531/1/s^cgc.tooltip.531^;
 !!VRs^cgc.tooltip.532^:S^Ember Oath
 
@@ -533,7 +462,7 @@ Full set: +40 further to Attack/Damage.
 Thresholds are included in the assembled relic, not added twice.
 
 %(checklist)
-Only active commander equipment counts; hero equipment and backpack give no bonus. Assemble all six matching parts; complete relics never drop.^;
+Only active commander equipment counts; hero equipment and backpack give no bonus. Right-click a part after equipping all six matching parts to assemble. Right-click the relic to dismantle. Complete relics never drop.^;
 !!SN:H^art^/532/1/s^cgc.tooltip.532^;
 !!VRs^cgc.tooltip.533^:S^Ember Oath
 
@@ -547,7 +476,7 @@ Full set: +40 further to Attack/Damage.
 Thresholds are included in the assembled relic, not added twice.
 
 %(checklist)
-Only active commander equipment counts; hero equipment and backpack give no bonus. Assemble all six matching parts; complete relics never drop.^;
+Only active commander equipment counts; hero equipment and backpack give no bonus. Right-click a part after equipping all six matching parts to assemble. Right-click the relic to dismantle. Complete relics never drop.^;
 !!SN:H^art^/533/1/s^cgc.tooltip.533^;
 !!VRs^cgc.tooltip.534^:S^Ember Oath
 
@@ -561,7 +490,7 @@ Full set: +40 further to Attack/Damage.
 Thresholds are included in the assembled relic, not added twice.
 
 %(checklist)
-Only active commander equipment counts; hero equipment and backpack give no bonus. Assemble all six matching parts; complete relics never drop.^;
+Only active commander equipment counts; hero equipment and backpack give no bonus. Right-click a part after equipping all six matching parts to assemble. Right-click the relic to dismantle. Complete relics never drop.^;
 !!SN:H^art^/534/1/s^cgc.tooltip.534^;
 !!VRs^cgc.tooltip.535^:S^Ember Oath
 
@@ -575,7 +504,7 @@ Full set: +40 further to Attack/Damage.
 Thresholds are included in the assembled relic, not added twice.
 
 %(checklist)
-Only active commander equipment counts; hero equipment and backpack give no bonus. Assemble all six matching parts; complete relics never drop.^;
+Only active commander equipment counts; hero equipment and backpack give no bonus. Right-click a part after equipping all six matching parts to assemble. Right-click the relic to dismantle. Complete relics never drop.^;
 !!SN:H^art^/535/1/s^cgc.tooltip.535^;
 !!VRs^cgc.tooltip.536^:S^Ember Oath
 
@@ -589,7 +518,7 @@ Full set: +40 further to Attack/Damage.
 Thresholds are included in the assembled relic, not added twice.
 
 %(checklist)
-Only active commander equipment counts; hero equipment and backpack give no bonus. Assemble all six matching parts; complete relics never drop.^;
+Only active commander equipment counts; hero equipment and backpack give no bonus. Right-click a part after equipping all six matching parts to assemble. Right-click the relic to dismantle. Complete relics never drop.^;
 !!SN:H^art^/536/1/s^cgc.tooltip.536^;
 !!VRs^cgc.tooltip.549^:S^Ember Oath Relic
 
@@ -603,7 +532,7 @@ Full set: +40 further to Attack/Damage.
 Thresholds are included in the assembled relic, not added twice.
 
 %(checklist)
-Only active commander equipment counts; hero equipment and backpack give no bonus. Assemble all six matching parts; complete relics never drop.^;
+Only active commander equipment counts; hero equipment and backpack give no bonus. Right-click a part after equipping all six matching parts to assemble. Right-click the relic to dismantle. Complete relics never drop.^;
 !!SN:H^art^/549/1/s^cgc.tooltip.549^;
 !!FU(CGC_State):P(hero)/1/?(mask)/?(count);
 !!VR(checklist):S^^;
@@ -655,7 +584,7 @@ Full set: +40 further to Defense/Health.
 Thresholds are included in the assembled relic, not added twice.
 
 %(checklist)
-Only active commander equipment counts; hero equipment and backpack give no bonus. Assemble all six matching parts; complete relics never drop.^;
+Only active commander equipment counts; hero equipment and backpack give no bonus. Right-click a part after equipping all six matching parts to assemble. Right-click the relic to dismantle. Complete relics never drop.^;
 !!SN:H^art^/537/1/s^cgc.tooltip.537^;
 !!VRs^cgc.tooltip.538^:S^Iron Covenant
 
@@ -669,7 +598,7 @@ Full set: +40 further to Defense/Health.
 Thresholds are included in the assembled relic, not added twice.
 
 %(checklist)
-Only active commander equipment counts; hero equipment and backpack give no bonus. Assemble all six matching parts; complete relics never drop.^;
+Only active commander equipment counts; hero equipment and backpack give no bonus. Right-click a part after equipping all six matching parts to assemble. Right-click the relic to dismantle. Complete relics never drop.^;
 !!SN:H^art^/538/1/s^cgc.tooltip.538^;
 !!VRs^cgc.tooltip.539^:S^Iron Covenant
 
@@ -683,7 +612,7 @@ Full set: +40 further to Defense/Health.
 Thresholds are included in the assembled relic, not added twice.
 
 %(checklist)
-Only active commander equipment counts; hero equipment and backpack give no bonus. Assemble all six matching parts; complete relics never drop.^;
+Only active commander equipment counts; hero equipment and backpack give no bonus. Right-click a part after equipping all six matching parts to assemble. Right-click the relic to dismantle. Complete relics never drop.^;
 !!SN:H^art^/539/1/s^cgc.tooltip.539^;
 !!VRs^cgc.tooltip.540^:S^Iron Covenant
 
@@ -697,7 +626,7 @@ Full set: +40 further to Defense/Health.
 Thresholds are included in the assembled relic, not added twice.
 
 %(checklist)
-Only active commander equipment counts; hero equipment and backpack give no bonus. Assemble all six matching parts; complete relics never drop.^;
+Only active commander equipment counts; hero equipment and backpack give no bonus. Right-click a part after equipping all six matching parts to assemble. Right-click the relic to dismantle. Complete relics never drop.^;
 !!SN:H^art^/540/1/s^cgc.tooltip.540^;
 !!VRs^cgc.tooltip.541^:S^Iron Covenant
 
@@ -711,7 +640,7 @@ Full set: +40 further to Defense/Health.
 Thresholds are included in the assembled relic, not added twice.
 
 %(checklist)
-Only active commander equipment counts; hero equipment and backpack give no bonus. Assemble all six matching parts; complete relics never drop.^;
+Only active commander equipment counts; hero equipment and backpack give no bonus. Right-click a part after equipping all six matching parts to assemble. Right-click the relic to dismantle. Complete relics never drop.^;
 !!SN:H^art^/541/1/s^cgc.tooltip.541^;
 !!VRs^cgc.tooltip.542^:S^Iron Covenant
 
@@ -725,7 +654,7 @@ Full set: +40 further to Defense/Health.
 Thresholds are included in the assembled relic, not added twice.
 
 %(checklist)
-Only active commander equipment counts; hero equipment and backpack give no bonus. Assemble all six matching parts; complete relics never drop.^;
+Only active commander equipment counts; hero equipment and backpack give no bonus. Right-click a part after equipping all six matching parts to assemble. Right-click the relic to dismantle. Complete relics never drop.^;
 !!SN:H^art^/542/1/s^cgc.tooltip.542^;
 !!VRs^cgc.tooltip.550^:S^Iron Covenant Relic
 
@@ -739,7 +668,7 @@ Full set: +40 further to Defense/Health.
 Thresholds are included in the assembled relic, not added twice.
 
 %(checklist)
-Only active commander equipment counts; hero equipment and backpack give no bonus. Assemble all six matching parts; complete relics never drop.^;
+Only active commander equipment counts; hero equipment and backpack give no bonus. Right-click a part after equipping all six matching parts to assemble. Right-click the relic to dismantle. Complete relics never drop.^;
 !!SN:H^art^/550/1/s^cgc.tooltip.550^;
 !!FU(CGC_State):P(hero)/2/?(mask)/?(count);
 !!VR(checklist):S^^;
@@ -791,7 +720,7 @@ Full set: +40 further to Spell/Passive.
 Thresholds are included in the assembled relic, not added twice.
 
 %(checklist)
-Only active commander equipment counts; hero equipment and backpack give no bonus. Assemble all six matching parts; complete relics never drop.^;
+Only active commander equipment counts; hero equipment and backpack give no bonus. Right-click a part after equipping all six matching parts to assemble. Right-click the relic to dismantle. Complete relics never drop.^;
 !!SN:H^art^/543/1/s^cgc.tooltip.543^;
 !!VRs^cgc.tooltip.544^:S^Astral Conclave
 
@@ -805,7 +734,7 @@ Full set: +40 further to Spell/Passive.
 Thresholds are included in the assembled relic, not added twice.
 
 %(checklist)
-Only active commander equipment counts; hero equipment and backpack give no bonus. Assemble all six matching parts; complete relics never drop.^;
+Only active commander equipment counts; hero equipment and backpack give no bonus. Right-click a part after equipping all six matching parts to assemble. Right-click the relic to dismantle. Complete relics never drop.^;
 !!SN:H^art^/544/1/s^cgc.tooltip.544^;
 !!VRs^cgc.tooltip.545^:S^Astral Conclave
 
@@ -819,7 +748,7 @@ Full set: +40 further to Spell/Passive.
 Thresholds are included in the assembled relic, not added twice.
 
 %(checklist)
-Only active commander equipment counts; hero equipment and backpack give no bonus. Assemble all six matching parts; complete relics never drop.^;
+Only active commander equipment counts; hero equipment and backpack give no bonus. Right-click a part after equipping all six matching parts to assemble. Right-click the relic to dismantle. Complete relics never drop.^;
 !!SN:H^art^/545/1/s^cgc.tooltip.545^;
 !!VRs^cgc.tooltip.546^:S^Astral Conclave
 
@@ -833,7 +762,7 @@ Full set: +40 further to Spell/Passive.
 Thresholds are included in the assembled relic, not added twice.
 
 %(checklist)
-Only active commander equipment counts; hero equipment and backpack give no bonus. Assemble all six matching parts; complete relics never drop.^;
+Only active commander equipment counts; hero equipment and backpack give no bonus. Right-click a part after equipping all six matching parts to assemble. Right-click the relic to dismantle. Complete relics never drop.^;
 !!SN:H^art^/546/1/s^cgc.tooltip.546^;
 !!VRs^cgc.tooltip.547^:S^Astral Conclave
 
@@ -847,7 +776,7 @@ Full set: +40 further to Spell/Passive.
 Thresholds are included in the assembled relic, not added twice.
 
 %(checklist)
-Only active commander equipment counts; hero equipment and backpack give no bonus. Assemble all six matching parts; complete relics never drop.^;
+Only active commander equipment counts; hero equipment and backpack give no bonus. Right-click a part after equipping all six matching parts to assemble. Right-click the relic to dismantle. Complete relics never drop.^;
 !!SN:H^art^/547/1/s^cgc.tooltip.547^;
 !!VRs^cgc.tooltip.548^:S^Astral Conclave
 
@@ -861,7 +790,7 @@ Full set: +40 further to Spell/Passive.
 Thresholds are included in the assembled relic, not added twice.
 
 %(checklist)
-Only active commander equipment counts; hero equipment and backpack give no bonus. Assemble all six matching parts; complete relics never drop.^;
+Only active commander equipment counts; hero equipment and backpack give no bonus. Right-click a part after equipping all six matching parts to assemble. Right-click the relic to dismantle. Complete relics never drop.^;
 !!SN:H^art^/548/1/s^cgc.tooltip.548^;
 !!VRs^cgc.tooltip.551^:S^Astral Conclave Relic
 
@@ -875,5 +804,5 @@ Full set: +40 further to Spell/Passive.
 Thresholds are included in the assembled relic, not added twice.
 
 %(checklist)
-Only active commander equipment counts; hero equipment and backpack give no bonus. Assemble all six matching parts; complete relics never drop.^;
+Only active commander equipment counts; hero equipment and backpack give no bonus. Right-click a part after equipping all six matching parts to assemble. Right-click the relic to dismantle. Complete relics never drop.^;
 !!SN:H^art^/551/1/s^cgc.tooltip.551^;

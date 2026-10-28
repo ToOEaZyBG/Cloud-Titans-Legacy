@@ -1,16 +1,16 @@
 {
-  "version": "0.6.0-batch-dev35",
+  "version": "0.6.0-batch-dev36",
   "distribution": "EXPERIMENTAL ONLINE LOBBY TEST",
   "new_map_required": true,
   "sequential_turns_only": true,
-  "offline_tests_passed": 62,
+  "offline_tests_passed": 95,
   "native_runtime_accepted": false,
   "two_computer_accepted": false,
   "production_ready": false,
   "candidate_validation": {
     "global_frame_cache_names": 652,
     "status": "OFFLINE CHECKS PASSED",
-    "functions": 167,
+    "functions": 164,
     "new_sets": 8,
     "artifact_configs": 102,
     "max_config_parser_write_bytes": 463,
@@ -22,7 +22,7 @@
     "AI-turn crash",
     "fullscreen crash"
   ],
-  "reviewed_candidate_zip_sha256": "8f9b8aef6b70a8e4872899144402255cf77cfd3eaff674cf5395eaf270c01f23",
+  "reviewed_candidate_zip_sha256": "66c9c3fb06c6ecbabf64e1bce079e55aeda57cbacdeffe63d9204f3a7af3801a",
   "export_overrides": [
     "mod.json catalog caption/description",
     "Readme.md",
@@ -30,12 +30,14 @@
     "readme.txt"
   ],
   "full_suite_repeated": false,
-  "targeted_tests_passed": 62,
+  "targeted_tests_passed": 95,
   "native_commander_slots": 6,
-  "shadowed_part_types": 90,
+  "commander_battle_reward_chance_percent": 5,
+  "no_commander_shop": true,
+  "no_ctrl_n": true,
   "native_game_accepted": false,
   "installed_files_changed": false,
-  "runtime_files_unchanged": 278,
+  "runtime_files_unchanged": 370,
   "map_sites": 180,
   "map_copies_per_part": 2,
   "old_saved_scripts_migrated": false
