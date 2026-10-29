@@ -1,3 +1,11 @@
+# 29/10/2026 dev37 > dev38 - 0.6.0-batch-dev38
+
+- Repair the missing adventure-map shadows on all90 faction and commander parts. Enable the subject cell in the native shadow mask of both MSK and MSG, in loose and packed copies; previous releases contained shadow pixels but an empty shadow drawing mask.
+- Add a narrow translucent silhouette and extend the lower-left ground shadow to improve separation from textured terrain, including pale scepters and other thin items. Preserve the approved painted subjects, adaptive colors, inventory artwork, one-cell dimensions, entrances and frame names.
+- Keep all gameplay, stats, set bonuses, rewards, map counts, original guards, champion quests and commander behavior unchanged. This release does not modify the WoG Warlord's Banner.
+- 29 targeted offline checks pass, including rejection of the old empty shadow mask and all90 loose/packed resource contracts. Terrain previews are offline illustrations; actual native appearance and gameplay/save/Lobby acceptance still require player testing.
+- Close the game before updating. Restart fully, verify0.6.0-batch-dev38 and create a NEW map; both peers need the same build. No F12.
+
 # 29/10/2026 dev36 > dev37 - 0.6.0-batch-dev37
 
 - Fix a reproduced crash when opening the Commander with a new set item. Supply numeric Artifact.def frames required by the current WoG Native Dialogs renderer and check its constructor contract before enabling the bridge.

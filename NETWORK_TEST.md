@@ -1,3 +1,12 @@
+# Map artifact shadows and readability:0.6.0-batch-dev38
+
+Close the game before updating, restart fully and create a NEW map on matching38
+clients. Both native drawing masks are repaired for all90 individual map parts.
+A narrow translucent silhouette and a stronger ground shadow separate thin and
+pale subjects from textured terrain. Inventory artwork and gameplay are unchanged.
+Actual native appearance needs player confirmation; offline terrain previews and
+resource validation do not establish an in-game renderer pass. No F12.
+
 # Commander renderer, collection and Damage/Health:0.6.0-batch-dev37
 
 Close the game, update from the existing Mod Browser entry, restart fully and

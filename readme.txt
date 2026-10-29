@@ -1,7 +1,12 @@
-LATEST PUBLIC BUILD: 0.6.0-batch-dev37
+LATEST PUBLIC BUILD: 0.6.0-batch-dev38
 
 --------------------------------------------------------------
 CHANGELOG
+
+29/10/2026 dev37 > dev38
+- Fix missing map shadows for all90 parts by enabling the native shadow drawing mask in both MSK/MSG and packed resources.
+- Add a narrow translucent silhouette and a stronger lower-left ground shadow so pale and thin items stand out on textured terrain. Preserve painted subjects, inventory icons and one-cell footprints.
+- All gameplay and commander bonuses remain unchanged. Restart and use a NEW map on matching38 clients. Actual in-game appearance awaits player testing.
 
 29/10/2026 dev36 > dev37
 - Fix the Commander crash with new set icons on the shipped WoG Native Dialogs renderer.
@@ -26,12 +31,6 @@ CHANGELOG
 28/10/2026 dev32 > dev33
 - Add optional Revolut support for @antonezwt and English/Russian invitations to share feedback and help fund improvements and future mods.
 - Add a GitHub funding link; preserve bug-report and feedback forms. Presentation-only update: all398 gameplay/runtime files remain identical to dev32; runtime diagnostics still report32.
-
-28/10/2026 dev31 > dev32
-- Assemble all six matching commander parts into one relic. Equip the relic in Pendant to retain the full set bonus and leave five native commander positions free. No extra assembly fee.
-- Set names display green N/6 progress; active parts and earned2/4/6 bonuses are green in descriptions. A worn relic counts6/6; hero equipment and backpack count0.
-- Parts retain their individual and2/4/6 bonuses. Relics can be dismantled back into six parts, never drop or forge whole; map generation remains270 individual finds and level18+7k rewards are unchanged.
-- Background checks only; native UI/save/load/Lobby acceptance pending. Both peers close, update and start a NEW map on matchingdev32.
 
 --------------------------------------------------------------
 

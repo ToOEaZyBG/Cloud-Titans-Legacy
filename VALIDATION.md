@@ -1,3 +1,5 @@
-# Validation for 0.6.0-batch-dev37
+# Validation for 0.6.0-batch-dev38
 
-44 targeted offline tests pass. The current checks execute authored commander ERM, native production code with fake bindings, provider contracts and catalog guards. Candidate parser/resource/function gates and archive hashes pass. Native bridge is source-fingerprinted x86. Offline tests do not execute a native renderer, actual ERA save or real Lobby connection. Separately performed native spot checks are described with their coverage and limits in CHANGELOG.md. These results do not certify two-computer compatibility. See Readme.md for the user-operated acceptance sequence. Historical earlier-version observations are not passes for this release.
+29 targeted offline tests pass: 19 map/resource/generation checks, four global frame namespace checks, three catalog checks and three Launcher release checks. Resource verification additionally checks all90 parts, their loose/packed DEF/MSK/MSG parity, native compression3 shadow runs, nonempty shadow drawing masks and unchanged painted subject pixels/palettes. The old empty shadow mask is explicitly rejected. Candidate ERM/parser/config checks and the55-file baseline pass.
+
+The native plugin and inventory archive are byte-identical to dev37. The terrain comparison board is an offline approximation, not a native renderer test. Actual in-game map appearance, battle/save/load, sustained AI/fullscreen and two-computer acceptance remain pending. This release does not modify the third-party Warlord's Banner.
