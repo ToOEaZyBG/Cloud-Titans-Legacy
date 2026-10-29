@@ -1,4 +1,4 @@
-# Commander artifacts - dev36
+# Commander artifacts - dev37
 
 ![Commander relic artwork; preview, not gameplay](Screens/commander-relics.png)
 
@@ -41,35 +41,36 @@ Backpack parts must be equipped before assembly; full relics never drop.
 
 | Set | Favored modifiers |
 | --- | --- |
-| Ember Oath | Attack, Damage |
-| Iron Covenant | Defense, Health |
+| Ember Oath | Attack |
+| Iron Covenant | Defense, Damage, Health |
 | Astral Conclave | Spell, Passive |
 
 Each active part adds5percentage points to all eight ACM modifiers: Attack,
 Defense, Damage, Health, Speed, Spell, Passive and Aura. Matching2/4/6parts add
-another5/5/10points to all eight. A full set adds40more to its favored pair.
+another5/5/10points to all eight. A full set adds40more to its favored modifiers.
 Two matching parts therefore give15to all eight. A complete set or relic gives
-50to all eight and90total to the favored two; thresholds are included, not
+50to the base modifiers and90total to favored modifiers. Damage always equals
+Health:50%for full Ember/Astral and90%for full Iron. Thresholds are included, not
 added twice. Existing ACM bonuses and original artifact abilities/growth remain.
 Represented same-set parts do not duplicate their relic's bonuses.
 
-Green N/6 headings, active part names and earned thresholds reflect actual
-commander equipment. Backpack/hero equipment do not count. An equipped relic
-represents6/6. Ordinary artifacts show their original descriptions.
+Equipped N/6 and earned thresholds reflect actual commander equipment.
+Collected N/6 includes the backpack; owned names are green and duplicate copies
+show (2), (3), etc. A relic represents its six parts. Carried items grant no
+bonus. Ordinary artifacts show their original descriptions.
 
 ![All18 original commander part icons](Screens/commander-sets.png)
 
 ## Updating and acceptance
 
-Close the game before updating, restart fully and use matching dev36 clients
+Close the game before updating, restart fully and use matching dev37 clients
 with a NEW map. Old saved scripts are not migrated; do not use F12. Keep the
 metadata-listed dependencies and incompatibilities. The native dialog bridge
 checks the shipped instruction contracts after providers have loaded.
 
-Targeted headless production-code, authored ERM and package checks pass; actual
-native UI, combat, real save/load and two-computer acceptance remain pending.
-No game, installed file, setting or save was changed during this development.
-First acceptance: equip all six matching parts, right-click and confirm, inspect
-the relic and five free slots, wear an original bow and verify its retained
-utility, then dismantle with/without backpack space. Check battle rewards over
-multiple victories;5%does not mean a guaranteed item after any fixed count.
+Targeted production-code, ERM and package checks pass. Native renderer/equipment
+spot checks preceded the latest collection/balance changes; test those on a NEW
+map. Combat, actual save/load and two-computer acceptance remain pending.
+After returning a part to the backpack, reopen the Commander to refresh the
+displayed ACM attributes.5%battle chance does not guarantee an item after a fixed
+number of victories.

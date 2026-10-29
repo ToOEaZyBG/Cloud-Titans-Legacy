@@ -1,7 +1,13 @@
-LATEST PUBLIC BUILD: 0.6.0-batch-dev36
+LATEST PUBLIC BUILD: 0.6.0-batch-dev37
 
 --------------------------------------------------------------
 CHANGELOG
+
+29/10/2026 dev36 > dev37
+- Fix the Commander crash with new set icons on the shipped WoG Native Dialogs renderer.
+- Show collected green parts, duplicate copy counts and separate Equipped/Collected N/6 progress. Backpack ownership grants no combat bonus.
+- Commander Damage percentage equals Health for all parts, full sets and relics: Ember50/50, Iron90/90, Astral50/50 at full set. Hero sets are unchanged.
+- Full restart, matching37 and NEW map required. Earlier native equipment spot checks pass; latest tooltip/balance changes and battle/save/Lobby acceptance require testing.
 
 28/10/2026 dev35 > dev36
 - Remove Ctrl+N, separate commander menus and resource purchases. Right-click an equipped part with all six matching parts worn to assemble; right-click the equipped relic to dismantle. Preserve other items and growth; refuse safely if there is insufficient backpack space.
@@ -26,14 +32,6 @@ CHANGELOG
 - Set names display green N/6 progress; active parts and earned2/4/6 bonuses are green in descriptions. A worn relic counts6/6; hero equipment and backpack count0.
 - Parts retain their individual and2/4/6 bonuses. Relics can be dismantled back into six parts, never drop or forge whole; map generation remains270 individual finds and level18+7k rewards are unchanged.
 - Background checks only; native UI/save/load/Lobby acceptance pending. Both peers close, update and start a NEW map on matchingdev32.
-
-28/10/2026 dev30 > dev31
-- Three universal commander sets: Ember Oath, Iron Covenant and Astral Conclave; six new items each, usable by every town.
-- Open Inventory tools with Ctrl+N in the hero screen, then Commander equipment and forge. Only its six equipped slots grant bonuses; hero equipment and backpacks do not.
-- Each active part adds5 percentage points to all eight ACM commander attributes. Matching2/4/6 parts add5/5/10 more; a full set adds40 to its two favored attributes. Same480-point budget across all three sets.
-- Forge each part with a level20 hero and living commander for50,000Gold,20Wood and20Ore. Existing commander items reserve their same slots. AI cannot obtain or use these items. NEW map required; native/Lobby acceptance pending.
-- NEW random maps now target exactly3 copies of each of72 faction components and18 commander items:270 finds,135 per layer when underground exists. Complete relics are never placed. Existing eligible sites are reused and additional safe open land sites are added without deleting other objects; an incomplete plan is reported as an error.
-- Level-up rewards remain unchanged: faction components at18,25,32,39 and every7levels thereafter. This three-copy policy concerns map generation only.
 
 --------------------------------------------------------------
 

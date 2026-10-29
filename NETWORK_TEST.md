@@ -1,3 +1,18 @@
+# Commander renderer, collection and Damage/Health:0.6.0-batch-dev37
+
+Close the game, update from the existing Mod Browser entry, restart fully and
+start a NEW map on matching37 clients. Do not reload old saved scripts or use F12.
+The Commander renderer crash is corrected. Descriptions show separate Equipped
+and Collected progress; green names include backpack ownership and (2) indicates
+two copies. Collection alone grants no bonus. Damage follows Health for these
+three commander sets, including full sets/relics: Ember50%, Iron90%, Astral50%.
+Other favored modifiers remain; the nine hero faction sets are unchanged.
+
+Native equipment spot checks passed on the corrected renderer before the latest
+collection/balance changes. Those latest changes need a fresh in-game check.
+Battle/save/load, sustained AI/fullscreen and two-computer acceptance remain pending.
+Older release sections below are historical when they conflict with this update.
+
 # Standard commander combinations and victory rewards:0.6.0-batch-dev36
 
 Close the game, update through the existing Mod Browser entry, restart fully

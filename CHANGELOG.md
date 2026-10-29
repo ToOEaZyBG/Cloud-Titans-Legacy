@@ -1,3 +1,11 @@
+# 29/10/2026 dev36 > dev37 - 0.6.0-batch-dev37
+
+- Fix a reproduced crash when opening the Commander with a new set item. Supply numeric Artifact.def frames required by the current WoG Native Dialogs renderer and check its constructor contract before enabling the bridge.
+- Commander descriptions distinguish Equipped N/6 from Collected N/6. Owned parts are green even in the backpack; duplicate copies show (2), (3), etc. Only distinct equipped identities activate thresholds. A carried relic represents the collection without granting equipment bonuses.
+- For commander sets only, Damage percentage now equals Health, including complete sets and relics. Full Ember Oath gives50%Damage/Health, Iron Covenant90%Damage/Health, Astral Conclave50%Damage/Health. Other favored modifiers are retained; hero faction sets are unchanged.
+- Native spot checks on the corrected bridge: all six Ember Oath and Iron Covenant icons, expected Health changes, ordinary transfers, cancellation, assembly in two different slots, dismantling with an original bow retained and overflow into the backpack; one Astral part in mixed equipment. These checks preceded the latest description/balance changes. Battle/save/load and two-computer acceptance are still pending; historical AI/fullscreen incidents are not proven fixed.
+- Restart fully and create a NEW map on matching37 clients. Targeted tests, parser/resource checks and package hashes are recorded separately. Private testing tools and diagnostics are excluded.
+
 # 28/10/2026 dev35 > dev36 - 0.6.0-batch-dev36
 
 - Remove the mod's Ctrl+N shortcut, separate commander menus and commander purchases with resources. Keep the normal HD Backpack Sort button. Equip commander items through the normal Commander icon.
