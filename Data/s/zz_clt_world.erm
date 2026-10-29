@@ -200,7 +200,7 @@ ZVSE2
 !!SN:F^WriteStrToIni^/^surface^/^%(surface)^/^world^/^Debug\CloudTitansWorld.ini^;
 !!SN:F^WriteStrToIni^/^underground^/^%(lower)^/^world^/^Debug\CloudTitansWorld.ini^;
 !!SN:F^WriteStrToIni^/^error^/^%(error)^/^world^/^Debug\CloudTitansWorld.ini^;
-!!SN:F^WriteStrToIni^/^version^/^0.6.0-batch-dev39^/^world^/^Debug\CloudTitansWorld.ini^;
+!!SN:F^WriteStrToIni^/^version^/^0.6.0-batch-dev40^/^world^/^Debug\CloudTitansWorld.ini^;
 !!SN:F^SaveIni^/^Debug\CloudTitansWorld.ini^;
 !!if&(network)>0/(error)=0;
   !!re (entry:y)/1/(placed);

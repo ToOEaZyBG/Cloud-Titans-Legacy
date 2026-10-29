@@ -1,3 +1,10 @@
+# Commander return confirmation crash fix:0.6.0-batch-dev40
+
+- Fix a delayed crash after the Commander return-to-backpack confirmation. Long custom set descriptions could overwrite native interface globals even when the transfer was cancelled. Show a short confirmation while retaining full details on right-click and the provider's normal transfer/cancel behavior for all21custom Commander items.
+- Preserve hero artifact handling, ownership colors, training, set bonuses, inventory records, art and all third-party files. No save migration or F12.
+- OFFLINE_TEST_COUNT targeted offline tests pass, including the reported overwritten player-color bytes, the consuming provider instruction/index contract and all21items in six slots with accept/cancel. Native reproduction/retest evidence is recorded separately in VALIDATION.md; no multiplayer or universal crash-free claim.
+- Fully close the game and update to matching40through the existing Mod Browser entry. Restart fully; use a NEW map for the complete release test.
+
 # Owned hero parts and Commander training:0.6.0-batch-dev39
 
 Close the game, update, restart fully and create a NEW map on matching39 clients.

@@ -1,7 +1,11 @@
-LATEST PUBLIC BUILD: 0.6.0-batch-dev39
+LATEST PUBLIC BUILD: 0.6.0-batch-dev40
 
 --------------------------------------------------------------
 ## CHANGELOG
+
+29/10/2026 dev39 > dev40
+- Fix delayed interface crashes caused by long Commander return-to-backpack confirmations, including cancelled transfers. Full set details remain available with right-click. All21custom Commander items use the safe confirmation.
+- Preserve training, owned-green hero parts, artwork, inventory and third-party files. Close the game, update to matching40and restart; use a NEW map for the complete release test.
 
 29/10/2026 dev38 > dev39
 - Hero-set part names are green when owned, including backpack parts and parts represented by a carried relic. N/8 and active thresholds still count equipped parts only, across all nine sets.
@@ -29,10 +33,6 @@ LATEST PUBLIC BUILD: 0.6.0-batch-dev39
 - New commander parts and relics use the normal Commander icon and actual six equipment slots. Green N/6 progress counts those slots; one assembled relic leaves five slots free. Ctrl+N is only for forging/assembly. New items cannot equip on heroes.
 - Add native translucent ground shadows to all90 individual map artifacts; preserve artwork, one-cell footprints, two copies per item, external monsters and level18+7k rewards.
 - Full restart, matching35 and NEW map required. Targeted checks pass; native UI/battle/save/Lobby acceptance remains pending. No installed-file or game-control changes.
-
-28/10/2026 dev33 > dev34
-- Reduce NEW-map generation from3to2copies of every individual part:180finds instead of270,90/90with underground. No full relics; level18+7k rewards unchanged.
-- Restore the original external adventure-map monster check for ALL placements, including added sites. No armies inside artifacts or new scripted battles. Never fill a short plan with unguarded sites. Existing maps and installed files are not modified.
 
 --------------------------------------------------------------
 
