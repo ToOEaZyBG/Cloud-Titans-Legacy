@@ -1,3 +1,22 @@
+# Owned hero parts and Commander training:0.6.0-batch-dev39
+
+Close the game, update, restart fully and create a NEW map on matching39 clients.
+No F12 or old saved-script refresh. Hero-set names are green for owned parts;
+N/8and thresholds count only equipped parts. Commander Equipped/Collected counts
+remain separate, with the redundant color-explanation sentence removed.
+
+A complete Commander set or its relic trains after every12victories survived:
++1to Attack,Defense,Health,Damage,Magic Power,Speed and Magic Resistance. These
+are flat additions to the native basic-stat calculation before existing ACM
+multipliers. Minimum Damage is derived by the native calculation; Shots is not
+one of the seven basic stats. Progress belongs to the Commander and set, remains
+saved when gear is removed or combined, and contributes only while that set is
+complete and equipped. Passing gear does not pass training. Partial/backpack
+sets, dead/disabled Commanders and AI gain no training. No retroactive wins.
+
+Actual native appearance/battle/save/load and two-computer acceptance still need
+player testing. Original item growth and all dev38 map resources remain intact.
+
 # Map artifact shadows and readability:0.6.0-batch-dev38
 
 Close the game before updating, restart fully and create a NEW map on matching38

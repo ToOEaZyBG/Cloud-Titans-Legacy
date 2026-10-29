@@ -1,3 +1,15 @@
+# Full-set training - dev39
+
+Each Commander and set keeps its own eligible victory count. Survive12victories
+with all six different matching parts or their equipped relic to gain +1to all
+seven basic stats: Attack,Defense,Health,Damage,Magic Power,Speed and Magic
+Resistance. The original basic-stat calculation receives flat points; normal
+ACM multipliers still apply. Native minimum Damage derives from Damage. Shots
+is not a basic stat. Progress survives assembly/dismantling and removal; the
+bonus is active only with that complete set equipped. Another Commander does
+not inherit training by receiving the gear. Partial sets, backpack ownership,
+dead/disabled Commanders and AI do not earn training. No retroactive credit.
+
 # Commander artifacts - dev37
 
 ![Commander relic artwork; preview, not gameplay](Screens/commander-relics.png)

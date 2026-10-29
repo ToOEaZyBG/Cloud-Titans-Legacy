@@ -452,6 +452,10 @@ ZVSE2
    !!VR(gearUsed)&(nativeGear)<>0:S1;
   !!en;
  !!en;
+ !!re (growthKind:y)/0/2;
+  !!SN:W^cgc.growth.v1.%(hero).%(growthKind).wins^/?(growthWins:y);
+  !!VR(gearUsed)&(growthWins)>0:S1;
+ !!en;
  !!co&(gearUsed)>0;
  !!HE(hero):O?(heroOwner:y) P?(x:y)/?(y:y)/?(z:y) B2/?(class:y);
  ; The installed ERA stdlib uses all three negative coordinates to exclude

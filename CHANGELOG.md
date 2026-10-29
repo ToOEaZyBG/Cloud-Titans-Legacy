@@ -1,3 +1,13 @@
+# 29/10/2026 dev38 > dev39 - 0.6.0-batch-dev39
+
+- Color owned hero-set component names green across all nine sets, including backpack parts and components represented by a carried complete relic. Keep N/8, threshold highlighting and gameplay bonuses based only on distinct equipped parts. A worn crown plus a carried shield shows1/8with both names green; equip the shield to show2/8.
+- Remove the sentence "green names show owned parts." from commander tooltips while keeping separate Equipped/Collected progress.
+- Add full-set Commander training: every12confirmed victories survived with all six distinct parts or their relic equipped grant +1 to the seven basic Commander stats: Attack, Defense, Health, Damage, Magic Power, Speed and Magic Resistance. Add flat values through the original basic-stat calculation; existing ACM class/set multipliers still apply afterward. Minimum Damage follows the native Damage calculation. Shots is not a basic Commander stat.
+- Save progress separately for each Commander and set. Removing gear disables the earned training bonus without erasing progress; re-equipping, assembly and dismantling retain it. Passing gear to another Commander does not pass training. Only a living/enabled human Commander with the complete set earns progress. No retroactive wins, partial/backpack training or AI growth. Multiple complete relics train separately. Original artifacts and their growth records are preserved.
+- Reuse the accepted victory journal for growth, including missed artifact rolls and full backpacks. Duplicates/conflicts do not add progress. Preserve the5%commander-part reward, hero rewards, map quantities, guards and dev38 artwork/shadows.
+- 172 targeted offline tests pass, with native production callbacks under fake x86 bindings, actual on-disk instruction checks, composed scripts and resource/package gates. This is not an actual native battle/save/load or two-computer acceptance claim. Historical AI/fullscreen incidents remain unproven fixed.
+- Close the game, update through the existing Mod Browser entry, restart fully and create a NEW map on matching39 clients. Old saved scripts are not migrated; no F12.
+
 # 29/10/2026 dev37 > dev38 - 0.6.0-batch-dev38
 
 - Repair the missing adventure-map shadows on all90 faction and commander parts. Enable the subject cell in the native shadow mask of both MSK and MSG, in loose and packed copies; previous releases contained shadow pixels but an empty shadow drawing mask.

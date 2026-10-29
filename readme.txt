@@ -1,7 +1,13 @@
-LATEST PUBLIC BUILD: 0.6.0-batch-dev38
+LATEST PUBLIC BUILD: 0.6.0-batch-dev39
 
 --------------------------------------------------------------
 CHANGELOG
+
+29/10/2026 dev38 > dev39
+- Hero-set part names are green when owned, including backpack parts and parts represented by a carried relic. N/8 and active thresholds still count equipped parts only, across all nine sets.
+- Remove the extra "green names show owned parts." sentence from commander tooltips.
+- A complete commander set or its relic gains +1 to all seven basic Commander stats per12victories survived. Training is saved per Commander and set, retained across assembly/removal, and active only with that complete set equipped.
+- Keep dev38 map shadows. Restart, matching39 and NEW map required; actual native battle/save/Lobby acceptance remains pending.
 
 29/10/2026 dev37 > dev38
 - Fix missing map shadows for all90 parts by enabling the native shadow drawing mask in both MSK/MSG and packed resources.
@@ -27,10 +33,6 @@ CHANGELOG
 28/10/2026 dev33 > dev34
 - Reduce NEW-map generation from3to2copies of every individual part:180finds instead of270,90/90with underground. No full relics; level18+7k rewards unchanged.
 - Restore the original external adventure-map monster check for ALL placements, including added sites. No armies inside artifacts or new scripted battles. Never fill a short plan with unguarded sites. Existing maps and installed files are not modified.
-
-28/10/2026 dev32 > dev33
-- Add optional Revolut support for @antonezwt and English/Russian invitations to share feedback and help fund improvements and future mods.
-- Add a GitHub funding link; preserve bug-report and feedback forms. Presentation-only update: all398 gameplay/runtime files remain identical to dev32; runtime diagnostics still report32.
 
 --------------------------------------------------------------
 

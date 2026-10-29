@@ -145,7 +145,7 @@ ZVSE2
 !!VR(name)&(slot)=5:Z^Pendant^;
 
 !?FU(OnStartOrLoad);
-!!SN:W^cgc.ready^/0 W^cgc.native.ready^/0 W^cgc.transaction^/0 W^cgc.hash^/0;
+!!SN:W^cgc.ready^/0 W^cgc.native.ready^/0 W^cgc.transaction^/0 W^cgc.hash^/0 W^cgc.growth.ready^/0;
 !!SN:L^cfs_relic_book.era^/?(library:y);
 !!FU&(library)=0:E;
 !!SN:A(library)/^CFSCommanderTransaction^/?(transaction:y) A(library)/^CFSCommanderBagHash^/?(hash:y);
@@ -159,6 +159,8 @@ ZVSE2
 !!SN:E(nativeQuery)/(CALLCONV_STDCALL);
 !!FU&v1<>1:E;
 !!SN:W^cgc.native.ready^/1;
+!!UN:P3/?(growthDisabled:y);
+!!SN&(growthDisabled)=0:W^cgc.growth.ready^/1;
 !!SN:W^cgc.updateTooltips^/(CGC_UpdateTooltips) W^cgc.confirm^/(CGC_ConfirmNative);
 !!SN:A(library)/^CFSCommanderBattleReward^/?(battle:y);
 !!SN:W^cgc.battle.function^/(battle) W^cgc.ui.pending^/0;
@@ -402,6 +404,8 @@ ZVSE2
 !!FU(CGC_State):P(hero)/0/?(mask:y)/?(count:y);
 !!FU(CGC_Collection):P(hero)/0/?(collected:y)/?(n0:y)/?(n1:y)/?(n2:y)/?(n3:y)/?(n4:y)/?(n5:y);
 !!VR(checklist):S^^;
+!!SN:W^cgc.growth.v1.%(hero).0.wins^/?(growthWins:y);
+!!VR(growthPoints:y):S(growthWins) :12;
 !!VR(worn:y):S(mask) Sd>>0 &1;
 !!VR(copies:y):S(n0);
 !!VR(suffix:z):S^^;
@@ -459,9 +463,11 @@ ZVSE2
 !!VRs^cgc.tooltip.531^:S^Ember Oath
 
 {~Lime}Ember Oath - Equipped %(count)/6{~}
-Collected %(collected)/6; green names show owned parts.
+Collected %(collected)/6.
 Part: +5 points to all eight ACM commander modifiers.
 Damage percentage always equals Health.
+Full set training: +1 to all seven basic Commander stats per 12 victories survived.
+Training: %(growthWins) victories; +%(growthPoints) to each basic stat (full set only).
 
 %(bonus2)
 %(bonus4)
@@ -475,9 +481,11 @@ Only active commander equipment grants bonuses. Backpack copies are collected, n
 !!VRs^cgc.tooltip.532^:S^Ember Oath
 
 {~Lime}Ember Oath - Equipped %(count)/6{~}
-Collected %(collected)/6; green names show owned parts.
+Collected %(collected)/6.
 Part: +5 points to all eight ACM commander modifiers.
 Damage percentage always equals Health.
+Full set training: +1 to all seven basic Commander stats per 12 victories survived.
+Training: %(growthWins) victories; +%(growthPoints) to each basic stat (full set only).
 
 %(bonus2)
 %(bonus4)
@@ -491,9 +499,11 @@ Only active commander equipment grants bonuses. Backpack copies are collected, n
 !!VRs^cgc.tooltip.533^:S^Ember Oath
 
 {~Lime}Ember Oath - Equipped %(count)/6{~}
-Collected %(collected)/6; green names show owned parts.
+Collected %(collected)/6.
 Part: +5 points to all eight ACM commander modifiers.
 Damage percentage always equals Health.
+Full set training: +1 to all seven basic Commander stats per 12 victories survived.
+Training: %(growthWins) victories; +%(growthPoints) to each basic stat (full set only).
 
 %(bonus2)
 %(bonus4)
@@ -507,9 +517,11 @@ Only active commander equipment grants bonuses. Backpack copies are collected, n
 !!VRs^cgc.tooltip.534^:S^Ember Oath
 
 {~Lime}Ember Oath - Equipped %(count)/6{~}
-Collected %(collected)/6; green names show owned parts.
+Collected %(collected)/6.
 Part: +5 points to all eight ACM commander modifiers.
 Damage percentage always equals Health.
+Full set training: +1 to all seven basic Commander stats per 12 victories survived.
+Training: %(growthWins) victories; +%(growthPoints) to each basic stat (full set only).
 
 %(bonus2)
 %(bonus4)
@@ -523,9 +535,11 @@ Only active commander equipment grants bonuses. Backpack copies are collected, n
 !!VRs^cgc.tooltip.535^:S^Ember Oath
 
 {~Lime}Ember Oath - Equipped %(count)/6{~}
-Collected %(collected)/6; green names show owned parts.
+Collected %(collected)/6.
 Part: +5 points to all eight ACM commander modifiers.
 Damage percentage always equals Health.
+Full set training: +1 to all seven basic Commander stats per 12 victories survived.
+Training: %(growthWins) victories; +%(growthPoints) to each basic stat (full set only).
 
 %(bonus2)
 %(bonus4)
@@ -539,9 +553,11 @@ Only active commander equipment grants bonuses. Backpack copies are collected, n
 !!VRs^cgc.tooltip.536^:S^Ember Oath
 
 {~Lime}Ember Oath - Equipped %(count)/6{~}
-Collected %(collected)/6; green names show owned parts.
+Collected %(collected)/6.
 Part: +5 points to all eight ACM commander modifiers.
 Damage percentage always equals Health.
+Full set training: +1 to all seven basic Commander stats per 12 victories survived.
+Training: %(growthWins) victories; +%(growthPoints) to each basic stat (full set only).
 
 %(bonus2)
 %(bonus4)
@@ -555,9 +571,11 @@ Only active commander equipment grants bonuses. Backpack copies are collected, n
 !!VRs^cgc.tooltip.549^:S^Ember Oath Relic
 
 {~Lime}Ember Oath - Equipped %(count)/6{~}
-Collected %(collected)/6; green names show owned parts.
+Collected %(collected)/6.
 Assembled relic: +50 to all eight ACM commander modifiers; +90 total to Attack. Uses one native commander slot; five positions remain free.
 Damage percentage always equals Health.
+Full set training: +1 to all seven basic Commander stats per 12 victories survived.
+Training: %(growthWins) victories; +%(growthPoints) to each basic stat (full set only).
 
 %(bonus2)
 %(bonus4)
@@ -571,6 +589,8 @@ Only active commander equipment grants bonuses. Backpack copies are collected, n
 !!FU(CGC_State):P(hero)/1/?(mask)/?(count);
 !!FU(CGC_Collection):P(hero)/1/?(collected)/?(n0)/?(n1)/?(n2)/?(n3)/?(n4)/?(n5);
 !!VR(checklist):S^^;
+!!SN:W^cgc.growth.v1.%(hero).1.wins^/?(growthWins);
+!!VR(growthPoints):S(growthWins) :12;
 !!VR(worn):S(mask) Sd>>0 &1;
 !!VR(copies):S(n0);
 !!VR(suffix):S^^;
@@ -628,9 +648,11 @@ Only active commander equipment grants bonuses. Backpack copies are collected, n
 !!VRs^cgc.tooltip.537^:S^Iron Covenant
 
 {~Lime}Iron Covenant - Equipped %(count)/6{~}
-Collected %(collected)/6; green names show owned parts.
+Collected %(collected)/6.
 Part: +5 points to all eight ACM commander modifiers.
 Damage percentage always equals Health.
+Full set training: +1 to all seven basic Commander stats per 12 victories survived.
+Training: %(growthWins) victories; +%(growthPoints) to each basic stat (full set only).
 
 %(bonus2)
 %(bonus4)
@@ -644,9 +666,11 @@ Only active commander equipment grants bonuses. Backpack copies are collected, n
 !!VRs^cgc.tooltip.538^:S^Iron Covenant
 
 {~Lime}Iron Covenant - Equipped %(count)/6{~}
-Collected %(collected)/6; green names show owned parts.
+Collected %(collected)/6.
 Part: +5 points to all eight ACM commander modifiers.
 Damage percentage always equals Health.
+Full set training: +1 to all seven basic Commander stats per 12 victories survived.
+Training: %(growthWins) victories; +%(growthPoints) to each basic stat (full set only).
 
 %(bonus2)
 %(bonus4)
@@ -660,9 +684,11 @@ Only active commander equipment grants bonuses. Backpack copies are collected, n
 !!VRs^cgc.tooltip.539^:S^Iron Covenant
 
 {~Lime}Iron Covenant - Equipped %(count)/6{~}
-Collected %(collected)/6; green names show owned parts.
+Collected %(collected)/6.
 Part: +5 points to all eight ACM commander modifiers.
 Damage percentage always equals Health.
+Full set training: +1 to all seven basic Commander stats per 12 victories survived.
+Training: %(growthWins) victories; +%(growthPoints) to each basic stat (full set only).
 
 %(bonus2)
 %(bonus4)
@@ -676,9 +702,11 @@ Only active commander equipment grants bonuses. Backpack copies are collected, n
 !!VRs^cgc.tooltip.540^:S^Iron Covenant
 
 {~Lime}Iron Covenant - Equipped %(count)/6{~}
-Collected %(collected)/6; green names show owned parts.
+Collected %(collected)/6.
 Part: +5 points to all eight ACM commander modifiers.
 Damage percentage always equals Health.
+Full set training: +1 to all seven basic Commander stats per 12 victories survived.
+Training: %(growthWins) victories; +%(growthPoints) to each basic stat (full set only).
 
 %(bonus2)
 %(bonus4)
@@ -692,9 +720,11 @@ Only active commander equipment grants bonuses. Backpack copies are collected, n
 !!VRs^cgc.tooltip.541^:S^Iron Covenant
 
 {~Lime}Iron Covenant - Equipped %(count)/6{~}
-Collected %(collected)/6; green names show owned parts.
+Collected %(collected)/6.
 Part: +5 points to all eight ACM commander modifiers.
 Damage percentage always equals Health.
+Full set training: +1 to all seven basic Commander stats per 12 victories survived.
+Training: %(growthWins) victories; +%(growthPoints) to each basic stat (full set only).
 
 %(bonus2)
 %(bonus4)
@@ -708,9 +738,11 @@ Only active commander equipment grants bonuses. Backpack copies are collected, n
 !!VRs^cgc.tooltip.542^:S^Iron Covenant
 
 {~Lime}Iron Covenant - Equipped %(count)/6{~}
-Collected %(collected)/6; green names show owned parts.
+Collected %(collected)/6.
 Part: +5 points to all eight ACM commander modifiers.
 Damage percentage always equals Health.
+Full set training: +1 to all seven basic Commander stats per 12 victories survived.
+Training: %(growthWins) victories; +%(growthPoints) to each basic stat (full set only).
 
 %(bonus2)
 %(bonus4)
@@ -724,9 +756,11 @@ Only active commander equipment grants bonuses. Backpack copies are collected, n
 !!VRs^cgc.tooltip.550^:S^Iron Covenant Relic
 
 {~Lime}Iron Covenant - Equipped %(count)/6{~}
-Collected %(collected)/6; green names show owned parts.
+Collected %(collected)/6.
 Assembled relic: +50 to all eight ACM commander modifiers; +90 total to Defense/Damage/Health. Uses one native commander slot; five positions remain free.
 Damage percentage always equals Health.
+Full set training: +1 to all seven basic Commander stats per 12 victories survived.
+Training: %(growthWins) victories; +%(growthPoints) to each basic stat (full set only).
 
 %(bonus2)
 %(bonus4)
@@ -740,6 +774,8 @@ Only active commander equipment grants bonuses. Backpack copies are collected, n
 !!FU(CGC_State):P(hero)/2/?(mask)/?(count);
 !!FU(CGC_Collection):P(hero)/2/?(collected)/?(n0)/?(n1)/?(n2)/?(n3)/?(n4)/?(n5);
 !!VR(checklist):S^^;
+!!SN:W^cgc.growth.v1.%(hero).2.wins^/?(growthWins);
+!!VR(growthPoints):S(growthWins) :12;
 !!VR(worn):S(mask) Sd>>0 &1;
 !!VR(copies):S(n0);
 !!VR(suffix):S^^;
@@ -797,9 +833,11 @@ Only active commander equipment grants bonuses. Backpack copies are collected, n
 !!VRs^cgc.tooltip.543^:S^Astral Conclave
 
 {~Lime}Astral Conclave - Equipped %(count)/6{~}
-Collected %(collected)/6; green names show owned parts.
+Collected %(collected)/6.
 Part: +5 points to all eight ACM commander modifiers.
 Damage percentage always equals Health.
+Full set training: +1 to all seven basic Commander stats per 12 victories survived.
+Training: %(growthWins) victories; +%(growthPoints) to each basic stat (full set only).
 
 %(bonus2)
 %(bonus4)
@@ -813,9 +851,11 @@ Only active commander equipment grants bonuses. Backpack copies are collected, n
 !!VRs^cgc.tooltip.544^:S^Astral Conclave
 
 {~Lime}Astral Conclave - Equipped %(count)/6{~}
-Collected %(collected)/6; green names show owned parts.
+Collected %(collected)/6.
 Part: +5 points to all eight ACM commander modifiers.
 Damage percentage always equals Health.
+Full set training: +1 to all seven basic Commander stats per 12 victories survived.
+Training: %(growthWins) victories; +%(growthPoints) to each basic stat (full set only).
 
 %(bonus2)
 %(bonus4)
@@ -829,9 +869,11 @@ Only active commander equipment grants bonuses. Backpack copies are collected, n
 !!VRs^cgc.tooltip.545^:S^Astral Conclave
 
 {~Lime}Astral Conclave - Equipped %(count)/6{~}
-Collected %(collected)/6; green names show owned parts.
+Collected %(collected)/6.
 Part: +5 points to all eight ACM commander modifiers.
 Damage percentage always equals Health.
+Full set training: +1 to all seven basic Commander stats per 12 victories survived.
+Training: %(growthWins) victories; +%(growthPoints) to each basic stat (full set only).
 
 %(bonus2)
 %(bonus4)
@@ -845,9 +887,11 @@ Only active commander equipment grants bonuses. Backpack copies are collected, n
 !!VRs^cgc.tooltip.546^:S^Astral Conclave
 
 {~Lime}Astral Conclave - Equipped %(count)/6{~}
-Collected %(collected)/6; green names show owned parts.
+Collected %(collected)/6.
 Part: +5 points to all eight ACM commander modifiers.
 Damage percentage always equals Health.
+Full set training: +1 to all seven basic Commander stats per 12 victories survived.
+Training: %(growthWins) victories; +%(growthPoints) to each basic stat (full set only).
 
 %(bonus2)
 %(bonus4)
@@ -861,9 +905,11 @@ Only active commander equipment grants bonuses. Backpack copies are collected, n
 !!VRs^cgc.tooltip.547^:S^Astral Conclave
 
 {~Lime}Astral Conclave - Equipped %(count)/6{~}
-Collected %(collected)/6; green names show owned parts.
+Collected %(collected)/6.
 Part: +5 points to all eight ACM commander modifiers.
 Damage percentage always equals Health.
+Full set training: +1 to all seven basic Commander stats per 12 victories survived.
+Training: %(growthWins) victories; +%(growthPoints) to each basic stat (full set only).
 
 %(bonus2)
 %(bonus4)
@@ -877,9 +923,11 @@ Only active commander equipment grants bonuses. Backpack copies are collected, n
 !!VRs^cgc.tooltip.548^:S^Astral Conclave
 
 {~Lime}Astral Conclave - Equipped %(count)/6{~}
-Collected %(collected)/6; green names show owned parts.
+Collected %(collected)/6.
 Part: +5 points to all eight ACM commander modifiers.
 Damage percentage always equals Health.
+Full set training: +1 to all seven basic Commander stats per 12 victories survived.
+Training: %(growthWins) victories; +%(growthPoints) to each basic stat (full set only).
 
 %(bonus2)
 %(bonus4)
@@ -893,9 +941,11 @@ Only active commander equipment grants bonuses. Backpack copies are collected, n
 !!VRs^cgc.tooltip.551^:S^Astral Conclave Relic
 
 {~Lime}Astral Conclave - Equipped %(count)/6{~}
-Collected %(collected)/6; green names show owned parts.
+Collected %(collected)/6.
 Assembled relic: +50 to all eight ACM commander modifiers; +90 total to Spell/Passive. Uses one native commander slot; five positions remain free.
 Damage percentage always equals Health.
+Full set training: +1 to all seven basic Commander stats per 12 victories survived.
+Training: %(growthWins) victories; +%(growthPoints) to each basic stat (full set only).
 
 %(bonus2)
 %(bonus4)
