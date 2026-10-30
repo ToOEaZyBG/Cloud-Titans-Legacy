@@ -1,3 +1,10 @@
+# 30/10/2026 dev40 > dev41 - 0.6.0-batch-dev41
+
+- Fix champion receipt when native prisons or other heroes exhaust the preferred class. Prefer an unused hero of the original champion class, then safely use an unused hero of the other class from the same faction. Convert only that freshly validated slot through the documented native class command; the champion retains its intended class and matching commander.
+- Preserve protection for owned heroes, map/prison heroes, all Tavern offers, unavailable slots, experienced heroes/commanders, existing equipment ledgers and saved Commander training. Never borrow another faction or campaign slot. Repeated/pending deliveries preserve progression, resources and the bound quest hero.
+- 55 targeted offline tests pass. A protected copy of the reported save confirmed that every Necromancer slot was owned or placed while unused Death Knights remained. Native receipt with this correction and real save/load/Lobby acceptance remain pending; offline fixtures are not native gameplay evidence.
+- Close the game before updating through the existing Mod Browser entry. Restart fully and start a NEW map on matching41 clients. Existing saves retain embedded scripts; this release does not migrate them and does not use F12.
+
 # 29/10/2026 dev39 > dev40 - 0.6.0-batch-dev40
 
 - Fix a delayed crash after the Commander return-to-backpack confirmation. Long custom set descriptions could overwrite native interface globals even when the transfer was cancelled. Show a short confirmation while retaining full details on right-click and the provider's normal transfer/cancel behavior for all21custom Commander items.

@@ -434,7 +434,18 @@ ZVSE2
 !?FU(CFH_FreeHero);
 !#VA(owner:x) (kind:x) (result:x);
 !!VR(result):S-1;
+!!FU|(owner)<0/(owner)>7/(kind)<0/(kind)>8:E;
 !!FU(CFH_Identity):P(kind)/?i/?(wanted:y)/?i;
+!!FU(CFH_FreeHeroClass):P(owner)/(wanted)/?(result);
+!!FU&(result)>=0:E;
+; Native prisons can exhaust one class while its faction sibling is unused.
+; Preserve preferred-class priority; never borrow from another faction.
+!!VR(sibling:y):S(kind) *4 +1 -(wanted);
+!!FU(CFH_FreeHeroClass):P(owner)/(sibling)/?(result);
+
+!?FU(CFH_FreeHeroClass);
+!#VA(owner:x) (wanted:x) (result:x);
+!!VR(result):S-1;
 !!VR(mask:y):S1 Sd<<(owner);
 !!re (hero:y)/0/143;
  ; Zero XP does not prove a fresh slot: a dismissed level-one hero can retain
@@ -513,6 +524,11 @@ ZVSE2
 !!if&(delivery)=0;
  !!FU(CFH_FreeHero):P(owner)/(kind)/?(available:y);
  !!FU&(available)<>(hero):E;
+ ; HE:B2 is the documented class setter. Only the freshly revalidated unused
+ ; slot is converted; pending/repeated deliveries never reset an owned hero.
+ !!FU(CFH_Identity):P(kind)/?i/?(rewardClass:y)/?i;
+ !!HE(hero):B2/(rewardClass) B2/?(readClass:y);
+ !!FU&(readClass)<>(rewardClass):E;
  !!SN:W^cfh.v1.delivery.%(owner).%(kind)^/(saved);
 !!en;
 !!SN&(initialized)=0:W^cfh.v1.pending.%(hero)^/(expected);

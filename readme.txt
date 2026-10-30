@@ -1,7 +1,10 @@
-LATEST PUBLIC BUILD: 0.6.0-batch-dev40
+LATEST PUBLIC BUILD: 0.6.0-batch-dev41
 
 --------------------------------------------------------------
 CHANGELOG
+
+30/10/2026 dev40 > dev41
+Fix champion allocation when the preferred native class is exhausted: safely use a fresh same-faction sibling slot, keeping the intended Champion class. Existing saves are not migrated; NEW map and matching41 required. Native receipt/save/Lobby retest remains pending.
 
 29/10/2026 dev39 > dev40
 - Fix delayed interface crashes caused by long Commander return-to-backpack confirmations, including cancelled transfers. Full set details remain available with right-click. All21custom Commander items use the safe confirmation.
@@ -28,11 +31,6 @@ CHANGELOG
 - Remove Ctrl+N, separate commander menus and resource purchases. Right-click an equipped part with all six matching parts worn to assemble; right-click the equipped relic to dismantle. Preserve other items and growth; refuse safely if there is insufficient backpack space.
 - Add a5%chance of one of18commander parts after each confirmed human victory, with no whole relic or AI rewards. Keep two copies of every part on the map,180finds, external monsters and hero rewards at18+7k unchanged.
 - Restart fully, matching36 and NEW map required. Targeted checks pass; actual native UI/battle/save/Lobby acceptance remains pending. No installed-file changes or game control.
-
-28/10/2026 dev34 > dev35
-- New commander parts and relics use the normal Commander icon and actual six equipment slots. Green N/6 progress counts those slots; one assembled relic leaves five slots free. Ctrl+N is only for forging/assembly. New items cannot equip on heroes.
-- Add native translucent ground shadows to all90 individual map artifacts; preserve artwork, one-cell footprints, two copies per item, external monsters and level18+7k rewards.
-- Full restart, matching35 and NEW map required. Targeted checks pass; native UI/battle/save/Lobby acceptance remains pending. No installed-file or game-control changes.
 
 --------------------------------------------------------------
 
