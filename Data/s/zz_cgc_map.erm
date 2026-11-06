@@ -80,27 +80,15 @@ ZVSE2
 !!VR(art)&(index)=75:S534;
 !!VR(art)&(index)=76:S535;
 !!VR(art)&(index)=77:S536;
-!!VR(art)&(index)=78:S537;
-!!VR(art)&(index)=79:S538;
-!!VR(art)&(index)=80:S539;
-!!VR(art)&(index)=81:S540;
-!!VR(art)&(index)=82:S541;
-!!VR(art)&(index)=83:S542;
-!!VR(art)&(index)=84:S543;
-!!VR(art)&(index)=85:S544;
-!!VR(art)&(index)=86:S545;
-!!VR(art)&(index)=87:S546;
-!!VR(art)&(index)=88:S547;
-!!VR(art)&(index)=89:S548;
 !?FU(CGC_MapPart);
 !#VA(placed:x) (art:x);
-!!VR(copy:y):S(placed) :90;
-!!VR(item:y):S(placed) %90 +(copy) %90;
+!!VR(copy:y):S(placed) :78;
+!!VR(item:y):S(placed) %78 +(copy) %78;
 !!FU(CGC_MapArt):P(item)/?(art);
 !?FU(CGC_IsMapArtifact);
 !#VA(art:x) (valid:x);
 !!FU(CFS_IsComponent):P(art)/?(valid);
-!!VR(valid)&(art)>=531/(art)<=548:S1;
+!!VR(valid)&(art)>=531/(art)<=536:S1;
 
 ; Read-only tile checks use shipped TR:P/E/T contracts. Never change terrain,
 ; remove other objects or create on water/rock, entrances or blocked tiles.
@@ -135,8 +123,8 @@ ZVSE2
 !#VA(size:x) (underground:x);
 !!SN:W^cgc.world.size^/(size);
 !!VR(cells:y):S(size) *(size);
-!!VR(wanted:y):S360;
-!!VR(wanted)&(underground)>0:S180;
+!!VR(wanted:y):S312;
+!!VR(wanted)&(underground)>0:S156;
 !!re (z:y)/0/(underground);
  !!VR(position:y):S(size) *127 +(z) *31 %(cells);
  !!re (scan:y)/1/(cells);
@@ -198,8 +186,8 @@ ZVSE2
 !?FU(CGC_MapCounts);
 !#VA(count:x) (okay:x);
 !!VR(okay):S0;
-!!FU&(count)<>180:E;
-!!re (item:y)/0/89;
+!!FU&(count)<>156:E;
+!!re (item:y)/0/77;
  !!FU(CGC_MapArt):P(item)/?(wanted:y);
  !!VR(copies:y):S0;
  !!re (index:y)/1/(count);

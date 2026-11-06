@@ -352,7 +352,7 @@ ZVSE2
 !!VR(term):S(victory) %65521 *17;
 !!VR(key):+(term) %65521 *25173 +13849 %65521;
 !!VR(chance:y):S(key) %100;
-!!VR(art)&(chance)<5:S(key) :100 %18 +531;
+!!VR(art)&(chance)<5:S(key) :100 %6 +531;
 
 !?FU(CGC_RollBattle);
 !#VA(hero:x) (owner:x);

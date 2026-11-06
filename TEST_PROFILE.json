@@ -1,5 +1,5 @@
 {
-  "status": "Observed dependency reference30/10/2026; dev41 targeted offline checks; native receipt and two-computer acceptance pending",
+  "status": "Observed reference profile; dev42 package checked offline. Additional HD render paths and two-computer play are pending native acceptance.",
   "active_mods_low_to_high_priority": [
     "WoG",
     "Era Erm Framework",
@@ -119,7 +119,7 @@
   "limitations": [
     "Observed installed files; no complete native lifecycle or two-computer validation"
   ],
-  "mod_version": "0.6.0-batch-dev41",
+  "mod_version": "0.6.0-batch-dev42",
   "observed_utc": "2026-10-25",
   "era_platform_version": "2.299",
   "disabled_candidates": [

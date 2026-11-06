@@ -1,4 +1,4 @@
-# Full-set training - dev39
+# Full-set training
 
 Each Commander and set keeps its own eligible victory count. Survive12victories
 with all six different matching parts or their equipped relic to gain +1to all
@@ -10,21 +10,21 @@ bonus is active only with that complete set equipped. Another Commander does
 not inherit training by receiving the gear. Partial sets, backpack ownership,
 dead/disabled Commanders and AI do not earn training. No retroactive credit.
 
-# Commander artifacts - dev37
+# Ember Oath Commander set
 
-![Commander relic artwork; preview, not gameplay](Screens/commander-relics.png)
+
 
 ## Obtain and equip
 
 Find individual parts on the map or after battle. Each confirmed human victory
-has a5%chance to discover one random part from the18commander parts. All three
-sets are eligible for every town and commander class. No whole relic is awarded.
+has a 5% chance to discover one of the six Ember Oath parts. The set is
+available to every town and Commander class. No whole relic is awarded.
 AI receives no custom artifact. Ordinary battle loot remains unchanged.
 Rewards enter the backpack and show the normal artifact picture; they never
 silently equip. A full backpack consumes that attempt without rerolling.
 
-The map still contains exactly two copies of each of72hero-set parts and18
-commander parts:180finds,90/90with underground. Separate adventure-map monsters
+A new random map contains exactly two copies of each of 72 hero-set parts and
+six Commander parts, for 156 finds. With underground, each layer has 78 finds. Separate adventure-map monsters
 and ordinary native guarding/movement rules are unchanged. Hero-set parts at
 levels18,25,32,39and every7levels thereafter remain separate and unchanged.
 
@@ -54,15 +54,13 @@ Backpack parts must be equipped before assembly; full relics never drop.
 | Set | Favored modifiers |
 | --- | --- |
 | Ember Oath | Attack |
-| Iron Covenant | Defense, Damage, Health |
-| Astral Conclave | Spell, Passive |
 
 Each active part adds5percentage points to all eight ACM modifiers: Attack,
 Defense, Damage, Health, Speed, Spell, Passive and Aura. Matching2/4/6parts add
 another5/5/10points to all eight. A full set adds40more to its favored modifiers.
 Two matching parts therefore give15to all eight. A complete set or relic gives
 50to the base modifiers and90total to favored modifiers. Damage always equals
-Health:50%for full Ember/Astral and90%for full Iron. Thresholds are included, not
+Health at 50% with the full Ember Oath set. Thresholds are included, not
 added twice. Existing ACM bonuses and original artifact abilities/growth remain.
 Represented same-set parts do not duplicate their relic's bonuses.
 
@@ -71,11 +69,11 @@ Collected N/6 includes the backpack; owned names are green and duplicate copies
 show (2), (3), etc. A relic represents its six parts. Carried items grant no
 bonus. Ordinary artifacts show their original descriptions.
 
-![All18 original commander part icons](Screens/commander-sets.png)
+
 
 ## Updating and acceptance
 
-Close the game before updating, restart fully and use matching dev37 clients
+Close the game before updating, restart fully and use matching dev42 clients
 with a NEW map. Old saved scripts are not migrated; do not use F12. Keep the
 metadata-listed dependencies and incompatibilities. The native dialog bridge
 checks the shipped instruction contracts after providers have loaded.

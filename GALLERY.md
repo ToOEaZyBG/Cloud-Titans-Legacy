@@ -1,4 +1,4 @@
-## Commander sets — dev31
+## Historical Commander artwork — dev31
 
 18 original new items in three universal sets. Artwork preview; not gameplay.
 
@@ -109,7 +109,7 @@ Full-size approved portraits. Artwork previews; not gameplay screenshots.
 
 ![Conflux assembled relic close-up](Screens/relic-conflux.png)
 
-## Dev32 — assembled commander relics
+## Historical artwork from dev32 — assembled commander relics
 
 ![Ember Oath, Iron Covenant and Astral Conclave relics](Screens/commander-relics.png)
 

@@ -1,7 +1,14 @@
-LATEST PUBLIC BUILD: 0.6.0-batch-dev41
+LATEST PUBLIC BUILD: 0.6.0-batch-dev42
+
+## REQUIRED MODS
+## WOG, ERA ERM FRAMEWORK, WOG SCRIPTS, GAME ENHANCEMENT MOD, ADVANCED CLASSES MOD
 
 --------------------------------------------------------------
 ## CHANGELOG
+
+06/11/2026 dev41 > dev42
+- Automatically detect three checked HD Backpack builds for the Sort button. Show REQUIRED MODS above the changelog.
+- Keep one universal Commander set, Ember Oath. Two copies per part mean 12 Commander finds and 156 total custom finds. Battle rewards draw only from its six parts. Use matching dev42 and a NEW map.
 
 30/10/2026 dev40 > dev41
 Fix champion allocation when the preferred native class is exhausted: safely use a fresh same-faction sibling slot, keeping the intended Champion class. Existing saves are not migrated; NEW map and matching41 required. Native receipt/save/Lobby retest remains pending.
@@ -27,11 +34,6 @@ Fix champion allocation when the preferred native class is exhausted: safely use
 - Commander Damage percentage equals Health for all parts, full sets and relics: Ember50/50, Iron90/90, Astral50/50 at full set. Hero sets are unchanged.
 - Full restart, matching37 and NEW map required. Earlier native equipment spot checks pass; latest tooltip/balance changes and battle/save/Lobby acceptance require testing.
 
-28/10/2026 dev35 > dev36
-- Remove Ctrl+N, separate commander menus and resource purchases. Right-click an equipped part with all six matching parts worn to assemble; right-click the equipped relic to dismantle. Preserve other items and growth; refuse safely if there is insufficient backpack space.
-- Add a5%chance of one of18commander parts after each confirmed human victory, with no whole relic or AI rewards. Keep two copies of every part on the map,180finds, external monsters and hero rewards at18+7k unchanged.
-- Restart fully, matching36 and NEW map required. Targeted checks pass; actual native UI/battle/save/Lobby acceptance remains pending. No installed-file changes or game control.
-
 --------------------------------------------------------------
 
 ## HELP IMPROVE CLOUD TITANS LEGACY
@@ -49,7 +51,7 @@ Legacy of the Cloud Titans adds an artifact-collection and hero-progression syst
 
 ## WHAT YOU GET
 
-- Three universal commander sets with18 new items and three assembled relics. Give an item from the backpack to the normal Commander icon; it appears in one of the six real Commander-screen slots. Right-click a part after equipping all six matching parts to assemble the relic; right-click the equipped relic to dismantle. No commander shop or resource cost. Bonuses count actual commander equipment only.
+- One universal Commander set, Ember Oath, with six parts and one assembled relic. Give an item from the backpack to the normal Commander icon; it appears in one of the six real Commander-screen slots. Right-click a part after equipping all six matching parts to assemble the relic; right-click the equipped relic to dismantle. No commander shop or resource cost. Bonuses count actual commander equipment only.
 - Nine faction sets: eight components and one assembled relic for each town.
 - 72 components and nine complete relics in total, with themed artifact artwork.
 - Individual item effects and cumulative bonuses for wearing different matching pieces.
@@ -60,7 +62,7 @@ Legacy of the Cloud Titans adds an artifact-collection and hero-progression syst
 
 ## FIND AND EARN COMPONENTS
 
-Map exploration: each successful NEW random map contains2 copies of each of72 faction components and18 commander items,180 finds in total. With underground,90 sites are placed on each layer and each item appears on both layers. Existing eligible artifact sites are reused; additional items use free passable land next to existing adventure-map monsters, without replacing other objects or changing those armies. Complete relics never appear: assemble them from their parts. If the map cannot fit the complete plan safely, generation reports an error instead of silently claiming success. All selected sites must pass the original external-monster proximity check. No embedded armies or extra scripted battles are added; ordinary map movement and guarding rules apply.
+Map exploration: each successful NEW random map contains two copies of each of 72 hero-set parts and six Ember Oath parts, for 156 finds in total. With underground, 78 sites are placed on each layer and each item appears on both layers. Existing eligible artifact sites are reused; additional items use free passable land next to existing adventure-map monsters, without replacing other objects or changing those armies. Complete relics never appear: assemble them from their parts. If the map cannot fit the complete plan safely, generation reports an error instead of silently claiming success. All selected sites must pass the original external-monster proximity check. No embedded armies or extra scripted battles are added; ordinary map movement and guarding rules apply.
 
 Faction quests: open Faction set quests in your town menu. Each component has an objective and a progress counter. Defeat the listed enemies or complete the required battles, then return with the recorded qualified hero to claim it. Completed objectives stay green while that hero is away. Read the selected objective for its level and town requirements. Choose Accept with the hero in town. Only that recorded hero earns progress. Your first component or champion quest permanently locks one faction for this game. Death or dismissal resets unfinished progress; a replacement may accept for the same faction. Previously claimed component rewards remain claimed, once per player. Finding a piece elsewhere does not consume that quest reward.
 
@@ -78,7 +80,7 @@ Visit a matching owned developed town while wearing the relic to link its weekly
 
 ## BACKPACK AND SET CHECKLISTS
 
-Click Sort in the HD Backpack window. Names are grouped alphabetically; scroll modifiers, duplicates, equipment and backpack capacity are preserved. Put down any held item first. The current reviewed profile supports artifact IDs0-551; unknown extensions are left unchanged.
+Click Sort in the HD Backpack window. The mod detects supported WoG Backpack builds automatically. The button is available when the loaded HD build matches a checked Backpack layout. Names are grouped alphabetically; scroll modifiers, duplicates, equipment and backpack capacity are preserved. Put down any held item first. The current reviewed profile supports artifact IDs0-551; unknown extensions are left unchanged.
 
 Our artifact descriptions list all eight matching parts: gold means worn, green means owned but not worn, gray means missing. An assembled relic represents all eight. Only equipped pieces contribute set bonuses.
 
@@ -129,7 +131,7 @@ Equip six different matching parts on the Commander, then right-click one of the
 
 ## COMMANDER PARTS AFTER BATTLE
 
-Every confirmed human victory has a5%chance to discover one random commander part. All18parts can appear; complete relics and AI rewards are excluded. Ordinary battle loot and guaranteed hero-set level rewards are retained. A full backpack cannot receive the part and consumes that attempt without rerolling.
+Every confirmed human victory has a5%chance to discover one random commander part. Only the six Ember Oath parts can appear; complete relics and AI rewards are excluded. Ordinary battle loot and guaranteed hero-set level rewards are retained. A full backpack cannot receive the part and consumes that attempt without rerolling.
 
 
 ## SUPPORT THE NEXT ADVENTURE

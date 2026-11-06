@@ -1,14 +1,14 @@
 {
-  "version": "0.6.0-batch-dev41",
+  "version": "0.6.0-batch-dev42",
   "distribution": "EXPERIMENTAL ONLINE LOBBY TEST",
   "new_map_required": true,
   "sequential_turns_only": true,
-  "offline_tests_passed": 55,
+  "offline_tests_passed": 48,
   "native_runtime_accepted": false,
   "two_computer_accepted": false,
   "production_ready": false,
   "candidate_validation": {
-    "global_frame_cache_names": 652,
+    "global_frame_cache_names": 640,
     "status": "OFFLINE CHECKS PASSED",
     "functions": 166,
     "new_sets": 8,
@@ -22,7 +22,7 @@
     "AI-turn crash",
     "fullscreen crash"
   ],
-  "reviewed_candidate_zip_sha256": "906c304352354cf74706badfe6cf60efea2de2981a54d69923fbc305f8795aa5",
+  "reviewed_candidate_zip_sha256": "e454318b7d14c62ed2b25a03c3aa6f2eb2efa3bda644730764be8b717d73a27a",
   "export_overrides": [
     "mod.json catalog caption/description",
     "Readme.md",

@@ -1,3 +1,10 @@
+# 06/11/2026 dev41 > dev42 - 0.6.0-batch-dev42
+
+- Automatically detect three checked HD Backpack builds for the Sort button. Show REQUIRED MODS above the changelog.
+- Keep one universal Commander set, Ember Oath. Two copies per part mean 12 Commander finds and 156 total custom finds. Battle rewards draw only from its six parts. Use matching dev42 and a NEW map.
+
+- 48 targeted offline tests pass. In-game rendering on the additional HD builds and two-computer Lobby play remain to be checked.
+
 # 30/10/2026 dev40 > dev41 - 0.6.0-batch-dev41
 
 - Fix champion receipt when native prisons or other heroes exhaust the preferred class. Prefer an unused hero of the original champion class, then safely use an unused hero of the other class from the same faction. Convert only that freshly validated slot through the documented native class command; the champion retains its intended class and matching commander.

@@ -1,3 +1,9 @@
+# 06/11/2026 dev41 > dev42 - 0.6.0-batch-dev42
+
+- Automatically detect three checked HD Backpack builds for the Sort button. Show REQUIRED MODS above the changelog.
+- Keep one universal Commander set, Ember Oath. Two copies per part mean 12 Commander finds and 156 total custom finds. Battle rewards draw only from its six parts. Use matching dev42 and a NEW map.
+
+- In-game rendering on the additional HD builds and two-computer Lobby play remain to be checked.
 # 30/10/2026 dev40 > dev41 - 0.6.0-batch-dev41
 
 - Fix champion receipt when native prisons or other heroes exhaust the preferred class. Prefer an unused hero of the original champion class, then safely use an unused hero of the other class from the same faction. Convert only that freshly validated slot through the documented native class command; the champion retains its intended class and matching commander.
@@ -153,7 +159,7 @@ Observe AI encounters and captured loot: no custom part or relic should remain w
 
 Accept each quest family with a known hero. Switch town heroes and leave town: status must retain the recorded hero; fulfilled component objectives remain green. A substitute cannot claim or add victories. Lose the bound hero, then accept with a replacement: unfinished counters reset, the original faction remains locked, and claimed rewards stay claimed. Save/reload at each phase.
 
-Open HD Backpack and click Sort at its top-right. Put down any artifact held on the cursor first. The popup closes and reopens after sorting so its cells reflect the current order. The inspected HD5.8R22 WoG provider is supported; Ctrl+N in the hero screen, then Sort backpack by name, remains the fallback if the button is unavailable. The town Inventory tools entry is removed. Check duplicates, distinct scroll spells, equipment and counts before/after, repeated sort and actual save/reload. Review all eight colored component names in an artifact tooltip; green=equipped, gray=not equipped. The set heading shows the current equipped count (N/8); an assembled relic counts as all eight. Backpack items do not count.
+Open HD Backpack and click Sort at its top-right. Put down any artifact held on the cursor first. The popup closes and reopens after sorting so its cells reflect the current order. The mod detects supported HD Backpack builds automatically. Unknown builds keep their ordinary Backpack without the Sort button. The town Inventory tools entry is removed. Check duplicates, distinct scroll spells, equipment and counts before/after, repeated sort and actual save/reload. Review all eight colored component names in an artifact tooltip; green=equipped, gray=not equipped. The set heading shows the current equipped count (N/8); an assembled relic counts as all eight. Backpack items do not count.
 
 If the stack-experience rank table is blank, inspect the Stack Experience Rebalance configuration. Its own Runtime INI overrides its shipped JSON defaults. Enable Rebalance, WoG Stats, WoG Abilities and WoG Neutrals through that provider's configuration. The recommended Medium preset is +100% Health and Damage, +10 Attack/Defense and +10% Speed at rank10. TUM options require that provider and are separate. Restart/load after confirming. Each peer configures this separately; a Cloud Titans update does not overwrite another mod's options.
 

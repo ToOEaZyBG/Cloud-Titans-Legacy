@@ -3097,11 +3097,13 @@ Includes all eight artifacts. Extra copies give no further bonus.
 ; Uses official SN:H artifact-name lookup and the reviewed full-record bridge.
 !?FU(OnStartOrLoad);
 !!SN:L^cfs_relic_book.era^/?(library:y);
+!!SN:W^cqt.sort.popup.ready^/0;
 !!FU&(library)=0:E;
 !!SN:A(library)/^CFSSortPrepare^/?(prepare:y) A(library)/^CFSSortApply^/?(apply:y);
 !!SN:W^cqt.sort.prepare^/(prepare) W^cqt.sort.apply^/(apply);
 !!SN:W^cqt.sort.request^/(CQT_RequestSort);
 !!SN:A(library)/^CFSBackpackReady^/?(popup:y);
+!!FU&(popup)=0:E;
 !!SN:E(popup)/(CALLCONV_STDCALL);
 !!SN:W^cqt.sort.popup.ready^/v1;
 
