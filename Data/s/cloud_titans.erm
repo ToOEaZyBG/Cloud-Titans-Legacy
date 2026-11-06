@@ -3099,6 +3099,8 @@ Includes all eight artifacts. Extra copies give no further bonus.
 !!SN:L^cfs_relic_book.era^/?(library:y);
 !!SN:W^cqt.sort.popup.ready^/0;
 !!FU&(library)=0:E;
+!!SN:A(library)/^CFSBookReady^/?(book:y);
+!!SN&(book)>0:E(book)/(CALLCONV_STDCALL);
 !!SN:A(library)/^CFSSortPrepare^/?(prepare:y) A(library)/^CFSSortApply^/?(apply:y);
 !!SN:W^cqt.sort.prepare^/(prepare) W^cqt.sort.apply^/(apply);
 !!SN:W^cqt.sort.request^/(CQT_RequestSort);

@@ -1,10 +1,15 @@
-LATEST PUBLIC BUILD: 0.6.0-batch-dev42
+LATEST PUBLIC BUILD: 0.6.0-batch-dev43
 
 REQUIRED MODS
 WOG, ERA ERM FRAMEWORK, WOG SCRIPTS, GAME ENHANCEMENT MOD, ADVANCED CLASSES MOD
 
 --------------------------------------------------------------
 CHANGELOG
+
+06/11/2026 dev42 > dev43
+- Skip invalid negative artifact entries in both the Dragon Utopia reward display and delivery.
+- Show the actual Commander item name when confirming a return to the backpack.
+- Build the relic book page after the HD provider, with separate cells and a resource-loading check. Locate the HD Backpack by its native code layout instead of its version stamp. Use matching dev43 and a NEW map.
 
 06/11/2026 dev41 > dev42
 - Automatically detect three checked HD Backpack builds for the Sort button. Show REQUIRED MODS above the changelog.
@@ -27,12 +32,6 @@ Fix champion allocation when the preferred native class is exhausted: safely use
 - Fix missing map shadows for all90 parts by enabling the native shadow drawing mask in both MSK/MSG and packed resources.
 - Add a narrow translucent silhouette and a stronger lower-left ground shadow so pale and thin items stand out on textured terrain. Preserve painted subjects, inventory icons and one-cell footprints.
 - All gameplay and commander bonuses remain unchanged. Restart and use a NEW map on matching38 clients. Actual in-game appearance awaits player testing.
-
-29/10/2026 dev36 > dev37
-- Fix the Commander crash with new set icons on the shipped WoG Native Dialogs renderer.
-- Show collected green parts, duplicate copy counts and separate Equipped/Collected N/6 progress. Backpack ownership grants no combat bonus.
-- Commander Damage percentage equals Health for all parts, full sets and relics: Ember50/50, Iron90/90, Astral50/50 at full set. Hero sets are unchanged.
-- Full restart, matching37 and NEW map required. Earlier native equipment spot checks pass; latest tooltip/balance changes and battle/save/Lobby acceptance require testing.
 
 --------------------------------------------------------------
 
@@ -80,7 +79,7 @@ Visit a matching owned developed town while wearing the relic to link its weekly
 
 BACKPACK AND SET CHECKLISTS
 
-Click Sort in the HD Backpack window. The mod detects supported WoG Backpack builds automatically. The button is available when the loaded HD build matches a checked Backpack layout. Names are grouped alphabetically; scroll modifiers, duplicates, equipment and backpack capacity are preserved. Put down any held item first. The current reviewed profile supports artifact IDs0-551; unknown extensions are left unchanged.
+Click Sort in the HD Backpack window. The mod locates the Backpack controls from the loaded HD provider without relying on its version number. Names are grouped alphabetically; scroll modifiers, duplicates, equipment and backpack capacity are preserved. Put down any held item first. The current reviewed profile supports artifact IDs0-551; unknown extensions are left unchanged.
 
 Our artifact descriptions list all eight matching parts: gold means worn, green means owned but not worn, gray means missing. An assembled relic represents all eight. Only equipped pieces contribute set bonuses.
 

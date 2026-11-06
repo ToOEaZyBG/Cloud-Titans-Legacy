@@ -1,3 +1,9 @@
+# 06/11/2026 dev42 > dev43 - 0.6.0-batch-dev43
+
+- Skip invalid negative artifact entries in both the Dragon Utopia reward display and delivery.
+- Show the actual Commander item name when confirming a return to the backpack.
+- Build the relic book page after the HD provider, with separate cells and a resource-loading check. Locate the HD Backpack by its native code layout instead of its version stamp. Use matching dev43 and a NEW map.
+
 # 06/11/2026 dev41 > dev42 - 0.6.0-batch-dev42
 
 - Automatically detect three checked HD Backpack builds for the Sort button. Show REQUIRED MODS above the changelog.
