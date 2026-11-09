@@ -98,9 +98,10 @@
     "HW_SOD.dll": "6c9d318283686fcc7d4fe037560d2adda7ba03769370c97cddbcb1928b2635c1"
   },
   "era_platform_version": "2.303",
-  "mod_version": "0.6.0-batch-dev44",
+  "mod_version": "0.6.0-batch-dev45",
   "limitations": [
     "Offline tests and installed-file verification do not run ERA or Online Lobby."
   ],
-  "observed_date": "2026-11-09"
+  "observed_date": "2026-11-09",
+  "observed_installed_cloud_titans_version": "0.6.0-batch-dev44"
 }

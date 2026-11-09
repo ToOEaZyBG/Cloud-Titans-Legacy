@@ -1,10 +1,13 @@
-LATEST PUBLIC BUILD: 0.6.0-batch-dev44
+LATEST PUBLIC BUILD: 0.6.0-batch-dev45
 
 REQUIRED MODS
 WOG, ERA ERM FRAMEWORK, WOG SCRIPTS, GAME ENHANCEMENT MOD, ADVANCED CLASSES MOD
 
 --------------------------------------------------------------
 CHANGELOG
+
+09/11/2026 dev44 > dev45
+- Right-click an equipped Commander part or relic to see its set bonuses and progress. Use Shift + right-click to assemble or dismantle.
 
 09/11/2026 dev43 > dev44
 - Living Skull searches for Cloud Titans parts by their real map identity and shows the actual item in the weekly reveal. Relic delivery follows the existing restriction.
@@ -26,12 +29,6 @@ Fix champion allocation when the preferred native class is exhausted: safely use
 - Fix delayed interface crashes caused by long Commander return-to-backpack confirmations, including cancelled transfers. Full set details remain available with right-click. All21custom Commander items use the safe confirmation.
 - Preserve training, owned-green hero parts, artwork, inventory and third-party files. Close the game, update to matching40and restart; use a NEW map for the complete release test.
 
-29/10/2026 dev38 > dev39
-- Hero-set part names are green when owned, including backpack parts and parts represented by a carried relic. N/8 and active thresholds still count equipped parts only, across all nine sets.
-- Remove the extra "green names show owned parts." sentence from commander tooltips.
-- A complete commander set or its relic gains +1 to all seven basic Commander stats per12victories survived. Training is saved per Commander and set, retained across assembly/removal, and active only with that complete set equipped.
-- Keep dev38 map shadows. Restart, matching39 and NEW map required; actual native battle/save/Lobby acceptance remains pending.
-
 --------------------------------------------------------------
 
 HELP IMPROVE CLOUD TITANS LEGACY
@@ -49,7 +46,7 @@ Legacy of the Cloud Titans adds an artifact-collection and hero-progression syst
 
 WHAT YOU GET
 
-- One universal Commander set, Ember Oath, with six parts and one assembled relic. Give an item from the backpack to the normal Commander icon; it appears in one of the six real Commander-screen slots. Right-click a part after equipping all six matching parts to assemble the relic; right-click the equipped relic to dismantle. No commander shop or resource cost. Bonuses count actual commander equipment only.
+- One universal Commander set, Ember Oath, with six parts and one assembled relic. Give an item from the backpack to the normal Commander icon; it appears in one of the six real Commander-screen slots. Right-click an equipped item for set bonuses. Shift + right-click a part with all six matching parts equipped to assemble, or the equipped relic to dismantle. No commander shop or resource cost. Bonuses count actual commander equipment only.
 - Nine faction sets: eight components and one assembled relic for each town.
 - 72 components and nine complete relics in total, with themed artifact artwork.
 - Individual item effects and cumulative bonuses for wearing different matching pieces.
@@ -125,7 +122,7 @@ Keep the save and Debug folder locally. Record the installed version, faction, e
 
 COMMANDER RELIC ASSEMBLY
 
-Equip six different matching parts on the Commander, then right-click one of them and confirm assembly. The relic occupies the clicked slot, retaining full-set bonuses and leaving five slots free. Right-click the equipped relic to dismantle. Existing original items and battle growth are preserved; parts without a free commander slot go into the backpack. Green N/6 headings and part checklists show active progress; two matching parts retain their2/6bonus. Complete relics never drop. There is no commander purchase menu or resource cost. See COMMANDER_SETS.md.
+Equip six different matching parts on the Commander, then Shift + right-click one of them and confirm assembly. The relic occupies the clicked slot, retaining full-set bonuses and leaving five slots free. Shift + right-click the equipped relic to dismantle. Right-click an equipped item to see bonuses and progress. Existing original items and battle growth are preserved; parts without a free commander slot go into the backpack. Green N/6 headings and part checklists show active progress; two matching parts retain their2/6bonus. Complete relics never drop. There is no commander purchase menu or resource cost. See COMMANDER_SETS.md.
 
 COMMANDER PARTS AFTER BATTLE
 

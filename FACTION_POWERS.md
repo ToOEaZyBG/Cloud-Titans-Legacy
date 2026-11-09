@@ -1,3 +1,9 @@
+# 09/11/2026 dev44 > dev45 - 0.6.0-batch-dev45
+
+- Right-click an equipped Commander part or relic to see its set bonuses and progress. Use Shift + right-click to assemble or dismantle.
+
+Close the game before updating and use matching dev45 clients on a new map.
+
 # 09/11/2026 dev43 > dev44 - 0.6.0-batch-dev44
 
 - Living Skull searches for Cloud Titans parts by their real map identity and shows the actual item in the weekly reveal. Relic delivery follows the existing restriction.

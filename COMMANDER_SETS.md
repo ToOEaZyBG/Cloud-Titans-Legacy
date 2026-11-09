@@ -36,13 +36,13 @@ Carried items give no bonus; disabled/dead or AI commanders get no custom bonus.
 
 ## Assemble and dismantle on the item
 
-Equip all six different matching parts on the Commander, then right-click one
-of them. Confirm assembly in the normal Yes/No artifact dialog. The Commander
+Right-click an equipped part or relic to see its bonuses and set progress.
+Equip all six different matching parts, then Shift + right-click one of them. Confirm assembly in the normal Yes/No artifact dialog. The Commander
 window closes before the change is committed; the six parts become one equipped
 relic in the clicked slot. Five slots become available for other artifacts.
 Reopen the Commander screen to inspect it. Declining changes nothing.
 
-Right-click an equipped relic to confirm dismantling. Original equipped items
+Shift + right-click an equipped relic to confirm dismantling. Original equipped items
 and all their accumulated battle counts remain unchanged. Parts fill free
 commander positions; any remainder goes into free backpack cells. If there is
 insufficient room, the entire change is refused without losing the relic or
@@ -73,7 +73,7 @@ bonus. Ordinary artifacts show their original descriptions.
 
 ## Updating and acceptance
 
-Close the game before updating, restart fully and use matching dev44 clients
+Close the game before updating, restart fully and use matching dev45 clients
 with a NEW map. Old saved scripts are not migrated; do not use F12. Keep the
 metadata-listed dependencies and incompatibilities. The native dialog bridge
 checks the shipped instruction contracts after providers have loaded.

@@ -429,7 +429,7 @@ ZVSE2
 
 Hero sets: equip different parts to activate their bonuses. Equip all eight matching parts to assemble the relic. Backpack parts do not activate bonuses.
 
-Commander sets: equip parts in the six original Commander artifact slots. Right-click a part when all six matching parts are equipped to assemble; right-click the equipped relic to dismantle. Confirm the offer, then reopen the Commander screen to inspect the result. No resource cost.
+Commander sets: equip parts in the six original Commander artifact slots. Right-click an item to see its set bonuses. Shift + right-click a part when all six matching parts are equipped to assemble, or the equipped relic to dismantle. Confirm the offer, then reopen the Commander screen to inspect the result. No resource cost.
 
 Parts appear on new random maps (two of each), with external monster guards. Each confirmed human victory also has a 5% chance to award one Commander part. Complete custom relics never drop.^;
 
