@@ -247,6 +247,17 @@ Variables that MUST be preserved outside this script: z454
   !!DO(WOG_12_FindSpellByName)/(SPELL_FIRST)/(SPELL_LAST_WOG)/1:P;
 !!en;
 
+!!if&v27=(OBJ_ARTIFACT);
+  !!FU(CGC_IsMapArtifact):Pv30/?y36;
+  !!if&y36=1;
+    !!FU(CGC_SkullServices):Pv30/?y37;
+    !!VRy-4&y37=1:+1;
+    !!HE(CURRENT_HERO)&y37=1:P?y-6/?y-7/?y-8;
+    !!POy-6/y-7/y-8&y37=1:O$color$ Ny-4 V0/$day$;
+    !!FU:E;
+  !!en;
+!!en;
+
  [If artifact is a valid artifact, display dialogue asking if player will pay for a search]
 !!if&v30>=(ART_FIRST);
   !!IF&v27=(OBJ_ARTIFACT):Q1/(PIC_TYPE_ART)/v30/(MSG_TYPE_QUESTION)/z112016;
@@ -611,8 +622,11 @@ Variables that MUST be preserved outside this script: z454
 
 !?FU(WOG_12_AskIfBroughtArtifact);
 !!FU(CGC_SkullSiteArt):Px1/x2/x3/?y9;
-!!IF&y9>=0:Q1/(PIC_TYPE_ART)/y9/(MSG_TYPE_MES)/^%T(wog.12.cantBring)^;
-!!FU&y9>=0:E;
+!!if&y9>=0;
+  !!HE(CURRENT_HERO):N?y10;
+  !!FU(CGC_SkullOffer):Py10/3/y9/x1/x2/x3/?i;
+  !!FU:E;
+!!en;
 
  [Artifact # is v30]
  [Doesn't apply to Pandora's Box (v27=6), War Machines, Spell Books or The Grail]
@@ -667,3 +681,111 @@ Variables that MUST be preserved outside this script: z454
 !!UN:Ly5/y6/y7/0; [Move view back to hero]
 
 ** End of Script **
+
+; Custom map components have one Mithril tariff shared by UI and receipt.
+!?FU(CGC_SkullPrice);
+!#VA(stage:x) (cost:x);
+!!VR(cost):S0;
+!!VR(cost)&(stage)=1:S5;
+!!VR(cost)&(stage)=2:S15;
+!!VR(cost)&(stage)=3:S50;
+
+!?FU(CGC_SkullServices);
+!#VA(art:x) (paid:x);
+!!VR(paid):S0;
+!!HE(CURRENT_HERO):N?(hero:y);
+!!FU(CGC_SkullOffer):P(hero)/1/(art)/-1/-1/-1/?(paid);
+!!FU&(paid)=0:E;
+!!FU(CGC_SkullFind):P(art)/?(found:y);
+!!SN:H^art^/(art)/0/?(name:z);
+!!if&(found)=0;
+ !!IF:M^I found no unclaimed %(name) on this map.^;
+ !!FU:E;
+!!en;
+!!VR(bx:y):Sv31;
+!!VR(by:y):Sv32;
+!!VR(bz:y):Sv33;
+!!IF:M^There is an unclaimed %(name) on this map.^;
+!!FU(CGC_SkullOffer):P(hero)/2/(art)/(bx)/(by)/(bz)/?(revealed:y);
+!!FU&(revealed)=0:E;
+!!UN:R5/1/1 R7/0/1;
+!!UN:L(bx)/(by)/(bz)/2000;
+!!UN:R7/0/0 R5/0/0;
+!!FU(CGC_SkullOffer):P(hero)/3/(art)/(bx)/(by)/(bz)/?i;
+
+!?FU(CGC_SkullOffer);
+!#VA(hero:x) (stage:x) (art:x) (bx:x) (by:x) (bz:x) (paid:x);
+!!VR(paid):S0;
+!!FU|(hero)<0/(hero)>155:E;
+!!HE(hero):O?(owner:y);
+!!FU(CLT_IsLocalOwner):P(owner)/?(local:y);
+!!FU&(local)=0:E;
+!!FU(CGC_SkullPrice):P(stage)/?(cost:y);
+!!FU&(cost)=0:E;
+!!SN:H^art^/(art)/0/?(name:z);
+!!VR(message:z):S^For %(cost) Mithril, I will check if %(name) is still on the map. Will you pay?^;
+!!VR(message)&(stage)=2:S^For %(cost) Mithril, I will reveal the location of %(name) on the map. Will you pay?^;
+!!VR(message)&(stage)=3:S^For %(cost) Mithril, I will bring you %(name). Will you pay?^;
+!!IF:Q1/(RES_MITHRIL)/(cost)/(MSG_TYPE_QUESTION)/^%(message)^;
+!!FU&-1:E;
+!!OW:R(owner)/(RES_MITHRIL)/?(balance:y);
+!!if&(balance)<(cost);
+ !!IF:M^You need %(cost) Mithril for this service.^;
+ !!FU:E;
+!!en;
+!!SN:W^cgc.skull.v1.seq.%(owner)^/?(sequence:y);
+!!VR(sequence):+1;
+!!FU26911:P(hero)/(stage)/(art)/(bx)/(by)/(bz)/(sequence);
+!!SN:W^cgc.skull.v1.seq.%(owner)^/?(accepted:y);
+!!if&(accepted)<>(sequence);
+ !!IF:M^The service could not be completed. Check that the part is still on the map and that you have a free backpack slot for delivery. No Mithril was charged.^;
+ !!FU:E;
+!!en;
+!!VR(paid):S1;
+!!UN:V?i/?i/?i/?(network:y)/?i;
+!!if&(network)>0;
+ !!IP:D-1;
+ !!FU26911:D(hero)/(stage)/(art)/(bx)/(by)/(bz)/(sequence);
+!!en;
+!!if&(stage)=3;
+ !!IF:Q1/(PIC_TYPE_ART)/(art)/(MSG_TYPE_MES)/^Here is %(name).^;
+ !!HE(hero):P?(hx:y)/?(hy:y)/?(hz:y);
+ !!UN:L(hx)/(hy)/(hz)/0;
+!!en;
+
+!?FU26911;
+!!FU(CGC_SkullReceivePurchase):Px1/x2/x3/x4/x5/x6/x7;
+
+!?FU(CGC_SkullReceivePurchase);
+!#VA(hero:x) (stage:x) (art:x) (bx:x) (by:x) (bz:x) (sequence:x);
+!!FU|(hero)<0/(hero)>155/(sequence)<1:E;
+!!FU(CGC_SkullPrice):P(stage)/?(cost:y);
+!!FU&(cost)=0:E;
+!!FU(CGC_IsMapArtifact):P(art)/?(valid:y);
+!!FU&(valid)=0:E;
+!!FU(CLT_IsHuman):P(hero)/?(human:y);
+!!FU&(human)=0:E;
+!!HE(hero):O?(owner:y);
+!!OW:C?(active:y);
+!!FU|(owner)<0/(owner)>7/(owner)<>(active):E;
+!!SN:W^cgc.skull.v1.seq.%(owner)^/?(previous:y);
+!!VR(previous):+1;
+!!FU&(sequence)<>(previous):E;
+!!OW:R(owner)/(RES_MITHRIL)/?(balance:y);
+!!FU&(balance)<(cost):E;
+!!if&(stage)>1;
+ !!UN:X?(size:y)/?(underground:y);
+ !!FU|(bx)<0/(by)<0/(bx)>=(size)/(by)>=(size)/(bz)<0/(bz)>(underground):E;
+ !!FU(CGC_SkullSiteArt):P(bx)/(by)/(bz)/?(actual:y);
+ !!FU&(actual)<>(art):E;
+!!en;
+!!if&(stage)=3;
+ !!SN:W^clt.pickup.site.%(bx).%(by).%(bz)^/?(index:y);
+ !!FU(CLT_CollectSite):P(hero)/(index)/(bx)/(by)/(bz);
+ !!SN:W^clt.world.p.%(index).taken^/?(taken:y);
+ !!FU&(taken)<>1:E;
+!!en;
+!!VR(balance):-(cost);
+!!OW:R(owner)/(RES_MITHRIL)/(balance);
+!!SN:W^cgc.skull.v1.seq.%(owner)^/(sequence);
+!!UN&(stage)=2:S(bx)/(by)/(bz)/(owner)/1;

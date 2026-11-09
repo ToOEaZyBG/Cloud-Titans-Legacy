@@ -1,3 +1,10 @@
+# 09/11/2026 dev48 > dev49 - 0.6.0-batch-dev49
+
+- The Living Skull can search for a Cloud Titans component for 5 Mithril, reveal it for 15, and deliver it for 50. Each step has a separate confirmation. A failed delivery leaves the component on the map and costs no Mithril.
+- The free weekly reveal remains available and can offer paid delivery for a custom component. Ordinary artifacts retain the stock services and prices.
+
+- 33 targeted offline tests pass. Live dialogs and Online Lobby verification remain pending.
+
 # 09/11/2026 dev47 > dev48 - 0.6.0-batch-dev48
 
 - Fixed the weekly recruitment forecast for all nine faction relics. A linked town with the tier-seven dwelling gets +2 weekly recruits, or +3 for Necropolis.

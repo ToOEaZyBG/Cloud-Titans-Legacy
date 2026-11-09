@@ -1,3 +1,8 @@
+# 09/11/2026 dev48 > dev49 - 0.6.0-batch-dev49
+
+- For a Cloud Titans component, the Living Skull offers a search for 5 Mithril, a map reveal for 15, and delivery for 50. Each service requires confirmation. Failed delivery costs nothing.
+- Close the game before updating and use matching dev49 clients on a new map.
+
 # 09/11/2026 dev47 > dev48 - 0.6.0-batch-dev48
 
 - Weekly growth now appears in the town forecast and applies to tier-seven recruitment for all nine linked faction relics. Equipped relics can link on entry or assembly in the matching town.

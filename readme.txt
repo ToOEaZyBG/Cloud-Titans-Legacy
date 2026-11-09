@@ -1,10 +1,13 @@
-LATEST PUBLIC BUILD: 0.6.0-batch-dev48
+LATEST PUBLIC BUILD: 0.6.0-batch-dev49
 
 REQUIRED MODS
 WOG, ERA ERM FRAMEWORK, WOG SCRIPTS, GAME ENHANCEMENT MOD, ADVANCED CLASSES MOD
 
 --------------------------------------------------------------
 CHANGELOG
+
+09/11/2026 dev48 > dev49
+The Living Skull charges 5 Mithril to search for a Cloud Titans component, 15 to reveal its location, and 50 to deliver it. Delivery uses the same inventory and map checks as picking up the component.
 
 09/11/2026 dev47 > dev48
 Weekly growth now appears in the town forecast and applies to tier-seven recruitment for all nine linked faction relics. Equipped relics can link on entry or assembly in the matching town.
@@ -21,11 +24,6 @@ Weekly growth now appears in the town forecast and applies to tier-seven recruit
 09/11/2026 dev43 > dev44
 - Living Skull searches for Cloud Titans parts by their real map identity and shows the actual item in the weekly reveal. Relic delivery follows the existing restriction.
 - Support Commander equipment and safe artifact returns with the updated WoG Native Dialogs in ERA Project 2.303. Explain duplicate artifacts and full Commander slots.
-
-06/11/2026 dev42 > dev43
-- Skip invalid negative artifact entries in both the Dragon Utopia reward display and delivery.
-- Show the actual Commander item name when confirming a return to the backpack.
-- Build the relic book page after the HD provider, with separate cells and a resource-loading check. Locate the HD Backpack by its native code layout instead of its version stamp. Use matching dev43 and a NEW map.
 
 --------------------------------------------------------------
 
@@ -60,6 +58,8 @@ Map exploration: each successful NEW random map contains two copies of each of 7
 Faction quests: open Faction set quests in your town menu. Each component has an objective and a progress counter. Defeat the listed enemies or complete the required battles, then return with the recorded qualified hero to claim it. Completed objectives stay green while that hero is away. Read the selected objective for its level and town requirements. Choose Accept with the hero in town. Only that recorded hero earns progress. Your first component or champion quest permanently locks one faction for this game. Death or dismissal resets unfinished progress; a replacement may accept for the same faction. Previously claimed component rewards remain claimed, once per player. Finding a piece elsewhere does not consume that quest reward.
 
 Level-up rewards: with WoG option 126 enabled, eligible human Relic-category level-up rewards can offer a matching-faction component. A missing own-faction component is guaranteed at levels18,25,32,39 and every7 levels thereafter. Equipment and backpacks of all owned heroes count; assembled relics represent all eight parts. A complete collection gives an ordinary Relic instead.
+
+Living Skull: search for a Cloud Titans component for 5 Mithril, reveal its position for 15, or pay 50 for delivery after the reveal. Bring a free backpack slot for delivery.
 
 Custom relics are assembled from components; Dragon Utopia does not award a complete custom set. Level-up and faction-quest component rewards follow the hero's faction. A foreign-faction component found on the map is allowed.
 
