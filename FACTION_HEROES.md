@@ -1,3 +1,9 @@
+# 09/11/2026 dev47 > dev48 - 0.6.0-batch-dev48
+
+- Weekly growth now appears in the town forecast and applies to tier-seven recruitment for all nine linked faction relics. Equipped relics can link on entry or assembly in the matching town.
+
+Close the game before updating and use matching dev48 clients on a new map.
+
 # 09/11/2026 dev46 > dev47 - 0.6.0-batch-dev47
 
 - All nine equipped faction relics grant passive First Strike. Each matching stack deals 25% extra physical damage on its first normal hit against the primary target. Removed the manual relic spellbook page and its activations.

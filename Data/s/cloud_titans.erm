@@ -3002,7 +3002,8 @@ Includes all eight artifacts. Extra copies give no further bonus.
 !!SN:W^clt.link.%(hero)^/(link) W^clt.town.hasLink.%(town)^/1;
 !!HE(hero):O?(notifyOwner:y);
 !!FU(CLT_IsLocalOwner):P(notifyOwner)/?(notify:y);
-!!IF&(notify)=1:M^Cloud Titans: Tower linked. +2 weekly growth while this human-controlled hero lives, wears the relic and owns this town. Repeated visits need no confirmation.^;
+!!SN:W^cfs.v1.townLinkQuiet^/?(quiet:y);
+!!IF&(notify)=1/(quiet)=0:M^Cloud Titans: Tower linked. +2 weekly growth while this human-controlled hero lives, wears the relic and owns this town. Repeated visits need no confirmation.^;
 
 !?FU(CLT_TownBonus);
 !#VA(town:x) (bonus:x);
@@ -3048,7 +3049,7 @@ Includes all eight artifacts. Extra copies give no further bonus.
 !?FU(CLT_GrowthEnd);
 !#VA(hook:x);
 !!FU(CFS_GrowthEnd):P(hook);
-!!UN:C(hook)/(STRUCT_HOOK_CONTEXT_EBP)/4/?(ebp:y) C(ebp)/8/4/?(dwelling:y);
+!!UN:C(hook)/(STRUCT_HOOK_CONTEXT_EBP)/4/?(ebp:y) C(ebp)/8/2/?(dwelling:y);
 !!FU&(dwelling)<>6/(dwelling)<>13:E;
 !!SN:W^clt.growth.frame.%(ebp)^/?(townPtr:y);
 !!FU&(townPtr)=0:E;

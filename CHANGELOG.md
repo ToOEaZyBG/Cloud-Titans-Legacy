@@ -1,3 +1,10 @@
+# 09/11/2026 dev47 > dev48 - 0.6.0-batch-dev48
+
+- Fixed the weekly recruitment forecast for all nine faction relics. A linked town with the tier-seven dwelling gets +2 weekly recruits, or +3 for Necropolis.
+- Equipped faction relics can link when their hero enters the matching town or assembles the relic there.
+
+- 830 offline tests pass. The two reviewed ERA executables passed isolated native growth and recruitment checks, including Statue of Legion stacking. Live town UI, combat and Online Lobby verification remain pending.
+
 # 09/11/2026 dev46 > dev47 - 0.6.0-batch-dev47
 
 - All nine equipped faction relics grant passive First Strike. Each matching stack deals 25% extra physical damage on its first normal hit against the primary target. Removed the manual relic spellbook page and its activations.

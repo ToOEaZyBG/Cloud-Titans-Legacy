@@ -1,10 +1,13 @@
-LATEST PUBLIC BUILD: 0.6.0-batch-dev47
+LATEST PUBLIC BUILD: 0.6.0-batch-dev48
 
 ## REQUIRED MODS
 ## WOG, ERA ERM FRAMEWORK, WOG SCRIPTS, GAME ENHANCEMENT MOD, ADVANCED CLASSES MOD
 
 --------------------------------------------------------------
 ## CHANGELOG
+
+09/11/2026 dev47 > dev48
+Weekly growth now appears in the town forecast and applies to tier-seven recruitment for all nine linked faction relics. Equipped relics can link on entry or assembly in the matching town.
 
 09/11/2026 dev46 > dev47
 - All nine equipped faction relics grant passive First Strike. Each matching stack deals 25% extra physical damage on its first normal hit against the primary target. Removed the manual relic spellbook page and its activations.
@@ -23,10 +26,6 @@ LATEST PUBLIC BUILD: 0.6.0-batch-dev47
 - Skip invalid negative artifact entries in both the Dragon Utopia reward display and delivery.
 - Show the actual Commander item name when confirming a return to the backpack.
 - Build the relic book page after the HD provider, with separate cells and a resource-loading check. Locate the HD Backpack by its native code layout instead of its version stamp. Use matching dev43 and a NEW map.
-
-06/11/2026 dev41 > dev42
-- Automatically detect three checked HD Backpack builds for the Sort button. Show REQUIRED MODS above the changelog.
-- Keep one universal Commander set, Ember Oath. Two copies per part mean 12 Commander finds and 156 total custom finds. Battle rewards draw only from its six parts. Use matching dev42 and a NEW map.
 
 --------------------------------------------------------------
 

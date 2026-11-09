@@ -1512,7 +1512,13 @@ ZVSE2
 !!FU(CLT_IsLocalOwner):P(owner)/?(local:y);
 !!FU&(local)=0:E;
 !!FU(CFS_Info):P(set)/?i/?(relic:y)/?i/?i/?i/?i/?i/?i;
-!!HE(hero):A2/(relic)/?(before:y)/?i;
+!!HE(hero):A2/(relic)/?(before:y)/?(worn:y);
+!!if&(mode)=2;
+ !!FU|(town)<0/(town)>47/(worn)=0:E;
+ !!VR(wanted:y):S(town) +1;
+ !!SN:W^cfs.v1.link.%(hero).%(set)^/?(linked:y);
+ !!FU&(linked)=(wanted):E;
+!!en;
 !!SN:W^cfs.v1.seq.%(hero).%(set)^/?(seq:y) W^cfs.v1.success.%(hero).%(set)^/0;
 !!VR(seq):+1;
 !!FU26898:P(hero)/(set)/(mode)/(town)/(seq);
@@ -1553,15 +1559,11 @@ ZVSE2
 !!SN:W^cfs.v1.seq.%(hero).%(set)^/(seq) W^cfs.v1.success.%(hero).%(set)^/0;
 !!FU(CLT_IsHuman):P(hero)/?(human:y);
 !!FU&(human)=0:E;
-!!FU(CFS_Info):P(set)/?(base:y)/?(relic:y)/?i/?(townType:y)/?(name:z)/?i/?i/?i;
-!!HE(hero):O?(owner:y) A2/(relic)/?(relicTotal:y)/?(relicWorn:y);
+!!FU(CFS_Info):P(set)/?(base:y)/?(relic:y)/?i/?i/?i/?i/?i/?i;
+!!HE(hero):A2/(relic)/?(relicTotal:y)/?(relicWorn:y);
 !!if&(mode)=2;
- !!FU|(town)<0/(relicWorn)=0:E;
- !!CA0/(town):T?(kind:y) O?(townOwner:y) H1/?(visitor:y) H0/?(garrison:y);
- !!FU|(kind)<>(townType)/(townOwner)<>(owner):E;
- !!FU&(hero)<>(visitor)/(hero)<>(garrison):E;
- !!VR(link:y):S(town) +1;
- !!SN:W^cfs.v1.link.%(hero).%(set)^/(link) W^cfs.v1.success.%(hero).%(set)^/1;
+ !!FU(CFS_LinkTown):P(hero)/(set)/(town)/?(linked:y);
+ !!SN:W^cfs.v1.success.%(hero).%(set)^/(linked);
  !!FU:E;
 !!en;
 !!FU(CLT_BackpackCount):P(hero)/?(used:y);
@@ -1640,6 +1642,7 @@ ZVSE2
   !!FU(CFS_EndForge):P(hero)/(set)/0;
   !!FU:E;
  !!en;
+ !!FU(CFS_LinkTown)&(town)>=0:P(hero)/(set)/(town)/?i;
 !!en;
 !!FU(CFS_EndForge):P(hero)/(set)/1;
 
@@ -1709,6 +1712,22 @@ ZVSE2
 !!FU(CFS_Reconcile):P(hero);
 !!UN:R3/(hero);
 
+!?FU(CFS_LinkTown);
+!#VA(hero:x) (set:x) (town:x) (success:x);
+!!VR(success):S0;
+!!FU|(town)<0/(town)>47:E;
+!!FU(CFS_Info):P(set)/?i/?(relic:y)/?i/?(townType:y)/?i/?i/?i/?i;
+!!HE(hero):O?(owner:y) A2/(relic)/?i/?(worn:y);
+!!FU|(owner)<0/(worn)=0:E;
+!!CA0/(town):T?(kind:y) O?(townOwner:y) H1/?(visitor:y) H0/?(garrison:y);
+!!FU|(kind)<>(townType)/(townOwner)<>(owner):E;
+!!FU&(hero)<>(visitor)/(hero)<>(garrison):E;
+!!VR(link:y):S(town) +1;
+!!SN:W^cfs.v1.link.%(hero).%(set)^/(link);
+!!VR(success):S1;
+
+; OB98 can run before the visiting hero is assigned. Recheck once the
+; native town manager has entered the town.
 !?OB98;
 !!HE-1:N?(hero:y) O?(owner:y);
 !!CA998:U?(town:y) T?(kind:y) O?(townOwner:y);
@@ -1716,6 +1735,31 @@ ZVSE2
 !!FU(CFS_FromTown):P(kind)/?(set:y);
 !!FU&(set)<0:E;
 !!FU(CFS_RequestForge):P(hero)/(set)/2/(town);
+
+!?FU(OnPreTownScreen);
+!#VA(town:x);
+!!FU|(town)<0/(town)>47:E;
+!!CA0/(town):T?(kind:y) H1/?(visitor:y) H0/?(garrison:y) O?(owner:y);
+!!if&(kind)=(TOWN_TOWER);
+ !!FU(CFS_RecheckTowerLink)&(garrison)>=0:P(garrison)/(town)/(owner);
+ !!FU(CFS_RecheckTowerLink)&(visitor)>=0:P(visitor)/(town)/(owner);
+ !!FU:E;
+!!en;
+!!FU(CFS_FromTown):P(kind)/?(set:y);
+!!FU&(set)<0:E;
+!!FU(CFS_RequestForge)&(garrison)>=0:P(garrison)/(set)/2/(town);
+!!FU(CFS_RequestForge)&(visitor)>=0:P(visitor)/(set)/2/(town);
+
+!?FU(CFS_RecheckTowerLink);
+!#VA(hero:x) (town:x) (townOwner:x);
+!!HE(hero):O?(owner:y) A2/458/?i/?(worn:y);
+!!FU|(owner)<0/(owner)<>(townOwner)/(worn)=0:E;
+!!FU(CLT_IsLocalOwner):P(owner)/?(local:y);
+!!FU&(local)=0:E;
+!!VR(wanted:y):S(town) +1;
+!!SN:W^cfs.v1.townLinkQuiet^/1 W^clt.link.%(hero)^/?(linked:y);
+!!FU(CLT_RequestForge)&(linked)<>(wanted):P(hero)/(town);
+!!SN:W^cfs.v1.townLinkQuiet^/0;
 
 !?FU(CFS_TownBonus);
 !#VA(town:x) (bonus:x);
@@ -1746,7 +1790,7 @@ ZVSE2
 
 !?FU(CFS_GrowthEnd);
 !#VA(hook:x);
-!!UN:C(hook)/(STRUCT_HOOK_CONTEXT_EBP)/4/?(ebp:y) C(ebp)/8/4/?(dwelling:y);
+!!UN:C(hook)/(STRUCT_HOOK_CONTEXT_EBP)/4/?(ebp:y) C(ebp)/8/2/?(dwelling:y);
 !!FU&(dwelling)<>6/(dwelling)<>13:E;
 !!SN:W^clt.growth.frame.%(ebp)^/?(ptr:y);
 !!FU&(ptr)=0:E;
@@ -1990,7 +2034,7 @@ ZVSE2
 !?FU(CFS_Status);
 !#VA(owner:x) (set:x);
 !!SN:W^clt.world.placed^/?(placed:y) W^clt.net.world.hash^/?(hash:y) W^clt.net.world.error^/?(worldError:y) W^clt.net.quest.error^/?(questError:y);
-!!VR(status:z):S^Build: 0.6.0-batch-dev47
+!!VR(status:z):S^Build: 0.6.0-batch-dev48
 Placed: %(placed). Map hash: %(hash).
 World errors: %(worldError). Quest errors: %(questError).
 Current player's faction quest counters:
