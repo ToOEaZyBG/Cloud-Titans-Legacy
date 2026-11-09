@@ -1,3 +1,9 @@
+# 09/11/2026 dev45 > dev46 - 0.6.0-batch-dev46
+
+- All nine newly awarded faction champions arrive with seven fully upgraded stacks of 500, 425, 400, 375, 350, 325 and 300 creatures. The final stack uses the strongest supported upgrade of the faction apex line.
+
+- 35 targeted offline tests pass. Champion delivery in ERA and Online Lobby verification remain pending.
+
 # 09/11/2026 dev44 > dev45 - 0.6.0-batch-dev45
 
 - Right-click an equipped Commander part or relic to see its set bonuses and progress. Use Shift + right-click to assemble or dismantle.

@@ -1,3 +1,9 @@
+# 09/11/2026 dev45 > dev46 - 0.6.0-batch-dev46
+
+- All nine newly awarded faction champions arrive with seven fully upgraded stacks of 500, 425, 400, 375, 350, 325 and 300 creatures. The final stack uses the strongest supported upgrade of the faction apex line.
+
+Vaelion receives 500 Santa Gremlins, 425 Obsidian Gargoyles, 400 Diamond Golems, 375 Enchanters, 350 Master Genies, 325 Naga Queens and 300 Lords of Thunder. Close the game before updating and use matching dev46 clients on a new map.
+
 # 09/11/2026 dev44 > dev45 - 0.6.0-batch-dev45
 
 - Right-click an equipped Commander part or relic to see its set bonuses and progress. Use Shift + right-click to assemble or dismantle.
@@ -158,7 +164,7 @@ Both players close the game, then use the existing **Legacy of the Cloud Titans 
 
 Use identical ERA/HD versions, enabled mods, load order and WoG options. The dev44 reference profile uses ERA Project 2.303, Advanced Classes Mod 1.11, JS new objects 1.42, JS main module 1.21.2, JS commanders 1.02, JS map generation fixes 1.14 hotfix2 and JS new terrains 1.5.1. Match the exact versions available to both players; TEST_PROFILE.json is an observed reference, not certification of every combination. Keep Knightmare Kingdoms and other metadata-listed incompatible packages disabled. Keep both ERAHDHeroes_3_Reborn (Full) and HD Editionfixai (Lite) disabled for this trial, following the selected remaster-free profile. Use their original Mod Browser files; this release does not patch them.
 
-Start a **NEW G random map with underground through Heroes Launcher Online Lobby**, using sequential turns with simultaneous turns disabled. Do not resume an older-version map and do not use F12. For the first comparison, both players can choose Necropolis. WoG option 126 is optional; enable it on both clients if testing level-up rewards. Commanders must be enabled for champion quests. No extra starting army or automatic test gift is granted.
+Start a **NEW G random map with underground through Heroes Launcher Online Lobby**, using sequential turns with simultaneous turns disabled. Do not resume an older-version map and do not use F12. For the first comparison, both players can choose Necropolis. WoG option 126 is optional; enable it on both clients if testing level-up rewards. Commanders must be enabled for champion quests. The starting army is granted when the champion quest reward is received.
 
 ## Dev25 first checks
 

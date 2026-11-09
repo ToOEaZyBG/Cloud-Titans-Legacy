@@ -1,10 +1,13 @@
-LATEST PUBLIC BUILD: 0.6.0-batch-dev45
+LATEST PUBLIC BUILD: 0.6.0-batch-dev46
 
 ## REQUIRED MODS
 ## WOG, ERA ERM FRAMEWORK, WOG SCRIPTS, GAME ENHANCEMENT MOD, ADVANCED CLASSES MOD
 
 --------------------------------------------------------------
 ## CHANGELOG
+
+09/11/2026 dev45 > dev46
+- All nine newly awarded faction champions arrive with seven fully upgraded stacks of 500, 425, 400, 375, 350, 325 and 300 creatures. The final stack uses the strongest supported upgrade of the faction apex line.
 
 09/11/2026 dev44 > dev45
 - Right-click an equipped Commander part or relic to see its set bonuses and progress. Use Shift + right-click to assemble or dismantle.
@@ -24,10 +27,6 @@ LATEST PUBLIC BUILD: 0.6.0-batch-dev45
 
 30/10/2026 dev40 > dev41
 Fix champion allocation when the preferred native class is exhausted: safely use a fresh same-faction sibling slot, keeping the intended Champion class. Existing saves are not migrated; NEW map and matching41 required. Native receipt/save/Lobby retest remains pending.
-
-29/10/2026 dev39 > dev40
-- Fix delayed interface crashes caused by long Commander return-to-backpack confirmations, including cancelled transfers. Full set details remain available with right-click. All21custom Commander items use the safe confirmation.
-- Preserve training, owned-green hero parts, artwork, inventory and third-party files. Close the game, update to matching40and restart; use a NEW map for the complete release test.
 
 --------------------------------------------------------------
 
@@ -106,7 +105,7 @@ After completing every requirement, place the bound quest hero in the matching t
 
 Castle: Aldric. Rampart: Sylvara. Tower: Vaelion. Inferno: Zareth. Necropolis: Andonov. Dungeon: Nyssara. Stronghold: Kargan. Fortress: Ssareth. Conflux: Aurelis.
 
-Champions start at level 1 with 25 Attack, 25 Defense, 25 Spell Power, 25 Knowledge and a matching commander. Their faction specialization works without wearing the set. Andonov has stronger faction bonuses.
+Champions start at level 1 with 25 Attack, 25 Defense, 25 Spell Power, 25 Knowledge and a matching commander. On receipt they bring seven fully upgraded troop stacks with 500, 425, 400, 375, 350, 325 and 300 creatures. Their faction specialization works without wearing the set. Andonov has stronger faction bonuses.
 
 ## STARTING A GAME
 
