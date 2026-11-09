@@ -1,10 +1,13 @@
-LATEST PUBLIC BUILD: 0.6.0-batch-dev46
+LATEST PUBLIC BUILD: 0.6.0-batch-dev47
 
 REQUIRED MODS
 WOG, ERA ERM FRAMEWORK, WOG SCRIPTS, GAME ENHANCEMENT MOD, ADVANCED CLASSES MOD
 
 --------------------------------------------------------------
 CHANGELOG
+
+09/11/2026 dev46 > dev47
+- All nine equipped faction relics grant passive First Strike. Each matching stack deals 25% extra physical damage on its first normal hit against the primary target. Removed the manual relic spellbook page and its activations.
 
 09/11/2026 dev45 > dev46
 - All nine newly awarded faction champions arrive with seven fully upgraded stacks of 500, 425, 400, 375, 350, 325 and 300 creatures. The final stack uses the strongest supported upgrade of the faction apex line.
@@ -24,9 +27,6 @@ CHANGELOG
 06/11/2026 dev41 > dev42
 - Automatically detect three checked HD Backpack builds for the Sort button. Show REQUIRED MODS above the changelog.
 - Keep one universal Commander set, Ember Oath. Two copies per part mean 12 Commander finds and 156 total custom finds. Battle rewards draw only from its six parts. Use matching dev42 and a NEW map.
-
-30/10/2026 dev40 > dev41
-Fix champion allocation when the preferred native class is exhausted: safely use a fresh same-faction sibling slot, keeping the intended Champion class. Existing saves are not migrated; NEW map and matching41 required. Native receipt/save/Lobby retest remains pending.
 
 --------------------------------------------------------------
 
@@ -50,7 +50,7 @@ WHAT YOU GET
 - 72 components and nine complete relics in total, with themed artifact artwork.
 - Individual item effects and cumulative bonuses for wearing different matching pieces.
 - Faction artifact quests with objective descriptions and progress tracking.
-- Eight manual relic powers, plus Tower's automatic lightning mechanic.
+- Passive First Strike for all nine assembled faction relics.
 - Nine champion quests with named heroes, custom portraits and faction specializations.
 - A relic-to-town link that increases weekly recruitment of the faction's top-tier creature.
 
@@ -78,20 +78,11 @@ Click Sort in the HD Backpack window. The mod locates the Backpack controls from
 
 Our artifact descriptions list all eight matching parts: gold means worn, green means owned but not worn, gray means missing. An assembled relic represents all eight. Only equipped pieces contribute set bonuses.
 
-USE YOUR RELIC'S BATTLE POWER
+FIRST STRIKE
 
-For the eight manual powers, wear the assembled relic and open the battle spellbook on your own stack's turn after Tactics. Select Relics at the bottom, then the set's icon. Eight separate components do not unlock the manual power. Each relic has one manual activation per battle and a mana cost; canceling spends nothing.
+Wear the assembled relic to give each regular stack from its faction +25% physical damage on its first normal melee or ranged hit against the primary target. The bonus is automatic and refreshes each battle. Retaliation, secondary targets, spells, special attacks, clones and summons do not trigger it. It applies during played battles.
 
-- Castle: Seraphic Restoration restores fallen troops using a shared resurrection allowance.
-- Rampart: Forest's Embrace combines protection with healing for its top creatures.
-- Inferno: Infernal Gate summons temporary Horned Demons.
-- Necropolis: Life Harvest damages living enemies and restores undead troops. Its relic also adds 30% Life Leech to controlled units' physical attacks against living enemies.
-- Dungeon: Abyssal Rift strikes a selected target with Implosion.
-- Stronghold: Warlord's Fury combines Haste with Attack-based physical damage.
-- Fortress: Primordial Venom opens a limited Poison window.
-- Conflux: Elemental Invocation offers four elemental choices.
-
-Tower uses automatic lightning for Giants, Titans and Lords of Thunder instead of a manual spellbook power. Supported creature upgrades are included in the relevant faction effects; commanders and war machines are excluded from regular-troop bonuses.
+Tower retains the seven-piece automatic lightning effect for Giants, Titans and Lords of Thunder. The Necropolis relic retains its additional 30% physical Life Leech against living enemies.
 
 EARN YOUR FACTION CHAMPION
 

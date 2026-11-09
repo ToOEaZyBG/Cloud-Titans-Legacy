@@ -1,3 +1,9 @@
+# 09/11/2026 dev46 > dev47 - 0.6.0-batch-dev47
+
+- All nine equipped faction relics grant passive First Strike. Each matching stack deals 25% extra physical damage on its first normal hit against the primary target. Removed the manual relic spellbook page and its activations.
+
+- 35 targeted offline tests pass. Native combat and Online Lobby verification remain pending.
+
 # 09/11/2026 dev45 > dev46 - 0.6.0-batch-dev46
 
 - All nine newly awarded faction champions arrive with seven fully upgraded stacks of 500, 425, 400, 375, 350, 325 and 300 creatures. The final stack uses the strongest supported upgrade of the faction apex line.

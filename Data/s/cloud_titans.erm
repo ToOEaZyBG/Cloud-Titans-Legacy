@@ -688,9 +688,13 @@ All your Tower troops gain +3 Attack and Defense, +2 Speed.
 Giants and Titans gain +8 Attack and Defense and +4 Speed in total.
 All upgrades are included.
 
-Each Giant, Titan or Lord of Thunder stack calls down Lightning Bolt
-after its first successful attack. Once per stack per battle; 10
-damage per creature. No mana or manual activation is required.
+First Strike: the first normal melee or ranged hit by each matching
+faction stack deals +25% physical damage to its primary target.
+Retaliation and special attacks are excluded.
+
+At seven pieces, each Giant, Titan or Lord of Thunder stack also
+calls down Lightning Bolt after its first successful attack. It
+deals 10 damage per creature.
 
 Visit your own Tower town while wearing the relic to add 2 weekly
 recruits to its Giants and Titans dwelling. That dwelling must be
@@ -946,10 +950,9 @@ Health.
 Angels gain +8 Attack and Defense and +4 Speed in total. All
 upgrades are included.
 
-Resurrects fallen Castle troops with one shared Health allowance,
-based on Spell Power and Earth Magic. Costs 40 spell points, once
-per battle.
-Open your battle spellbook and choose the relic power on your turn.
+First Strike: the first normal melee or ranged hit by each matching
+faction stack deals +25% physical damage to its primary target.
+Retaliation and special attacks are excluded.
 
 Visit your own Castle town while wearing the relic to add 2 weekly
 recruits to its Angels dwelling. That dwelling must be built; lower-
@@ -1205,10 +1208,9 @@ All your Rampart troops gain +3 Attack and Defense, +2 Speed and
 Dragons gain +8 Attack and Defense and +4 Speed in total. All
 upgrades are included.
 
-Protects Rampart troops with Air Shield for two rounds and heals
-wounded creatures without resurrection. Costs 30 spell points, once
-per battle.
-Open your battle spellbook and choose the relic power on your turn.
+First Strike: the first normal melee or ranged hit by each matching
+faction stack deals +25% physical damage to its primary target.
+Retaliation and special attacks are excluded.
 
 Visit your own Rampart town while wearing the relic to add 2 weekly
 recruits to its Dragons dwelling. That dwelling must be built;
@@ -1465,9 +1467,9 @@ All your Inferno troops gain +3 Attack and Defense, +2 Speed and
 Devils gain +8 Attack and Defense and +4 Speed in total. All
 upgrades are included.
 
-Summons Horned Demons for this battle. Their number depends on Spell
-Power. Costs 40 spell points, once per battle.
-Open your battle spellbook and choose the relic power on your turn.
+First Strike: the first normal melee or ranged hit by each matching
+faction stack deals +25% physical damage to its primary target.
+Retaliation and special attacks are excluded.
 
 Visit your own Inferno town while wearing the relic to add 2 weekly
 recruits to its Devils dwelling. That dwelling must be built; lower-
@@ -1728,9 +1730,9 @@ Against living enemies, all controlled units gain an extra 30% Life
 Leech from their attacks, shots and retaliation. It heals and
 resurrects the attacking stack, up to its starting size.
 
-Drains living enemies and uses 75% of the damage dealt to restore
-your undead troops. Costs 30 spell points, once per battle.
-Open your battle spellbook and choose the relic power on your turn.
+First Strike: the first normal melee or ranged hit by each matching
+faction stack deals +25% physical damage to its primary target.
+Retaliation and special attacks are excluded.
 
 Visit your own Necropolis town while wearing the relic to add 3
 weekly recruits to its Dragons dwelling. That dwelling must be
@@ -1987,9 +1989,9 @@ All your Dungeon troops gain +3 Attack and Defense, +2 Speed and
 Dragons gain +8 Attack and Defense and +4 Speed in total. All
 upgrades are included.
 
-Casts Implosion on a chosen enemy stack, using your Spell Power.
-Costs 25 spell points, once per battle.
-Open your battle spellbook and choose the relic power on your turn.
+First Strike: the first normal melee or ranged hit by each matching
+faction stack deals +25% physical damage to its primary target.
+Retaliation and special attacks are excluded.
 
 Visit your own Dungeon town while wearing the relic to add 2 weekly
 recruits to its Dragons dwelling. That dwelling must be built;
@@ -2245,10 +2247,9 @@ All your Stronghold troops gain +3 Attack and Defense, +2 Speed and
 Behemoths gain +8 Attack and Defense and +4 Speed in total. All
 upgrades are included.
 
-Grants Stronghold troops Haste for two rounds. Normal attack damage
-rises by 10%, plus 1% per 2 Attack, up to 50%. Costs 20 spell
-points, once per battle.
-Open your battle spellbook and choose the relic power on your turn.
+First Strike: the first normal melee or ranged hit by each matching
+faction stack deals +25% physical damage to its primary target.
+Retaliation and special attacks are excluded.
 
 Visit your own Stronghold town while wearing the relic to add 2
 weekly recruits to its Behemoths dwelling. That dwelling must be
@@ -2504,9 +2505,9 @@ All your Fortress troops gain +3 Attack and Defense, +2 Speed and
 Hydras gain +8 Attack and Defense and +4 Speed in total. All
 upgrades are included.
 
-Allows Fortress troops to poison living enemies with their attacks
-for two rounds. Costs 25 spell points, once per battle.
-Open your battle spellbook and choose the relic power on your turn.
+First Strike: the first normal melee or ranged hit by each matching
+faction stack deals +25% physical damage to its primary target.
+Retaliation and special attacks are excluded.
 
 Visit your own Fortress town while wearing the relic to add 2 weekly
 recruits to its Hydras dwelling. That dwelling must be built; lower-
@@ -2763,10 +2764,9 @@ All your Conflux troops gain +3 Attack and Defense, +2 Speed and
 Firebirds and Phoenixes gain +8 Attack and Defense and +4 Speed in
 total. All upgrades are included.
 
-Choose Fireball against an enemy, or Cure, Haste or Stone Skin for
-your Conflux troops. Haste and Stone Skin last two rounds. Costs 30
-spell points, once per battle.
-Open your battle spellbook and choose the relic power on your turn.
+First Strike: the first normal melee or ranged hit by each matching
+faction stack deals +25% physical damage to its primary target.
+Retaliation and special attacks are excluded.
 
 Visit your own Conflux town while wearing the relic to add 2 weekly
 recruits to its Firebirds and Phoenixes dwelling. That dwelling must
@@ -3099,8 +3099,6 @@ Includes all eight artifacts. Extra copies give no further bonus.
 !!SN:L^cfs_relic_book.era^/?(library:y);
 !!SN:W^cqt.sort.popup.ready^/0;
 !!FU&(library)=0:E;
-!!SN:A(library)/^CFSBookReady^/?(book:y);
-!!SN&(book)>0:E(book)/(CALLCONV_STDCALL);
 !!SN:A(library)/^CFSSortPrepare^/?(prepare:y) A(library)/^CFSSortApply^/?(apply:y);
 !!SN:W^cqt.sort.prepare^/(prepare) W^cqt.sort.apply^/(apply);
 !!SN:W^cqt.sort.request^/(CQT_RequestSort);

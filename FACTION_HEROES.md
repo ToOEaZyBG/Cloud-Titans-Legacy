@@ -1,3 +1,9 @@
+# 09/11/2026 dev46 > dev47 - 0.6.0-batch-dev47
+
+- All nine equipped faction relics grant passive First Strike. Each matching stack deals 25% extra physical damage on its first normal hit against the primary target. Removed the manual relic spellbook page and its activations.
+
+Close the game before updating and use matching dev47 clients on a new map.
+
 # 09/11/2026 dev45 > dev46 - 0.6.0-batch-dev46
 
 - All nine newly awarded faction champions arrive with seven fully upgraded stacks of 500, 425, 400, 375, 350, 325 and 300 creatures. The final stack uses the strongest supported upgrade of the faction apex line.
@@ -212,22 +218,11 @@ All positive artifact primary and equipment/set stat bonuses increase by 50%, ro
 
 Compare unequipped, partial-set and assembled values on the same hero and troops. Check the green names and (N/8) counter after moving components, changing heroes and saving/reloading.
 
-## Relic powers
+## Relic First Strike
 
-On your own stack's turn after Tactics, open the battle spellbook and select **Relics** at the bottom. The separate page shows the painted set icon, power name and mana cost. Wear the assembled relic; eight separate components do not enable its manual power. Each relic has one manual activation per battle. Cancel spends nothing; invalid targets or insufficient mana must reject the action. Compare both computers immediately after a successful activation, then after the next round/turn. Ordinary spell navigation must still work.
+Equip an assembled faction relic and use a regular faction stack to make two normal attacks in a played battle. The first hit against the primary target should deal 25% extra physical damage. Another stack has its own first hit. Compare the results on both computers and check that the first hit refreshes in the next battle.
 
-| Town | Power | Mana |
-| --- | --- | --- |
-| Castle | Seraphic Restoration, shared resurrection Health budget | 40 |
-| Rampart | Forest's Embrace, Air Shield and top-creature healing | 30 |
-| Inferno | Infernal Gate, temporary Horned Demons | 40 |
-| Necropolis | Life Harvest, living-enemy damage and shared undead restoration | 30 |
-| Dungeon | Abyssal Rift, targeted Implosion | 25 |
-| Stronghold | Warlord's Fury, Haste and Attack-based physical damage | 20 |
-| Fortress | Primordial Venom, two-round Poison window without refresh | 25 |
-| Conflux | Elemental Invocation, one of four elemental choices | 30 |
-
-Tower lightning is automatic, with its existing Giant/Titan/Lord of Thunder rules. The assembled Necropolis relic additionally gives controlled units 30% Life Leech from physical attacks against living enemies, including shots and retaliation, bounded by starting stack size. This passive has no mana cost and is separate from Life Harvest. Native combat ordering, immunities and synchronization must be tested.
+Tower retains its automatic seven-piece lightning. The Necropolis relic retains its additional 30% physical Life Leech from attacks against living enemies, bounded by starting stack size.
 
 ## Champions
 
