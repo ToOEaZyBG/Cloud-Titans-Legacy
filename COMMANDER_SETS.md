@@ -73,7 +73,7 @@ bonus. Ordinary artifacts show their original descriptions.
 
 ## Updating and acceptance
 
-Close the game before updating, restart fully and use matching dev43 clients
+Close the game before updating, restart fully and use matching dev44 clients
 with a NEW map. Old saved scripts are not migrated; do not use F12. Keep the
 metadata-listed dependencies and incompatibilities. The native dialog bridge
 checks the shipped instruction contracts after providers have loaded.

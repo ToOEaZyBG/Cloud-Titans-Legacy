@@ -1,3 +1,11 @@
+# 09/11/2026 dev43 > dev44 - 0.6.0-batch-dev44
+
+- Living Skull searches for Cloud Titans parts by their real map identity and shows the actual item in the weekly reveal. Relic delivery follows the existing restriction.
+- Support Commander equipment and safe artifact returns with the updated WoG Native Dialogs in ERA Project 2.303. Explain duplicate artifacts and full Commander slots.
+
+- 56 targeted offline tests pass. Native Living Skull and Commander acceptance remains pending.
+
+
 # 06/11/2026 dev42 > dev43 - 0.6.0-batch-dev43
 
 - Skip invalid negative artifact entries in both the Dragon Utopia reward display and delivery.

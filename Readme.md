@@ -1,10 +1,14 @@
-LATEST PUBLIC BUILD: 0.6.0-batch-dev43
+LATEST PUBLIC BUILD: 0.6.0-batch-dev44
 
 ## REQUIRED MODS
 ## WOG, ERA ERM FRAMEWORK, WOG SCRIPTS, GAME ENHANCEMENT MOD, ADVANCED CLASSES MOD
 
 --------------------------------------------------------------
 ## CHANGELOG
+
+09/11/2026 dev43 > dev44
+- Living Skull searches for Cloud Titans parts by their real map identity and shows the actual item in the weekly reveal. Relic delivery follows the existing restriction.
+- Support Commander equipment and safe artifact returns with the updated WoG Native Dialogs in ERA Project 2.303. Explain duplicate artifacts and full Commander slots.
 
 06/11/2026 dev42 > dev43
 - Skip invalid negative artifact entries in both the Dragon Utopia reward display and delivery.
@@ -27,11 +31,6 @@ Fix champion allocation when the preferred native class is exhausted: safely use
 - Remove the extra "green names show owned parts." sentence from commander tooltips.
 - A complete commander set or its relic gains +1 to all seven basic Commander stats per12victories survived. Training is saved per Commander and set, retained across assembly/removal, and active only with that complete set equipped.
 - Keep dev38 map shadows. Restart, matching39 and NEW map required; actual native battle/save/Lobby acceptance remains pending.
-
-29/10/2026 dev37 > dev38
-- Fix missing map shadows for all90 parts by enabling the native shadow drawing mask in both MSK/MSG and packed resources.
-- Add a narrow translucent silhouette and a stronger lower-left ground shadow so pale and thin items stand out on textured terrain. Preserve painted subjects, inventory icons and one-cell footprints.
-- All gameplay and commander bonuses remain unchanged. Restart and use a NEW map on matching38 clients. Actual in-game appearance awaits player testing.
 
 --------------------------------------------------------------
 

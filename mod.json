@@ -16,7 +16,7 @@
     "file": "icon.png",
     "index": 0
   },
-  "mod_version": "0.6.0-batch-dev43",
+  "mod_version": "0.6.0-batch-dev44",
   "info_version": "1",
   "platform": "era",
   "priority": 0,
@@ -34,6 +34,7 @@
     ],
     "load_after": [
       "WoG",
+      "WoG Scripts",
       "Era Erm Framework",
       "ERA Scripts",
       "Advanced Classes Mod",

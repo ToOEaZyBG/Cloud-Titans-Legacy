@@ -1,5 +1,5 @@
 {
-  "status": "Observed reference profile; dev43 package checked offline. Native interface and two-computer acceptance pending.",
+  "status": "File-verified reference profile. Native and two-computer acceptance pending.",
   "active_mods_low_to_high_priority": [
     "WoG",
     "Era Erm Framework",
@@ -47,7 +47,7 @@
     "Unleashed Editor": "1.24",
     "Game Enhancement Mod": "2.255",
     "WoG Scripts": "3.9",
-    "WoG Fix Lite": "2.26.0",
+    "WoG Fix Lite": "2.30.0",
     "Difficulty Mod": "1.1",
     "ERA Scripts": "3",
     "Enhanced Henchmen": "1.2",
@@ -67,17 +67,17 @@
     "Advanced Classes Mod": "1.11",
     "Stack Experience Rebalance": "0.9",
     "test": "1.0",
-    "JS - new objects": "1.40",
+    "JS - new objects": "1.42",
     "JS - main module": "1.21.2",
-    "JS - map generation fixes": "1.12",
+    "JS - map generation fixes": "1.14 hotfix2",
     "Random wallpaper": "1.2",
     "JS - commanders module": "1.02",
-    "Cloud Titans Legacy - Local Test": "0.6.0-batch-dev24",
+    "Cloud Titans Legacy - Local Test": "0.6.0-batch-dev44",
     "Statistics Mod": "0.3",
-    "JS - new terrains": "1.4.1"
+    "JS - new terrains": "1.5.1"
   },
   "core_sha256": {
-    "era.dll": "660bdaac2bc4c37ae7e3d2123a515a7b5cb5fcac4705d7eef53bafe273066cf3",
+    "era.dll": "ced15e83ddab9b4edf8039cf337341b5810609fbe1f84f3bc1d8ec7d118ea451",
     "h3era.exe": "451e208cb2985bca75330f0e3c52f89f9219c0c3701bc6e1f354217890c36181",
     "h3era HD.exe": "ca47b6406fb064aecacfd4620c3a0de190a4a37d97a313d66e1f9aaf95a9d594",
     "vfs.dll": "c54a548ceec45623d593af5bc905a6e9cf737bbbe811fb404bd88cb40ab50a25",
@@ -97,50 +97,10 @@
     "HW_HOTA.dll": "927a087c6d05d40c83de270516f48fdbd1360614259d30689179c1f7300f08db",
     "HW_SOD.dll": "6c9d318283686fcc7d4fe037560d2adda7ba03769370c97cddbcb1928b2635c1"
   },
-  "required_mods": [
-    "WoG",
-    "Era Erm Framework",
-    "WoG Scripts",
-    "Game Enhancement Mod",
-    "Advanced Classes Mod"
-  ],
-  "must_disable_for_this_trial": [
-    "ERAHDHeroes_3_Reborn",
-    "HD Editionfixai (ENG-RU)",
-    "Knightmare Kingdoms"
-  ],
-  "same_on_both_peers": [
-    "ERA and HD builds",
-    "mod versions and activation",
-    "load order",
-    "WoG options",
-    "our installed mod_version and SHA256SUMS.json"
-  ],
+  "era_platform_version": "2.303",
+  "mod_version": "0.6.0-batch-dev44",
   "limitations": [
-    "Observed installed files; no complete native lifecycle or two-computer validation"
+    "Offline tests and installed-file verification do not run ERA or Online Lobby."
   ],
-  "mod_version": "0.6.0-batch-dev43",
-  "observed_utc": "2026-10-25",
-  "era_platform_version": "2.299",
-  "disabled_candidates": [
-    "H3 Dynamic Balancer0.1.2; author ACM/Difficulty combination unvalidated"
-  ],
-  "stack_experience_local_settings": {
-    "provider": "Stack Experience Rebalance0.9",
-    "enabled": [
-      "Rebalance",
-      "WoG Stats",
-      "WoG Abilities",
-      "WoG Neutrals"
-    ],
-    "rank10_medium": {
-      "health_percent": 100,
-      "attack": 10,
-      "defense": 10,
-      "damage_percent": 100,
-      "speed_percent": 10
-    },
-    "tum_packages": false,
-    "native_table_accepted": false
-  }
+  "observed_date": "2026-11-09"
 }

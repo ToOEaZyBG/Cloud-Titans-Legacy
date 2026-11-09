@@ -1,3 +1,10 @@
+# 09/11/2026 dev43 > dev44 - 0.6.0-batch-dev44
+
+- Living Skull searches for Cloud Titans parts by their real map identity and shows the actual item in the weekly reveal. Relic delivery follows the existing restriction.
+- Support Commander equipment and safe artifact returns with the updated WoG Native Dialogs in ERA Project 2.303. Explain duplicate artifacts and full Commander slots.
+
+Use matching dev44 on a new map.
+
 # 06/11/2026 dev42 > dev43 - 0.6.0-batch-dev43
 
 - Skip invalid negative artifact entries in both the Dragon Utopia reward display and delivery.
@@ -143,7 +150,7 @@ Version **0.6.0-batch-dev32**. This is an experimental all-faction release for a
 
 Both players close the game, then use the existing **Legacy of the Cloud Titans - TEST** entry in Heroes Launcher â†’ Mod Browser. Keep the folder **Cloud Titans Legacy - Local Test**; enable only one copy of this mod. The installed `mod.json` must say **0.6.0-batch-dev32** on both computers. Catalog metadata can lag behind downloaded files; an older version displayed in the browser does not establish which build was installed. Check the installed version before starting.
 
-Use identical ERA/HD versions, enabled mods, load order and WoG options. The inspected base profile used ERA platform 2.299, HD 5.8 R22, Advanced Classes Mod 1.11, JS new objects 1.40, JS main module 1.21.2, JS commanders 1.02, JS map fixes 1.12 and JS terrains 1.4.1. Match the exact versions available to both players; TEST_PROFILE.json is an observed reference, not certification of every combination. Keep Knightmare Kingdoms and other metadata-listed incompatible packages disabled. Keep both ERAHDHeroes_3_Reborn (Full) and HD Editionfixai (Lite) disabled for this trial, following the selected remaster-free profile. Use their original Mod Browser files; this release does not patch them.
+Use identical ERA/HD versions, enabled mods, load order and WoG options. The dev44 reference profile uses ERA Project 2.303, Advanced Classes Mod 1.11, JS new objects 1.42, JS main module 1.21.2, JS commanders 1.02, JS map generation fixes 1.14 hotfix2 and JS new terrains 1.5.1. Match the exact versions available to both players; TEST_PROFILE.json is an observed reference, not certification of every combination. Keep Knightmare Kingdoms and other metadata-listed incompatible packages disabled. Keep both ERAHDHeroes_3_Reborn (Full) and HD Editionfixai (Lite) disabled for this trial, following the selected remaster-free profile. Use their original Mod Browser files; this release does not patch them.
 
 Start a **NEW G random map with underground through Heroes Launcher Online Lobby**, using sequential turns with simultaneous turns disabled. Do not resume an older-version map and do not use F12. For the first comparison, both players can choose Necropolis. WoG option 126 is optional; enable it on both clients if testing level-up rewards. Commanders must be enabled for champion quests. No extra starting army or automatic test gift is granted.
 
