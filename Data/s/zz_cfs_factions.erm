@@ -23,7 +23,7 @@ ZVSE2
 !!if&(set)=1;
  !!VR(base):S468;
  !!VR(relic):S476;
- !!VR(slot):S2;
+ !!VR(slot):S1;
  !!VR(town):S1;
  !!VR(name):Z^Legacy of the Emerald Covenant^;
  !!VR(faction):Z^Rampart^;
@@ -33,7 +33,7 @@ ZVSE2
 !!if&(set)=2;
  !!VR(base):S477;
  !!VR(relic):S485;
- !!VR(slot):S4;
+ !!VR(slot):S1;
  !!VR(town):S3;
  !!VR(name):Z^Legacy of the Infernal Pact^;
  !!VR(faction):Z^Inferno^;
@@ -43,7 +43,7 @@ ZVSE2
 !!if&(set)=3;
  !!VR(base):S486;
  !!VR(relic):S494;
- !!VR(slot):S6;
+ !!VR(slot):S1;
  !!VR(town):S4;
  !!VR(name):Z^Legacy of Andonov^;
  !!VR(faction):Z^Necropolis^;
@@ -53,7 +53,7 @@ ZVSE2
 !!if&(set)=4;
  !!VR(base):S495;
  !!VR(relic):S503;
- !!VR(slot):S5;
+ !!VR(slot):S1;
  !!VR(town):S5;
  !!VR(name):Z^Legacy of the Obsidian Dominion^;
  !!VR(faction):Z^Dungeon^;
@@ -63,7 +63,7 @@ ZVSE2
 !!if&(set)=5;
  !!VR(base):S504;
  !!VR(relic):S512;
- !!VR(slot):S8;
+ !!VR(slot):S1;
  !!VR(town):S6;
  !!VR(name):Z^Legacy of the Earthshaker Horde^;
  !!VR(faction):Z^Stronghold^;
@@ -73,7 +73,7 @@ ZVSE2
 !!if&(set)=6;
  !!VR(base):S513;
  !!VR(relic):S521;
- !!VR(slot):S7;
+ !!VR(slot):S1;
  !!VR(town):S7;
  !!VR(name):Z^Legacy of the Primordial Marsh^;
  !!VR(faction):Z^Fortress^;
@@ -83,7 +83,7 @@ ZVSE2
 !!if&(set)=7;
  !!VR(base):S522;
  !!VR(relic):S530;
- !!VR(slot):S9;
+ !!VR(slot):S1;
  !!VR(town):S8;
  !!VR(name):Z^Legacy of the Elemental Nexus^;
  !!VR(faction):Z^Conflux^;
@@ -373,7 +373,7 @@ ZVSE2
 !!en;
 !!if&(art)=476;
  !!VR(name):Z^Legacy of the Emerald Covenant^;
- !!VR(slot):S2;
+ !!VR(slot):S1;
  !!VR(a):S18;
  !!VR(d):S12;
  !!VR(k):S6;
@@ -418,7 +418,7 @@ ZVSE2
 !!en;
 !!if&(art)=485;
  !!VR(name):Z^Legacy of the Infernal Pact^;
- !!VR(slot):S4;
+ !!VR(slot):S1;
  !!VR(a):S12;
  !!VR(d):S6;
  !!VR(p):S12;
@@ -464,7 +464,7 @@ ZVSE2
 !!en;
 !!if&(art)=494;
  !!VR(name):Z^Legacy of Andonov^;
- !!VR(slot):S6;
+ !!VR(slot):S1;
  !!VR(a):S6;
  !!VR(d):S6;
  !!VR(p):S12;
@@ -510,7 +510,7 @@ ZVSE2
 !!en;
 !!if&(art)=503;
  !!VR(name):Z^Legacy of the Obsidian Dominion^;
- !!VR(slot):S5;
+ !!VR(slot):S1;
  !!VR(a):S6;
  !!VR(d):S6;
  !!VR(p):S12;
@@ -556,7 +556,7 @@ ZVSE2
 !!en;
 !!if&(art)=512;
  !!VR(name):Z^Legacy of the Earthshaker Horde^;
- !!VR(slot):S8;
+ !!VR(slot):S1;
  !!VR(a):S18;
  !!VR(d):S12;
  !!VR(k):S6;
@@ -601,7 +601,7 @@ ZVSE2
 !!en;
 !!if&(art)=521;
  !!VR(name):Z^Legacy of the Primordial Marsh^;
- !!VR(slot):S7;
+ !!VR(slot):S1;
  !!VR(a):S12;
  !!VR(d):S12;
  !!VR(k):S12;
@@ -646,7 +646,7 @@ ZVSE2
 !!en;
 !!if&(art)=530;
  !!VR(name):Z^Legacy of the Elemental Nexus^;
- !!VR(slot):S9;
+ !!VR(slot):S1;
  !!VR(a):S6;
  !!VR(d):S6;
  !!VR(p):S12;
@@ -2217,7 +2217,7 @@ ZVSE2
 !?FU(CFS_Status);
 !#VA(owner:x) (set:x);
 !!SN:W^clt.world.placed^/?(placed:y) W^clt.net.world.hash^/?(hash:y) W^clt.net.world.error^/?(worldError:y) W^clt.net.quest.error^/?(questError:y);
-!!VR(status:z):S^Build: 0.6.0-batch-dev51
+!!VR(status:z):S^Build: 0.6.0-batch-dev52
 Placed: %(placed). Map hash: %(hash).
 World errors: %(worldError). Quest errors: %(questError).
 Current player's faction quest counters:

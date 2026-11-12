@@ -1,13 +1,13 @@
 {
   "caption": {
-    "en_US": "Legacy of the Cloud Titans - TEST"
+    "en_US": "Legacy of the Cloud Titans"
   },
   "description": {
     "full": {
       "en_US": "readme.txt"
     },
     "short": {
-      "en_US": "Collect 72 faction artifacts, assemble nine relics with set bonuses and battle powers, and unlock nine champion heroes through quests. For all nine standard towns. Experimental ERA test; NEW map required."
+      "en_US": "Collect 72 faction artifacts, assemble nine relics with set bonuses and battle powers, and unlock nine champion heroes through quests. For all nine standard towns. Requires Heroes III ERA and a new map."
     }
   },
   "author": "ToOEaZyBG; third-party credits in THIRD_PARTY.txt",
@@ -16,7 +16,7 @@
     "file": "icon.png",
     "index": 0
   },
-  "mod_version": "0.6.0-batch-dev51",
+  "mod_version": "0.6.0-batch-dev52",
   "info_version": "1",
   "platform": "era",
   "priority": 0,

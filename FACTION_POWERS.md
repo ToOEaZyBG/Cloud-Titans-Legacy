@@ -1,3 +1,10 @@
+# 12/11/2026 dev51 > dev52 - 0.6.0-batch-dev52
+
+- All nine assembled faction relics are now worn in the head slot. Each has new faction-specific helmet artwork.
+- A relic goes to the backpack if the head slot is occupied after the eight parts are consumed. The existing helmet is kept.
+
+Close the game before updating. Use matching dev52 clients and start a NEW map.
+
 # 12/11/2026 dev50 > dev51 - 0.6.0-batch-dev51
 
 - Removed the Tower-only Network Test town button and its free eight-component kit. The old kit packet no longer grants artifacts. Background network diagnostics remain available.

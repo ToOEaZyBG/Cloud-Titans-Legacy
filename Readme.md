@@ -1,10 +1,13 @@
-LATEST PUBLIC BUILD: 0.6.0-batch-dev51
+LATEST PUBLIC BUILD: 0.6.0-batch-dev52
 
 ## REQUIRED MODS
 ## WOG, ERA ERM FRAMEWORK, WOG SCRIPTS, GAME ENHANCEMENT MOD, ADVANCED CLASSES MOD
 
 --------------------------------------------------------------
 ## CHANGELOG
+
+12/11/2026 dev51 > dev52
+All nine assembled faction relics use the head slot and have new faction-specific helmet artwork. Updated the gallery and removed TEST from the Mod Browser title.
 
 12/11/2026 dev50 > dev51
 Removed the Tower-only Network Test town button and its free eight-component kit. Background network diagnostics remain available.
@@ -21,9 +24,6 @@ Weekly growth now appears in the town forecast and applies to tier-seven recruit
 09/11/2026 dev46 > dev47
 - All nine equipped faction relics grant passive First Strike. Each matching stack deals 25% extra physical damage on its first normal hit against the primary target. Removed the manual relic spellbook page and its activations.
 
-09/11/2026 dev45 > dev46
-- All nine newly awarded faction champions arrive with seven fully upgraded stacks of 500, 425, 400, 375, 350, 325 and 300 creatures. The final stack uses the strongest supported upgrade of the faction apex line.
-
 --------------------------------------------------------------
 
 ## HELP IMPROVE CLOUD TITANS LEGACY
@@ -33,7 +33,7 @@ https://github.com/ToOEaZyBG/Cloud-Titans-Legacy/issues/new/choose
 
 Please include your installed mod version, ERA/HD versions, enabled mods and what happened. Screenshots are welcome. A GitHub account is required. Reports are public: keep saves, crash dumps, raw logs and personal information private; describe what evidence you have so we can arrange a suitable way to share it if needed.
 
-## LEGACY OF THE CLOUD TITANS - TEST
+## LEGACY OF THE CLOUD TITANS
 
 Collect your town's artifacts, assemble its legendary relic and earn a unique faction champion.
 
@@ -64,7 +64,7 @@ Custom relics are assembled from components; Dragon Utopia does not award a comp
 
 ## WEAR A SET AND ASSEMBLE ITS RELIC
 
-Different worn pieces unlock cumulative set bonuses. Components in the backpack do not count, and extra copies of the same piece do not multiply those bonuses. Item descriptions explain the effects and equipment slots.
+Different worn pieces unlock cumulative set bonuses. Components in the backpack do not count, and extra copies of the same piece do not multiply those bonuses. Item descriptions explain the effects and equipment slots. All assembled faction relics occupy the head slot.
 
 Collect all eight different components and use the assemble/disassemble action in the faction quest menu. The assembled relic represents the full collection. Its slot depends on the relic. Disassembly returns the components to the backpack, so leave enough space.
 
@@ -98,11 +98,11 @@ Champions start at level 1 with 25 Attack, 25 Defense, 25 Spell Power, 25 Knowle
 
 ## STARTING A GAME
 
-Requires Heroes III ERA, WoG, Era Erm Framework, WoG Scripts, Game Enhancement Mod and Advanced Classes Mod. Enable one copy of Legacy of the Cloud Titans - TEST and start a NEW map. Keep old saves with their matching mod version. Close the game before updating; do not use F12 to update a running game.
+Requires Heroes III ERA, WoG, Era Erm Framework, WoG Scripts, Game Enhancement Mod and Advanced Classes Mod. Enable one copy of Legacy of the Cloud Titans and start a NEW map. Keep old saves with their matching mod version. Close the game before updating; do not use F12 to update a running game.
 
 The current trial profile keeps Knightmare Kingdoms, the Full/Lite HD remaster packages and the other packages listed as incompatible in mod.json disabled. Support for one creature's upgrades does not establish compatibility with every creature pack.
 
-For an online test, both players need the same build, dependencies, mod order and WoG options. Use sequential turns. Local gameplay, native AI artifact exclusion, save/load and two-computer Online Lobby acceptance are still under testing. This is an experimental release; the earlier AI-turn and fullscreen crashes have no established fix.
+For Online Lobby, both players need the same build, dependencies, mod order and WoG options. Use sequential turns. Local gameplay, native AI artifact exclusion, save/load and two-computer Online Lobby acceptance are still under testing. Earlier AI-turn and fullscreen incidents remain under investigation.
 
 ## REPORTING A PROBLEM
 

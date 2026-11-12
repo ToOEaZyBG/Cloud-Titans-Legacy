@@ -262,8 +262,8 @@ ZVSE2
 !!if&(town)>=0/(equipped)>0;
   !!FU(CLT_LinkTown):P(hero)/(town);
 !!en;
-!!IF&(equipped)>0/(notify)=1:M^Legacy of the Cloud Titans assembled and equipped in one necklace slot.^;
-!!IF&(equipped)=0/(notify)=1:M^Legacy of the Cloud Titans assembled. Necklace slot occupied: the relic is in your backpack.^;
+!!IF&(equipped)>0/(notify)=1:M^Legacy of the Cloud Titans assembled and equipped in the head slot.^;
+!!IF&(equipped)=0/(notify)=1:M^Legacy of the Cloud Titans assembled. Head slot occupied: the relic is in your backpack.^;
 
 !?OB98;
 !!HE-1:N?(hero:y) O?(owner:y);
@@ -695,9 +695,9 @@ copies give no further bonus.
 %(checklist)^;
 !!SN:H^art^/457/1/s^clt.tooltip.457^;
 !!SN:H^art^/458/0/?(artifactName);
-!!VRs^clt.tooltip.458^:S^Worn around the neck, this relic increases your Attack by 6, Defense
-by 6, Spell Power by 12 and Knowledge by 12. Restores 16 spell
-points daily and grants +450 daily movement.
+!!VRs^clt.tooltip.458^:S^Worn on the head, this relic increases your Attack by 6, Defense by
+6, Spell Power by 12 and Knowledge by 12. Restores 16 spell points
+daily and grants +450 daily movement.
 
 {~Lime}Legacy of the Cloud Titans (%(count)/8){~}
 All your Tower troops gain +3 Attack and Defense, +2 Speed.
@@ -1246,9 +1246,9 @@ copies give no further bonus.
 %(checklist)^;
 !!SN:H^art^/475/1/s^clt.tooltip.475^;
 !!SN:H^art^/476/0/?(artifactName);
-!!VRs^clt.tooltip.476^:S^Worn about the shoulders, this relic increases your Attack by 18,
-Defense by 12 and Knowledge by 6. Restores 16 spell points daily and
-grants +450 daily movement.
+!!VRs^clt.tooltip.476^:S^Worn on the head, this relic increases your Attack by 18, Defense by
+12 and Knowledge by 6. Restores 16 spell points daily and grants
++450 daily movement.
 
 {~Lime}Legacy of the Emerald Covenant (%(count)/8){~}
 All your Rampart troops gain +3 Attack and Defense, +2 Speed and
@@ -1521,9 +1521,9 @@ copies give no further bonus.
 %(checklist)^;
 !!SN:H^art^/484/1/s^clt.tooltip.484^;
 !!SN:H^art^/485/0/?(artifactName);
-!!VRs^clt.tooltip.485^:S^Held in the right hand, this relic increases your Attack by 12,
-Defense by 6, Spell Power by 12 and Knowledge by 6. Restores 16
-spell points daily and grants +450 daily movement.
+!!VRs^clt.tooltip.485^:S^Worn on the head, this relic increases your Attack by 12, Defense by
+6, Spell Power by 12 and Knowledge by 6. Restores 16 spell points
+daily and grants +450 daily movement.
 
 {~Lime}Legacy of the Infernal Pact (%(count)/8){~}
 All your Inferno troops gain +3 Attack and Defense, +2 Speed and
@@ -1796,7 +1796,7 @@ copies give no further bonus.
 %(checklist)^;
 !!SN:H^art^/493/1/s^clt.tooltip.493^;
 !!SN:H^art^/494/0/?(artifactName);
-!!VRs^clt.tooltip.494^:S^Worn on the body, this relic increases your Attack by 6, Defense by
+!!VRs^clt.tooltip.494^:S^Worn on the head, this relic increases your Attack by 6, Defense by
 6, Spell Power by 12 and Knowledge by 12. Restores 16 spell points
 daily and grants +450 daily movement.
 
@@ -2075,9 +2075,9 @@ copies give no further bonus.
 %(checklist)^;
 !!SN:H^art^/502/1/s^clt.tooltip.502^;
 !!SN:H^art^/503/0/?(artifactName);
-!!VRs^clt.tooltip.503^:S^Held in the left hand, this relic increases your Attack by 6,
-Defense by 6, Spell Power by 12 and Knowledge by 12. Restores 16
-spell points daily and grants +450 daily movement.
+!!VRs^clt.tooltip.503^:S^Worn on the head, this relic increases your Attack by 6, Defense by
+6, Spell Power by 12 and Knowledge by 12. Restores 16 spell points
+daily and grants +450 daily movement.
 
 {~Lime}Legacy of the Obsidian Dominion (%(count)/8){~}
 All your Dungeon troops gain +3 Attack and Defense, +2 Speed and
@@ -2349,7 +2349,7 @@ copies give no further bonus.
 %(checklist)^;
 !!SN:H^art^/511/1/s^clt.tooltip.511^;
 !!SN:H^art^/512/0/?(artifactName);
-!!VRs^clt.tooltip.512^:S^Worn on the feet, this relic increases your Attack by 18, Defense by
+!!VRs^clt.tooltip.512^:S^Worn on the head, this relic increases your Attack by 18, Defense by
 12 and Knowledge by 6. Restores 16 spell points daily and grants
 +450 daily movement.
 
@@ -2623,7 +2623,7 @@ copies give no further bonus.
 %(checklist)^;
 !!SN:H^art^/520/1/s^clt.tooltip.520^;
 !!SN:H^art^/521/0/?(artifactName);
-!!VRs^clt.tooltip.521^:S^Worn on a finger, this relic increases your Attack by 12, Defense by
+!!VRs^clt.tooltip.521^:S^Worn on the head, this relic increases your Attack by 12, Defense by
 12 and Knowledge by 12. Restores 16 spell points daily and grants
 +450 daily movement.
 
@@ -2898,9 +2898,9 @@ copies give no further bonus.
 %(checklist)^;
 !!SN:H^art^/529/1/s^clt.tooltip.529^;
 !!SN:H^art^/530/0/?(artifactName);
-!!VRs^clt.tooltip.530^:S^Carried by the hero, this relic increases your Attack by 6, Defense
-by 6, Spell Power by 12 and Knowledge by 12. Restores 16 spell
-points daily and grants +450 daily movement.
+!!VRs^clt.tooltip.530^:S^Worn on the head, this relic increases your Attack by 6, Defense by
+6, Spell Power by 12 and Knowledge by 12. Restores 16 spell points
+daily and grants +450 daily movement.
 
 {~Lime}Legacy of the Elemental Nexus (%(count)/8){~}
 All your Conflux troops gain +3 Attack and Defense, +2 Speed and
@@ -2945,7 +2945,7 @@ Includes all eight artifacts. Extra copies give no further bonus.
 !!FU&(offered)>0:E;
 !!SN:W^clt.assembly.offered.%(hero)^/1;
 !!VR(shown):S1;
-!!IF:Q1^All eight Cloud Titans parts are equipped. Assemble them into one necklace relic?^;
+!!IF:Q1^All eight Cloud Titans parts are equipped. Assemble them into one head-slot relic?^;
 !!FU(CLT_RequestForge)&1:P(hero)/-1;
 !!FU(CLT_UpdateTooltips):P(hero);
 

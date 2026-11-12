@@ -1,4 +1,4 @@
-Current distribution: experimental Mod Browser test 0.6.0-batch-dev51. Original credits and historical bundle provenance follow; older local-only status text is historical. H3API/patcher notices are also in THIRD_PARTY_RELIC_BOOK.txt.
+Current Mod Browser distribution: 0.6.0-batch-dev52. Original credits and historical bundle provenance follow; older local-only status text is historical. H3API/patcher notices are also in THIRD_PARTY_RELIC_BOOK.txt.
 
 Emerald artifact extension — third-party component, unchanged local binary.
 Copied from the user's installed Land Of New Towns/EraPlugins/emerald3_3.era.
@@ -30,4 +30,4 @@ Public redistribution permissions for this script must be reviewed before releas
 WoG Scripts: Living Skull, by Timothy E. Pulver and updated by Archer30. Cloud Titans integrates its map artifact identities. Original credits are retained.
 https://github.com/igrikRS/WoG-Scripts
 
-Development overlay (0.6.0-batch-dev51): the pinned option-126 script has guarded native grants and compacted valid reward dialogs. The candidate adds 72 painted inventory frames and 64 faction component map sprites. CFG strings are bounded for the inspected Emerald parser. Original credits remain above. Native acceptance is pending.
+Development overlay (0.6.0-batch-dev52): the pinned option-126 script has guarded native grants and compacted valid reward dialogs. The candidate adds 72 painted inventory frames and 64 faction component map sprites. CFG strings are bounded for the inspected Emerald parser. Original credits remain above. Native acceptance is pending.
