@@ -1,3 +1,11 @@
+# 12/11/2026 dev49 > dev50 - 0.6.0-batch-dev50
+
+- All nine faction sets boost weekly recruitment in linked towns you own. Worn parts boost one dwelling tier, and assembled relics boost all seven. Only the highest eligible equipment bonus applies per dwelling.
+- The Armor of the Dawn Champion now gives +6 Defense and adds six Pikemen or Halberdiers per week in the linked Castle dwelling.
+- Commander assembly and dismantling can recognize a held Shift key when the dialog's right-click event omits it. Plain right-click opens the item description.
+
+Close the game before updating. Use matching dev50 clients and start a NEW map. Visit a matching town you own while wearing a part or relic to link it. For Commander assembly, hold Shift and right-click a worn part with all six different matching parts equipped.
+
 # 09/11/2026 dev48 > dev49 - 0.6.0-batch-dev49
 
 - For a Cloud Titans component, the Living Skull offers a search for 5 Mithril, a map reveal for 15, and delivery for 50. Each service requires confirmation. Failed delivery costs nothing.

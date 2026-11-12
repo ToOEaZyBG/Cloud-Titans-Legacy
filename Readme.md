@@ -1,10 +1,13 @@
-LATEST PUBLIC BUILD: 0.6.0-batch-dev49
+LATEST PUBLIC BUILD: 0.6.0-batch-dev50
 
 ## REQUIRED MODS
 ## WOG, ERA ERM FRAMEWORK, WOG SCRIPTS, GAME ENHANCEMENT MOD, ADVANCED CLASSES MOD
 
 --------------------------------------------------------------
 ## CHANGELOG
+
+12/11/2026 dev49 > dev50
+All nine faction sets grant weekly recruitment bonuses in linked towns. Each worn component boosts one dwelling tier. Assembled relics cover all seven tiers, and only the highest equipment bonus applies to a dwelling. The Armor of the Dawn Champion now gives +6 Defense. Commander assembly also checks Shift when the dialog click does not carry the modifier.
 
 09/11/2026 dev48 > dev49
 The Living Skull charges 5 Mithril to search for a Cloud Titans component, 15 to reveal its location, and 50 to deliver it. Delivery uses the same inventory and map checks as picking up the component.
@@ -20,10 +23,6 @@ Weekly growth now appears in the town forecast and applies to tier-seven recruit
 
 09/11/2026 dev44 > dev45
 - Right-click an equipped Commander part or relic to see its set bonuses and progress. Use Shift + right-click to assemble or dismantle.
-
-09/11/2026 dev43 > dev44
-- Living Skull searches for Cloud Titans parts by their real map identity and shows the actual item in the weekly reveal. Relic delivery follows the existing restriction.
-- Support Commander equipment and safe artifact returns with the updated WoG Native Dialogs in ERA Project 2.303. Explain duplicate artifacts and full Commander slots.
 
 --------------------------------------------------------------
 
@@ -49,7 +48,7 @@ Legacy of the Cloud Titans adds an artifact-collection and hero-progression syst
 - Faction artifact quests with objective descriptions and progress tracking.
 - Passive First Strike for all nine assembled faction relics.
 - Nine champion quests with named heroes, custom portraits and faction specializations.
-- A relic-to-town link that increases weekly recruitment of the faction's top-tier creature.
+- Worn parts boost one dwelling in a linked matching town. Assembled relics boost all seven dwellings; the highest eligible bonus applies per dwelling.
 
 ## FIND AND EARN COMPONENTS
 
