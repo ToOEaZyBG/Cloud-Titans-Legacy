@@ -1,3 +1,9 @@
+# 12/11/2026 dev50 > dev51 - 0.6.0-batch-dev51
+
+- Removed the Tower-only Network Test town button and its free eight-component kit. The old kit packet no longer grants artifacts. Background network diagnostics remain available.
+
+Close the game before updating. Use matching dev51 clients and start a NEW map.
+
 # 12/11/2026 dev49 > dev50 - 0.6.0-batch-dev50
 
 - All nine faction sets boost weekly recruitment in linked towns you own. Worn parts boost one dwelling tier, and assembled relics boost all seven. Only the highest eligible equipment bonus applies per dwelling.

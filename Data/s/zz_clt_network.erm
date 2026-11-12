@@ -145,7 +145,7 @@ ZVSE2
 !!SN:F^WriteStrToIni^/^surface^/^%(surface)^/^network^/^Debug\CloudTitansNetwork.ini^;
 !!SN:F^WriteStrToIni^/^underground^/^%(lower)^/^network^/^Debug\CloudTitansNetwork.ini^;
 !!SN:F^WriteStrToIni^/^world_error^/^%(error)^/^network^/^Debug\CloudTitansNetwork.ini^;
-!!SN:F^WriteStrToIni^/^version^/^0.6.0-batch-dev50^/^network^/^Debug\CloudTitansNetwork.ini^;
+!!SN:F^WriteStrToIni^/^version^/^0.6.0-batch-dev51^/^network^/^Debug\CloudTitansNetwork.ini^;
 !!SN:F^SaveIni^/^Debug\CloudTitansNetwork.ini^;
 !!IF&(error)>0:M^Cloud Titans NETWORK TEST: map placement mismatch. Stop this test and keep both saves/debug folders.^;
 
@@ -161,72 +161,6 @@ ZVSE2
 !!FU(CLT_NetWorldSite):Px1/x2/x3/x4/x5/x6/x7;
 !?FU26895;
 !!FU(CLT_NetWorldDone):Px1;
+; Retired test-kit packet. Keep its wire ID reserved.
 !?FU26896;
-!!FU(CLT_NetTestKit):Px1/x2;
-
-!?FU(gem_OnOpenButtonDlg);
-!!UN:V?i/?i/?i/?(network:y)/?i;
-!!FU&(network)=0:E;
-!!CA-1:T?(kind:y) O?(owner:y);
-!!FU&(kind)<>(TOWN_TOWER):E;
-!!FU(CLT_IsLocalOwner):P(owner)/?(local:y);
-!!FU&(local)=0:E;
-!!FU(gem_AddTownButton):P^cltquest.def^/64/32/^Cloud Titans network test^/^Network test kit and status^/^Optional test components and network status.^/(CLT_NetTestMenu)/0/0/0;
-
-!?FU(CLT_NetTestMenu);
-!!CA-1:U?(town:y) H1/?(hero:y) O?(owner:y);
-!!CA-1&(hero)<0:H0/?(hero);
-!!FU(CLT_IsLocalOwner):P(owner)/?(local:y);
-!!FU&(local)=0:E;
-!!FU(RadioDlg_Reset):P;
-!!FU(RadioDlg_SetTitle):P^Cloud Titans - NETWORK TEST^;
-!!FU(RadioDlg_AddItem):P^Show network status^/0;
-!!FU(RadioDlg_AddItem):P^Receive 8 components - test only, once per player^/1;
-!!FU(RadioDlg_AddCancelButton):P;
-!!FU(RadioDlg_Show):P?(selected:y)/?(action:y)/?(tag:z);
-!!FU&(selected)<0:E;
-!!if&(action)=0;
- !!SN:W^clt.world.placed^/?(placed:y) W^clt.net.world.hash^/?(hash:y) W^clt.net.world.error^/?(error:y) W^clt.net.quest.error^/?(questError:y);
- !!VR(status:z):S^Build: 0.6.0-batch-dev50
-Placed: %(placed). Map hash: %(hash). Errors: %(error).
-Quest write errors: %(questError).
-Confirmed wins per player (compare on both computers):
-^;
- !!re (player:y)/0/7;
-  !!SN:W^clt.quest.%(player).progress.0^/?(wins:y);
-  !!VR(status):S^%(status)Player %(player): %(wins)
-^;
- !!en;
- !!IF:M(status);
- !!FU:E;
-!!en;
-!!if&(hero)<0;
- !!IF:M^Bring your hero into this Tower first.^;
- !!FU:E;
-!!en;
-!!IF:Q1^Receive all eight components for a quick network test? This is a test-only gift, once per player. Keep eight free backpack spaces.^;
-!!FU&-1:E;
-!!FU26896:P(hero)/(town);
-!!IP:D-1;
-!!FU26896:D(hero)/(town);
-!!SN:W^clt.net.kit.%(owner)^/?(given:y);
-!!IF&(given)>0:M^Test kit delivered. Equip the eight components and test assembly/disassembly.^;
-!!IF&(given)=0:M^No test kit delivered. Check hero ownership, town and eight free backpack spaces.^;
-
-!?FU(CLT_NetTestKit);
-!#VA(hero:x) (town:x);
-!!FU|(hero)<0/(town)<0/(town)>47:E;
-!!FU(CLT_IsHuman):P(hero)/?(human:y);
-!!FU&(human)=0:E;
-!!HE(hero):O?(owner:y);
-!!CA0/(town):O?(townOwner:y) T?(kind:y) H1/?(visitor:y) H0/?(garrison:y);
-!!FU|(owner)<>(townOwner)/(kind)<>(TOWN_TOWER):E;
-!!FU&(hero)<>(visitor)/(hero)<>(garrison):E;
-!!SN:W^clt.net.kit.%(owner)^/?(given:y);
-!!FU&(given)>0:E;
-!!FU(CLT_BackpackCount):P(hero)/?(used:y);
-!!FU&(used)>56:E;
-!!re (art:y)/450/457;
- !!HE(hero):A(art);
-!!en;
-!!SN:W^clt.net.kit.%(owner)^/1;
+!!FU:E;

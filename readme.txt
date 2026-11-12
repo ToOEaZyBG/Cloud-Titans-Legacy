@@ -1,10 +1,13 @@
-LATEST PUBLIC BUILD: 0.6.0-batch-dev50
+LATEST PUBLIC BUILD: 0.6.0-batch-dev51
 
 REQUIRED MODS
 WOG, ERA ERM FRAMEWORK, WOG SCRIPTS, GAME ENHANCEMENT MOD, ADVANCED CLASSES MOD
 
 --------------------------------------------------------------
 CHANGELOG
+
+12/11/2026 dev50 > dev51
+Removed the Tower-only Network Test town button and its free eight-component kit. Background network diagnostics remain available.
 
 12/11/2026 dev49 > dev50
 All nine faction sets grant weekly recruitment bonuses in linked towns. Each worn component boosts one dwelling tier. Assembled relics cover all seven tiers, and only the highest equipment bonus applies to a dwelling. The Armor of the Dawn Champion now gives +6 Defense. Commander assembly also checks Shift when the dialog click does not carry the modifier.
@@ -20,9 +23,6 @@ Weekly growth now appears in the town forecast and applies to tier-seven recruit
 
 09/11/2026 dev45 > dev46
 - All nine newly awarded faction champions arrive with seven fully upgraded stacks of 500, 425, 400, 375, 350, 325 and 300 creatures. The final stack uses the strongest supported upgrade of the faction apex line.
-
-09/11/2026 dev44 > dev45
-- Right-click an equipped Commander part or relic to see its set bonuses and progress. Use Shift + right-click to assemble or dismantle.
 
 --------------------------------------------------------------
 
