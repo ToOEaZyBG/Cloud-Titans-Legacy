@@ -1,3 +1,9 @@
+# 13/11/2026 dev54 > dev55 - 0.6.0-batch-dev55
+
+- Fixed an ERM error that appeared when starting a new map.
+
+- 29 targeted offline tests pass. In-game verification is pending.
+
 # 13/11/2026 dev53 > dev54 - 0.6.0-batch-dev54
 
 - Equipped faction gear boosts weekly recruitment in every matching town you own. Removed the town link action and the successful random-map setup popup.

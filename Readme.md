@@ -1,10 +1,13 @@
-LATEST PUBLIC BUILD: 0.6.0-batch-dev54
+LATEST PUBLIC BUILD: 0.6.0-batch-dev55
 
 ## REQUIRED MODS
 ## WOG, ERA ERM FRAMEWORK, WOG SCRIPTS, GAME ENHANCEMENT MOD, ADVANCED CLASSES MOD
 
 --------------------------------------------------------------
 ## CHANGELOG
+
+13/11/2026 dev54 > dev55
+Fixed an ERM error that appeared when starting a new map.
 
 13/11/2026 dev53 > dev54
 Equipped faction gear boosts weekly recruitment in every matching town you own. Removed the town link action and the successful random-map setup popup.
@@ -20,9 +23,6 @@ Removed the Tower-only Network Test town button and its free eight-component kit
 
 12/11/2026 dev49 > dev50
 All nine faction sets grant weekly recruitment bonuses in linked towns. Each worn component boosts one dwelling tier. Assembled relics cover all seven tiers, and only the highest equipment bonus applies to a dwelling. The Armor of the Dawn Champion now gives +6 Defense. Commander assembly also checks Shift when the dialog click does not carry the modifier.
-
-09/11/2026 dev48 > dev49
-The Living Skull charges 5 Mithril to search for a Cloud Titans component, 15 to reveal its location, and 50 to deliver it. Delivery uses the same inventory and map checks as picking up the component.
 
 --------------------------------------------------------------
 

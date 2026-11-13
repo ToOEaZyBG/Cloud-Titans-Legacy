@@ -66,13 +66,14 @@
     "Disable AI Turn Delay": "1.0",
     "Advanced Classes Mod": "1.11",
     "Stack Experience Rebalance": "0.9",
-    "Cloud Titans Legacy - Local Test": "0.6.0-batch-dev50",
+    "Cloud Titans Legacy - Local Test": "0.6.0-batch-dev54",
     "Statistics Mod": "0.3",
     "JS - new objects": "1.42",
     "JS - main module": "1.21.2",
     "JS - map generation fixes": "1.14 hotfix2",
     "Random wallpaper": "1.2",
-    "JS - commanders module": "1.02"
+    "JS - commanders module": "1.02",
+    "\ufeffwog": "3.9.20"
   },
   "core_sha256": {
     "era.dll": "ced15e83ddab9b4edf8039cf337341b5810609fbe1f84f3bc1d8ec7d118ea451",
@@ -96,10 +97,10 @@
     "HW_SOD.dll": "6c9d318283686fcc7d4fe037560d2adda7ba03769370c97cddbcb1928b2635c1"
   },
   "era_platform_version": "2.304",
-  "mod_version": "0.6.0-batch-dev54",
+  "mod_version": "0.6.0-batch-dev55",
   "limitations": [
     "Offline tests and installed-file verification do not run ERA or Online Lobby."
   ],
-  "observed_date": "2026-11-12",
-  "observed_installed_cloud_titans_version": "0.6.0-batch-dev50"
+  "observed_date": "2026-11-13",
+  "observed_installed_cloud_titans_version": "0.6.0-batch-dev54"
 }

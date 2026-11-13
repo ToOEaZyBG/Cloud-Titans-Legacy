@@ -1660,6 +1660,8 @@ ZVSE2
 !!HE(hero):O?(owner:y);
 !!FU(CLT_IsLocalOwner):P(owner)/?(local:y);
 !!FU&(local)=0:E;
+!!FU(CFS_Info):P(set)/?i/?(relic:y)/?i/?i/?i/?i/?i/?i;
+!!HE(hero):A2/(relic)/?(before:y)/?i;
 !!SN:W^cfs.v1.seq.%(hero).%(set)^/?(seq:y) W^cfs.v1.success.%(hero).%(set)^/0;
 !!VR(seq):+1;
 !!FU26898:P(hero)/(set)/(mode)/(town)/(seq);
@@ -2139,7 +2141,7 @@ ZVSE2
 !?FU(CFS_Status);
 !#VA(owner:x) (set:x);
 !!SN:W^clt.world.placed^/?(placed:y) W^clt.net.world.hash^/?(hash:y) W^clt.net.world.error^/?(worldError:y) W^clt.net.quest.error^/?(questError:y);
-!!VR(status:z):S^Build: 0.6.0-batch-dev54
+!!VR(status:z):S^Build: 0.6.0-batch-dev55
 Placed: %(placed). Map hash: %(hash).
 World errors: %(worldError). Quest errors: %(questError).
 Current player's faction quest counters:
