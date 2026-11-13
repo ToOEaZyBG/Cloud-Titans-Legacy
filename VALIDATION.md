@@ -1,3 +1,3 @@
-# Validation for 0.6.0-batch-dev53
+# Validation for 0.6.0-batch-dev54
 
-1,000 headless Backpack Sort scenarios and 13 targeted catalog, documentation and HD provider checks passed. The scenarios cover backpack sizes 0â€“64, alphabetic order, full artifact records, duplicate items, equipped items, and rejected conflicting writes. Runtime resources are from dev52 with three version string substitutions. Native ERA gameplay and Online Lobby verification are pending.
+20 targeted offline tests pass. The current checks cover faction artifact definitions, forge transactions, inventory artwork and catalog contracts. Candidate parser/resource/function gates and archive hashes pass. Native bridge is source-fingerprinted x86. Offline tests do not execute a native renderer, actual ERA save or real Lobby connection. Separately performed native spot checks are described with their coverage and limits in CHANGELOG.md. These results do not certify two-computer compatibility. See Readme.md for the user-operated acceptance sequence. Historical earlier-version observations are not passes for this release.

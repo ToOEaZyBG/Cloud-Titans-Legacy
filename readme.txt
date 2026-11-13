@@ -1,10 +1,13 @@
-LATEST PUBLIC BUILD: 0.6.0-batch-dev53
+LATEST PUBLIC BUILD: 0.6.0-batch-dev54
 
 REQUIRED MODS
 WOG, ERA ERM FRAMEWORK, WOG SCRIPTS, GAME ENHANCEMENT MOD, ADVANCED CLASSES MOD
 
 --------------------------------------------------------------
 CHANGELOG
+
+13/11/2026 dev53 > dev54
+Equipped faction gear boosts weekly recruitment in every matching town you own. Removed the town link action and the successful random-map setup popup.
 
 13/11/2026 dev52 > dev53
 The Mod Browser now leads with HD Backpack Sort and shows the current Ember Oath Commander set. Shortened the feature guide and clarified First Strike.
@@ -21,9 +24,6 @@ All nine faction sets grant weekly recruitment bonuses in linked towns. Each wor
 09/11/2026 dev48 > dev49
 The Living Skull charges 5 Mithril to search for a Cloud Titans component, 15 to reveal its location, and 50 to deliver it. Delivery uses the same inventory and map checks as picking up the component.
 
-09/11/2026 dev47 > dev48
-Weekly growth now appears in the town forecast and applies to tier-seven recruitment for all nine linked faction relics. Equipped relics can link on entry or assembly in the matching town.
-
 --------------------------------------------------------------
 
 LEGACY OF THE CLOUD TITANS
@@ -32,7 +32,7 @@ WHAT YOU GET
 
 - HD Backpack Sort. Open the HD Backpack and click Sort to group artifacts alphabetically. Equipment stays in place. Put down any item you are holding first.
 - Nine faction sets. Find or earn eight parts for your town, equip them for set bonuses, and assemble a helmet relic. Its passive First Strike gives matching troops +25% physical damage on their first normal hit against the primary target each battle.
-- Weekly recruits. Link your gear to a matching town. A worn part boosts one dwelling tier and a full relic boosts all seven.
+- Weekly recruits. Worn gear boosts weekly recruits in every town you own of its faction. A part boosts one dwelling tier and a relic boosts all seven built dwellings.
 - Nine faction champions. Follow the Champion quest in your town to unlock a unique hero and a faction army.
 - Ember Oath. Collect six parts for any Commander. Shift + right-click an equipped part to assemble the full set or the equipped relic to dismantle it.
 

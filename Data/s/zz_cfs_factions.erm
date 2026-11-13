@@ -1653,25 +1653,13 @@ ZVSE2
 
 !?FU(CFS_RequestForge);
 !#VA(hero:x) (set:x) (mode:x) (town:x);
-!!FU|(hero)<0/(hero)>155/(set)<0/(set)>8/(mode)<0/(mode)>2:E;
-!!FU&(set)=8/(mode)<>2:E;
+!!FU|(hero)<0/(hero)>155/(set)<0/(set)>8/(mode)<0/(mode)>1:E;
+!!FU&(set)=8:E;
 !!FU(CLT_IsHuman):P(hero)/?(human:y);
 !!FU&(human)=0:E;
 !!HE(hero):O?(owner:y);
 !!FU(CLT_IsLocalOwner):P(owner)/?(local:y);
 !!FU&(local)=0:E;
-!!if&(mode)=2;
- !!FU|(town)<0/(town)>47:E;
- !!CA0/(town):T?(growthKind:y);
- !!FU(CFS_WearsGrowthGear):P(hero)/(growthKind)/?(gear:y);
- !!FU&(gear)=0:E;
- !!VR(wanted:y):S(town) +1;
- !!SN:W^cfs.v1.link.%(hero).%(set)^/?(linked:y);
- !!FU&(linked)=(wanted):E;
-!!el;
- !!FU(CFS_Info):P(set)/?i/?(relic:y)/?i/?i/?i/?i/?i/?i;
- !!HE(hero):A2/(relic)/?(before:y)/?i;
-!!en;
 !!SN:W^cfs.v1.seq.%(hero).%(set)^/?(seq:y) W^cfs.v1.success.%(hero).%(set)^/0;
 !!VR(seq):+1;
 !!FU26898:P(hero)/(set)/(mode)/(town)/(seq);
@@ -1681,7 +1669,6 @@ ZVSE2
  !!IP:D-1;
  !!FU26898:D(hero)/(set)/(mode)/(town)/(seq);
 !!en;
-!!FU&(mode)=2:E;
 !!HE(hero):A2/(relic)/?(after:y)/?i;
 !!FU(CFS_Info):P(set)/?i/?i/?i/?i/?(name:z)/?i/?i/?i;
 !!IF&(mode)=0/(after)>(before):M^%(name) assembled. If its equipment slot was occupied, look in the backpack.^;
@@ -1706,18 +1693,13 @@ ZVSE2
 
 !?FU(CFS_ReceiveForge);
 !#VA(hero:x) (set:x) (mode:x) (town:x) (seq:x);
-!!FU|(hero)<0/(hero)>155/(set)<0/(set)>8/(mode)<0/(mode)>2/(town)<-1/(town)>47/(seq)<1:E;
-!!FU&(set)=8/(mode)<>2:E;
+!!FU|(hero)<0/(hero)>155/(set)<0/(set)>8/(mode)<0/(mode)>1/(town)<-1/(town)>47/(seq)<1:E;
+!!FU&(set)=8:E;
 !!SN:W^cfs.v1.seq.%(hero).%(set)^/?(old:y);
 !!FU&(seq)<=(old):E;
 !!SN:W^cfs.v1.seq.%(hero).%(set)^/(seq) W^cfs.v1.success.%(hero).%(set)^/0;
 !!FU(CLT_IsHuman):P(hero)/?(human:y);
 !!FU&(human)=0:E;
-!!if&(mode)=2;
- !!FU(CFS_LinkTown):P(hero)/(set)/(town)/?(linked:y);
- !!SN:W^cfs.v1.success.%(hero).%(set)^/(linked);
- !!FU:E;
-!!en;
 !!FU(CFS_Info):P(set)/?(base:y)/?(relic:y)/?i/?i/?i/?i/?i/?i;
 !!HE(hero):A2/(relic)/?(relicTotal:y)/?(relicWorn:y);
 !!FU(CLT_BackpackCount):P(hero)/?(used:y);
@@ -1769,7 +1751,6 @@ ZVSE2
    !!FU:E;
   !!en;
  !!en;
- !!SN&(remainingWorn)=0:W^cfs.v1.link.%(hero).%(set)^/0;
 !!el;
  !!re (part)/0/7;
   !!SN:W^cfs.v1.tx.%(hero).%(set).%(part)^/0;
@@ -1796,7 +1777,6 @@ ZVSE2
   !!FU(CFS_EndForge):P(hero)/(set)/0;
   !!FU:E;
  !!en;
- !!FU(CFS_LinkTown)&(town)>=0:P(hero)/(set)/(town)/?i;
 !!en;
 !!FU(CFS_EndForge):P(hero)/(set)/1;
 
@@ -1866,65 +1846,11 @@ ZVSE2
 !!FU(CFS_Reconcile):P(hero);
 !!UN:R3/(hero);
 
-!?FU(CFS_LinkTown);
-!#VA(hero:x) (set:x) (town:x) (success:x);
-!!VR(success):S0;
-!!FU|(town)<0/(town)>47:E;
-!!HE(hero):O?(owner:y);
-!!FU&(owner)<0:E;
-!!CA0/(town):T?(kind:y) O?(townOwner:y) H1/?(visitor:y) H0/?(garrison:y);
-!!FU&(owner)<>(townOwner):E;
-!!FU&(hero)<>(visitor)/(hero)<>(garrison):E;
-!!FU(CFS_FromTown):P(kind)/?(actual:y);
-!!VR(actual)&(kind)=(TOWN_TOWER):S8;
-!!FU&(actual)<>(set):E;
-!!FU(CFS_WearsGrowthGear):P(hero)/(kind)/?(worn:y);
-!!FU&(worn)=0:E;
-!!VR(link:y):S(town) +1;
-!!SN:W^cfs.v1.link.%(hero).%(set)^/(link);
-!!VR(success):S1;
-
-; OB98 can run before the visiting hero is assigned. Recheck once the
-; native town manager has entered the town.
-!?OB98;
-!!HE-1:N?(hero:y) O?(owner:y);
-!!CA998:U?(town:y) T?(kind:y) O?(townOwner:y);
-!!FU|(owner)<0/(owner)<>(townOwner):E;
-!!FU(CFS_FromTown):P(kind)/?(set:y);
-!!VR(set)&(kind)=(TOWN_TOWER):S8;
-!!FU&(set)<0:E;
-!!FU(CFS_RequestForge):P(hero)/(set)/2/(town);
-
-!?FU(OnPreTownScreen);
-!#VA(town:x);
-!!FU|(town)<0/(town)>47:E;
-!!CA0/(town):T?(kind:y) H1/?(visitor:y) H0/?(garrison:y) O?(owner:y);
-!!FU(CFS_FromTown):P(kind)/?(set:y);
-!!VR(set)&(kind)=(TOWN_TOWER):S8;
-!!FU&(set)<0:E;
-!!FU(CFS_RequestForge)&(garrison)>=0:P(garrison)/(set)/2/(town);
-!!FU(CFS_RequestForge)&(visitor)>=0:P(visitor)/(set)/2/(town);
-
-; Artifact slot offsets by dwelling tier: armor, weapon, shield, mantle,
-; boots, pendant, ring. The crown is the weaker alternative for tier one.
 !?FU(CFS_GrowthPartOffset);
 !#VA(tier:x) (offset:x);
 !!VR(offset):S(tier);
 !!VR(offset)&(tier)=0:S3;
 !!VR(offset)&(tier)>=3:+1;
-
-!?FU(CFS_WearsGrowthGear);
-!#VA(hero:x) (kind:x) (worn:x);
-!!VR(worn):S0;
-!!FU|(kind)<0/(kind)>8:E;
-!!FU(CFS_GrowthRules):P(kind)/0/?(base:y)/?i/?i/?i;
-!!VR(last:y):S(base) +8;
-!!re (art:y)/(base)/(last);
- !!HE(hero):A2/(art)/?i/?(equipped:y);
- !!co&(equipped)=0;
- !!VR(worn):S1;
- !!FU:E;
-!!en;
 
 !?FU(CFS_DwellingBonus);
 !#VA(town:x) (tier:x) (bonus:x);
@@ -1943,12 +1869,8 @@ ZVSE2
 !!FU(CFS_GrowthPartOffset):P(tier)/?(offset:y);
 !!VR(art:y):S(base) +(offset);
 !!VR(weak:y):S(part) :2 F1/999;
-!!VR(wanted:y):S(town) +1;
 !!FU(GetMaxHeroId):P?(last:y);
 !!re (hero:y)/0/(last);
- !!SN:W^cfs.v1.link.%(hero).%(set)^/?(linked:y);
- !!SN&(kind)=(TOWN_TOWER)/(linked)=0:W^clt.link.%(hero)^/?(linked);
- !!co&(linked)<>(wanted);
  !!HE(hero):O?(heroOwner:y);
  !!co&(heroOwner)<>(owner);
  !!HE(hero):A2/(relic)/?i/?(worn:y);
@@ -2217,7 +2139,7 @@ ZVSE2
 !?FU(CFS_Status);
 !#VA(owner:x) (set:x);
 !!SN:W^clt.world.placed^/?(placed:y) W^clt.net.world.hash^/?(hash:y) W^clt.net.world.error^/?(worldError:y) W^clt.net.quest.error^/?(questError:y);
-!!VR(status:z):S^Build: 0.6.0-batch-dev53
+!!VR(status:z):S^Build: 0.6.0-batch-dev54
 Placed: %(placed). Map hash: %(hash).
 World errors: %(worldError). Quest errors: %(questError).
 Current player's faction quest counters:
@@ -2425,7 +2347,6 @@ Current player's faction quest counters:
  !!VR(caption)&(claimed)>0:S^{~Lime}%(label): reward claimed{~}^;
  !!FU(RadioDlg_AddItem):P(caption)/(q);
 !!en;
-!!FU(RadioDlg_AddItem):P^Assemble / disassemble / link relic^/8;
 !!FU(RadioDlg_AddCancelButton):P;
 !!FU(RadioDlg_Show):P?(selected:y)/?(choice:y)/?(tag:z);
 !!FU&(selected)<0:E;
@@ -2447,29 +2368,6 @@ Current player's faction quest counters:
  !!IF:Q1^Accept with %(acceptName)? Only this hero's future victories count. This faction choice lasts for the rest of the game. If the hero dies or leaves your service, unfinished progress resets and another hero may accept for the same faction.^;
  !!FU&-1:E;
  !!FU(CQT_Accept):P(owner)/0/(kind)/(town)/(present);
- !!FU:E;
-!!en;
-!!if&(choice)=8;
- !!FU&(present)<0:E;
- !!HE(present):A2/(relic)/?(total:y)/?(worn:y);
- !!VR(mode:y):S0;
- !!if&(set)=8;
-  !!if&(total)>0;
-   !!VR(mode):S-3;
-   !!VR(mode)&(worn)>0:S-2;
-   !!IF:Q1^Disassemble this relic? Choose No to link recruitment instead.^;
-   !!FU(CLT_RequestForge)&1:P(present)/(mode);
-   !!FU(CLT_RequestForge)&-1/(worn)>0:P(present)/(town);
-  !!el;
-   !!IF:Q1^Assemble the eight Cloud Titans parts into their relic?^;
-   !!FU(CLT_RequestForge)&1:P(present)/(town);
-  !!en;
- !!el;
-  !!VR(mode)&(total)>0:S1;
-  !!IF:Q1^Assemble or disassemble this relic? Choose No to link recruitment instead.^;
-  !!FU(CFS_RequestForge)&1:P(present)/(set)/(mode)/(town);
-  !!FU(CFS_RequestForge):P(present)/(set)/2/(town);
- !!en;
  !!FU:E;
 !!en;
 !!FU|(choice)<0/(choice)>7:E;

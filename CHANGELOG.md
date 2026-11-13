@@ -1,3 +1,9 @@
+# 13/11/2026 dev53 > dev54 - 0.6.0-batch-dev54
+
+- Equipped faction gear boosts weekly recruitment in every matching town you own. Removed the town link action and the successful random-map setup popup.
+
+- 20 targeted offline tests pass.
+
 # 13/11/2026 dev52 > dev53 - 0.6.0-batch-dev53
 
 - Lead with one-click HD Backpack Sort in the Mod Browser. Shorten the feature guide and explain passive First Strike.

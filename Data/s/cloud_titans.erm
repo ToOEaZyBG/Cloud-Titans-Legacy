@@ -187,10 +187,9 @@ ZVSE2
 !!HE(hero):A2/458/?(relicTotal:y)/?(relicWorn:y);
 !!if&(relicWorn)>0/(town)<>-2/(town)<>-3;
   !!if&(town)<0;
-    !!IF&(notify)=1:M^The relic is equipped. Visit your owned Tower to link weekly recruitment. Right-click the relic in the hero window to choose disassembly.^;
+    !!IF&(notify)=1:M^The relic is equipped. Right-click the relic in the hero window to choose disassembly.^;
     !!FU:E;
   !!en;
-  !!FU(CLT_LinkTown):P(hero)/(town);
   !!FU:E;
 !!en;
 !!if&(relicTotal)>0;
@@ -221,7 +220,7 @@ ZVSE2
 !!VR(afterP):-(beforeP);
 !!VR(afterK):-(beforeK);
 !!FU(CLT_ApplyDelta):P(hero)/(old)/(new)/(afterA)/(afterD)/(afterP)/(afterK);
-  !!SN:W^clt.ui.refresh.%(hero)^/1 W^clt.link.%(hero)^/0 W^clt.assembly.offered.%(hero)^/0;
+  !!SN:W^clt.ui.refresh.%(hero)^/1 W^clt.assembly.offered.%(hero)^/0;
   !!IF&(notify)=1:M^The relic has been disassembled. The eight parts are in your backpack.^;
   !!FU:E;
 !!en;
@@ -259,17 +258,8 @@ ZVSE2
 !!VR(afterK):-(beforeK);
 !!FU(CLT_ApplyDelta):P(hero)/(old)/(new)/(afterA)/(afterD)/(afterP)/(afterK);
 !!SN:W^clt.ui.refresh.%(hero)^/1;
-!!if&(town)>=0/(equipped)>0;
-  !!FU(CLT_LinkTown):P(hero)/(town);
-!!en;
 !!IF&(equipped)>0/(notify)=1:M^Legacy of the Cloud Titans assembled and equipped in the head slot.^;
 !!IF&(equipped)=0/(notify)=1:M^Legacy of the Cloud Titans assembled. Head slot occupied: the relic is in your backpack.^;
-
-!?OB98;
-!!HE-1:N?(hero:y) O?(owner:y);
-!!CA998:U?(town:y) T?(kind:y) O?(townOwner:y);
-!!FU|(owner)<0/(townOwner)<>(owner)/(kind)<>(TOWN_TOWER):E;
-!!FU(CLT_RequestForge):P(hero)/(town);
 
 !?FU(CLT_DayHero);
 !#VA(day:x) (weekDay:x) (activeOwner:x);
@@ -533,8 +523,7 @@ Parts appear on new random maps (two of each), with external monster guards. Eac
 !!VRs^clt.tooltip.450^:S^%(artifactName)
 
 Worn on the head, this artifact increases your Knowledge by 6.
-Linked Tower: +3 weekly recruits at tier 1. Visit a matching town
-you own while wearing this part to link it.
+All your Tower towns: +3 weekly recruits at tier 1.
 
 {~Lime}Legacy of the Cloud Titans (%(count)/8){~}
 %(bonus2)
@@ -554,8 +543,7 @@ copies give no further bonus.
 
 Held in the right hand, this artifact increases your Spell Power by
 6.
-Linked Tower: +4 weekly recruits at tier 2. Visit a matching town
-you own while wearing this part to link it.
+All your Tower towns: +4 weekly recruits at tier 2.
 
 {~Lime}Legacy of the Cloud Titans (%(count)/8){~}
 %(bonus2)
@@ -574,8 +562,7 @@ copies give no further bonus.
 !!VRs^clt.tooltip.452^:S^%(artifactName)
 
 Held in the left hand, this artifact increases your Defense by 6.
-Linked Tower: +2 weekly recruits at tier 3. Visit a matching town
-you own while wearing this part to link it.
+All your Tower towns: +2 weekly recruits at tier 3.
 
 {~Lime}Legacy of the Cloud Titans (%(count)/8){~}
 %(bonus2)
@@ -594,8 +581,7 @@ copies give no further bonus.
 !!VRs^clt.tooltip.453^:S^%(artifactName)
 
 Worn on the body, this artifact increases your Attack by 6.
-Linked Tower: +6 weekly recruits at tier 1. Visit a matching town
-you own while wearing this part to link it.
+All your Tower towns: +6 weekly recruits at tier 1.
 
 {~Lime}Legacy of the Cloud Titans (%(count)/8){~}
 %(bonus2)
@@ -615,8 +601,7 @@ copies give no further bonus.
 
 Worn about the shoulders, this artifact restores 8 spell points each
 day.
-Linked Tower: +2 weekly recruits at tier 4. Visit a matching town
-you own while wearing this part to link it.
+All your Tower towns: +2 weekly recruits at tier 4.
 
 {~Lime}Legacy of the Cloud Titans (%(count)/8){~}
 %(bonus2)
@@ -636,8 +621,7 @@ copies give no further bonus.
 
 Worn on the feet, this artifact increases your daily movement by
 450.
-Linked Tower: +1 weekly recruits at tier 5. Visit a matching town
-you own while wearing this part to link it.
+All your Tower towns: +1 weekly recruits at tier 5.
 
 {~Lime}Legacy of the Cloud Titans (%(count)/8){~}
 %(bonus2)
@@ -657,8 +641,7 @@ copies give no further bonus.
 
 Worn around the neck, this artifact increases your Spell Power by 3
 and Knowledge by 3.
-Linked Tower: +1 weekly recruits at tier 6. Visit a matching town
-you own while wearing this part to link it.
+All your Tower towns: +1 weekly recruits at tier 6.
 
 {~Lime}Legacy of the Cloud Titans (%(count)/8){~}
 %(bonus2)
@@ -678,8 +661,7 @@ copies give no further bonus.
 
 Worn on a finger, this artifact increases the Speed of your Giants
 and Titans and their upgrades by 2.
-Linked Tower: +1 weekly recruits at tier 7. Visit a matching town
-you own while wearing this part to link it.
+All your Tower towns: +1 weekly recruits at tier 7.
 
 {~Lime}Legacy of the Cloud Titans (%(count)/8){~}
 %(bonus2)
@@ -712,9 +694,9 @@ At seven pieces, each Giant, Titan or Lord of Thunder stack also
 calls down Lightning Bolt after its first successful attack. It
 deals 10 damage per creature.
 
-Linked Tower: +6/4/2/2/1/1/2 weekly recruits by dwelling tier (1-7).
-Visit a matching town you own while wearing this relic to link it.
-Growth bonuses use the highest eligible bonus per dwelling.
+All your Tower towns: +6/4/2/2/1/1/2 weekly recruits by dwelling
+tier (1-7). Growth bonuses use the highest eligible bonus per
+dwelling.
 Includes all eight artifacts. Extra copies give no further bonus.
 
 %(checklist)^;
@@ -811,8 +793,7 @@ Includes all eight artifacts. Extra copies give no further bonus.
 !!VRs^clt.tooltip.459^:S^%(artifactName)
 
 Worn on the head, this artifact increases your Knowledge by 6.
-Linked Castle: +3 weekly recruits at tier 1. Visit a matching town
-you own while wearing this part to link it.
+All your Castle towns: +3 weekly recruits at tier 1.
 
 {~Lime}Legacy of the Dawn Seraphs (%(count)/8){~}
 %(bonus2)
@@ -831,8 +812,7 @@ copies give no further bonus.
 !!VRs^clt.tooltip.460^:S^%(artifactName)
 
 Held in the right hand, this artifact increases your Attack by 6.
-Linked Castle: +4 weekly recruits at tier 2. Visit a matching town
-you own while wearing this part to link it.
+All your Castle towns: +4 weekly recruits at tier 2.
 
 {~Lime}Legacy of the Dawn Seraphs (%(count)/8){~}
 %(bonus2)
@@ -851,8 +831,7 @@ copies give no further bonus.
 !!VRs^clt.tooltip.461^:S^%(artifactName)
 
 Held in the left hand, this artifact increases your Defense by 6.
-Linked Castle: +3 weekly recruits at tier 3. Visit a matching town
-you own while wearing this part to link it.
+All your Castle towns: +3 weekly recruits at tier 3.
 
 {~Lime}Legacy of the Dawn Seraphs (%(count)/8){~}
 %(bonus2)
@@ -871,8 +850,7 @@ copies give no further bonus.
 !!VRs^clt.tooltip.462^:S^%(artifactName)
 
 Worn on the body, this artifact increases your Defense by 6.
-Linked Castle: +6 weekly recruits at tier 1. Visit a matching town
-you own while wearing this part to link it.
+All your Castle towns: +6 weekly recruits at tier 1.
 
 {~Lime}Legacy of the Dawn Seraphs (%(count)/8){~}
 %(bonus2)
@@ -892,8 +870,7 @@ copies give no further bonus.
 
 Worn about the shoulders, this artifact restores 8 spell points each
 day.
-Linked Castle: +2 weekly recruits at tier 4. Visit a matching town
-you own while wearing this part to link it.
+All your Castle towns: +2 weekly recruits at tier 4.
 
 {~Lime}Legacy of the Dawn Seraphs (%(count)/8){~}
 %(bonus2)
@@ -913,8 +890,7 @@ copies give no further bonus.
 
 Worn on the feet, this artifact increases your daily movement by
 450.
-Linked Castle: +1 weekly recruits at tier 5. Visit a matching town
-you own while wearing this part to link it.
+All your Castle towns: +1 weekly recruits at tier 5.
 
 {~Lime}Legacy of the Dawn Seraphs (%(count)/8){~}
 %(bonus2)
@@ -934,8 +910,7 @@ copies give no further bonus.
 
 Worn around the neck, this artifact increases your Attack by 3 and
 Defense by 3.
-Linked Castle: +1 weekly recruits at tier 6. Visit a matching town
-you own while wearing this part to link it.
+All your Castle towns: +1 weekly recruits at tier 6.
 
 {~Lime}Legacy of the Dawn Seraphs (%(count)/8){~}
 %(bonus2)
@@ -955,8 +930,7 @@ copies give no further bonus.
 
 Worn on a finger, this artifact increases the Speed of your Angels
 and their upgrades by 2.
-Linked Castle: +1 weekly recruits at tier 7. Visit a matching town
-you own while wearing this part to link it.
+All your Castle towns: +1 weekly recruits at tier 7.
 
 {~Lime}Legacy of the Dawn Seraphs (%(count)/8){~}
 %(bonus2)
@@ -986,9 +960,9 @@ First Strike: the first normal melee or ranged hit by each matching
 faction stack deals +25% physical damage to its primary target.
 Retaliation and special attacks are excluded.
 
-Linked Castle: +6/4/3/2/1/1/2 weekly recruits by dwelling tier
-(1-7). Visit a matching town you own while wearing this relic to
-link it. Growth bonuses use the highest eligible bonus per dwelling.
+All your Castle towns: +6/4/3/2/1/1/2 weekly recruits by dwelling
+tier (1-7). Growth bonuses use the highest eligible bonus per
+dwelling.
 Includes all eight artifacts. Extra copies give no further bonus.
 
 %(checklist)^;
@@ -1085,8 +1059,7 @@ Includes all eight artifacts. Extra copies give no further bonus.
 !!VRs^clt.tooltip.468^:S^%(artifactName)
 
 Worn on the head, this artifact increases your Knowledge by 6.
-Linked Rampart: +3 weekly recruits at tier 1. Visit a matching town
-you own while wearing this part to link it.
+All your Rampart towns: +3 weekly recruits at tier 1.
 
 {~Lime}Legacy of the Emerald Covenant (%(count)/8){~}
 %(bonus2)
@@ -1105,8 +1078,7 @@ copies give no further bonus.
 !!VRs^clt.tooltip.469^:S^%(artifactName)
 
 Held in the right hand, this artifact increases your Attack by 6.
-Linked Rampart: +3 weekly recruits at tier 2. Visit a matching town
-you own while wearing this part to link it.
+All your Rampart towns: +3 weekly recruits at tier 2.
 
 {~Lime}Legacy of the Emerald Covenant (%(count)/8){~}
 %(bonus2)
@@ -1125,8 +1097,7 @@ copies give no further bonus.
 !!VRs^clt.tooltip.470^:S^%(artifactName)
 
 Held in the left hand, this artifact increases your Defense by 6.
-Linked Rampart: +3 weekly recruits at tier 3. Visit a matching town
-you own while wearing this part to link it.
+All your Rampart towns: +3 weekly recruits at tier 3.
 
 {~Lime}Legacy of the Emerald Covenant (%(count)/8){~}
 %(bonus2)
@@ -1145,8 +1116,7 @@ copies give no further bonus.
 !!VRs^clt.tooltip.471^:S^%(artifactName)
 
 Worn on the body, this artifact increases your Attack by 6.
-Linked Rampart: +6 weekly recruits at tier 1. Visit a matching town
-you own while wearing this part to link it.
+All your Rampart towns: +6 weekly recruits at tier 1.
 
 {~Lime}Legacy of the Emerald Covenant (%(count)/8){~}
 %(bonus2)
@@ -1166,8 +1136,7 @@ copies give no further bonus.
 
 Worn about the shoulders, this artifact restores 8 spell points each
 day.
-Linked Rampart: +2 weekly recruits at tier 4. Visit a matching town
-you own while wearing this part to link it.
+All your Rampart towns: +2 weekly recruits at tier 4.
 
 {~Lime}Legacy of the Emerald Covenant (%(count)/8){~}
 %(bonus2)
@@ -1187,8 +1156,7 @@ copies give no further bonus.
 
 Worn on the feet, this artifact increases your daily movement by
 450.
-Linked Rampart: +1 weekly recruits at tier 5. Visit a matching town
-you own while wearing this part to link it.
+All your Rampart towns: +1 weekly recruits at tier 5.
 
 {~Lime}Legacy of the Emerald Covenant (%(count)/8){~}
 %(bonus2)
@@ -1208,8 +1176,7 @@ copies give no further bonus.
 
 Worn around the neck, this artifact increases your Attack by 3 and
 Defense by 3.
-Linked Rampart: +1 weekly recruits at tier 6. Visit a matching town
-you own while wearing this part to link it.
+All your Rampart towns: +1 weekly recruits at tier 6.
 
 {~Lime}Legacy of the Emerald Covenant (%(count)/8){~}
 %(bonus2)
@@ -1229,8 +1196,7 @@ copies give no further bonus.
 
 Worn on a finger, this artifact increases the Speed of your Dragons
 and their upgrades by 2.
-Linked Rampart: +1 weekly recruits at tier 7. Visit a matching town
-you own while wearing this part to link it.
+All your Rampart towns: +1 weekly recruits at tier 7.
 
 {~Lime}Legacy of the Emerald Covenant (%(count)/8){~}
 %(bonus2)
@@ -1260,9 +1226,9 @@ First Strike: the first normal melee or ranged hit by each matching
 faction stack deals +25% physical damage to its primary target.
 Retaliation and special attacks are excluded.
 
-Linked Rampart: +6/3/3/2/1/1/2 weekly recruits by dwelling tier
-(1-7). Visit a matching town you own while wearing this relic to
-link it. Growth bonuses use the highest eligible bonus per dwelling.
+All your Rampart towns: +6/3/3/2/1/1/2 weekly recruits by dwelling
+tier (1-7). Growth bonuses use the highest eligible bonus per
+dwelling.
 Includes all eight artifacts. Extra copies give no further bonus.
 
 %(checklist)^;
@@ -1359,8 +1325,7 @@ Includes all eight artifacts. Extra copies give no further bonus.
 !!VRs^clt.tooltip.477^:S^%(artifactName)
 
 Worn on the head, this artifact increases your Knowledge by 6.
-Linked Inferno: +3 weekly recruits at tier 1. Visit a matching town
-you own while wearing this part to link it.
+All your Inferno towns: +3 weekly recruits at tier 1.
 
 {~Lime}Legacy of the Infernal Pact (%(count)/8){~}
 %(bonus2)
@@ -1380,8 +1345,7 @@ copies give no further bonus.
 
 Held in the right hand, this artifact increases your Spell Power by
 6.
-Linked Inferno: +3 weekly recruits at tier 2. Visit a matching town
-you own while wearing this part to link it.
+All your Inferno towns: +3 weekly recruits at tier 2.
 
 {~Lime}Legacy of the Infernal Pact (%(count)/8){~}
 %(bonus2)
@@ -1400,8 +1364,7 @@ copies give no further bonus.
 !!VRs^clt.tooltip.479^:S^%(artifactName)
 
 Held in the left hand, this artifact increases your Defense by 6.
-Linked Inferno: +2 weekly recruits at tier 3. Visit a matching town
-you own while wearing this part to link it.
+All your Inferno towns: +2 weekly recruits at tier 3.
 
 {~Lime}Legacy of the Infernal Pact (%(count)/8){~}
 %(bonus2)
@@ -1420,8 +1383,7 @@ copies give no further bonus.
 !!VRs^clt.tooltip.480^:S^%(artifactName)
 
 Worn on the body, this artifact increases your Attack by 6.
-Linked Inferno: +6 weekly recruits at tier 1. Visit a matching town
-you own while wearing this part to link it.
+All your Inferno towns: +6 weekly recruits at tier 1.
 
 {~Lime}Legacy of the Infernal Pact (%(count)/8){~}
 %(bonus2)
@@ -1441,8 +1403,7 @@ copies give no further bonus.
 
 Worn about the shoulders, this artifact restores 8 spell points each
 day.
-Linked Inferno: +2 weekly recruits at tier 4. Visit a matching town
-you own while wearing this part to link it.
+All your Inferno towns: +2 weekly recruits at tier 4.
 
 {~Lime}Legacy of the Infernal Pact (%(count)/8){~}
 %(bonus2)
@@ -1462,8 +1423,7 @@ copies give no further bonus.
 
 Worn on the feet, this artifact increases your daily movement by
 450.
-Linked Inferno: +1 weekly recruits at tier 5. Visit a matching town
-you own while wearing this part to link it.
+All your Inferno towns: +1 weekly recruits at tier 5.
 
 {~Lime}Legacy of the Infernal Pact (%(count)/8){~}
 %(bonus2)
@@ -1483,8 +1443,7 @@ copies give no further bonus.
 
 Worn around the neck, this artifact increases your Attack by 3 and
 Spell Power by 3.
-Linked Inferno: +1 weekly recruits at tier 6. Visit a matching town
-you own while wearing this part to link it.
+All your Inferno towns: +1 weekly recruits at tier 6.
 
 {~Lime}Legacy of the Infernal Pact (%(count)/8){~}
 %(bonus2)
@@ -1504,8 +1463,7 @@ copies give no further bonus.
 
 Worn on a finger, this artifact increases the Speed of your Devils
 and their upgrades by 2.
-Linked Inferno: +1 weekly recruits at tier 7. Visit a matching town
-you own while wearing this part to link it.
+All your Inferno towns: +1 weekly recruits at tier 7.
 
 {~Lime}Legacy of the Infernal Pact (%(count)/8){~}
 %(bonus2)
@@ -1535,9 +1493,9 @@ First Strike: the first normal melee or ranged hit by each matching
 faction stack deals +25% physical damage to its primary target.
 Retaliation and special attacks are excluded.
 
-Linked Inferno: +6/3/2/2/1/1/2 weekly recruits by dwelling tier
-(1-7). Visit a matching town you own while wearing this relic to
-link it. Growth bonuses use the highest eligible bonus per dwelling.
+All your Inferno towns: +6/3/2/2/1/1/2 weekly recruits by dwelling
+tier (1-7). Growth bonuses use the highest eligible bonus per
+dwelling.
 Includes all eight artifacts. Extra copies give no further bonus.
 
 %(checklist)^;
@@ -1634,8 +1592,7 @@ Includes all eight artifacts. Extra copies give no further bonus.
 !!VRs^clt.tooltip.486^:S^%(artifactName)
 
 Worn on the head, this artifact increases your Knowledge by 6.
-Linked Necropolis: +2 weekly recruits at tier 1. Visit a matching
-town you own while wearing this part to link it.
+All your Necropolis towns: +2 weekly recruits at tier 1.
 
 {~Lime}Legacy of Andonov (%(count)/8){~}
 %(bonus2)
@@ -1655,8 +1612,7 @@ copies give no further bonus.
 
 Held in the right hand, this artifact increases your Spell Power by
 6.
-Linked Necropolis: +3 weekly recruits at tier 2. Visit a matching
-town you own while wearing this part to link it.
+All your Necropolis towns: +3 weekly recruits at tier 2.
 
 {~Lime}Legacy of Andonov (%(count)/8){~}
 %(bonus2)
@@ -1675,8 +1631,7 @@ copies give no further bonus.
 !!VRs^clt.tooltip.488^:S^%(artifactName)
 
 Held in the left hand, this artifact increases your Defense by 6.
-Linked Necropolis: +3 weekly recruits at tier 3. Visit a matching
-town you own while wearing this part to link it.
+All your Necropolis towns: +3 weekly recruits at tier 3.
 
 {~Lime}Legacy of Andonov (%(count)/8){~}
 %(bonus2)
@@ -1695,8 +1650,7 @@ copies give no further bonus.
 !!VRs^clt.tooltip.489^:S^%(artifactName)
 
 Worn on the body, this artifact increases your Attack by 6.
-Linked Necropolis: +5 weekly recruits at tier 1. Visit a matching
-town you own while wearing this part to link it.
+All your Necropolis towns: +5 weekly recruits at tier 1.
 
 {~Lime}Legacy of Andonov (%(count)/8){~}
 %(bonus2)
@@ -1716,8 +1670,7 @@ copies give no further bonus.
 
 Worn about the shoulders, this artifact restores 8 spell points each
 day.
-Linked Necropolis: +2 weekly recruits at tier 4. Visit a matching
-town you own while wearing this part to link it.
+All your Necropolis towns: +2 weekly recruits at tier 4.
 
 {~Lime}Legacy of Andonov (%(count)/8){~}
 %(bonus2)
@@ -1737,8 +1690,7 @@ copies give no further bonus.
 
 Worn on the feet, this artifact increases your daily movement by
 450.
-Linked Necropolis: +1 weekly recruits at tier 5. Visit a matching
-town you own while wearing this part to link it.
+All your Necropolis towns: +1 weekly recruits at tier 5.
 
 {~Lime}Legacy of Andonov (%(count)/8){~}
 %(bonus2)
@@ -1758,8 +1710,7 @@ copies give no further bonus.
 
 Worn around the neck, this artifact increases your Spell Power by 3
 and Knowledge by 3.
-Linked Necropolis: +1 weekly recruits at tier 6. Visit a matching
-town you own while wearing this part to link it.
+All your Necropolis towns: +1 weekly recruits at tier 6.
 
 {~Lime}Legacy of Andonov (%(count)/8){~}
 %(bonus2)
@@ -1779,8 +1730,7 @@ copies give no further bonus.
 
 Worn on a finger, this artifact increases the Speed of your Dragons
 and their upgrades by 2.
-Linked Necropolis: +1 weekly recruits at tier 7. Visit a matching
-town you own while wearing this part to link it.
+All your Necropolis towns: +1 weekly recruits at tier 7.
 
 {~Lime}Legacy of Andonov (%(count)/8){~}
 %(bonus2)
@@ -1814,9 +1764,9 @@ First Strike: the first normal melee or ranged hit by each matching
 faction stack deals +25% physical damage to its primary target.
 Retaliation and special attacks are excluded.
 
-Linked Necropolis: +5/3/3/2/1/1/3 weekly recruits by dwelling tier
-(1-7). Visit a matching town you own while wearing this relic to
-link it. Growth bonuses use the highest eligible bonus per dwelling.
+All your Necropolis towns: +5/3/3/2/1/1/3 weekly recruits by
+dwelling tier (1-7). Growth bonuses use the highest eligible bonus
+per dwelling.
 Includes all eight artifacts. Extra copies give no further bonus.
 
 %(checklist)^;
@@ -1913,8 +1863,7 @@ Includes all eight artifacts. Extra copies give no further bonus.
 !!VRs^clt.tooltip.495^:S^%(artifactName)
 
 Worn on the head, this artifact increases your Knowledge by 6.
-Linked Dungeon: +3 weekly recruits at tier 1. Visit a matching town
-you own while wearing this part to link it.
+All your Dungeon towns: +3 weekly recruits at tier 1.
 
 {~Lime}Legacy of the Obsidian Dominion (%(count)/8){~}
 %(bonus2)
@@ -1934,8 +1883,7 @@ copies give no further bonus.
 
 Held in the right hand, this artifact increases your Spell Power by
 6.
-Linked Dungeon: +3 weekly recruits at tier 2. Visit a matching town
-you own while wearing this part to link it.
+All your Dungeon towns: +3 weekly recruits at tier 2.
 
 {~Lime}Legacy of the Obsidian Dominion (%(count)/8){~}
 %(bonus2)
@@ -1954,8 +1902,7 @@ copies give no further bonus.
 !!VRs^clt.tooltip.497^:S^%(artifactName)
 
 Held in the left hand, this artifact increases your Defense by 6.
-Linked Dungeon: +3 weekly recruits at tier 3. Visit a matching town
-you own while wearing this part to link it.
+All your Dungeon towns: +3 weekly recruits at tier 3.
 
 {~Lime}Legacy of the Obsidian Dominion (%(count)/8){~}
 %(bonus2)
@@ -1974,8 +1921,7 @@ copies give no further bonus.
 !!VRs^clt.tooltip.498^:S^%(artifactName)
 
 Worn on the body, this artifact increases your Attack by 6.
-Linked Dungeon: +6 weekly recruits at tier 1. Visit a matching town
-you own while wearing this part to link it.
+All your Dungeon towns: +6 weekly recruits at tier 1.
 
 {~Lime}Legacy of the Obsidian Dominion (%(count)/8){~}
 %(bonus2)
@@ -1995,8 +1941,7 @@ copies give no further bonus.
 
 Worn about the shoulders, this artifact restores 8 spell points each
 day.
-Linked Dungeon: +2 weekly recruits at tier 4. Visit a matching town
-you own while wearing this part to link it.
+All your Dungeon towns: +2 weekly recruits at tier 4.
 
 {~Lime}Legacy of the Obsidian Dominion (%(count)/8){~}
 %(bonus2)
@@ -2016,8 +1961,7 @@ copies give no further bonus.
 
 Worn on the feet, this artifact increases your daily movement by
 450.
-Linked Dungeon: +1 weekly recruits at tier 5. Visit a matching town
-you own while wearing this part to link it.
+All your Dungeon towns: +1 weekly recruits at tier 5.
 
 {~Lime}Legacy of the Obsidian Dominion (%(count)/8){~}
 %(bonus2)
@@ -2037,8 +1981,7 @@ copies give no further bonus.
 
 Worn around the neck, this artifact increases your Spell Power by 3
 and Knowledge by 3.
-Linked Dungeon: +1 weekly recruits at tier 6. Visit a matching town
-you own while wearing this part to link it.
+All your Dungeon towns: +1 weekly recruits at tier 6.
 
 {~Lime}Legacy of the Obsidian Dominion (%(count)/8){~}
 %(bonus2)
@@ -2058,8 +2001,7 @@ copies give no further bonus.
 
 Worn on a finger, this artifact increases the Speed of your Dragons
 and their upgrades by 2.
-Linked Dungeon: +1 weekly recruits at tier 7. Visit a matching town
-you own while wearing this part to link it.
+All your Dungeon towns: +1 weekly recruits at tier 7.
 
 {~Lime}Legacy of the Obsidian Dominion (%(count)/8){~}
 %(bonus2)
@@ -2089,9 +2031,9 @@ First Strike: the first normal melee or ranged hit by each matching
 faction stack deals +25% physical damage to its primary target.
 Retaliation and special attacks are excluded.
 
-Linked Dungeon: +6/3/3/2/1/1/2 weekly recruits by dwelling tier
-(1-7). Visit a matching town you own while wearing this relic to
-link it. Growth bonuses use the highest eligible bonus per dwelling.
+All your Dungeon towns: +6/3/3/2/1/1/2 weekly recruits by dwelling
+tier (1-7). Growth bonuses use the highest eligible bonus per
+dwelling.
 Includes all eight artifacts. Extra copies give no further bonus.
 
 %(checklist)^;
@@ -2188,8 +2130,7 @@ Includes all eight artifacts. Extra copies give no further bonus.
 !!VRs^clt.tooltip.504^:S^%(artifactName)
 
 Worn on the head, this artifact increases your Knowledge by 6.
-Linked Stronghold: +3 weekly recruits at tier 1. Visit a matching
-town you own while wearing this part to link it.
+All your Stronghold towns: +3 weekly recruits at tier 1.
 
 {~Lime}Legacy of the Earthshaker Horde (%(count)/8){~}
 %(bonus2)
@@ -2208,8 +2149,7 @@ copies give no further bonus.
 !!VRs^clt.tooltip.505^:S^%(artifactName)
 
 Held in the right hand, this artifact increases your Attack by 6.
-Linked Stronghold: +4 weekly recruits at tier 2. Visit a matching
-town you own while wearing this part to link it.
+All your Stronghold towns: +4 weekly recruits at tier 2.
 
 {~Lime}Legacy of the Earthshaker Horde (%(count)/8){~}
 %(bonus2)
@@ -2228,8 +2168,7 @@ copies give no further bonus.
 !!VRs^clt.tooltip.506^:S^%(artifactName)
 
 Held in the left hand, this artifact increases your Defense by 6.
-Linked Stronghold: +3 weekly recruits at tier 3. Visit a matching
-town you own while wearing this part to link it.
+All your Stronghold towns: +3 weekly recruits at tier 3.
 
 {~Lime}Legacy of the Earthshaker Horde (%(count)/8){~}
 %(bonus2)
@@ -2248,8 +2187,7 @@ copies give no further bonus.
 !!VRs^clt.tooltip.507^:S^%(artifactName)
 
 Worn on the body, this artifact increases your Attack by 6.
-Linked Stronghold: +6 weekly recruits at tier 1. Visit a matching
-town you own while wearing this part to link it.
+All your Stronghold towns: +6 weekly recruits at tier 1.
 
 {~Lime}Legacy of the Earthshaker Horde (%(count)/8){~}
 %(bonus2)
@@ -2269,8 +2207,7 @@ copies give no further bonus.
 
 Worn about the shoulders, this artifact restores 8 spell points each
 day.
-Linked Stronghold: +2 weekly recruits at tier 4. Visit a matching
-town you own while wearing this part to link it.
+All your Stronghold towns: +2 weekly recruits at tier 4.
 
 {~Lime}Legacy of the Earthshaker Horde (%(count)/8){~}
 %(bonus2)
@@ -2290,8 +2227,7 @@ copies give no further bonus.
 
 Worn on the feet, this artifact increases your daily movement by
 450.
-Linked Stronghold: +1 weekly recruits at tier 5. Visit a matching
-town you own while wearing this part to link it.
+All your Stronghold towns: +1 weekly recruits at tier 5.
 
 {~Lime}Legacy of the Earthshaker Horde (%(count)/8){~}
 %(bonus2)
@@ -2311,8 +2247,7 @@ copies give no further bonus.
 
 Worn around the neck, this artifact increases your Attack by 3 and
 Defense by 3.
-Linked Stronghold: +1 weekly recruits at tier 6. Visit a matching
-town you own while wearing this part to link it.
+All your Stronghold towns: +1 weekly recruits at tier 6.
 
 {~Lime}Legacy of the Earthshaker Horde (%(count)/8){~}
 %(bonus2)
@@ -2332,8 +2267,7 @@ copies give no further bonus.
 
 Worn on a finger, this artifact increases the Speed of your
 Behemoths and their upgrades by 2.
-Linked Stronghold: +1 weekly recruits at tier 7. Visit a matching
-town you own while wearing this part to link it.
+All your Stronghold towns: +1 weekly recruits at tier 7.
 
 {~Lime}Legacy of the Earthshaker Horde (%(count)/8){~}
 %(bonus2)
@@ -2363,9 +2297,9 @@ First Strike: the first normal melee or ranged hit by each matching
 faction stack deals +25% physical damage to its primary target.
 Retaliation and special attacks are excluded.
 
-Linked Stronghold: +6/4/3/2/1/1/2 weekly recruits by dwelling tier
-(1-7). Visit a matching town you own while wearing this relic to
-link it. Growth bonuses use the highest eligible bonus per dwelling.
+All your Stronghold towns: +6/4/3/2/1/1/2 weekly recruits by
+dwelling tier (1-7). Growth bonuses use the highest eligible bonus
+per dwelling.
 Includes all eight artifacts. Extra copies give no further bonus.
 
 %(checklist)^;
@@ -2462,8 +2396,7 @@ Includes all eight artifacts. Extra copies give no further bonus.
 !!VRs^clt.tooltip.513^:S^%(artifactName)
 
 Worn on the head, this artifact increases your Knowledge by 6.
-Linked Fortress: +2 weekly recruits at tier 1. Visit a matching town
-you own while wearing this part to link it.
+All your Fortress towns: +2 weekly recruits at tier 1.
 
 {~Lime}Legacy of the Primordial Marsh (%(count)/8){~}
 %(bonus2)
@@ -2482,8 +2415,7 @@ copies give no further bonus.
 !!VRs^clt.tooltip.514^:S^%(artifactName)
 
 Held in the right hand, this artifact increases your Attack by 6.
-Linked Fortress: +4 weekly recruits at tier 2. Visit a matching town
-you own while wearing this part to link it.
+All your Fortress towns: +4 weekly recruits at tier 2.
 
 {~Lime}Legacy of the Primordial Marsh (%(count)/8){~}
 %(bonus2)
@@ -2502,8 +2434,7 @@ copies give no further bonus.
 !!VRs^clt.tooltip.515^:S^%(artifactName)
 
 Held in the left hand, this artifact increases your Defense by 6.
-Linked Fortress: +3 weekly recruits at tier 3. Visit a matching town
-you own while wearing this part to link it.
+All your Fortress towns: +3 weekly recruits at tier 3.
 
 {~Lime}Legacy of the Primordial Marsh (%(count)/8){~}
 %(bonus2)
@@ -2522,8 +2453,7 @@ copies give no further bonus.
 !!VRs^clt.tooltip.516^:S^%(artifactName)
 
 Worn on the body, this artifact increases your Attack by 6.
-Linked Fortress: +5 weekly recruits at tier 1. Visit a matching town
-you own while wearing this part to link it.
+All your Fortress towns: +5 weekly recruits at tier 1.
 
 {~Lime}Legacy of the Primordial Marsh (%(count)/8){~}
 %(bonus2)
@@ -2543,8 +2473,7 @@ copies give no further bonus.
 
 Worn about the shoulders, this artifact restores 8 spell points each
 day.
-Linked Fortress: +2 weekly recruits at tier 4. Visit a matching town
-you own while wearing this part to link it.
+All your Fortress towns: +2 weekly recruits at tier 4.
 
 {~Lime}Legacy of the Primordial Marsh (%(count)/8){~}
 %(bonus2)
@@ -2564,8 +2493,7 @@ copies give no further bonus.
 
 Worn on the feet, this artifact increases your daily movement by
 450.
-Linked Fortress: +1 weekly recruits at tier 5. Visit a matching town
-you own while wearing this part to link it.
+All your Fortress towns: +1 weekly recruits at tier 5.
 
 {~Lime}Legacy of the Primordial Marsh (%(count)/8){~}
 %(bonus2)
@@ -2585,8 +2513,7 @@ copies give no further bonus.
 
 Worn around the neck, this artifact increases your Defense by 3 and
 Knowledge by 3.
-Linked Fortress: +1 weekly recruits at tier 6. Visit a matching town
-you own while wearing this part to link it.
+All your Fortress towns: +1 weekly recruits at tier 6.
 
 {~Lime}Legacy of the Primordial Marsh (%(count)/8){~}
 %(bonus2)
@@ -2606,8 +2533,7 @@ copies give no further bonus.
 
 Worn on a finger, this artifact increases the Speed of your Hydras
 and their upgrades by 2.
-Linked Fortress: +1 weekly recruits at tier 7. Visit a matching town
-you own while wearing this part to link it.
+All your Fortress towns: +1 weekly recruits at tier 7.
 
 {~Lime}Legacy of the Primordial Marsh (%(count)/8){~}
 %(bonus2)
@@ -2637,9 +2563,9 @@ First Strike: the first normal melee or ranged hit by each matching
 faction stack deals +25% physical damage to its primary target.
 Retaliation and special attacks are excluded.
 
-Linked Fortress: +5/4/3/2/1/1/2 weekly recruits by dwelling tier
-(1-7). Visit a matching town you own while wearing this relic to
-link it. Growth bonuses use the highest eligible bonus per dwelling.
+All your Fortress towns: +5/4/3/2/1/1/2 weekly recruits by dwelling
+tier (1-7). Growth bonuses use the highest eligible bonus per
+dwelling.
 Includes all eight artifacts. Extra copies give no further bonus.
 
 %(checklist)^;
@@ -2736,8 +2662,7 @@ Includes all eight artifacts. Extra copies give no further bonus.
 !!VRs^clt.tooltip.522^:S^%(artifactName)
 
 Worn on the head, this artifact increases your Knowledge by 6.
-Linked Conflux: +4 weekly recruits at tier 1. Visit a matching town
-you own while wearing this part to link it.
+All your Conflux towns: +4 weekly recruits at tier 1.
 
 {~Lime}Legacy of the Elemental Nexus (%(count)/8){~}
 %(bonus2)
@@ -2757,8 +2682,7 @@ copies give no further bonus.
 
 Held in the right hand, this artifact increases your Spell Power by
 6.
-Linked Conflux: +2 weekly recruits at tier 2. Visit a matching town
-you own while wearing this part to link it.
+All your Conflux towns: +2 weekly recruits at tier 2.
 
 {~Lime}Legacy of the Elemental Nexus (%(count)/8){~}
 %(bonus2)
@@ -2777,8 +2701,7 @@ copies give no further bonus.
 !!VRs^clt.tooltip.524^:S^%(artifactName)
 
 Held in the left hand, this artifact increases your Defense by 6.
-Linked Conflux: +2 weekly recruits at tier 3. Visit a matching town
-you own while wearing this part to link it.
+All your Conflux towns: +2 weekly recruits at tier 3.
 
 {~Lime}Legacy of the Elemental Nexus (%(count)/8){~}
 %(bonus2)
@@ -2797,8 +2720,7 @@ copies give no further bonus.
 !!VRs^clt.tooltip.525^:S^%(artifactName)
 
 Worn on the body, this artifact increases your Attack by 6.
-Linked Conflux: +8 weekly recruits at tier 1. Visit a matching town
-you own while wearing this part to link it.
+All your Conflux towns: +8 weekly recruits at tier 1.
 
 {~Lime}Legacy of the Elemental Nexus (%(count)/8){~}
 %(bonus2)
@@ -2818,8 +2740,7 @@ copies give no further bonus.
 
 Worn about the shoulders, this artifact restores 8 spell points each
 day.
-Linked Conflux: +2 weekly recruits at tier 4. Visit a matching town
-you own while wearing this part to link it.
+All your Conflux towns: +2 weekly recruits at tier 4.
 
 {~Lime}Legacy of the Elemental Nexus (%(count)/8){~}
 %(bonus2)
@@ -2839,8 +2760,7 @@ copies give no further bonus.
 
 Worn on the feet, this artifact increases your daily movement by
 450.
-Linked Conflux: +2 weekly recruits at tier 5. Visit a matching town
-you own while wearing this part to link it.
+All your Conflux towns: +2 weekly recruits at tier 5.
 
 {~Lime}Legacy of the Elemental Nexus (%(count)/8){~}
 %(bonus2)
@@ -2860,8 +2780,7 @@ copies give no further bonus.
 
 Worn around the neck, this artifact increases your Spell Power by 3
 and Knowledge by 3.
-Linked Conflux: +1 weekly recruits at tier 6. Visit a matching town
-you own while wearing this part to link it.
+All your Conflux towns: +1 weekly recruits at tier 6.
 
 {~Lime}Legacy of the Elemental Nexus (%(count)/8){~}
 %(bonus2)
@@ -2881,8 +2800,7 @@ copies give no further bonus.
 
 Worn on a finger, this artifact increases the Speed of your
 Firebirds and Phoenixes and their upgrades by 2.
-Linked Conflux: +1 weekly recruits at tier 7. Visit a matching town
-you own while wearing this part to link it.
+All your Conflux towns: +1 weekly recruits at tier 7.
 
 {~Lime}Legacy of the Elemental Nexus (%(count)/8){~}
 %(bonus2)
@@ -2912,9 +2830,9 @@ First Strike: the first normal melee or ranged hit by each matching
 faction stack deals +25% physical damage to its primary target.
 Retaliation and special attacks are excluded.
 
-Linked Conflux: +8/2/2/2/2/1/2 weekly recruits by dwelling tier
-(1-7). Visit a matching town you own while wearing this relic to
-link it. Growth bonuses use the highest eligible bonus per dwelling.
+All your Conflux towns: +8/2/2/2/2/1/2 weekly recruits by dwelling
+tier (1-7). Growth bonuses use the highest eligible bonus per
+dwelling.
 Includes all eight artifacts. Extra copies give no further bonus.
 
 %(checklist)^;
@@ -3138,41 +3056,6 @@ Includes all eight artifacts. Extra copies give no further bonus.
 !!VR(k):-(ok);
 !!HE(hero):Fd(a)/d(d)/d(p)/d(k);
 
-!?FU(CLT_LinkTown);
-!#VA(hero:x) (town:x);
-!!VR(link:y):S(town) +1;
-!!SN:W^cfs.v1.link.%(hero).8^/(link) W^clt.link.%(hero)^/?(old:y);
-!!FU&(old)=(link):E;
-!!SN:W^clt.link.%(hero)^/(link) W^clt.town.hasLink.%(town)^/1;
-!!HE(hero):O?(notifyOwner:y);
-!!FU(CLT_IsLocalOwner):P(notifyOwner)/?(notify:y);
-!!IF&(notify)=1:M^Cloud Titans: Tower linked. Worn faction gear increases weekly recruitment while you own this town.^;
-
-!?FU(CLT_TownBonus);
-!#VA(town:x) (bonus:x);
-!!VR(bonus):S0;
-!!FU|(town)<0/(town)>47:E;
-!!SN:W^clt.town.hasLink.%(town)^/?(hasLink:y);
-!!FU&(hasLink)=0:E;
-!!CA0/(town):O?(owner:y) T?(kind:y);
-!!FU|(owner)<0/(kind)<>(TOWN_TOWER):E;
-!!OW:I(owner)/?(isAi:y);
-!!FU&(isAi)>0:E;
-!!CA0/(town):B3/36;
-!!FU&-1:E;
-!!VR(wanted:y):S(town) +1;
-!!FU(GetMaxHeroId):P?(last:y);
-!!re (hero:y)/0/(last);
-  !!SN:W^clt.link.%(hero)^/?(linked:y);
-  !!if&(linked)=(wanted);
-    !!HE(hero):O?(heroOwner:y) A2/458/?(total:y)/?(worn:y);
-    !!if&(heroOwner)=(owner)/(worn)>0;
-      !!VR(bonus):S2;
-      !!FU:E;
-    !!en;
-  !!en;
-!!en;
-
 ; Native H3Town::GetDwellingGrowth, shared hook points also used by WoG 45.
 ; Capture this before it is restored; add once after all normal growth modifiers.
 !?FU(OnStartOrLoad);
@@ -3192,19 +3075,6 @@ Includes all eight artifacts. Extra copies give no further bonus.
 !?FU(CLT_GrowthEnd);
 !#VA(hook:x);
 !!FU(CFS_GrowthEnd):P(hook);
-
-!?FU(CLT_IndexLinks);
-!!FU(GetMaxHeroId):P?(last:y);
-!!re (hero:y)/0/(last);
-  !!SN:W^clt.link.%(hero)^/?(link:y);
-  !!if&(link)>0;
-    !!VR(town:y):S(link) -1;
-    !!SN:W^clt.town.hasLink.%(town)^/1;
-  !!en;
-!!en;
-
-!?GM1;
-!!FU(CLT_IndexLinks):P;
 
 !?FU(CLT_ReconcilePrimaryLoop);
 !!FU(CLT_ReconcilePrimary):Px16;
