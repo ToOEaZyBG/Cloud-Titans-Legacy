@@ -1,3 +1,8 @@
+# 13/11/2026 dev52 > dev53 - 0.6.0-batch-dev53
+
+- Lead with one-click HD Backpack Sort in the Mod Browser. Shorten the feature guide and explain passive First Strike.
+- Show only the current Ember Oath components and Commander relic in the gallery.
+
 # 12/11/2026 dev51 > dev52 - 0.6.0-batch-dev52
 
 - All nine assembled faction relics are now worn in the head slot. Each has new faction-specific helmet artwork.

@@ -1,10 +1,12 @@
-## Historical Commander artwork — dev31
+## Ember Oath Commander set
 
-18 original new items in three universal sets. Artwork preview; not gameplay.
+Six components and one assembled relic. Artwork preview.
 
-![Ember Oath, Iron Covenant and Astral Conclave](Screens/commander-sets.png)
+![Ember Oath components](Screens/commander-sets.png)
 
-[Commander equipment, bonuses and compatibility](COMMANDER_SETS.md).
+![Ember Oath assembled relic](Screens/commander-relics.png)
+
+[Commander equipment, bonuses and assembly](COMMANDER_SETS.md).
 
 ## Champion portraits
 
@@ -108,12 +110,3 @@ Full-size approved portraits. Artwork previews; not gameplay screenshots.
 ![Conflux: eight parts and relic](Screens/set-conflux.png)
 
 ![Conflux assembled relic close-up](Screens/relic-conflux.png)
-
-## Historical artwork from dev32 — assembled commander relics
-
-![Ember Oath, Iron Covenant and Astral Conclave relics](Screens/commander-relics.png)
-
-Original artwork plus enlarged actual44x44 inventory pixels, not gameplay.
-Each relic is assembled from six separate parts and reserves only Pendant.
-See [commander sets](COMMANDER_SETS.md) for greenN/6 progress and assembly.
-

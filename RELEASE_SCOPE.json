@@ -1,9 +1,9 @@
 {
-  "version": "0.6.0-batch-dev52",
+  "version": "0.6.0-batch-dev53",
   "distribution": "MOD BROWSER",
   "new_map_required": true,
   "sequential_turns_only": true,
-  "offline_tests_passed": 143,
+  "offline_tests_passed": 13,
   "native_runtime_accepted": false,
   "two_computer_accepted": false,
   "production_ready": false,
@@ -22,11 +22,13 @@
     "AI-turn crash",
     "fullscreen crash"
   ],
-  "reviewed_candidate_zip_sha256": "a52b24c7838654e1731d3e23afe9f48cd99b03ecca6d73c63f7837db5a1b26ba",
   "export_overrides": [
     "mod.json catalog caption/description",
     "Readme.md",
     "NETWORK_TEST.md",
     "readme.txt"
-  ]
+  ],
+  "backpack_sort_scenarios_passed": 1000,
+  "runtime_baseline": "0.6.0-batch-dev52",
+  "runtime_baseline_zip_sha256": "a52b24c7838654e1731d3e23afe9f48cd99b03ecca6d73c63f7837db5a1b26ba"
 }

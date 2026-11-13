@@ -7,7 +7,7 @@
       "en_US": "readme.txt"
     },
     "short": {
-      "en_US": "Collect 72 faction artifacts, assemble nine relics with set bonuses and battle powers, and unlock nine champion heroes through quests. For all nine standard towns. Requires Heroes III ERA and a new map."
+      "en_US": "Sort your HD Backpack in one click. Collect nine faction sets with passive First Strike relics, unlock nine champions, and equip the Ember Oath Commander set. Requires Heroes III ERA and a new map."
     }
   },
   "author": "ToOEaZyBG; third-party credits in THIRD_PARTY.txt",
@@ -16,7 +16,7 @@
     "file": "icon.png",
     "index": 0
   },
-  "mod_version": "0.6.0-batch-dev52",
+  "mod_version": "0.6.0-batch-dev53",
   "info_version": "1",
   "platform": "era",
   "priority": 0,
